@@ -81,6 +81,7 @@ text-align: center;
 .img{
   width: 20rem!important;
   z-index: 99!important;
+  height: 25rem!important;
   margin-top: 3rem;
 }
 
