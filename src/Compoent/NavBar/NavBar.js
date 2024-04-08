@@ -16,6 +16,7 @@ import avatarimg from "../Images/user.png"
 import menuicon from "../Images/menu.png"
 import HomePageCarousel from '../HomePageCarousel/HomePageCarousel';
 import FirstSection from '../Sections/FirstSection/FirstSection';
+import AnchorTemporaryDrawer from '../AnchorTemporaryDrawer/AnchorTemporaryDrawer';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -45,6 +46,7 @@ HideOnScroll.propTypes = {
 export default function HideAppBar(props) {
   return (
     <React.Fragment>
+             <AnchorTemporaryDrawer />
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{backgroundColor:"white",boxShadow:"none"}}>
