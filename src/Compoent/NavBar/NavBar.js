@@ -18,6 +18,7 @@ import HomePageCarousel from '../HomePageCarousel/HomePageCarousel';
 import FirstSection from '../Sections/FirstSection/FirstSection';
 import AnchorTemporaryDrawer from '../AnchorTemporaryDrawer/AnchorTemporaryDrawer';
 import SecondSection from '../Sections/SecondSection/SecondSection';
+import SectionThird from '../Sections/SectionThird/SectionThird';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -86,6 +87,7 @@ export default function HideAppBar(props) {
       <div  className={style.Container}>
           <FirstSection/>
           <SecondSection />
+          <SectionThird />
         </div>
     </React.Fragment>
   );

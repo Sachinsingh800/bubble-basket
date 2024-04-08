@@ -1,0 +1,48 @@
+.main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  justify-content: center;
+}
+.description_box {
+  color: white;
+  text-align: center;
+  z-index: 999 !important;
+  position: absolute;
+}
+.description_box h2 {
+  font-size: 3rem;
+}
+
+.description_box img {
+  width: 30rem;
+}
+.background{
+    height: 100vh;
+    width: 100%;
+    filter: brightness(40%);
+}
+.background img{
+    height: 100%;
+    width: 100%;
+}
+
+.btn{
+    display:flex ;
+    align-items: center;
+    border: none;
+    padding: .5rem 1rem;
+    font-size: small;
+    letter-spacing: .3cap;
+    background-color: white;
+    position: absolute;
+    margin-top: 15rem;
+    font-size: large;
+}
+.btn:hover{
+    background-color: maroon;
+    color: white;
+}
