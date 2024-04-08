@@ -70,12 +70,12 @@ export default function AnchorTemporaryDrawer() {
 
   return (
     <div>
-      <Button className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:150, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black", }}>
+      <Box className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:150, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black", }}>
         <LocalMallIcon />
-      </Button>
-      <Button className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:200, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black" }}>
+      </Box>
+      <Box className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:200, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black" }}>
          <ShoppingCartIcon/>
-      </Button>
+      </Box>
       <Drawer
         anchor="right"
         open={state.right}
