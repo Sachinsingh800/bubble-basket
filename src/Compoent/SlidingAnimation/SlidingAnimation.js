@@ -21,8 +21,8 @@ export const SlidingAnimation = () => {
 
   return (
     <div className="animation-container">
-      <h1>MADE WITH PASSION</h1>
       <div className={isVisible ? 'slideOutLeft' : 'slideInRight'}>
+      <h1>MADE WITH PASSION</h1>
         <img className='img' src={product1} alt='beer' />
       </div>
     </div>
@@ -45,8 +45,8 @@ export const SlidingAnimation2 = () => {
 
   return (
     <div className="animation-container">
-      <h1>MADE WITH PASSION</h1>
       <div className={isVisible ? 'slideOutLeft' : 'slideInRight'}>
+      <h1>MADE WITH PASSION</h1>
         <img className='img' src={product2} alt='beer' />
       </div>
     </div>
@@ -69,8 +69,8 @@ export const SlidingAnimation3 = () => {
 
   return (
     <div className="animation-container">
-      <h1>MADE WITH PASSION</h1>
       <div className={isVisible ? 'slideOutLeft' : 'slideInRight'}>
+      <h1>MADE WITH PASSION</h1>
         <img className='img' src={product3} alt='beer' />
       </div>
     </div>
