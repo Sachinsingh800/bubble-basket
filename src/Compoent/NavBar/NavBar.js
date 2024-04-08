@@ -17,6 +17,7 @@ import menuicon from "../Images/menu.png"
 import HomePageCarousel from '../HomePageCarousel/HomePageCarousel';
 import FirstSection from '../Sections/FirstSection/FirstSection';
 import AnchorTemporaryDrawer from '../AnchorTemporaryDrawer/AnchorTemporaryDrawer';
+import SecondSection from '../Sections/SecondSection/SecondSection';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -84,6 +85,7 @@ export default function HideAppBar(props) {
       <Toolbar />
       <div  className={style.Container}>
           <FirstSection/>
+          <SecondSection />
         </div>
     </React.Fragment>
   );
