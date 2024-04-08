@@ -10,6 +10,10 @@ import Container from '@mui/material/Container';
 import Slide from '@mui/material/Slide';
 import style from "./NavBar.module.css"
 import logo from "../Images/logo.jpg"
+import searchicon from "../Images/search.png"
+import shoppingCart from "../Images/shopping-basket.png"
+import avatarimg from "../Images/user.png"
+import menuicon from "../Images/menu.png"
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -56,10 +60,18 @@ export default function HideAppBar(props) {
                  </div>
          
                  <div className={style.right_section}>
-                    <p>icon1</p>
-                    <p>icon2</p>
-                    <p>icon3</p>
-                    <p>icon4</p>
+                    <div className={style.icon_box}>
+                        <img  src={searchicon}  alt='search'/>
+                    </div>
+                    <div className={style.icon_box}>
+                        <img  src={avatarimg}  alt='user'/>
+                    </div>
+                    <div className={style.icon_box}>
+                        <img  src={shoppingCart}  alt='shopping'/>
+                    </div>
+                    <div className={style.icon_box4}>
+                        <img  src={menuicon}  alt='menu'/>
+                    </div>
                  </div>
               </div>
           </Toolbar>

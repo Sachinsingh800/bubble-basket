@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@100&display=swap');
 .tool_bar {
   display: flex;
   width: 100%;
@@ -6,6 +7,7 @@
   font-size: small;
   padding: 0rem 1.5rem;
   color: black;
+  font-family: 'Futura PT', sans-serif;
 }
 .tool_bar div {
   display: flex;
@@ -22,7 +24,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
 }
 .middle_section {
   display: flex;
@@ -32,10 +33,32 @@
 }
 .img_box{
     width: 8rem;
-     overflow: hidden;
      height: 5rem;
 }
 .img_box img {
     height: 100%;
     width: 100%;
+  }
+  .icon_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px black solid;
+    padding: 0rem 1rem;
+
+  }
+  .icon_box img{
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .icon_box4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0rem 1rem;
+  }
+  .icon_box4 img{
+    height: 1rem;
+    width: 2rem;
   }
