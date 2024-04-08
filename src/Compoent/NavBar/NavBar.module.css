@@ -7,7 +7,7 @@
   font-size: small;
   padding: 0rem 1.5rem;
   color: black;
-  font-family: 'Futura PT', sans-serif;
+
 }
 .tool_bar div {
   display: flex;
@@ -19,11 +19,13 @@
   gap: 2rem;
   letter-spacing: .2cap;
   font-weight: 600;
+  font-family: 'Futura PT', sans-serif;
 }
 .right_section {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-family: 'Futura PT', sans-serif;
 }
 .middle_section {
   display: flex;
@@ -61,4 +63,11 @@
   .icon_box4 img{
     height: 1rem;
     width: 2rem;
+  }
+  .Container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 3rem;
   }
