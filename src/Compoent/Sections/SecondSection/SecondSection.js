@@ -30,7 +30,11 @@ function SecondSection() {
     return (
         <div className={style.main}>
             <div className={style.heading_box}>
-            <img src={textfile} alt='text' />
+            <p>
+          <hr />
+          Gift Basket
+          <hr />
+        </p>
                 <h2>COLLECTION</h2>
             </div>
             <div  className={style.card_box}>
