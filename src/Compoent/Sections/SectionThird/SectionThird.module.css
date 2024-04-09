@@ -36,12 +36,14 @@
     padding: .5rem 1rem;
     font-size: small;
     letter-spacing: .3cap;
-    background-color: white;
+   color: white;
+   border: 1px white solid;
     font-size: large;
+    background-color: transparent;
 }
 .btn:hover{
-    background-color: maroon;
-    color: white;
+  background-color: white;
+    color: rgb(0, 0, 0);
 }
 .Parallax::-webkit-scrollbar{
   display: none;
