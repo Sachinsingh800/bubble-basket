@@ -20,6 +20,7 @@ import AnchorTemporaryDrawer from '../AnchorTemporaryDrawer/AnchorTemporaryDrawe
 import SecondSection from '../Sections/SecondSection/SecondSection';
 import SectionThird from '../Sections/SectionThird/SectionThird';
 import SectionFourth from '../Sections/SectionFourth/SectionFourth';
+import SectionFifth from '../Sections/SectionFifth/SectionFifth';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -90,6 +91,7 @@ export default function HideAppBar(props) {
           <SecondSection />
           <SectionThird />
           <SectionFourth />
+          <SectionFifth />
         </div>
     </React.Fragment>
   );

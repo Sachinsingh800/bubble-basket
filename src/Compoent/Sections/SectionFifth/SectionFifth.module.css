@@ -1,0 +1,46 @@
+.input_container{
+    display: flex;
+    align-items: center;
+    color: maroon;
+}
+.input_container p{
+    margin-top: 1.2rem;
+}
+.container h6{
+    font-size: small;
+    margin-top: -.5rem;
+    color: maroon;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    padding: 0rem 7rem;
+
+}
+.main{
+  display: flex;
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 247, 247);
+}
+.img_box{
+    position: absolute;
+    height: 23rem;
+    overflow: hidden;
+}
+.img_box img{
+    height: 100%;
+    width: 100%;
+}
+.outer_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   height: 100%;
+   width: 100%;
+    gap: 5rem;
+}
