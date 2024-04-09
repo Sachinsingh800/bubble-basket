@@ -11,38 +11,38 @@ function Footer() {
   return (
     <div className={style.main}>
       <div className={style.header}>
-        <div>
-          <span>
-            <CallIcon />
+        <div className={style.left_box}>
+          <span className={style.icon}>
+            <CallIcon style={{ fontSize: 20 }} />
           </span>
-          <span>+91 9876543210</span>
+          <span>2 0 2 . 4 5 9 . 8 4 8 9</span>
         </div>
         <div className={style.icon_container}>
-          <span>
-            <FacebookRoundedIcon />
+          <span className={style.icon}>
+            <FacebookRoundedIcon style={{ fontSize: 20 }} />
           </span>
-          <span>
-            <InstagramIcon />
+          <span className={style.icon}>
+            <InstagramIcon style={{ fontSize: 20 }} />
           </span>
-          <span>
-            <LinkedInIcon />
+          <span className={style.icon}>
+            <LinkedInIcon style={{ fontSize: 20 }} />
           </span>
-          <span>
-            <TwitterIcon />
+          <span className={style.icon}>
+            <TwitterIcon style={{ fontSize: 20 }} />
           </span>
         </div>
       </div>
       <div className={style.img_box}>
         <img src={logo} alt="logo" />
       </div>
-      <div>
-        <p>HOME</p>
-        <p>PAGE</p>
-        <p>SHOP</p>
-        <p>ORDERS</p>
-        <p>CONTACT</p>
-        <p>ABOUT</p>
-        <p>FAQ'S</p>
+      <div className={style.nav_bar}>
+        <span>HOME</span>|
+        <span>PAGE</span>|
+        <span>SHOP</span>|
+        <span>ORDERS</span>|
+        <span>CONTACT</span>|
+        <span>ABOUT</span>|
+        <span>FAQ'S</span>
       </div>
       <div className={style.input_box}>
         <input placeholder="YOUR MAIL" />
