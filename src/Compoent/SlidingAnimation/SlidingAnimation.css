@@ -88,8 +88,8 @@ text-align: center;
 .animation-container h1 {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
-  -webkit-animation-duration: 3s;
-  animation-duration: 3s;
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   }
