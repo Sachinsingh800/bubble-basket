@@ -23,6 +23,7 @@ import SectionFourth from '../Sections/SectionFourth/SectionFourth';
 import SectionFifth from '../Sections/SectionFifth/SectionFifth';
 import SectionSixth from '../Sections/SectionSixth/SectionSixth';
 import SectionSeventh from '../Sections/SectionSeventh/SectionSeventh';
+import SectionEight from '../Sections/SectionEight/SectionEight';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -96,6 +97,7 @@ export default function HideAppBar(props) {
           <SectionFifth />
           <SectionSixth />
           <SectionSeventh />
+          <SectionEight />
         </div>
     </React.Fragment>
   );
