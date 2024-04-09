@@ -24,20 +24,20 @@ function SectionNinth() {
             <option>3 Person</option>
           </select>
         </label>
-        <div>for</div>
+        <div className={style.para}>for</div>
 
         <label>
           <WorkHistoryOutlinedIcon />
           <input type="date" />
         </label>
 
-        <div>at</div>
+        <div className={style.para}>at</div>
         <label>
           <AccessAlarmsOutlinedIcon />
           <input type="time" />
         </label>
 
-        <div>go!</div>
+        <div className={style.para}>go!</div>
         <button>R E S E R V A T I O N →</button>
       </div>
     </div>
