@@ -8,13 +8,13 @@ function SectionThird() {
   const alignCenter = { display: 'flex', alignItems: 'center' }
   return (
     <div className={style.main}>
-      <Parallax pages={1.3} className={style.Parallax}>
-        <ParallaxLayer offset={0} speed={0.8} style={{ ...alignCenter, justifyContent: 'center' }} >
+      <Parallax pages={1.5} className={style.Parallax} style={{ ...alignCenter, justifyContent: 'center' }}>
+        <ParallaxLayer offset={0.5} speed={0.8} style={{ ...alignCenter, justifyContent: 'center' }} >
           <div className={style.background}>
             <img src={backgroundImage} alt="bg" className={style.bgImage} />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={0} speed={0.5} style={{ ...alignCenter, justifyContent: 'center' }}>
+        <ParallaxLayer offset={0.5} speed={0.5} style={{ ...alignCenter, justifyContent: 'center' }}>
           <div className={style.content}>
             <div className={style.description_box}>
               <img src={textfile} alt="text" />

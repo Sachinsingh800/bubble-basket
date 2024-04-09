@@ -45,6 +45,7 @@
 }
 .Parallax::-webkit-scrollbar{
   display: none;
+
 }
 .content{
   display: flex;
