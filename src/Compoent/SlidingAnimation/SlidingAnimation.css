@@ -83,6 +83,7 @@ text-align: center;
   z-index: 99!important;
   height:29rem!important;
   margin-top: 3rem;
+  overflow: hidden;
 }
 
 .animation-container h1 {
