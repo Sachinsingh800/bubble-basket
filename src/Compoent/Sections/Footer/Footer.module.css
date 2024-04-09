@@ -5,6 +5,7 @@
   height: max-content;
   background-color: black;
   color: white;
+  gap: 1rem;
 }
 .img_box {
   height: 30rem;
@@ -25,10 +26,10 @@
   gap: 0.5rem;
   align-items: center;
 }
-.icon_container{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+.icon_container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 .icon {
   border-radius: 50%;
@@ -37,11 +38,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .2rem;
-
+  padding: 0.2rem;
 }
-.nav_bar{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+.nav_bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input_box {
+  border: 1px rgb(255, 255, 255) solid;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+.input_box input {
+  width: 20rem;
+  background-color: none;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+}
+.input_box button {
+  border: none;
+  background-color: none;
+  color: white;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+.desc_box {
+  text-align: center;
+  width: 80%;
 }
