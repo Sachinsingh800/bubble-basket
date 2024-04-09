@@ -13,10 +13,16 @@
     width: 100%;
     gap: 2rem;   
 }
-.img_box{
-    height: 20rem ;
+.img_box {
+    height: 20rem;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
 }
-.img_box img{
+.img_box img:hover {
+    transform: scale(1.1);
+}
+.img_box img {
     height: 100%;
     width: 100%;
+    transition: transform 0.3s ease-in-out;
 }
