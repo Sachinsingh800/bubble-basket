@@ -57,8 +57,8 @@ function Footer() {
       </div>
       <div className={style.desc_box}>
         <h6>
-          C o p y r i g h t @ 2 0 1 4 , d c w i n e a n d s p i r i t s , A l l
-          R i g h t s R e s e r v e d .
+          Copyright@2014 , dc wine and spirits , All
+          Rights Reserved .
         </h6>
         <p>
           You must be at least 21 years of age to purchase wine or spirits. By

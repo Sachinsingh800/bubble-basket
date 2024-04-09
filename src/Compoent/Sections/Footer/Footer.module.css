@@ -72,3 +72,8 @@
   text-align: center;
   width: 80%;
 }
+
+.desc_box  h6{
+    font-weight: 700;
+    letter-spacing: .5cap;
+}
