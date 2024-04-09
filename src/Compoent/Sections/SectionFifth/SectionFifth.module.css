@@ -1,7 +1,7 @@
 .input_container{
     display: flex;
     align-items: center;
-    color: maroon;
+    color: #7B0128;
 }
 .input_container p{
     margin-top: 1.2rem;
@@ -9,7 +9,7 @@
 .container h6{
     font-size: small;
     margin-top: -.5rem;
-    color: maroon;
+    color: #7B0128;
 }
 .container{
     display: flex;
@@ -26,11 +26,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(255, 247, 247);
+    background-color: #F5E3E3;
+    overflow: hidden;
 }
 .img_box{
     position: absolute;
-    height: 23rem;
+    height: 22rem;
     overflow: hidden;
 }
 .img_box img{

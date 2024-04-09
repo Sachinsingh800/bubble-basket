@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@400&display=swap');
 .main{
     height: 100vh;
-    border: 1px  rgb(204, 88, 88) solid;
+    border: 1px  #F5E3E3 solid;
     width: 100%;
     display: flex;
     align-items: center;
@@ -23,7 +23,7 @@
     align-items: center;
     gap: .5rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(204, 88, 88) ;
+    color: #F5E3E3 ;
 }
 .heading_box p hr{
     width: 3rem;
@@ -45,7 +45,7 @@
     flex-direction: column;
     height: 20rem;
     width: 15rem;
-    border: 1px  rgb(204, 88, 88) solid;
+    border: 1px  #F5E3E3 solid;
     align-items: center;
     gap: 1rem;
     padding: 2rem 1rem 0rem 1rem;
@@ -74,14 +74,14 @@
     display:flex ;
     align-items: center;
     border: none;
-    border: 1px  rgb(204, 88, 88) solid;
+    border: 1px  #F5E3E3 solid;
     padding: .5rem 1rem;
     font-size: small;
     letter-spacing: .3cap;
     background-color: white;
 }
 .viewAllbtn:hover{
-    background-color: maroon;
+    background-color:#7B0128;
     color: white;
 }
 .addBtn{
@@ -91,7 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: maroon;
+    background-color:  #7B0128;
     color: white;
     position: relative;
     right: -6rem;
