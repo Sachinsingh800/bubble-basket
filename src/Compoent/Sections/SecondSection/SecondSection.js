@@ -3,6 +3,7 @@ import style from "./SecondSection.module.css";
 import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
+import textfile from "../../Images/text2.png";
 
 function SecondSection() {
     const collectionData = [
@@ -29,7 +30,7 @@ function SecondSection() {
     return (
         <div className={style.main}>
             <div className={style.heading_box}>
-                <p><hr/> Gift Basket <hr/></p>
+            <img src={textfile} alt='text' />
                 <h2>COLLECTION</h2>
             </div>
             <div  className={style.card_box}>
