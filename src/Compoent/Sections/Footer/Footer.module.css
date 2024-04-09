@@ -6,3 +6,14 @@
    background-color: black;
    color: white;
 }
+.img_box{
+    height: 15rem;
+    overflow: hidden;
+}
+.img_box img {
+    height: 100%;
+    width: 100%;
+}
+.header{
+    
+}
