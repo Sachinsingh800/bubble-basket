@@ -14,6 +14,7 @@ import menuicon from "../../Images/menu.png"
 import AnchorTemporaryDrawer from '../../AnchorTemporaryDrawer/AnchorTemporaryDrawer';
 import Footer from '../../Sections/Footer/Footer';
 import ProductSectionFirst from '../../ProductPageSection/SectionFirst/ProductSectionFirst';
+import ProductSectionSecond from '../../ProductPageSection/SectionSecond/ProductSectionSecond';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -81,6 +82,7 @@ export default function ProductPage(props) {
       <Toolbar />
       <div  className={style.Container}>
            <ProductSectionFirst />
+           <ProductSectionSecond />
           <Footer />
         </div>
     </React.Fragment>
