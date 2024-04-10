@@ -36,7 +36,7 @@ function ProductSectionSecond() {
             <p>{product.des}</p>
             <div className={style.input_box}>
             <input type="number" />
-            <button>Add to cart →</button>
+            <button>ADD TO CART →</button>
             </div>
             </div>
         </div>
