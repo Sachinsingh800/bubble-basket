@@ -121,9 +121,9 @@ function ProductSectionSecond() {
         </div>
         <div className={style.des_container}>
           {showAddInfo && (
-            <div>
+            <div className={style.add_info_box}>
               <p>
-                <strong>WEIGHT</strong> {extraInfo.addinfo.weight}
+                <strong>WEIGHT</strong> <span>{extraInfo.addinfo.weight}</span>
               </p>
               <p>
                 <strong>DIMENSIONS</strong> {extraInfo.addinfo.dimensions}

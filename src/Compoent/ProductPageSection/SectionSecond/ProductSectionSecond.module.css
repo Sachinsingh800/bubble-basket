@@ -93,3 +93,12 @@ justify-content: center;
     flex-direction: column;
     padding: 1rem 0rem;
 }
+.des_container strong{
+    color: rgb(71, 71, 71);
+}
+.add_info_box p{
+    display: flex;
+  justify-content: space-between;
+   gap: 1rem;
+   width: 30%;
+}
