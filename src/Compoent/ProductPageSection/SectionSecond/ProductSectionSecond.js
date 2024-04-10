@@ -1,6 +1,10 @@
 import React from "react";
 import style from "./ProductSectionSecond.module.css";
 import product1 from "../../Images/dom perignon lady gaga rose.png";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 function ProductSectionSecond() {
   const data = [
@@ -38,6 +42,17 @@ function ProductSectionSecond() {
             <input type="number" />
             <button>ADD TO CART →</button>
             </div>
+            <br/>
+            <p>💗 Add to wishlist </p>
+            <p><strong>SKU:</strong> {product.sku}</p>
+            <p><strong>CATEGORY : </strong> {product.category}</p>
+            <p><strong>TAGS : </strong> {product.tags}</p>
+            <p className={style.icon_box}><strong>SHARE :</strong> 
+            <span><FacebookRoundedIcon style={{fontSize:15}} /></span>
+            <span><InstagramIcon style={{fontSize:15}} /></span>
+            <span><LinkedInIcon  style={{fontSize:15}}/></span>
+            <span><TwitterIcon style={{fontSize:15}}/></span>
+            </p>
             </div>
         </div>
       ))}

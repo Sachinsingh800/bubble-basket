@@ -13,20 +13,24 @@
     grid-template-columns: 1fr 2fr;
     width: 90%;
 
+
 }
+
 .img_box{
-    border-right: rgb(0, 0, 0) red solid;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     height: 30rem;
+    border-right: 1px  #7B0128 solid;
+
 }
 .img_box img{
     height: 100%;
+
+
 }
 .des_box{
-    border: 1px red solid;
      padding:0rem 2rem;
 }
 .input_box{
@@ -51,4 +55,22 @@
 .input_box button:hover{
     background-color: #7B0128;
     color: white;
+}
+.icon_box {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.icon_box span{
+ border-radius: 50%;
+ background-color: rgb(0, 0, 0);
+ color: white;
+ padding: .2rem;
+ height: 1.5rem;
+ width: 1.5rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
