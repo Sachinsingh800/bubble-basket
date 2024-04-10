@@ -4,14 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
   justify-content: center;
-
+  overflow: hidden;
   }
 .description_box {
   color: white;
   text-align: center;
-  z-index: 999 !important;
+
 }
 .description_box h2 {
   font-size: 3rem;
@@ -22,8 +21,9 @@
 }
 .background{
     height: max-content;
-    width: 93%;
+    width: 100%;
     filter: brightness(40%);
+    margin-top:90rem;
 }
 .background img{
     height: 100%;
@@ -50,9 +50,13 @@
   display: none;
 
 }
+
 .content{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  z-index: 999 !important;
+ position: absolute;
+ margin-top: 35rem;
 }
