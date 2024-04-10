@@ -154,18 +154,28 @@ function ProductSectionSecond() {
                   <p>{extraInfo.addinfo.review.reviewdes}</p>
                 </div>
               </div>
-
-              <form>
-                <h6>ADD A REVIEW</h6>
+<br/>
+<br/>
+<br/>
+              <form className={style.form}>
+                <p><strong>ADD A REVIEW</strong></p>
+                <div>
                 <p>
                   Your email address will not be published. Required fields are
                   marked * Your Rating
                 </p>
                 <p>⭐⭐⭐⭐⭐</p>
+                </div>
+           
 
-                <textarea placeholder="Your Review" />
-
-                <button type="submit">Submit</button>
+                <textarea placeholder="Your Review*" />
+                <div  className={style.user_input_box}>
+                  <input type="text" placeholder="Name*" />
+      
+                  <input type="email" placeholder="Email*" />
+                </div>
+                <div><input type="checkbox" />&nbsp;<span>Save my name, email, and website in this browser for the next time I comment.</span></div>
+                <button type="submit">Submit →</button>
               </form>
             </div>
           )}
