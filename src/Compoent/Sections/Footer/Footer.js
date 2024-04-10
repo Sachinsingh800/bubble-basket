@@ -5,7 +5,7 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import logo from "../../Images/logo.jpg";
+import logo from "../../Images/logo2.jpg";
 
 function Footer() {
   return (
@@ -44,6 +44,7 @@ function Footer() {
         <span>ABOUT</span>|
         <span>FAQ'S</span>
       </div>
+      <br/>
       <div className={style.input_box}>
         <input placeholder="YOUR MAIL" />
         <button>SUBMIT →</button>
