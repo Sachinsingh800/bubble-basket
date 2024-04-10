@@ -72,7 +72,6 @@ function ProductSectionSecond() {
           <div className={style.des_box}>
             <h3>{product.title}</h3>
             <p>
-              Rating:{" "}
               {Array.from({ length: product.rating }).map((_, i) => (
                 <span key={i}>⭐</span>
               ))}
