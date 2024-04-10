@@ -56,7 +56,8 @@ function ProductSectionSecond() {
     setShowDescription(false);
     setShowAddInfo(false);
   };
-  const handleToggleaddintionalInfo = () => {
+
+  const handleToggleAddInfo = () => {
     setShowAddInfo(!showAddInfo);
     setShowDescription(false);
     setShowReview(false);
@@ -73,7 +74,10 @@ function ProductSectionSecond() {
             <h3>{product.title}</h3>
             <p>
               {Array.from({ length: product.rating }).map((_, i) => (
-                <span key={i}>⭐</span>
+                <span style={{ color: "#7B0128" }} key={i}>★</span>
+              ))}
+              {Array.from({ length: 5 - product.rating }).map((_, i) => (
+                <span style={{ color: "#7B0128" }} key={i + product.rating}>✰</span>
               ))}
               &nbsp;({product.customer} customer reviews)
             </p>
@@ -84,7 +88,7 @@ function ProductSectionSecond() {
               <button>ADD TO CART →</button>
             </div>
             <br />
-            <p>💗 Add to wishlist </p>
+            <p>♡ Add to wishlist </p>
             <p>
               <strong>SKU:</strong> {product.sku}
             </p>
@@ -115,7 +119,7 @@ function ProductSectionSecond() {
       <div>
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
-          <h5 onClick={handleToggleaddintionalInfo}>ADDITIONAL INFORMATION</h5>
+          <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
           <h5 onClick={handleToggleReview}>REVIEWS (3)</h5>
         </div>
         <div className={style.des_container}>
@@ -146,34 +150,48 @@ function ProductSectionSecond() {
                     {Array.from({
                       length: extraInfo.addinfo.review.rating,
                     }).map((_, i) => (
-                      <span key={i}>⭐</span>
+                      <span key={i}>★</span>
+                    ))}
+                    {Array.from({
+                      length: 5 - extraInfo.addinfo.review.rating,
+                    }).map((_, i) => (
+                      <span key={i + extraInfo.addinfo.review.rating}>✰</span>
                     ))}
                   </p>
                   <span>{extraInfo.addinfo.review.reviewtitle}</span>
                   <p>{extraInfo.addinfo.review.reviewdes}</p>
                 </div>
               </div>
-<br/>
-<br/>
-<br/>
+              <br />
+              <br />
+              <br />
               <form className={style.form}>
                 <p><strong>ADD A REVIEW</strong></p>
                 <div>
-                <p>
-                  Your email address will not be published. Required fields are
-                  marked * Your Rating
-                </p>
-                <p>⭐⭐⭐⭐⭐</p>
+                  <p>
+                    Your email address will not be published. Required fields are
+                    marked * Your Rating
+                  </p>
+                  <p>
+                    {[...Array(5)].map((_, i) => (
+                      <label key={i}>
+                        {i < 3 ? "★" : "✰"}
+                      </label>
+                    ))}
+                  </p>
                 </div>
-           
-
                 <textarea placeholder="Your Review*" />
-                <div  className={style.user_input_box}>
+                <div className={style.user_input_box}>
                   <input type="text" placeholder="Name*" />
-      
                   <input type="email" placeholder="Email*" />
                 </div>
-                <div><input type="checkbox" />&nbsp;<span>Save my name, email, and website in this browser for the next time I comment.</span></div>
+                <div>
+                  <input type="checkbox" />
+                  <span>
+                    Save my name, email, and website in this browser for the next time I
+                    comment.
+                  </span>
+                </div>
                 <button type="submit">Submit →</button>
               </form>
             </div>
