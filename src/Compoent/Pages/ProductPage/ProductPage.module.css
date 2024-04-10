@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@100&display=swap');
+.tool_bar {
+  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: small;
+  padding: 0rem 1.5rem;
+  color: black;
+
+}
+.tool_bar div {
+  display: flex;
+  align-items: center;
+}
+.left_section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  letter-spacing: .2cap;
+  font-weight: 600;
+  font-family: 'Futura PT', sans-serif;
+}
+.right_section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'Futura PT', sans-serif;
+}
+.middle_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.img_box{
+    width: 8rem;
+     height: 5rem;
+}
+.img_box img {
+    height: 100%;
+    width: 100%;
+  }
+  .icon_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px black solid;
+    padding: 0rem 1rem;
+
+  }
+  .icon_box img{
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .icon_box4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0rem 1rem;
+  }
+  .icon_box4 img{
+    height: 1rem;
+    width: 2rem;
+  }
+  .Container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 3rem;
+    gap: 2rem;
+  }
+
+  
