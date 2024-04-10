@@ -94,7 +94,7 @@ function ProductSectionSecond() {
               <button>ADD TO CART →</button>
             </div>
             <br />
-            <p>♡ Add to wishlist </p>
+            <p>♡ &nbsp;Add to wishlist </p>
             <p>
               <strong>SKU:</strong> {product.sku}
             </p>
@@ -207,6 +207,9 @@ function ProductSectionSecond() {
       </div>
       <div className={style.additional_box}>
         <div className={style.inner_container1}>
+        <span className={style.offer_box}>
+            new
+          </span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -218,6 +221,7 @@ function ProductSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
+ 
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -240,6 +244,9 @@ function ProductSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
+        <span className={style.offer_box}>
+            offer
+          </span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
