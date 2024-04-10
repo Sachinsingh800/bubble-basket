@@ -5,6 +5,8 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
+import product3 from "../../Images/perrier jouet grand brut.png";
 
 function ProductSectionSecond() {
   const [showDescription, setShowDescription] = useState(true);
@@ -74,10 +76,14 @@ function ProductSectionSecond() {
             <h3>{product.title}</h3>
             <p>
               {Array.from({ length: product.rating }).map((_, i) => (
-                <span style={{ color: "#7B0128" }} key={i}>★</span>
+                <span style={{ color: "#7B0128" }} key={i}>
+                  ★
+                </span>
               ))}
               {Array.from({ length: 5 - product.rating }).map((_, i) => (
-                <span style={{ color: "#7B0128" }} key={i + product.rating}>✰</span>
+                <span style={{ color: "#7B0128" }} key={i + product.rating}>
+                  ✰
+                </span>
               ))}
               &nbsp;({product.customer} customer reviews)
             </p>
@@ -166,17 +172,17 @@ function ProductSectionSecond() {
               <br />
               <br />
               <form className={style.form}>
-                <p><strong>ADD A REVIEW</strong></p>
+                <p>
+                  <strong>ADD A REVIEW</strong>
+                </p>
                 <div>
                   <p>
-                    Your email address will not be published. Required fields are
-                    marked * Your Rating
+                    Your email address will not be published. Required fields
+                    are marked * Your Rating
                   </p>
                   <p>
                     {[...Array(5)].map((_, i) => (
-                      <label key={i}>
-                        {i < 3 ? "★" : "✰"}
-                      </label>
+                      <label key={i}>{i < 3 ? "★" : "✰"}</label>
                     ))}
                   </p>
                 </div>
@@ -187,15 +193,62 @@ function ProductSectionSecond() {
                 </div>
                 <div>
                   <input type="checkbox" />
+                  &nbsp;
                   <span>
-                    Save my name, email, and website in this browser for the next time I
-                    comment.
+                    Save my name, email, and website in this browser for the
+                    next time I comment.
                   </span>
                 </div>
                 <button type="submit">Submit →</button>
               </form>
             </div>
           )}
+        </div>
+      </div>
+      <div className={style.additional_box}>
+        <div className={style.inner_container1}>
+          <div className={style.add_box_img}>
+            <img src={product1} alt="product" />
+          </div>
+          <span>Maschio Prosecco</span>
+          <span>Brut DOC NU</span>
+          <p>★★★★✰</p>
+          <h6>
+            <strong>$79.00</strong>
+          </h6>
+        </div>
+        <div className={style.inner_container}>
+          <div className={style.add_box_img}>
+            <img src={product1} alt="product" />
+          </div>
+          <span>Veuve Clicquot</span>
+          <span>Brut Yellow</span>
+          <p>★★★★✰</p>
+          <h6>
+            <strong>$99.00</strong>
+          </h6>
+        </div>
+        <div className={style.inner_container}>
+          <div className={style.add_box_img}>
+            <img src={product1} alt="product" />
+          </div>
+          <span>Billecart-Salmon</span>
+          <span>Brut Sous Bois</span>
+          <p>★★★★✰</p>
+          <h6>
+            <strong>$199.00</strong>
+          </h6>
+        </div>
+        <div className={style.inner_container}>
+          <div className={style.add_box_img}>
+            <img src={product1} alt="product" />
+          </div>
+          <span>Hand-Painted</span>
+          <span>La Marca Prosecco</span>
+          <p>★★★★✰</p>
+          <h6>
+            <strong>$99.00</strong>
+          </h6>
         </div>
       </div>
     </div>
