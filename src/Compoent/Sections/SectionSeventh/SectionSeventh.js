@@ -1,34 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from "./SectionSeventh.module.css";
-import textfile from "../../Images/text.png";
 import backgroundImage from "../../Images/medium-shot-smiley-man-drinking-wine.jpg";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 function SectionSeventh() {
-  const alignCenter = { display: "flex", alignItems: "center" };
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className={style.main}>
-      <Parallax
-        pages={1.5}
-        className={style.Parallax}
-        style={{ ...alignCenter, justifyContent: "center" }}
+      <div
+        className={style.background}
+        style={{ transform: `translateY(-${scrollPosition * 0.5}px)` }} // Adjust the speed here
       >
-        <ParallaxLayer
-          offset={0.5}
-          speed={0.8}
-          style={{ ...alignCenter, justifyContent: "center" }}
-        >
-          <div className={style.background}>
-            <img src={backgroundImage} alt="bg" className={style.bgImage} />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer
-          offset={0.5}
-          speed={0.5}
-          style={{ ...alignCenter, justifyContent: "flex-start" }}
-        >
-          <div className={style.content}>
-            <div className={style.description_box}>
+        <img src={backgroundImage} alt="bg" className={style.bgImage} />
+      </div>
+      <div
+        className={style.content}
+        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+      >
+        <div className={style.description_box}>
               <h3>CORPORATE</h3>
               <h2> BULK ORDER</h2>
               <p>
@@ -37,12 +38,11 @@ function SectionSeventh() {
                 gifting!
               </p>
             </div>
-            <button className={style.btn}>SHOP NOW </button>
-          </div>
-        </ParallaxLayer>
-      </Parallax>
+        <button className={style.btn}>SHOP NOW →</button>
+      </div>
     </div>
   );
 }
 
 export default SectionSeventh;
+
