@@ -133,22 +133,38 @@ function ProductSectionSecond() {
           {showDescription && <p>{extraInfo.des}</p>}
           {showReview && (
             <div>
-              <p>{extraInfo.addinfo.review.reviewtitle}</p>
-              <p>{extraInfo.addinfo.review.reviewdes}</p>
-              <p>
-                Rating:{" "}
-                {Array.from({ length: extraInfo.addinfo.review.rating }).map(
-                  (_, i) => (
-                    <span key={i}>⭐</span>
-                  )
-                )}
-                &nbsp;({extraInfo.addinfo.review.customer} customer reviews)
-              </p>
+              <h6>3 REVIEW FOR BUBBLE BASKET</h6>
+              <br />
+              <div className={style.user_review_container}>
+                <div className={style.user_dp}>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s"
+                    alt="dp"
+                  />
+                </div>
+                <div>
+                  <p>
+                    {Array.from({
+                      length: extraInfo.addinfo.review.rating,
+                    }).map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
+                  </p>
+                  <span>{extraInfo.addinfo.review.reviewtitle}</span>
+                  <p>{extraInfo.addinfo.review.reviewdes}</p>
+                </div>
+              </div>
+
               <form>
-                <label>
-                  Your Review:
-                  <textarea />
-                </label>
+                <h6>ADD A REVIEW</h6>
+                <p>
+                  Your email address will not be published. Required fields are
+                  marked * Your Rating
+                </p>
+                <p>⭐⭐⭐⭐⭐</p>
+
+                <textarea placeholder="Your Review" />
+
                 <button type="submit">Submit</button>
               </form>
             </div>

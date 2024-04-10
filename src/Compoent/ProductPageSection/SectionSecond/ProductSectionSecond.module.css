@@ -102,3 +102,15 @@ justify-content: center;
    gap: 1rem;
    width: 30%;
 }
+.user_review_container{
+    display: flex;
+    gap: 1rem;
+}
+.user_dp{
+    height: 4rem;
+    width: 6rem;
+}
+.user_dp img{
+    height: 100%;
+    width: 100%;
+}
