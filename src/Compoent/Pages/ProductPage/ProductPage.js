@@ -42,6 +42,15 @@ HideOnScroll.propTypes = {
 };
 
 export default function ProductPage(props) {
+  const [showOptions, setShowOptions] = React.useState({});
+
+  const showOptionDiv = (index) => {
+    setShowOptions({ ...showOptions, [index]: true });
+  };
+
+  const closeOptionDiv = (index) => {
+    setShowOptions({ ...showOptions, [index]: false });
+  };
   return (
     <React.Fragment>
       <AnchorTemporaryDrawer />
@@ -50,15 +59,37 @@ export default function ProductPage(props) {
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>
           <Toolbar>
             <div className={style.tool_bar}>
-              <ul className={style.left_section}>
-                <li>
+            <ul className={style.left_section}>
+                <li
+                  onMouseEnter={() => showOptionDiv(1)}
+                  onMouseLeave={() => closeOptionDiv(1)}
+                >
                   <a>HOME</a>
+                  {showOptions[1] && (
+                    <div className={style.bottom_div}>Content for HOME</div>
+                  )}
                 </li>
-                <li>
+                <li
+                  onMouseEnter={() => showOptionDiv(2)}
+                  onMouseLeave={() => closeOptionDiv(2)}
+                >
                   <a>BULKORDER</a>
+                  {showOptions[2] && (
+                    <div className={style.bottom_div}>
+                      Content for BULKORDER
+                    </div>
+                  )}
                 </li>
-                <li>
+                <li
+                  onMouseEnter={() => showOptionDiv(3)}
+                  onMouseLeave={() => closeOptionDiv(3)}
+                >
                   <a>TRACKORDER</a>
+                  {showOptions[3] && (
+                    <div className={style.bottom_div}>
+                      Content for TRACKORDER
+                    </div>
+                  )}
                 </li>
               </ul>
               <div className={style.middle_section}>
