@@ -4,6 +4,8 @@ import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
 import BasicPopover from "../../Popover/Popover";
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
 
 function SecondSection() {
   const [openPopoverId, setOpenPopoverId] = useState(null);
@@ -50,24 +52,29 @@ function SecondSection() {
       <div className={style.card_box}>
         {collectionData.map((item) => (
           <div key={item.id} className={style.inner_container}>
-            <button
-              onClick={() => handleOpenPopover(item.id)}
-              className={style.addBtn}
-            >
-              +
-            </button>
+            {openPopoverId === item.id ? (
+              <button onClick={handleClosePopover} className={style.addBtn}>
+                <CloseIcon/>
+              </button>
+            ) : (
+              <button
+                onClick={() => handleOpenPopover(item.id)}
+                className={style.addBtn}
+              >
+            <AddIcon/>
+              </button>
+            )}
             {openPopoverId === item.id && (
               <div className={style.popover}>
                 <button className={style.closeBtn} onClick={handleClosePopover}>
-                  X
+              <CloseIcon/>
                 </button>
                 <div className={style.popover_container}>
                   <div className={style.img_container}>
-                  <div className={style.popover_img_box}>
-                    <img src={item.img} alt={item.title} />
+                    <div className={style.popover_img_box}>
+                      <img src={item.img} alt={item.title} />
+                    </div>
                   </div>
-                  </div>
-
                   <div className={style.des}>
                     <h6>{item.title}</h6>
                     <span>{item.text}</span>
@@ -88,7 +95,6 @@ function SecondSection() {
           </div>
         ))}
       </div>
-
       <button className={style.viewAllbtn}>VIEW ALL →</button>
     </div>
   );
