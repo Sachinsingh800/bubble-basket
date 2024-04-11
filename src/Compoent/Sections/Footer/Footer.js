@@ -6,6 +6,12 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import logo from "../../Images/logo2.jpg";
+import logo1 from "../../Images/visa.png";
+import logo2 from "../../Images/master card.png";
+import logo3 from "../../Images/paypal.png";
+import logo4 from "../../Images/american express.png";
+import logo5 from "../../Images/discover.png";
+
 
 function Footer() {
   return (
@@ -50,11 +56,21 @@ function Footer() {
         <button>SUBMIT →</button>
       </div>
       <div className={style.paymet_conatainer}>
-        <div className={style.payment_img_box}></div>
-        <div className={style.payment_img_box}></div>
-        <div className={style.payment_img_box}></div>
-        <div className={style.payment_img_box}></div>
-        <div className={style.payment_img_box}></div>
+        <div className={style.payment_img_box}>
+          <img src={logo1} alt="visa" />
+        </div>
+        <div className={style.payment_img_box}>
+        <img src={logo2} alt="paypal" />
+        </div>
+        <div className={style.payment_img_box}>
+        <img src={logo3} alt="paypal" />
+        </div>
+        <div className={style.payment_img_box}>
+        <img src={logo4} alt="paypal" />
+        </div>
+        <div className={style.payment_img_box}>
+        <img src={logo5} alt="paypal" />
+        </div>
       </div>
       <div className={style.desc_box}>
         <h6>

@@ -42,8 +42,9 @@
 }
 .nav_bar {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
+  font-size: large;
 }
 
 .input_box {
@@ -76,4 +77,21 @@
 .desc_box  h6{
     font-weight: 700;
     letter-spacing: .5cap;
+}
+.payment_img_box{
+  height: 2rem;
+  width: 4rem;
+  background-color: white;
+  padding: .3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment_img_box img{
+  height: 100%;
+  width: 100%;
+}
+.paymet_conatainer{
+  display: flex;
+  gap: .7rem;
 }
