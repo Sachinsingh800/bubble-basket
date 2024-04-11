@@ -1,0 +1,47 @@
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0rem 4rem;
+}
+
+.slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  transition: transform 0.5s ease;
+  gap: 1rem;
+}
+.img_box {
+  height: 8rem;
+  background-color: #f5e3e3;
+}
+
+.img_box img {
+  width: 100%; /* Set width to display four images at once */
+  height: 100%;
+  padding: 1rem;
+}
+
+.prevBtn,
+.nextBtn {
+  position: absolute;
+  top: 50%;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 999 !important;
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.prevBtn {
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.nextBtn {
+  right: 0;
+  transform: translateY(-50%);
+}

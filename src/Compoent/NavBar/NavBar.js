@@ -27,6 +27,7 @@ import SectionEight from "../Sections/SectionEight/SectionEight";
 import SectionNinth from "../Sections/SectionNinth/SectionNinth";
 import SectionTenth from "../Sections/SectionTenth/SectionTenth";
 import Footer from "../Sections/Footer/Footer";
+import ImageSlider from "../ImageSlider/ImageSlider";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -138,6 +139,7 @@ export default function HideAppBar(props) {
         <SectionSixth />
         <SectionSeventh />
         <SectionEight />
+        <ImageSlider />
         <SectionNinth />
         <SectionTenth />
         <Footer />
