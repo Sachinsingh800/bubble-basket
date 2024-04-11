@@ -4,8 +4,8 @@ import image1 from "../Images/Dom Perignon.png";
 import image2 from "../Images/Gaymus Vineyards.png";
 import image3 from "../Images/Moet & Champagne.png";
 import image4 from "../Images/Veuve Clicquot.png";
-import EastIcon from '@mui/icons-material/East';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { GoArrowLeft } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 
 function ImageSlider() {
   const images = [image1, image2, image3, image4, image1, image2, image3, image4];
@@ -23,7 +23,7 @@ function ImageSlider() {
   return (
     <div className={style.slider}>
       <button className={style.prevBtn} onClick={goToPrev}>
-      <KeyboardBackspaceIcon style={{fontSize:50}}/>
+      <GoArrowLeft style={{fontSize:50}} />
       </button>
       <div className={style.slide}>
        
@@ -41,7 +41,7 @@ function ImageSlider() {
    
       </div>
       <button className={style.nextBtn} onClick={goToNext}>
-        <EastIcon style={{fontSize:50}}/>
+        <GoArrowRight style={{fontSize:50}} />
       </button>
     </div>
   );
