@@ -3,11 +3,10 @@ import style from "./SecondSection.module.css";
 import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
-import textfile from "../../Images/text2.png";
-import { BasicPopover } from "../../Popover/Popover";
+import BasicPopover from "../../Popover/Popover";
 
 function SecondSection() {
-  const [popoverIndex, setPopoverIndex] = useState(null);
+  const [openPopoverId, setOpenPopoverId] = useState(null);
 
   const collectionData = [
     {
@@ -30,8 +29,12 @@ function SecondSection() {
     },
   ];
 
-  const togglePopover = (index) => {
-    setPopoverIndex(popoverIndex === index ? null : index);
+  const handleOpenPopover = (id) => {
+    setOpenPopoverId(id);
+  };
+
+  const handleClosePopover = () => {
+    setOpenPopoverId(null);
   };
 
   return (
@@ -45,9 +48,36 @@ function SecondSection() {
         <h2>COLLECTION</h2>
       </div>
       <div className={style.card_box}>
-        {collectionData.map((item, index) => (
+        {collectionData.map((item) => (
           <div key={item.id} className={style.inner_container}>
-            <BasicPopover />
+            <button
+              onClick={() => handleOpenPopover(item.id)}
+              className={style.addBtn}
+            >
+              +
+            </button>
+            {openPopoverId === item.id && (
+              <div className={style.popover}>
+                <button className={style.closeBtn} onClick={handleClosePopover}>
+                  X
+                </button>
+                <div className={style.popover_container}>
+                  <div className={style.img_container}>
+                  <div className={style.popover_img_box}>
+                    <img src={item.img} alt={item.title} />
+                  </div>
+                  </div>
+
+                  <div className={style.des}>
+                    <h6>{item.title}</h6>
+                    <span>{item.text}</span>
+                    <div>
+                      <h6>$45.00/bottle</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className={style.img_box}>
               <img src={item.img} alt={item.title} />
             </div>
