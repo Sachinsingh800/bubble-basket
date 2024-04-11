@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./SecondSection.module.css";
 import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
 import textfile from "../../Images/text2.png";
+import { BasicPopover } from "../../Popover/Popover";
 
 function SecondSection() {
+  const [popoverIndex, setPopoverIndex] = useState(null);
+
   const collectionData = [
     {
       id: 1,
@@ -27,6 +30,10 @@ function SecondSection() {
     },
   ];
 
+  const togglePopover = (index) => {
+    setPopoverIndex(popoverIndex === index ? null : index);
+  };
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -40,7 +47,7 @@ function SecondSection() {
       <div className={style.card_box}>
         {collectionData.map((item, index) => (
           <div key={item.id} className={style.inner_container}>
-            <button className={style.addBtn}>+</button>
+            <BasicPopover />
             <div className={style.img_box}>
               <img src={item.img} alt={item.title} />
             </div>

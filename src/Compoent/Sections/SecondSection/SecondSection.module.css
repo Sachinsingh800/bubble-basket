@@ -104,3 +104,35 @@
     background-color: #7B0128;
     color: white;
 }
+
+
+  
+.popover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popover.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #888;
+  }
+  
+  

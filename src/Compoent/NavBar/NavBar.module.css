@@ -117,4 +117,16 @@
     gap: 2rem;
   }
 
-  
+  .icon_box:hover img {
+    filter: brightness(1.2); /* Increase brightness on hover */
+  }
+  .bottom_div{
+    position: absolute;
+    height: 4rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: .5rem;
+  }
