@@ -29,7 +29,6 @@ function ImageSlider() {
 
       <div
         className={style.slide}
-  
       >
         <div className={style.images}       style={{
           transform: `translateX(-${scrollPosition}px)`,
@@ -70,7 +69,6 @@ function ImageSlider() {
           <div className={style.img_box}>
             <img src={image3} alt="Image 3" className={style.image} />
           </div>
-
           <div className={style.img_box}>
             <img src={image4} alt="Image 4" className={style.image} />
           </div>
