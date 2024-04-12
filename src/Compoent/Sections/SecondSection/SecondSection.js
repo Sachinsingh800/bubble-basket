@@ -3,7 +3,6 @@ import style from "./SecondSection.module.css";
 import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
-import BasicPopover from "../../Popover/Popover";
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 

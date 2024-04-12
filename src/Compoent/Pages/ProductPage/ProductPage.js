@@ -65,31 +65,52 @@ export default function ProductPage(props) {
                   onMouseLeave={() => closeOptionDiv(1)}
                 >
                   <a href="/">HOME</a>
-                  {showOptions[1] && (
-                    <div className={style.bottom_div}>Content for HOME</div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[1] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                  </div>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(2)}
                   onMouseLeave={() => closeOptionDiv(2)}
                 >
                   <a>BULKORDER</a>
-                  {showOptions[2] && (
-                    <div className={style.bottom_div}>
-                      Content for BULKORDER
-                    </div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[2] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                  </div>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(3)}
                   onMouseLeave={() => closeOptionDiv(3)}
                 >
                   <a>TRACKORDER</a>
-                  {showOptions[3] && (
-                    <div className={style.bottom_div}>
-                      Content for TRACKORDER
-                    </div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[3] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                  </div>
                 </li>
               </ul>
               <div className={style.middle_section}>

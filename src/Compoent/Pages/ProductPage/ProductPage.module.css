@@ -147,4 +147,21 @@
    margin-top: -.5rem;
    z-index: 99;
   }
-  
+  /* NavBar.module.css */
+.bottom_div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  background-color: white;
+  padding: 2rem;
+  width: 15rem; /* Adjust width as needed */
+  height: auto; /* Set height to auto to fit content */
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.left_section li:hover .bottom_div {
+  opacity: 1;
+}

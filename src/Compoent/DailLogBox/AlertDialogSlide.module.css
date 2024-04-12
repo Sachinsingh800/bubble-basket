@@ -11,11 +11,13 @@
     grid-template-columns: 1fr 1fr;
 }
 .left_box{
-    height: 100vh; 
+    height: 90vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   border-right: 1px #F5E3E3 solid ;
+   border-left: 1px #F5E3E3 solid;
 }
 .right_box{
     height: 100vh; 
