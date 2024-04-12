@@ -112,7 +112,7 @@
     display: flex;
     gap: .5rem;
 }
-.optionButton1 ,.optionButton2,.optionButton3{
+.optionButton1 ,.optionButton2{
     border: none;
     padding: .5rem;
     background-color:#7B0128;

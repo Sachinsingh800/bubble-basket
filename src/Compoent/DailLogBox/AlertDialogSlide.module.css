@@ -1,0 +1,81 @@
+.optionButton3{
+    border: none;
+    padding: .5rem;
+    background-color:#7B0128;
+    color: white;
+}
+.container{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.left_box{
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.right_box{
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.img_box{
+    height: 30rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.img_box  img{
+    height: 100%;
+    width: 100%;
+}
+.des_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0rem 2rem;
+    gap: 1rem;
+    height: 30rem; 
+}
+.des_box h6{
+    font-weight: 600;
+}
+.input_box{
+    display: flex;
+    gap: .5rem;
+}
+.input_box input{
+    width: 2.5rem;
+    border: 1px #F5E3E3 solid;
+    outline: none;
+}
+.input_box button{
+    display:flex ;
+    align-items: center;
+    border: none;
+    border: 1px #F5E3E3 solid;
+    padding: .5rem 1rem;
+    font-size: small;
+    letter-spacing: .3cap;
+    background-color: white;
+}
+.input_box button:hover{
+    background-color: #7B0128;
+    color: white;
+}
+.close_btn{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background-color: none;
+    background: transparent;
+}
+.close_btn:hover{
+    color: rgb(85, 85, 85);
+}

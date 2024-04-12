@@ -7,6 +7,7 @@ import textfile from "../../Images/text2.png";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AlertDialogSlide from "../../DailLogBox/AlertDialogSlide";
 
 function SectionFourth() {
   const collectionData = [
@@ -66,7 +67,7 @@ function SectionFourth() {
               <div className={style.options}>
                 <button className={style.optionButton1}><ShoppingCartIcon /></button>
                 <button className={style.optionButton2}><FavoriteBorderIcon/></button>
-                <button className={style.optionButton3}><VisibilityIcon  /></button>
+                <span className={style.optionButton3}><AlertDialogSlide /></span>
               </div>
             </div>
           </div>
