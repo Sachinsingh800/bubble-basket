@@ -31,9 +31,6 @@ import ImageSlider from "../ImageSlider/ImageSlider";
 
 function HideOnScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   });
@@ -47,15 +44,15 @@ function HideOnScroll(props) {
 
 HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
 export default function HideAppBar(props) {
-  const [showOptions, setShowOptions] = React.useState({});
+  const [showOptions, setShowOptions] = React.useState({
+    1: false,
+    2: false,
+    3: false,
+  });
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -64,6 +61,7 @@ export default function HideAppBar(props) {
   const closeOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: false });
   };
+
   return (
     <React.Fragment>
       <AnchorTemporaryDrawer />
@@ -78,31 +76,52 @@ export default function HideAppBar(props) {
                   onMouseLeave={() => closeOptionDiv(1)}
                 >
                   <a href="/">HOME</a>
-                  {showOptions[1] && (
-                    <div className={style.bottom_div}>Content for HOME</div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[1] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                    <p>Content for HOME</p>
+                  </div>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(2)}
                   onMouseLeave={() => closeOptionDiv(2)}
                 >
                   <a>BULKORDER</a>
-                  {showOptions[2] && (
-                    <div className={style.bottom_div}>
-                      Content for BULKORDER
-                    </div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[2] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                    <p>Content for BULKORDER</p>
+                  </div>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(3)}
                   onMouseLeave={() => closeOptionDiv(3)}
                 >
                   <a>TRACKORDER</a>
-                  {showOptions[3] && (
-                    <div className={style.bottom_div}>
-                      Content for TRACKORDER
-                    </div>
-                  )}
+                  <div
+                    className={style.bottom_div}
+                    style={{
+                      visibility: showOptions[3] ? "visible" : "hidden",
+                    }}
+                  >
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                    <p>Content for TRACKORDER</p>
+                  </div>
                 </li>
               </ul>
               <div className={style.middle_section}>
@@ -110,7 +129,6 @@ export default function HideAppBar(props) {
                   <img src={logo} alt="logo" />
                 </div>
               </div>
-
               <div className={style.right_section}>
                 <div className={style.icon_box}>
                   <img src={searchicon} alt="search" />
