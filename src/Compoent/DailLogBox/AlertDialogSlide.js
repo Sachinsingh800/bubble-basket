@@ -43,7 +43,7 @@ export default function AlertDialogSlide() {
           }
         }}
       >
-        <button className={style.close_btn}><CloseIcon /></button>
+        <button className={style.close_btn} onClick={handleClose}><CloseIcon /></button>
         <div className={style.container}>
             <div className={style.left_box}>
             <div className={style.img_box}>
