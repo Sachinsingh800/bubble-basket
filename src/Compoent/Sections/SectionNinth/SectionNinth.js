@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 
 function SectionNinth() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(new Date());
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString(undefined, {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
+  const formatTime = (time) => {
+    return time.toLocaleTimeString(undefined, {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+  };
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -26,19 +45,35 @@ function SectionNinth() {
         </label>
         <div className={style.para}>for</div>
 
-        <label>
+        <label htmlFor="Date" className={style.dateLabel}>
           <WorkHistoryOutlinedIcon />
-          <input type="date" />
+          {formatDate(selectedDate)}
+          <input
+            type="date"
+            value={selectedDate.toISOString().substr(0, 10)}
+            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+            id="Date"
+            hidden
+          />
         </label>
 
         <div className={style.para}>at</div>
-        <label>
+        <label htmlFor="Time" className={style.timeLabel}>
           <AccessAlarmsOutlinedIcon />
-          <input type="time" />
+          {formatTime(selectedTime)}
+          <input
+            type="time"
+            value={selectedTime.toTimeString().substr(0, 5)}
+            onChange={(e) => setSelectedTime(new Date(`2000-01-01T${e.target.value}`))}
+            id="Time"
+            hidden
+          />
         </label>
 
         <div className={style.para}>go!</div>
-        <button>R E S E R V A T I O N →</button>
+        <button>
+          R E S E R V A T I O N →
+        </button>
       </div>
     </div>
   );
