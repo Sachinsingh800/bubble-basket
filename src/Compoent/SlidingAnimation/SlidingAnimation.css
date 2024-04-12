@@ -5,8 +5,6 @@
   text-align: center;
   overflow: hidden; /* Ensure text does not overflow */
   z-index: 99!important;
-
-
 }
 .animation-container h1{
   color: white;

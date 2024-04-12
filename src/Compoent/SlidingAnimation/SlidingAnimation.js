@@ -47,7 +47,7 @@ export const SlidingAnimation2 = () => {
     <div className="animation-container">
       <div className={isVisible ? 'slideOutLeft' : 'slideInRight'}>
       <h1>MADE WITH PASSION</h1>
-        <img className='img' src={product2} alt='beer' />
+        <img className='img' src={product1} alt='beer' />
       </div>
     </div>
   );
@@ -71,7 +71,7 @@ export const SlidingAnimation3 = () => {
     <div className="animation-container">
       <div className={isVisible ? 'slideOutLeft' : 'slideInRight'}>
       <h1>MADE WITH PASSION</h1>
-        <img className='img' src={product3} alt='beer' />
+        <img className='img' src={product1} alt='beer' />
       </div>
     </div>
   );
