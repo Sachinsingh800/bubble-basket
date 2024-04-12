@@ -107,13 +107,13 @@
 
 .popover {
   position: absolute;
-  background-color: rgb(33, 16, 0);
+  background-color:#7b0128;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   padding: 1rem;
   z-index: 999 !important; /* Ensure popover is above other elements */
   margin-top: -17rem;
-  margin-left: 27rem !important;
+  margin-left: 20rem !important;
   color: white;
   padding: 2rem;
   width: 27rem;
