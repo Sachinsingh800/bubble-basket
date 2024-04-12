@@ -119,6 +119,7 @@ export default function HideAppBar(props) {
                   <img src={avatarimg} alt="user" />
                 </div>
                 <div className={style.icon_box}>
+                  <span className={style.cart_count}>1</span>
                   <img src={shoppingCart} alt="shopping" />
                 </div>
                 <div className={style.icon_box4}>
