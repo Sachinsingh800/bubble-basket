@@ -8,8 +8,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AlertDialogSlide from "../../DailLogBox/AlertDialogSlide";
+import { useNavigate } from "react-router-dom";
 
 function SectionFourth() {
+  const navigate=useNavigate()
+
+
   const collectionData = [
     {
       id: 1,
@@ -39,12 +43,16 @@ function SectionFourth() {
     }
   };
 
+  const handleNavigate=()=>{
+    // window.location.href="/ProductPage"
+  }
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
         <h2>BOTTLES THAT WOW</h2>
       </div>
-      <div className={style.card_box}>
+      <div onClick={handleNavigate} className={style.card_box}>
         {collectionData.map((item, index) => (
           <div
             key={item.id}

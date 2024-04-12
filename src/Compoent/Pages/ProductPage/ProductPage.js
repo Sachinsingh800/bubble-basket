@@ -64,7 +64,7 @@ export default function ProductPage(props) {
                   onMouseEnter={() => showOptionDiv(1)}
                   onMouseLeave={() => closeOptionDiv(1)}
                 >
-                  <a>HOME</a>
+                  <a href="/">HOME</a>
                   {showOptions[1] && (
                     <div className={style.bottom_div}>Content for HOME</div>
                   )}
@@ -106,6 +106,7 @@ export default function ProductPage(props) {
                   <img src={avatarimg} alt="user" />
                 </div>
                 <div className={style.icon_box}>
+                  <span className={style.cart_count}>1</span>
                   <img src={shoppingCart} alt="shopping" />
                 </div>
                 <div className={style.icon_box4}>

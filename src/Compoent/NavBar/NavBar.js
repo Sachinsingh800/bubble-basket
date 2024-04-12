@@ -77,7 +77,7 @@ export default function HideAppBar(props) {
                   onMouseEnter={() => showOptionDiv(1)}
                   onMouseLeave={() => closeOptionDiv(1)}
                 >
-                  <a>HOME</a>
+                  <a href="/">HOME</a>
                   {showOptions[1] && (
                     <div className={style.bottom_div}>Content for HOME</div>
                   )}

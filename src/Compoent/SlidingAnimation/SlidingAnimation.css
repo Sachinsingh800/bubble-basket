@@ -8,10 +8,11 @@
 }
 .animation-container h1{
   color: white;
-  font-family: 'Futura PT', sans-serif;
+  font-family: "Jost", sans-serif;
   margin-top: 2rem;
 letter-spacing: .5cap;
 text-align: center;
+font-weight: 400;
 }
 
 .slideOutLeft {
