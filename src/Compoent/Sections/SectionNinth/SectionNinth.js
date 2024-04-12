@@ -47,7 +47,7 @@ function SectionNinth() {
 
         <label htmlFor="Date" className={style.dateLabel}>
           <WorkHistoryOutlinedIcon />
-          {formatDate(selectedDate)}
+          <span>{formatDate(selectedDate)}</span>
           <input
             type="date"
             value={selectedDate.toISOString().substr(0, 10)}
@@ -60,7 +60,7 @@ function SectionNinth() {
         <div className={style.para}>at</div>
         <label htmlFor="Time" className={style.timeLabel}>
           <AccessAlarmsOutlinedIcon />
-          {formatTime(selectedTime)}
+          <span>{formatTime(selectedTime)}</span>
           <input
             type="time"
             value={selectedTime.toTimeString().substr(0, 5)}
