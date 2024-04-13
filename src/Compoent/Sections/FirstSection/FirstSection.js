@@ -6,7 +6,6 @@ import AnchorTemporaryDrawer from '../../AnchorTemporaryDrawer/AnchorTemporaryDr
 function FirstSection() {
   return (
     <div className={style.main}>
- 
       <HomePageCarousel />
     </div>
   )
