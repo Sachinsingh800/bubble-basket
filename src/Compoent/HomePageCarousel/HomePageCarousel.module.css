@@ -23,3 +23,19 @@
     outline: none;
     color: white;
 }
+@media screen and (max-width:784px) {
+    .carousel_box{
+        height: 60rem;
+        width: 100%;
+    }
+    .button_container{
+        height: 60rem;
+        width: 93%;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0rem 3rem;
+        z-index: 9!important;
+    }
+  }

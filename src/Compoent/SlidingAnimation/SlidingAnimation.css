@@ -113,3 +113,13 @@ font-weight: 400;
   opacity: 1;
   }
   } 
+  @media screen and (max-width:784px) {
+    .img{
+      width: 35rem!important;
+      z-index: 99!important;
+      height:40rem!important;
+      margin-top: 3rem;
+      overflow: hidden;
+    }
+
+}

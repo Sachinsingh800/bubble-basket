@@ -11,3 +11,8 @@
     font-size: 12px;
   }
 }
+@media screen and (max-width:784px) {
+    .main{
+        height: 54rem;
+    }
+}

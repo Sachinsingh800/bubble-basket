@@ -197,3 +197,13 @@
     transform: none;
   }
 }
+@media screen and (max-width:784px) {
+  .card_box {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 3rem;
+  }
+  .main{
+    height: max-content;
+  }
+}
