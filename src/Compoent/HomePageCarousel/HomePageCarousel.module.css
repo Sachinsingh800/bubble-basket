@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0rem 3rem;
-    z-index: 9999!important;
+    z-index: 9!important;
 }
 .carousel_box img{
     height: 100%;
