@@ -21,7 +21,11 @@ function ImageSlider() {
   };
 
   return (
-    <div className={style.main}>
+    <div className={style.main_container}>
+            <div className={style.heading_box}>
+        <h2>SHOP BY BRANDS</h2>
+      </div>
+      <div className={style.main}>
     <button className={style.scrollBtn} onClick={handleScrollLeft}>
         <GoArrowLeft style={{ fontSize: 50 }} />
       </button>
@@ -80,6 +84,8 @@ function ImageSlider() {
         <GoArrowRight style={{ fontSize: 50 }} />
       </button>
     </div>
+    </div>
+    
     
   );
 }

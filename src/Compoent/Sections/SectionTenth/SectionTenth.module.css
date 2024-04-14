@@ -7,6 +7,9 @@
     padding: 1rem;
     flex-direction: column;
 }
+.main p{
+  font-weight: 700;
+}
 
 .heading_box {
     text-align: center;

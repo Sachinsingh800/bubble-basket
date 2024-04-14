@@ -8,6 +8,10 @@
   justify-content: center;
   overflow: hidden;
   }
+  .description_box h3{
+    color: #f8d8d8;
+    font-size: 2rem;
+  }
 .background{
     height: max-content;
     width: 100%;
