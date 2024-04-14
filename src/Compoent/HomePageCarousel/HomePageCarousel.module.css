@@ -1,7 +1,15 @@
 .carousel_box{
     height: 40rem;
     width: 100%;
-
+}
+.button_container{
+    height: 40rem;
+    width: 93%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 3rem;
 }
 .carousel_box img{
     height: 100%;
