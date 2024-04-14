@@ -105,3 +105,20 @@
     background-color: rgb(159, 2, 2);
     color: white;
 }
+@media screen and (max-width:784px) {
+    .main{
+        height: max-content;
+        border: 1px  #F5E3E3 solid;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+    }
+    .card_box{
+        display: grid;
+        grid-template-columns: 1fr ;
+        gap: 3rem;
+      }
+}
