@@ -45,3 +45,29 @@
    width: 100%;
     gap: 5rem;
 }
+@media screen and (max-width:784px) {
+    .img_box{
+        display: none;
+    }
+    .outer_container{
+        display: grid;
+        grid-template-columns: 1fr ;
+        place-items: center;
+
+    }
+    .main{
+        display: flex;
+          height: max-content;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #F5E3E3;
+          overflow: hidden;
+          padding: 3rem 0rem;
+      }
+      .input_container p{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+}
