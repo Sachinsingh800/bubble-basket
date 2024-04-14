@@ -32,7 +32,7 @@ function SectionNinth() {
           Visit us
           <hr />
         </p>
-        <h2>TAKEATOUR</h2>
+        <h2>TAKE  AT  OUR</h2>
       </div>
       <div className={style.container}>
         <label>

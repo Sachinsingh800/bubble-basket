@@ -26,3 +26,31 @@
     width: 100%;
     transition: transform 0.3s ease-in-out;
 }
+
+
+.heading_box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .heading_box img {
+    width: 16rem;
+  }
+  .heading_box p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #7b0128;
+    font-size: large;
+  }
+  .heading_box p hr {
+    width: 3rem;
+    color: #7b0128;
+  }
+  .heading_box h2 {
+    font-family: "Futura PT", sans-serif;
+    letter-spacing: 0.5cap;
+    /* margin-top: -.5rem; */
+  }

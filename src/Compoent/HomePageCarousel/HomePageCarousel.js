@@ -9,6 +9,8 @@ import {
   SlidingAnimation2,
   SlidingAnimation3,
 } from "../SlidingAnimation/SlidingAnimation";
+import { GoArrowLeft } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 
 function HomePageCarousel() {
   const [index, setIndex] = useState(0);
@@ -31,8 +33,8 @@ function HomePageCarousel() {
   return (
     <>
       <div className={style.button_container}>
-        <button onClick={onPrevClick}>Previous</button>
-        <button onClick={onNextClick}>Next</button>
+        <button onClick={onPrevClick}> <GoArrowLeft  style={{fontSize:50}} /></button>
+        <button onClick={onNextClick}><GoArrowRight style={{fontSize:50}} /></button>
       </div>
       <Carousel
         slide={true}
