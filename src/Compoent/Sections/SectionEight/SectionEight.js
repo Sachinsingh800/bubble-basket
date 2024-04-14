@@ -12,7 +12,7 @@ function SectionEight() {
            <img src={banner1}alt='banner'/>
         </div>
         <div className={style.img_box}>
-        <img src={banner2}alt='banner'/>
+        <img className={style.demo_hide} src={banner2}alt='banner'/>
         </div>
       </div>
     </div>

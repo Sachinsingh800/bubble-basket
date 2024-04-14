@@ -19,22 +19,22 @@ function Footer() {
       <div className={style.header}>
         <div className={style.left_box}>
           <span className={style.icon}>
-            <CallIcon style={{ fontSize: 20 }} />
+            <CallIcon className={style.instagramIcon} />
           </span>
           <span>2 0 2 . 4 5 9 . 8 4 8 9</span>
         </div>
         <div className={style.icon_container}>
           <span className={style.icon}>
-            <FacebookRoundedIcon style={{ fontSize: 20 }} />
+            <FacebookRoundedIcon className={style.instagramIcon} />
           </span>
           <span className={style.icon}>
-            <InstagramIcon style={{ fontSize: 20 }} />
+            <InstagramIcon className={style.instagramIcon} />
           </span>
           <span className={style.icon}>
-            <LinkedInIcon style={{ fontSize: 20 }} />
+            <LinkedInIcon className={style.instagramIcon} />
           </span>
           <span className={style.icon}>
-            <TwitterIcon style={{ fontSize: 20 }} />
+            <TwitterIcon className={style.instagramIcon} />
           </span>
         </div>
       </div>
@@ -42,12 +42,12 @@ function Footer() {
         <img src={logo} alt="logo" />
       </div>
       <div className={style.nav_bar}>
-        <span>HOME</span>|
-        <span>PAGE</span>|
-        <span>SHOP</span>|
-        <span>ORDERS</span>|
-        <span>CONTACT</span>|
-        <span>ABOUT</span>|
+        <span>HOME</span>
+        <span>PAGE</span>
+        <span>SHOP</span>
+        <span>ORDERS</span>
+        <span>CONTACT</span>
+        <span>ABOUT</span>
         <span>FAQ'S</span>
       </div>
       <br/>

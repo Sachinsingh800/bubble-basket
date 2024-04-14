@@ -35,3 +35,14 @@
     letter-spacing: 0.5cap;
     /* margin-top: -.5rem; */
   }
+  @media screen and (max-width:784px) {
+    .main{
+      height: max-content;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      flex-direction: column;
+  }
+  }

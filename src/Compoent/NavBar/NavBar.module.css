@@ -165,4 +165,10 @@
     display: flex;
     justify-content: space-between;
   }
+
+}
+@media screen and (max-width:784px) {
+  .dawer{
+    display: none;
+  }
 }
