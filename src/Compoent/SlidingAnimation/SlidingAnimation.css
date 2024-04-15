@@ -125,3 +125,22 @@ font-weight: 400;
     }
 
 }
+@media screen and (max-width:500px) {
+  .img{
+    width: 25rem!important;
+    z-index: 99!important;
+    height:max-content!important;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+  .animation-container h1{
+    color: white;
+    font-family: "Jost", sans-serif;
+    margin-top: 2rem;
+  letter-spacing: .5cap;
+  text-align: center;
+  font-weight: 400;
+  font-size: small;
+  }
+  
+}

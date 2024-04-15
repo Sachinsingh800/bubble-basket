@@ -171,4 +171,13 @@
   .dawer{
     display: none;
   }
+  .tool_bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem!important;
+  }
+  .Container{
+    padding: 1.5rem;
+  }
+
 }

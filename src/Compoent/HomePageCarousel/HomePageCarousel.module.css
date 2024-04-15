@@ -28,11 +28,11 @@
 }
 @media screen and (max-width:784px) {
     .carousel_box{
-        height: 60rem;
+        height: 42rem;
         width: 100%;
     }
     .button_container{
-        height: 54rem;
+        height: 42rem;
         width: 90%;
         position: absolute;
         display: flex;
@@ -48,16 +48,16 @@
   }
   @media screen and (max-width:603px) {
     .button_container{
-        width:89%;
+        width:90%;
     }
   }
   @media screen and (max-width:489px) {
     .button_container{
-        width:86%;
+        width:90%;
     }
   }
   @media screen and (max-width:400px) {
     .button_container{
-        width:84%;
+        width:90%;
     }
   }
