@@ -88,6 +88,17 @@ function CartPageSectionSecond() {
         </div>
         <button>UPDATE CART → </button>
       </div>
+      <div className={style.cart_container}>
+        <h6>CART TOTALS</h6>
+        <div className={style.cart_box}>
+          <div className={style.first_box}>SUBTOTAL</div>
+          <div>$ 377.00</div>
+        </div>
+        <div className={style.cart_box}>
+          <div className={style.first_box}>TOTAL</div>
+          <div>$ 377.00</div>
+        </div>
+      </div>
     </div>
   );
 }
