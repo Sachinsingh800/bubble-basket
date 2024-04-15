@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import style from "./ColumnPageSectionSecond.module.css";
 import product1 from "../../Images/dom perignon lady gaga rose.png";
 
-
 function ColumnPageSectionSecond() {
-
   return (
     <div className={style.main}>
-    <div className={style.additional_box}>
+      <div className={style.additional_box}>
         <div className={style.inner_container1}>
-        <span className={style.offer_box}>
-            new
-          </span>
+          <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -23,7 +19,6 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
- 
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -46,9 +41,7 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
-        <span className={style.offer_box}>
-            offer
-          </span>
+          <span className={style.offer_box}>offer</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -60,9 +53,7 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container1}>
-        <span className={style.offer_box}>
-            new
-          </span>
+          <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -74,7 +65,6 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
- 
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -97,9 +87,7 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
-        <span className={style.offer_box}>
-            offer
-          </span>
+          <span className={style.offer_box}>offer</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -111,8 +99,7 @@ function ColumnPageSectionSecond() {
           </h6>
         </div>
       </div>
-      </div>
-
+    </div>
   );
 }
 
