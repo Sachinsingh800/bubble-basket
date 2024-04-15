@@ -66,4 +66,18 @@
   .scrollBtn:last-child {
     right: 10px;
   }
+  .icon{
+    font-size: 50px;
+  }
 
+  @media screen and (max-width:500px) {
+    .img_box{
+      height: 8rem;
+      width: 11rem;
+      padding: 1rem;
+      background-color: #f5e3e3;
+    } 
+    .icon{
+      font-size: 30px;
+    }
+  }

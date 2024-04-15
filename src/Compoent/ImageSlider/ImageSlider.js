@@ -27,7 +27,7 @@ function ImageSlider() {
       </div>
       <div className={style.main}>
     <button className={style.scrollBtn} onClick={handleScrollLeft}>
-        <GoArrowLeft style={{ fontSize: 50 }} />
+        <GoArrowLeft  className={style.icon} />
       </button>
         <div className={style.slider}>
 
@@ -81,7 +81,7 @@ function ImageSlider() {
 
     </div>
     <button className={style.scrollBtn} onClick={handleScrollRight}>
-        <GoArrowRight style={{ fontSize: 50 }} />
+        <GoArrowRight className={style.icon} />
       </button>
     </div>
     </div>
