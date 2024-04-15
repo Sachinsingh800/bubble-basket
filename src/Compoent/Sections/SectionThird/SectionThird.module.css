@@ -63,7 +63,7 @@
 
 @media screen and (max-width:784px) {
   html{
-    font-size: 10px;
+    font-size: 8px;
   }
   .main {
     height: 90vh;
