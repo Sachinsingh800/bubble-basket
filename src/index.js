@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductPage from './Compoent/Pages/ProductPage/ProductPage';
+import ColumnPage from './Compoent/Pages/ColumnPage/ColumnPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path={'/'} element={<App />} />
         <Route path={'/ProductPage'} element={<ProductPage />} />
+        <Route path={'/ColumnPage'} element={<ColumnPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
