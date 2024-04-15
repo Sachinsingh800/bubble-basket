@@ -70,15 +70,15 @@
       font-size: 10px;
     }
     .main {
-      height: 90vh;
+      height: 50vh;
       }
       .background img{
-        height: 100vh;
+        height: 50vh;
         width: 100vw;
        
     }
     .background{
-      height: 100vh;
+      height: 50vh;;
         width: 100vw;
       filter: brightness(40%);
       margin-top:140rem;
@@ -90,8 +90,9 @@
     align-items: center;
     gap: 1rem;
     z-index: 999 !important;
-   margin-top:160rem;
+   margin-top:150rem;
     margin-right: 0rem;
   }
   
   }
+  

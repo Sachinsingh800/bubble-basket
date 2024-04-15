@@ -70,4 +70,12 @@
         font-size: 1.2rem;
         font-weight: 600;
     }
+    .container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: left;
+        padding: 0rem 0rem;
+    
+    }
 }
