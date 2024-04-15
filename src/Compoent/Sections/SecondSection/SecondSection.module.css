@@ -220,4 +220,20 @@
     text-align: left;
     height: 5.5rem;
 }
+.popover {
+  position: absolute;
+  background-color:#7b0128;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 1rem;
+  z-index: 999 !important; /* Ensure popover is above other elements */
+  margin-top: -17rem;
+  margin-left: 0rem !important;
+  color: white;
+  padding: 2rem;
+  width: 27rem;
+}
+}
+@media screen and (max-width:500px) {
+
 }
