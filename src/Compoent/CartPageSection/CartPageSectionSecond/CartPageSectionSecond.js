@@ -96,8 +96,13 @@ function CartPageSectionSecond() {
         </div>
         <div className={style.cart_box}>
           <div className={style.first_box}>TOTAL</div>
-          <div>$ 377.00</div>
+          <div className={style.total_price}>$ 377.00</div>
         </div>
+        
+      </div>
+      <br/>
+      <div className={style.buttons_box2}>
+      <button>PROCEED  TO CHECKOUT → </button>
       </div>
     </div>
   );

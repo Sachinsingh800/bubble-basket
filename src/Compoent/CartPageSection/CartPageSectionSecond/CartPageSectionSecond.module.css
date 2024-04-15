@@ -23,13 +23,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     place-items: center;
-    border-top: 1px rgb(0, 0, 0) solid;
+    border-top: 1px #7b0128 solid;
 }
 .cart_box{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;
-  border-bottom: 1px rgb(0, 0, 0) solid;
+  border-bottom: 1px #7b0128 solid;
   padding: 1rem 0rem;
 }
 .para{
@@ -64,13 +64,13 @@
 .buttons_box{
     display: flex;
     justify-content: space-between;
-    border-top: 1px #000000 solid;
+    border-top: 1px #7b0128 solid;
     padding: 2rem 0rem;
 }
 .buttons_box button{
     background-color: none;
     background: transparent;
-    padding: 0rem 1rem;
+    padding: .3rem 1rem;
     border: 1px #7b0128 solid;
     font-family: "Jost", sans-serif;
 }
@@ -78,6 +78,27 @@
     background-color:#7b0128 ;
     color: white;
 }
+.buttons_box2 button{
+    background-color: none;
+    background: transparent;
+    padding: .3rem 1rem;
+    border: 1px #7b0128 solid;
+    font-family: "Jost", sans-serif;
+}
+.buttons_box2 button:hover{
+    background-color:#7b0128 ;
+    color: white;
+}
+.cart_container h6{
+  font-weight: 600;
+  font-family: "Jost", sans-serif;
+}
+.total_price{
+  font-weight: 600;
+  font-family: "Jost", sans-serif;
+}
+
+
 
 .buttons_box div{
     width: 30rem;
