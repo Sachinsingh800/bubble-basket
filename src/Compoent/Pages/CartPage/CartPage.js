@@ -14,6 +14,7 @@ import menuicon from "../../Images/menu.png";
 import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
 import Footer from "../../Sections/Footer/Footer";
 import CartPageSectionFirst from "../../CartPageSection/CartPageSectionFirst/CartPageSectionFirst";
+import CartPageSectionSecond from "../../CartPageSection/CartPageSectionSecond/CartPageSectionSecond";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -140,6 +141,7 @@ export default function CartPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <CartPageSectionFirst   />
+        <CartPageSectionSecond />
         <Footer />
       </div>
     </React.Fragment>

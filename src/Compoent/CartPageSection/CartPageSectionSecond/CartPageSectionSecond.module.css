@@ -1,0 +1,79 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  width: 100%;
+  padding: 3rem 0rem;
+}
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  font-weight: 600;
+}
+.img_box {
+  height: 4rem;
+  width: 1.2rem;
+}
+.img_box img {
+  height: 100%;
+  width: 100%;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    border-top: 1px rgb(0, 0, 0) solid;
+}
+.para{
+   display: grid;
+   place-items: center;
+   place-content: center;
+ 
+}
+
+
+.product{
+    width: 23rem;
+    display: flex;
+    align-items: center;;
+    justify-content: center;
+    text-align: center;
+}
+.first_box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  width: 23rem;
+}
+.quantity_box{
+    width: 3.5rem;
+    padding: 0rem 0rem 0rem 1rem;
+}
+.del_button{
+    width: 2rem;
+}
+.buttons_box{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px #000000 solid;
+    padding: 2rem 0rem;
+}
+.buttons_box button{
+    background-color: none;
+    background: transparent;
+    padding: 0rem 1rem;
+    border: 1px #7b0128 solid;
+    font-family: "Jost", sans-serif;
+}
+.buttons_box button:hover{
+    background-color:#7b0128 ;
+    color: white;
+}
+
+.buttons_box div{
+    width: 30rem;
+    display: flex;
+    justify-content: space-between;
+}
