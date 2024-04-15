@@ -20,32 +20,30 @@
   width: 100%;
 }
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    place-items: center;
-    border-top: 1px #7b0128 solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  border-top: 1px #7b0128 solid;
 }
-.cart_box{
+.cart_box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;
   border-bottom: 1px #7b0128 solid;
   padding: 1rem 0rem;
 }
-.para{
-   display: grid;
-   place-items: center;
-   place-content: center;
- 
+.para {
+  display: grid;
+  place-items: center;
+  place-content: center;
 }
 
-
-.product{
-    width: 23rem;
-    display: flex;
-    align-items: center;;
-    justify-content: center;
-    text-align: center;
+.product {
+  width: 23rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .first_box {
   display: flex;
@@ -54,54 +52,76 @@
   gap: 1rem;
   width: 23rem;
 }
-.quantity_box{
-    width: 3.5rem;
-    padding: 0rem 0rem 0rem 1rem;
+.quantity_box {
+  width: 3.5rem;
+  padding: 0rem 0rem 0rem 1rem;
+  outline: none;
+  border: 1px #7b0128 solid;
+  color: #7b0128;
 }
-.del_button{
-    width: 2rem;
+.del_button {
+  width: 2rem;
 }
-.buttons_box{
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px #7b0128 solid;
-    padding: 2rem 0rem;
+.buttons_box {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px #7b0128 solid;
+  padding: 2rem 0rem;
 }
-.buttons_box button{
-    background-color: none;
-    background: transparent;
-    padding: .3rem 1rem;
-    border: 1px #7b0128 solid;
-    font-family: "Jost", sans-serif;
+.buttons_box button {
+  background-color: none;
+  background: transparent;
+  padding: 0.3rem 1rem;
+  border: 1px #7b0128 solid;
+  font-family: "Jost", sans-serif;
 }
-.buttons_box button:hover{
-    background-color:#7b0128 ;
-    color: white;
+.buttons_box button:hover {
+  background-color: #7b0128;
+  color: white;
 }
-.buttons_box2 button{
-    background-color: none;
-    background: transparent;
-    padding: .3rem 1rem;
-    border: 1px #7b0128 solid;
-    font-family: "Jost", sans-serif;
+.buttons_box2 button {
+  background-color: none;
+  background: transparent;
+  padding: 0.3rem 1rem;
+  border: 1px #7b0128 solid;
+  font-family: "Jost", sans-serif;
 }
-.buttons_box2 button:hover{
-    background-color:#7b0128 ;
-    color: white;
+.buttons_box2 button:hover {
+  background-color: #7b0128;
+  color: white;
 }
-.cart_container h6{
+.empty_cart  button {
+  background-color: none;
+  background: transparent;
+  padding: 0.3rem 1rem;
+  border: 1px #7b0128 solid;
+  font-family: "Jost", sans-serif;
+}
+.empty_cart  button:hover {
+  background-color: #7b0128;
+  color: white;
+}
+.cart_container h6 {
   font-weight: 600;
   font-family: "Jost", sans-serif;
 }
-.total_price{
+.total_price {
   font-weight: 600;
   font-family: "Jost", sans-serif;
 }
 
-
-
-.buttons_box div{
-    width: 30rem;
-    display: flex;
-    justify-content: space-between;
+.buttons_box div {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+}
+.empty_cart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.empty_cart p{
+  font-weight: 600;
+  font-family: "Jost", sans-serif;
 }
