@@ -33,8 +33,8 @@ function HomePageCarousel() {
   return (
     <>
       <div className={style.button_container}>
-        <button onClick={onPrevClick}> <GoArrowLeft  style={{fontSize:50}} /></button>
-        <button onClick={onNextClick}><GoArrowRight style={{fontSize:50}} /></button>
+        <button onClick={onPrevClick}> <GoArrowLeft   className={style.icon} /></button>
+        <button onClick={onNextClick}><GoArrowRight  className={style.icon} /></button>
       </div>
       <Carousel
         slide={true}

@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@100&display=swap');
+h1, h2 ,h3,p{
+  font-family: "Jost", sans-serif;
+}
 .animation-container {
   width: 100%;
   height: 600px; /* Adjust height as needed */
