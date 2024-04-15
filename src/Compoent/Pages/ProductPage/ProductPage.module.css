@@ -165,3 +165,28 @@
 .left_section li:hover .bottom_div {
   opacity: 1;
 }
+
+@media screen and (max-width:1006px) {
+  .left_section{
+    display: none;
+  }
+  .tool_bar{
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+@media screen and (max-width:784px) {
+  .dawer{
+    display: none;
+  }
+  .tool_bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem!important;
+  }
+  .Container{
+    padding: 1.5rem;
+  }
+
+}
