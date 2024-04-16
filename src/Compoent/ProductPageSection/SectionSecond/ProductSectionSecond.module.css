@@ -202,6 +202,9 @@ height: 12rem;
     justify-content: center;
     font-family: "Allura", cursive;
 }
+.icon{
+    font-size: 15px;
+}
 
 
 @media screen and (max-width: 784px) {
@@ -254,6 +257,9 @@ height: 12rem;
         border-left:none ;
       margin: 1rem;
       border: 1px #7B0128 solid;
+    }
+    .icon{
+        font-size: 8px!important;
     }
 
 }

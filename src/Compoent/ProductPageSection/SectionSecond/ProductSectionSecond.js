@@ -107,16 +107,16 @@ function ProductSectionSecond() {
             <p className={style.icon_box}>
               <strong>SHARE :</strong>
               <span>
-                <FacebookRoundedIcon style={{ fontSize: 15 }} />
+                <FacebookRoundedIcon className={style.icon}  />
               </span>
               <span>
-                <InstagramIcon style={{ fontSize: 15 }} />
+                <InstagramIcon className={style.icon}  />
               </span>
               <span>
-                <LinkedInIcon style={{ fontSize: 15 }} />
+                <LinkedInIcon className={style.icon}  />
               </span>
               <span>
-                <TwitterIcon style={{ fontSize: 15 }} />
+                <TwitterIcon className={style.icon}  />
               </span>
             </p>
           </div>
