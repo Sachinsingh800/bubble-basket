@@ -107,16 +107,16 @@ function ProductSectionSecond() {
             <p className={style.icon_box}>
               <strong>SHARE :</strong>
               <span>
-                <FacebookRoundedIcon className={style.icon}  />
+                <FacebookRoundedIcon className={style.icon} />
               </span>
               <span>
-                <InstagramIcon className={style.icon}  />
+                <InstagramIcon className={style.icon} />
               </span>
               <span>
-                <LinkedInIcon className={style.icon}  />
+                <LinkedInIcon className={style.icon} />
               </span>
               <span>
-                <TwitterIcon className={style.icon}  />
+                <TwitterIcon className={style.icon} />
               </span>
             </p>
           </div>
@@ -207,9 +207,7 @@ function ProductSectionSecond() {
       </div>
       <div className={style.additional_box}>
         <div className={style.inner_container1}>
-        <span className={style.offer_box}>
-            new
-          </span>
+          <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -221,7 +219,6 @@ function ProductSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
- 
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
@@ -244,9 +241,7 @@ function ProductSectionSecond() {
           </h6>
         </div>
         <div className={style.inner_container}>
-        <span className={style.offer_box}>
-            offer
-          </span>
+          <span className={style.offer_box}>offer</span>
           <div className={style.add_box_img}>
             <img src={product1} alt="product" />
           </div>
