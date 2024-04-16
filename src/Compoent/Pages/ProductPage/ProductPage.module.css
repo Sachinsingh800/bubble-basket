@@ -166,7 +166,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width:1006px) {
+@media screen and (max-width:1151px) {
   .left_section{
     display: none;
   }

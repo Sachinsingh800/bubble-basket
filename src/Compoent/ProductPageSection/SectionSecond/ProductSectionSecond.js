@@ -122,7 +122,7 @@ function ProductSectionSecond() {
           </div>
         </div>
       ))}
-      <div>
+      <div className={style.product_des_box}>
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
