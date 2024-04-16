@@ -55,7 +55,7 @@ export default function ColumnPage(props) {
   };
   return (
     <React.Fragment>
-      <AnchorTemporaryDrawer />
+          <span className={style.dawer}><AnchorTemporaryDrawer /></span> 
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>

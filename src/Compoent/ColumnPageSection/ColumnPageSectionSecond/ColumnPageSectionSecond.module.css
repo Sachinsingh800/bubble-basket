@@ -196,3 +196,20 @@
   justify-content: center;
   font-family: "Allura", cursive;
 }
+
+@media screen and (max-width: 784px) {
+  .additional_box {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 1rem;
+  }
+  .inner_container,  .inner_container1 {
+    width: 14rem;
+    height: 22rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    border: 1px #7b0128 solid;
+  }
+}
