@@ -64,7 +64,7 @@
     font-size: 8px;
   }
   .main {
-    height: 50vh;
+    height: 30vh;
   }
   .background img {
     height: 50vh;
@@ -72,10 +72,11 @@
   }
   .background {
     height: 50vh;
-    width: 100vw;
+    width: 100%;
     filter: brightness(40%);
     margin-top: 50rem;
     background-size: cover;
+  
   }
 
   .content {
