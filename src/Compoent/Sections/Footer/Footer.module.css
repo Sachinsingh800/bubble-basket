@@ -45,6 +45,7 @@
   gap: 1rem;
   align-items: center;
   font-size: large;
+  letter-spacing:.2cap;
 }
 
 .input_box {
