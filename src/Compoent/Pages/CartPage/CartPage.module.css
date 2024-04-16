@@ -28,12 +28,11 @@
   gap: 3rem;
   letter-spacing: .2cap;
   font-weight: 500;
-  font-family: 'Futura PT', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 .left_section li {
 	list-style: none;
-  /* border: 1px red solid; */
   padding: 0;
 	margin: 0;
 }
@@ -63,6 +62,7 @@
 .left_section li a:hover:before, .left_section li a:hover:after {
  	transform: scaleX(1);
  }
+
 .right_section {
   display: flex;
   align-items: center;
@@ -122,16 +122,6 @@
   .icon_box4:hover img {
     filter: opacity(50%);
   }
-  .bottom_div{
-    position: absolute;
-    height: 4rem;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    gap: .5rem;
-  }
   .cart_count{
     height: 1rem;
     width: 1rem;
@@ -147,7 +137,8 @@
    margin-top: -.5rem;
    z-index: 99;
   }
-  /* NavBar.module.css */
+  
+/* NavBar.module.css */
 .bottom_div {
   position: absolute;
   display: flex;
