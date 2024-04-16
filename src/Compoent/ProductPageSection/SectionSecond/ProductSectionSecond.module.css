@@ -202,11 +202,14 @@ height: 12rem;
     justify-content: center;
     font-family: "Allura", cursive;
 }
+
+
 @media screen and (max-width: 784px) {
     .product_container{
         display: grid;
         grid-template-columns: 1fr ;
-        width: 90%;
+        width: 100%;
+        gap: 1rem;
     }
     .product_des_box{
         display: grid;
