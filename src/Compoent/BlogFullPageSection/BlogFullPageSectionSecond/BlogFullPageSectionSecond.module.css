@@ -86,3 +86,17 @@
     color: #7B0128;
     letter-spacing: .1cap;
 }
+.button_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.button_box button{
+    border: none;
+    background-color: none;
+    background: transparent;
+    outline: none;
+    font-weight: 600;
+    letter-spacing: .1cap;
+    font-family: "Jost", sans-serif;
+}
