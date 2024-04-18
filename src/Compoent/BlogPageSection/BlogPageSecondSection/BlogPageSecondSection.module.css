@@ -1,5 +1,4 @@
 .main{
-    border: 1px red solid;
     height: max-content;
     width: 100%;
     display: flex;
@@ -16,7 +15,42 @@
     width: 100%;
 }
 .container{
-    border: 1px red solid;
     width: 90%;
     height: 100%;
+}
+.container h6{
+    font-weight: 600;
+    color: #7B0128;
+}
+.author_box{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+.bottom_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom_box p{
+    color: #7B0128;
+}
+.bottom_box ul{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    list-style: none; 
+}
+.bottom_box ul li{
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #7B0128;
+}
+.icon{
+    font-size: .8rem!important;
+    color: white;
 }
