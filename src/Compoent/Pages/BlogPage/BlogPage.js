@@ -14,6 +14,7 @@ import menuicon from "../../Images/menu.png";
 import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
 import Footer from "../../Sections/Footer/Footer";
 import BlogPageFirstSection from "../../BlogPageSection/BlogPageFirstSection/BlogPageFirstSection";
+import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/BlogPageSecondSection";
 
 
 
@@ -142,6 +143,7 @@ export default function BlogPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <BlogPageFirstSection />
+        <BlogPageSecondSection />
         <Footer />
       </div>
     </React.Fragment>

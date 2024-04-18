@@ -30,7 +30,7 @@ function BlogPageFirstSection() {
         style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>4  COLUMNS</h2>
+          <h2>BLOG</h2>
         </div>
       </div>
     </div>
