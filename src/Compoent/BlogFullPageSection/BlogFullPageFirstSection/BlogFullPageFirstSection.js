@@ -15,6 +15,10 @@ function BlogFullPageFirstSection() {
       img: blog1,
       author: "John Wilson",
       date: "July 2, 2020",
+      authorimg: dp,
+      authorusername: "Caterer",
+      authorbio:
+        "Sed ne omnis homero. Eam reque intellegam denitionem ne. Vicu accusam reformidans at,has at timeam arum vis a impedit",
       title: "CORPORATE BULK ORDER",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris dapibus commodo eu quis ligula. Nulla hendrerit, turpis in semper rhoncus, est dui accumsan augue, id iaculis metus augue vel urna",
@@ -23,14 +27,14 @@ function BlogFullPageFirstSection() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
@@ -41,6 +45,10 @@ function BlogFullPageFirstSection() {
       img: blog2,
       author: "Mohan Nilson",
       date: "July 2, 2020",
+      authorimg: dp,
+      authorusername: "Caterer",
+      authorbio:
+        "Sed ne omnis homero. Eam reque intellegam definitionem ne. Vicu accusam reformidans at,has at timeam arum vis a impedit",
       title: "THE HEADLINE HERE",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris dapibus commodo eu quis ligula. Nulla hendrerit, turpis in semper rhoncus, est dui accumsan augue, id iaculis metus augue vel urna",
@@ -49,14 +57,14 @@ function BlogFullPageFirstSection() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
