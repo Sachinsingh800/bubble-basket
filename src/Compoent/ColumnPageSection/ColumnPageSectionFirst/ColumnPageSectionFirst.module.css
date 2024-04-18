@@ -1,11 +1,12 @@
 .main {
-  height: 80vh;
+  height: 30rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border: 1px red solid;
 }
 .description_box {
   color: white;
