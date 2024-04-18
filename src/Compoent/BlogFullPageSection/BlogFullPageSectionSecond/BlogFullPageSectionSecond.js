@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import style from "./BlogFullPageSectionSecond.module.css";
-import blog1 from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg";
-import blog2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg";
+import blog1 from "../../Images/image-007.png";
+import blog2 from "../../Images/image-009.png";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -17,6 +17,9 @@ function BlogFullPageSectionSecond() {
       img: blog1,
       author: "John Wilson",
       date: "July 2, 2020",
+      authorimg:"",
+      authorusername:"Caterer",
+      authorbio:"Sed ne omnis homero. Eam reque intellegam denitionem ne. Vicu accusam reformidans at,has at timeam arum vis a impedit",
       title: "CORPORATE BULK ORDER",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris dapibus commodo eu quis ligula. Nulla hendrerit, turpis in semper rhoncus, est dui accumsan augue, id iaculis metus augue vel urna",
@@ -96,6 +99,11 @@ function BlogFullPageSectionSecond() {
               <TwitterIcon className={style.icon} />
             </li>
           </ul>
+        </div>
+      </div>
+      <div className={style.author_info_box}>
+        <div className={style}>
+
         </div>
       </div>
     </div>

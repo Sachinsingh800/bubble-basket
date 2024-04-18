@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./BlogFullPageFirstSection.module.css";
-import blog1 from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg";
-import blog2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg";
+import blog1 from "../../Images/image-007.png";
+import blog2 from "../../Images/image-009.png";
 import { useParams } from "react-router-dom";
 
 function BlogFullPageFirstSection() {

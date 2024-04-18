@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./BlogPageFirstSection.module.css";
-import backgroundImage from "../../Images/bottle-wine-glasses-corkscrew-set-evening.jpg";
+import backgroundImage from "../../Images/image-001.png";
 
 function BlogPageFirstSection() {
   const [scrollPosition, setScrollPosition] = useState(0);
