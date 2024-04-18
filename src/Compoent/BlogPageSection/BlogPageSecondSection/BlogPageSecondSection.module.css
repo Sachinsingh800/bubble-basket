@@ -1,5 +1,16 @@
 .main{
     border: 1px red solid;
-    height: 100vh;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.blog_img_box{
+    width: 70rem;
+    height: 30rem;
+}
+.blog_img_box img{
+    height: 100%;
     width: 100%;
 }
