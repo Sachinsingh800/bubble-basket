@@ -3,6 +3,7 @@ import style from "./BlogFullPageFirstSection.module.css";
 import blog1 from "../../Images/image-007.png";
 import blog2 from "../../Images/image-009.png";
 import { useParams } from "react-router-dom";
+import dp from "../../Images/image-010.png";
 
 function BlogFullPageFirstSection() {
   const [scrollPosition, setScrollPosition] = useState(0);
