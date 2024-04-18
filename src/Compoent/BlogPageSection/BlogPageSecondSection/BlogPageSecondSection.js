@@ -29,7 +29,7 @@ function BlogPageSecondSection() {
   return (
     <div className={style.main}>
       {blogData.map((item) => (
-        <div className={style.main}>
+        <div className={style.container}>
           <div className={style.blog_img_box}>
             <img src={item.img} alt="blog" />
           </div>
