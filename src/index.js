@@ -8,6 +8,7 @@ import ProductPage from './Compoent/Pages/ProductPage/ProductPage';
 import ColumnPage from './Compoent/Pages/ColumnPage/ColumnPage';
 import CartPage from './Compoent/Pages/CartPage/CartPage';
 import BlogPage from './Compoent/Pages/BlogPage/BlogPage';
+import BlogFullPage from './Compoent/Pages/BlogFullPage/BlogFullPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path={'/ColumnPage'} element={<ColumnPage />} />
         <Route path={'/CartPage'} element={<CartPage />} />
         <Route path={'/BlogPage'} element={<BlogPage />} />
+        <Route path={'/Blog/:id'} element={<BlogFullPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

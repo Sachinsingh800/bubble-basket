@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import style from "./BlogPageSecondSection.module.css";
+import React, { useState, useEffect } from "react";
+import style from "./BlogFullPageFirstSection.module.css";
 import blog1 from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg";
 import blog2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg";
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { useParams } from "react-router-dom";
 
-function BlogPageSecondSection() {
+function BlogFullPageFirstSection() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const { id } = useParams(); // Fetching the blog ID from the URL params
+
   const blogData = [
     {
       _id: 1,
@@ -63,45 +63,40 @@ function BlogPageSecondSection() {
       ],
     },
   ];
+
+  // Filter the blog data based on the ID fetched from the URL
+  const selectedBlog = blogData.find((blog) => blog._id.toString() === id);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className={style.main}>
-      {blogData.map((item) => (
-        <div className={style.container} key={item._id}>
-          <div className={style.blog_img_box}>
-            <img src={item.img} alt="blog" />
-          </div>
-          <br />
-          <div className={style.author_box}>
-            <p>{item.author}</p>
-            <p>-</p> <p>{item.date}</p>
-          </div>
-          <div>
-            <h6>{item.title}</h6>
-            <p>{item.content}</p>
-          </div>
-          <div className={style.bottom_box}>
-            <Link to={`/Blog/${item._id}`} className={style.read_more_link}>
-              READ MORE →
-            </Link>
-            <ul>
-              <li>
-                <FacebookRoundedIcon className={style.icon} />
-              </li>
-              <li>
-                <InstagramIcon className={style.icon} />
-              </li>
-              <li>
-                <LinkedInIcon className={style.icon} />
-              </li>
-              <li>
-                <TwitterIcon className={style.icon} />
-              </li>
-            </ul>
-          </div>
+      <div
+        className={style.background}
+        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+      >
+        <img src={selectedBlog.img} alt="bg" className={style.bgImage} />
+      </div>
+      <div
+        className={style.content}
+        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+      >
+        <div className={style.description_box}>
+          <h2>BLOG - SINGLE</h2>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
 
-export default BlogPageSecondSection;
+export default BlogFullPageFirstSection;

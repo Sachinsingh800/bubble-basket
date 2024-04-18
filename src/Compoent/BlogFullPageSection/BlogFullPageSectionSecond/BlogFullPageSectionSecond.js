@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import style from "./BlogPageSecondSection.module.css";
+import { Link, useParams } from "react-router-dom";
+import style from "./BlogFullPageSectionSecond.module.css";
 import blog1 from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg";
 import blog2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
@@ -8,7 +8,9 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
-function BlogPageSecondSection() {
+function BlogFullPageSectionSecond() {
+  const { id } = useParams(); // Fetching the blog ID from the URL params
+
   const blogData = [
     {
       _id: 1,
@@ -63,45 +65,40 @@ function BlogPageSecondSection() {
       ],
     },
   ];
+
+  // Filter the blog data based on the ID fetched from the URL
+  const selectedBlog = blogData.find((blog) => blog._id.toString() === id);
   return (
     <div className={style.main}>
-      {blogData.map((item) => (
-        <div className={style.container} key={item._id}>
-          <div className={style.blog_img_box}>
-            <img src={item.img} alt="blog" />
-          </div>
-          <br />
-          <div className={style.author_box}>
-            <p>{item.author}</p>
-            <p>-</p> <p>{item.date}</p>
-          </div>
-          <div>
-            <h6>{item.title}</h6>
-            <p>{item.content}</p>
-          </div>
-          <div className={style.bottom_box}>
-            <Link to={`/Blog/${item._id}`} className={style.read_more_link}>
-              READ MORE →
-            </Link>
-            <ul>
-              <li>
-                <FacebookRoundedIcon className={style.icon} />
-              </li>
-              <li>
-                <InstagramIcon className={style.icon} />
-              </li>
-              <li>
-                <LinkedInIcon className={style.icon} />
-              </li>
-              <li>
-                <TwitterIcon className={style.icon} />
-              </li>
-            </ul>
-          </div>
+      <div className={style.container}>
+        <br />
+        <div className={style.author_box}>
+          <p>{selectedBlog.author}</p>
+          <p>-</p> <p>{selectedBlog.date}</p>
         </div>
-      ))}
+        <div>
+          <h6>{selectedBlog.title}</h6>
+          <p>{selectedBlog.content}</p>
+        </div>
+        <div className={style.bottom_box}>
+          <ul>
+            <li>
+              <FacebookRoundedIcon className={style.icon} />
+            </li>
+            <li>
+              <InstagramIcon className={style.icon} />
+            </li>
+            <li>
+              <LinkedInIcon className={style.icon} />
+            </li>
+            <li>
+              <TwitterIcon className={style.icon} />
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default BlogPageSecondSection;
+export default BlogFullPageSectionSecond;
