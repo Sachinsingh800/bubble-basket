@@ -63,7 +63,26 @@
     background-color: #9c0333;
 }
 .author_info_box{
-    border: 1px red solid;
     width: 100%;
     height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inner_container{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    gap: .5rem;
+}
+.des_box{
+    border: 1px #7B0128 solid;
+    height: 10rem;
+    width: max-content;
+    padding: 1rem;
+}
+.des_box h5{
+    font-weight: 600;
+    color: #7B0128;
+    letter-spacing: .1cap;
 }

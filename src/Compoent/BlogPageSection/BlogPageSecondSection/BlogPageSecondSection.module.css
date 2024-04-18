@@ -65,4 +65,7 @@
 .read_more_link{
     text-decoration: none;
     color: #7B0128;
+    color: #7B0128;
+    font-weight: 600;
+    font-size: .8rem;
 }
