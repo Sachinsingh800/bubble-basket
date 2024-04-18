@@ -18,6 +18,9 @@
   height: 100%;
   width: 90%;
 }
+.container  p{
+    font-weight: 500;
+}
 .container h6 {
   font-weight: 600;
   color: #7b0128;
@@ -123,10 +126,11 @@
   padding: 0rem 4rem;
 }
 .user_dp {
-  height: 4rem;
+  height: 3.5rem;
   width: 5rem !important;
   border-radius: 50%;
   overflow: hidden;
+  background-color: #7b0128;
 }
 .user_dp img {
   height: 100%;
@@ -186,3 +190,9 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.demotext{
+    width: 100%;
+    text-align: center;
+    padding: 1rem 15rem;
+    font-style: italic;
+}

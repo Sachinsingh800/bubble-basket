@@ -8,6 +8,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import dp from "../../Images/image-010.png";
+import userDp from "../../Images/user dp.png";
 
 function BlogFullPageSectionSecond() {
   const { id } = useParams(); // Fetching the blog ID from the URL params
@@ -30,14 +31,14 @@ function BlogFullPageSectionSecond() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
-          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
+          userimg: userDp,
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
+          userimg: userDp,
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
@@ -60,14 +61,14 @@ function BlogFullPageSectionSecond() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
-          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
+          userimg: userDp,
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
+          userimg: userDp,
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
@@ -75,8 +76,8 @@ function BlogFullPageSectionSecond() {
     },
   ];
 
-   // Filter the blog data based on the ID fetched from the URL
-   const selectedBlog = blogData.find((blog) => blog._id.toString() === id);
+  // Filter the blog data based on the ID fetched from the URL
+  const selectedBlog = blogData.find((blog) => blog._id.toString() === id);
 
   // Find the index of the current blog post
   const currentIndex = blogData.findIndex((blog) => blog._id.toString() === id);
@@ -99,6 +100,38 @@ function BlogFullPageSectionSecond() {
         <div>
           <h6>{selectedBlog.title}</h6>
           <p>{selectedBlog.content}</p>
+          <p>
+            Eu sed copiosae consetetur, eu errem dolore virtute nec. Vix ne odio
+            deseruisse percipitur, vel cu epicuri ofciis. Debet dicunt suscipit
+            per id, iuvaret indoctum an has. Duo te populo tritani, pro id reque
+            atomorum convenire. Eum consulatu scripserit ne, quas eruditi sed
+            ne, vim equidem consulatu an. Aeterno labitur no eam, feugait
+            appareat volutpat vel ex. Te vim nostro fabulas.
+          </p>
+          <h5 className={style.demotext}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+            tellus, us magnatus nec ullamcorper mattis, pulvinar son dapibus
+            leom.
+          </h5>
+          <p>
+            Lorem ipsum dolor sit amet, id eam facilis moderatius, eu has
+            expetenda dignissim. Vis dico labores accusamus ei, modolamt
+            salutatus ius ei, usu ad hendrerit. An modus invidunt conceptam usu.
+            Per eius voluptatibus ad, per sint tation id. Latine perpet
+            imperdiet ad vel, detracto periculis quaerendum sea.
+          </p>
+          <div>
+            <img style={{ width: "100%" }} src={blog2} alt="" />
+          </div>
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, id eam facilis moderatius, eu has
+            expetenda dignissim. Vis dico labores accusamus ei, modolamt
+            salutatus ius ei, usu ad hendrerit. An modus invidunt conceptam usu.
+            Per eius voluptatibus ad, per sint tation id. Latine perpet
+            imperdiet ad vel, detracto periculis quaerendum sea ei. Ad duo
+            utamur saperemo.
+          </p>
         </div>
         <div className={style.bottom_box}>
           <div></div>
@@ -153,67 +186,62 @@ function BlogFullPageSectionSecond() {
       </div>
       <div className={style.button_box}>
         <Link to={`/blog/${prevPost._id}`}>
-          <button>
-            ← Prev post
-          </button>
+          <button>← Prev post</button>
         </Link>
         <Link to={`/blog/${nextPost._id}`}>
-          <button>
-            Next post →
-          </button>
+          <button>Next post →</button>
         </Link>
       </div>
 
-     
       <div className={style.comment_box}>
-         <h6>{selectedBlog.comments.length} COMMENTS</h6>
-              <br />
-              {selectedBlog.comments.map((item)=>
-              <div className={style.user_review_container}>
-                <div className={style.user_dp}>
-                  <img
-                    src={item.userimg}
-                    alt="dp"
-                  />
-                </div>
-                <div>
-                  <span>{item.date}</span>
-                  <p className={style.username}>{item.username}</p>
-                  <p>{item.comment}</p>
-                </div>
-              </div>
-                 )}
-              <br />
-              <br />
-              <br />
-              <form className={style.form}>
-                <p>
-                  <strong>LEAVE A REPLY</strong>
-                </p>
-                <div>
-                  <p>
-                  Your email address will not be published. Required Fields are marked *
-                  </p>
-                </div>
-                <textarea placeholder="Your Comment*" />
-                <div className={style.user_input_box}>
-                  <input type="text" placeholder="Your Name*" />
-                  <input type="email" placeholder="Your Email*" />
-                </div>
-                <input className={style.input_website} type="text" placeholder="Website" />
-                <div>
-                  <input type="checkbox" />
-                  &nbsp;
-                  <span>
-                  Save my name, email, and website in this browser for the next time I comment.
-                  </span>
-                </div>
-                <button type="submit">POST COMMENT →</button>
-              </form>
+        <h6>{selectedBlog.comments.length} COMMENTS</h6>
+        <br />
+        {selectedBlog.comments.map((item) => (
+          <div className={style.user_review_container}>
+            <div className={style.user_dp}>
+              <img src={item.userimg} alt="dp" />
+            </div>
+            <div>
+              <span>{item.date}</span>
+              <p className={style.username}>{item.username}</p>
+              <p>{item.comment}</p>
+            </div>
+          </div>
+        ))}
+        <br />
+        <br />
+        <br />
+        <form className={style.form}>
+          <p>
+            <strong>LEAVE A REPLY</strong>
+          </p>
+          <div>
+            <p>
+              Your email address will not be published. Required Fields are
+              marked *
+            </p>
+          </div>
+          <textarea placeholder="Your Comment*" />
+          <div className={style.user_input_box}>
+            <input type="text" placeholder="Your Name*" />
+            <input type="email" placeholder="Your Email*" />
+          </div>
+          <input
+            className={style.input_website}
+            type="text"
+            placeholder="Website"
+          />
+          <div>
+            <input type="checkbox" />
+            &nbsp;
+            <span>
+              Save my name, email, and website in this browser for the next time
+              I comment.
+            </span>
+          </div>
+          <button type="submit">POST COMMENT →</button>
+        </form>
       </div>
-   
-             
-   
     </div>
   );
 }
