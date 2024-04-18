@@ -81,6 +81,7 @@ function BlogFullPageSectionSecond() {
           <p>{selectedBlog.content}</p>
         </div>
         <div className={style.bottom_box}>
+            <div></div>
           <ul>
             <li>
               <FacebookRoundedIcon className={style.icon} />
