@@ -1,11 +1,14 @@
 import React from 'react'
 import style from "./BlogPageSecondSection.module.css"
+import blog1 from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg"
+import blog2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg"
+
 
 function BlogPageSecondSection() {
     const blogData=
     [
       {
-        img:"",
+        img:blog1,
         author:"John Wilson",
         date:"July 2, 2020",
         title:"CORPORATE BULK ORDER",
@@ -14,7 +17,7 @@ function BlogPageSecondSection() {
         comments:""
       },
       {
-        img:"",
+        img:blog2,
         author:"Mohan Nilson",
         date:"July 2, 2020",
         title:"THE HEADLINE HERE",
