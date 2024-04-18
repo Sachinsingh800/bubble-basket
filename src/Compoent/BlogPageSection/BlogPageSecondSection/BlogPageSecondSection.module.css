@@ -34,6 +34,11 @@
 }
 .bottom_box p{
     color: #7B0128;
+    font-weight: 600;
+    font-size: .8rem;
+}
+.bottom_box p:hover{
+    color: #54011b;
 }
 .bottom_box ul{
     display: flex;
@@ -53,4 +58,7 @@
 .icon{
     font-size: .8rem!important;
     color: white;
+}
+.bottom_box ul li:hover{
+    background-color: #9c0333;
 }
