@@ -7,7 +7,7 @@
     flex-direction: column;
 }
 .blog_img_box{
-    width: 70rem;
+    width: 90%;
     height: 30rem;
 }
 .blog_img_box img{
