@@ -89,9 +89,9 @@ function BlogPageSecondSection() {
             <p>{item.content}</p>
           </div>
           <div className={style.bottom_box}>
-            <Link to={`/Blog/${item._id}`} className={style.read_more_link}>
+            <a href={`/Blog/${item._id}`} className={style.read_more_link}>
               READ MORE →
-            </Link>
+            </a>
             <ul>
               <li>
                 <FacebookRoundedIcon className={style.icon} />

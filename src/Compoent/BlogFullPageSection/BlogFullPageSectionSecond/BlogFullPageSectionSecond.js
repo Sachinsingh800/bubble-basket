@@ -185,12 +185,12 @@ function BlogFullPageSectionSecond() {
         </div>
       </div>
       <div className={style.button_box}>
-        <Link to={`/blog/${prevPost._id}`}>
+        <a href={`/blog/${prevPost._id}`}>
           <button>← Prev post</button>
-        </Link>
-        <Link to={`/blog/${nextPost._id}`}>
+        </a>
+        <a href={`/blog/${nextPost._id}`}>
           <button>Next post →</button>
-        </Link>
+        </a>
       </div>
 
       <div className={style.comment_box}>
