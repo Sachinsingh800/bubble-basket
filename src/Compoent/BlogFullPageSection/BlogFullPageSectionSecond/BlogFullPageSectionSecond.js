@@ -30,13 +30,14 @@ function BlogFullPageSectionSecond() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
@@ -59,14 +60,14 @@ function BlogFullPageSectionSecond() {
         {
           username: "IRWIN TAYLOR",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
         {
           username: "HEATHER HUGHES",
           date: "September 3, 2020",
-          userimg: "",
+          userimg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s",
           comment:
             "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
         },
@@ -91,7 +92,6 @@ function BlogFullPageSectionSecond() {
   return (
     <div className={style.main}>
       <div className={style.container}>
-        <br />
         <div className={style.author_box}>
           <p>{selectedBlog.author}</p>
           <p>-</p> <p>{selectedBlog.date}</p>
@@ -163,6 +163,57 @@ function BlogFullPageSectionSecond() {
           </button>
         </Link>
       </div>
+
+     
+      <div className={style.comment_box}>
+         <h6>{selectedBlog.comments.length} COMMENTS</h6>
+              <br />
+              {selectedBlog.comments.map((item)=>
+              <div className={style.user_review_container}>
+                <div className={style.user_dp}>
+                  <img
+                    src={item.userimg}
+                    alt="dp"
+                  />
+                </div>
+                <div>
+                  <span>{item.date}</span>
+                  <p className={style.username}>{item.username}</p>
+                  <p>{item.comment}</p>
+                </div>
+              </div>
+                 )}
+              <br />
+              <br />
+              <br />
+              <form className={style.form}>
+                <p>
+                  <strong>LEAVE A REPLY</strong>
+                </p>
+                <div>
+                  <p>
+                  Your email address will not be published. Required Fields are marked *
+                  </p>
+                </div>
+                <textarea placeholder="Your Comment*" />
+                <div className={style.user_input_box}>
+                  <input type="text" placeholder="Your Name*" />
+                  <input type="email" placeholder="Your Email*" />
+                </div>
+                <input className={style.input_website} type="text" placeholder="Website" />
+                <div>
+                  <input type="checkbox" />
+                  &nbsp;
+                  <span>
+                  Save my name, email, and website in this browser for the next time I comment.
+                  </span>
+                </div>
+                <button type="submit">POST COMMENT →</button>
+              </form>
+      </div>
+   
+             
+   
     </div>
   );
 }
