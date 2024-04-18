@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductPage from './Compoent/Pages/ProductPage/ProductPage';
 import ColumnPage from './Compoent/Pages/ColumnPage/ColumnPage';
 import CartPage from './Compoent/Pages/CartPage/CartPage';
+import BlogPage from './Compoent/Pages/BlogPage/BlogPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path={'/ProductPage'} element={<ProductPage />} />
         <Route path={'/ColumnPage'} element={<ColumnPage />} />
         <Route path={'/CartPage'} element={<CartPage />} />
+        <Route path={'/BlogPage'} element={<BlogPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
