@@ -9,6 +9,7 @@ import ColumnPage from './Compoent/Pages/ColumnPage/ColumnPage';
 import CartPage from './Compoent/Pages/CartPage/CartPage';
 import BlogPage from './Compoent/Pages/BlogPage/BlogPage';
 import BlogFullPage from './Compoent/Pages/BlogFullPage/BlogFullPage';
+import ContactUsPage from './Compoent/Pages/ContactUsPage/ContactUsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path={'/CartPage'} element={<CartPage />} />
         <Route path={'/BlogPage'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
+        <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
