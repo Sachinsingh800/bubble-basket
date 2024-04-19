@@ -18,8 +18,8 @@
   height: 100%;
   width: 90%;
 }
-.container  p{
-    font-weight: 500;
+.container p {
+  font-weight: 500;
 }
 .container h6 {
   font-weight: 600;
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 .bottom_box p {
   color: #7b0128;
@@ -91,7 +90,7 @@
   letter-spacing: 0.1cap;
 }
 .button_box {
-    width: 90%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
@@ -104,19 +103,19 @@
   letter-spacing: 0.1cap;
   font-family: "Jost", sans-serif;
 }
-.username{
-    font-weight: 600;
-    color: #7b0128;
-    letter-spacing: 0.1cap;
+.username {
+  font-weight: 600;
+  color: #7b0128;
+  letter-spacing: 0.1cap;
 }
 .comment_box {
   display: flex;
   flex-direction: column;
   width: 90%;
 }
-.comment_box h6{
-    font-family: "Jost", sans-serif;
-    letter-spacing: 0.1cap;
+.comment_box h6 {
+  font-family: "Jost", sans-serif;
+  letter-spacing: 0.1cap;
 }
 
 .user_review_container {
@@ -158,10 +157,10 @@
   padding: 0.5rem;
   border: 1px #f5e3e3 solid;
 }
-.input_website{
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px #f5e3e3 solid;
+.input_website {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px #f5e3e3 solid;
 }
 .form button {
   display: flex;
@@ -190,9 +189,39 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.demotext{
+.demotext {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 15rem;
+  font-style: italic;
+}
+@media screen and (max-width: 500px) {
+  .demotext {
+    padding: 1rem 0rem;
+  }
+  .user_review_container {
+    padding: 0rem ;
+  }
+  .user_dp{
+    height: 3rem;
+    width: 8rem!important;
+  }
+  .user_box_img {
+    height: 10rem;
+    width: 10rem;
+  }
+  .user_box_img img {
+    height: 100%;
     width: 100%;
-    text-align: center;
-    padding: 1rem 15rem;
-    font-style: italic;
+  }
+  .inner_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .des_box {
+    width: 100%;
+    font-size: 0.8rem;
+  }
 }
