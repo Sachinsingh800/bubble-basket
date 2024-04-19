@@ -10,6 +10,7 @@ import CartPage from './Compoent/Pages/CartPage/CartPage';
 import BlogPage from './Compoent/Pages/BlogPage/BlogPage';
 import BlogFullPage from './Compoent/Pages/BlogFullPage/BlogFullPage';
 import ContactUsPage from './Compoent/Pages/ContactUsPage/ContactUsPage';
+import ErrorPage from './Compoent/Pages/ErrorPage/ErrorPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path={'/BlogPage'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
         <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
+        <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
