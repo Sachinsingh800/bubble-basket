@@ -13,6 +13,8 @@ import avatarimg from "../../Images/user.png";
 import menuicon from "../../Images/menu.png";
 import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
 import Footer from "../../Sections/Footer/Footer";
+import ContactUsPageSectionFirst from "../../ContactUsPageSection/ContactUsPageSectionFirst/ContactUsPageSectionFirst";
+import ContactUsPageSectionSecond from "../../ContactUsPageSection/ContactUsPageSectionSecond/ContactUsPageSectionSecond";
 
 
 function HideOnScroll(props) {
@@ -136,7 +138,8 @@ export default function ContactUsPage(props) {
       </HideOnScroll>
       <Toolbar />
       <div className={style.Container}>
-      contact us
+      <ContactUsPageSectionFirst />
+      <ContactUsPageSectionSecond />
         <Footer />
       </div>
     </React.Fragment>
