@@ -8,7 +8,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
-import style from "./NavBar.module.css";
+import style from "./ContactUsPage.module.css";
 import logo from "../Images/logo.jpg";
 import searchicon from "../Images/search.png";
 import shoppingCart from "../Images/shopping-basket.png";
