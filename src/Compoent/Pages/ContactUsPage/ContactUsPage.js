@@ -2,21 +2,18 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import style from "./ContactUsPage.module.css";
-import logo from "../Images/logo.jpg";
-import searchicon from "../Images/search.png";
-import shoppingCart from "../Images/shopping-basket.png";
-import avatarimg from "../Images/user.png";
-import menuicon from "../Images/menu.png";
-import AnchorTemporaryDrawer from "../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
-import Footer from "../Sections/Footer/Footer";
-import ImageSlider from "../ImageSlider/ImageSlider";
+import logo from "../../Images/logo.jpg";
+import searchicon from "../../Images/search.png";
+import shoppingCart from "../../Images/shopping-basket.png";
+import avatarimg from "../../Images/user.png";
+import menuicon from "../../Images/menu.png";
+import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
+import Footer from "../../Sections/Footer/Footer";
+
 
 function HideOnScroll(props) {
   const { children, window } = props;
