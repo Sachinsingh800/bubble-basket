@@ -151,18 +151,18 @@
         padding: 1rem ;
     }
     .map{
-        width:80%;
+        width:90%;
         height:31rem ;
 
     }
 }
 @media screen and (max-width:400px) {
     .form_container form input{
-        width: 20rem;
+        width: 30rem;
         padding: 1rem ;
     }
     .message_box{
-        width: 20rem!important;
+        width: 30rem!important;
         width: 100%;
         padding: 1rem ;
     }
