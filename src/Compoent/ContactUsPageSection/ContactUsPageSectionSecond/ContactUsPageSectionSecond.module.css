@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
+  width: 100%;
 }
 .address_box div {
   display: flex;
@@ -40,6 +41,7 @@
   list-style: none;
   width: 100%;
   gap: 0.5rem;
+  justify-content: center;
 }
 .address_box div ul li {
   border-radius: 50%;
@@ -104,4 +106,64 @@
 }
 .map_box{
   padding-top: 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map{
+    width:100%;
+    height:31rem ;
+}
+
+@media screen and (max-width:850px) {
+    .form_container{
+        display: grid;
+        grid-template-columns: 1fr ;
+        padding: 0rem!important;
+    }
+    .address_box{
+        display: grid;
+        grid-template-columns: 1fr ;
+    }
+    .form_container form input{
+        width: 50rem;
+        padding: 1rem ;
+    }
+    .message_box{
+        width: 50rem!important;
+        width: 100%;
+        padding: 1rem ;
+    }
+    .map{
+        width:80%;
+        height:31rem ;
+    }
+
+}
+@media screen and (max-width:500px) {
+    .form_container form input{
+        width: 30rem;
+        padding: 1rem ;
+    }
+    .message_box{
+        width: 30rem!important;
+        width: 100%;
+        padding: 1rem ;
+    }
+    .map{
+        width:80%;
+        height:31rem ;
+
+    }
+}
+@media screen and (max-width:400px) {
+    .form_container form input{
+        width: 20rem;
+        padding: 1rem ;
+    }
+    .message_box{
+        width: 20rem!important;
+        width: 100%;
+        padding: 1rem ;
+    }
 }
