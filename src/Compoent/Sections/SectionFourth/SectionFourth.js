@@ -66,6 +66,10 @@ function SectionFourth() {
     setShowLikeTick(true);
   };
 
+  const handleFilterData=(item)=>{
+
+  }
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -100,7 +104,7 @@ function SectionFourth() {
                   {showLikeTick  && <span className={style.tick}>✓</span>}
                   <FavoriteBorderIcon/>
                 </button>
-                <span className={style.optionButton3}><AlertDialogSlide /></span>
+                <span className={style.optionButton3}><AlertDialogSlide cartdata={item} /></span>
               </div>
             </div>
           </div>
