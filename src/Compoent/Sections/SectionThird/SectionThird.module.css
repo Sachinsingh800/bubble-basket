@@ -22,7 +22,8 @@
   height: 110rem;
   width: 110rem;
   filter: brightness(40%);
-  margin-top: 31rem;
+  margin-top: -15rem;
+
 }
 .background img {
   height: 100%;
@@ -56,7 +57,7 @@
   gap: 1rem;
   z-index: 999 !important;
   position: absolute;
-  margin-top: 55rem;
+  margin-top:65rem;
 }
 
 @media screen and (max-width: 784px) {
@@ -75,7 +76,7 @@
     height: 200%;
     width: 200%;
     filter: brightness(40%);
-    margin-top: 50rem;
+    margin-top: -15rem;
     background-size: cover;
   }
   .content {

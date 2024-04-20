@@ -21,7 +21,7 @@ function SectionSeventh() {
     <div className={style.main}>
       <div
         className={style.background}
-        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+        style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={backgroundImage} alt="bg" className={style.bgImage} />
       </div>
