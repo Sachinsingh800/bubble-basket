@@ -66,12 +66,12 @@
     width: 90%;
   }
 }
-@media screen and (max-width: 489px) {
+@media screen and (max-width: 500px) {
   .button_container {
     width: 90%;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .button_container {
     width: 90%;
   }

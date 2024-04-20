@@ -11,7 +11,7 @@
     font-size: 12px;
   }
 }
-@media screen and (max-width: 784px) {
+@media screen and (max-width: 500px) {
   .main {
     height: 50rem;
   }
