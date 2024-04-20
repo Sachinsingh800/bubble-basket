@@ -1,5 +1,5 @@
 .carousel_box {
-  height: 30rem;
+  height: 33rem;
   width: 100%;
 }
 .inner_container_ {
@@ -7,18 +7,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30rem;
+  height: 33rem;
+  padding-top: 1rem;
 }
 .img_box {
-  height: 25rem;
-  width: 25rem;
+  height: 29rem;
+  width: 23rem;
 }
 .img_box img {
   height: 100%;
   width: 100%;
 }
 .button_container {
-  height: 30rem;
+  height: 33rem;
   width: 93%;
   position: absolute;
   display: flex;
