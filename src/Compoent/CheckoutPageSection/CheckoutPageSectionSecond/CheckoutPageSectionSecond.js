@@ -96,7 +96,9 @@ function CheckoutPageSectionSecond() {
             />
           </div>
           <div className={style.form_group}>
-            <label htmlFor="apartment">Apartment, suite, unit, etc. (optional)</label>
+            <label htmlFor="apartment">
+              Apartment, suite, unit, etc. (optional)
+            </label>
             <input
               type="text"
               id="apartment"
@@ -164,10 +166,17 @@ function CheckoutPageSectionSecond() {
         <div className={style.order_summary}>
           <h2>YOUR ORDER</h2>
           <div className={style.order_items}>
+            <div className={style.header}>
+              <p>PRODUCT</p>
+              <p>SUBTOTAL</p>
+            </div>
             {cartData.map((item, index) => (
               <div key={index} className={style.order_item}>
-                <p>{item.productName}</p>
-                <p>${item.subTotal}</p>
+               <div className={style.product_item}>
+               <span>{item.productName} x <strong>{item.quantity}</strong></span>
+                <span>${item.subTotal}</span>
+               </div>
+           
               </div>
             ))}
             <div className={style.order_item}>
@@ -180,7 +189,11 @@ function CheckoutPageSectionSecond() {
             </div>
           </div>
           <p>
-            Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements. Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+            Sorry, it seems that there are no available payment methods for your
+            state. Please contact us if you require assistance or wish to make
+            alternate arrangements. Your personal data will be used to process
+            your order, support your experience throughout this website, and for
+            other purposes described in our privacy policy.
           </p>
           <button type="submit">PLACE ORDER</button>
         </div>

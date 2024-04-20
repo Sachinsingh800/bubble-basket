@@ -31,3 +31,31 @@
     background-color: #45a049;
   }
   
+  .order_items{
+    display: flex;
+    flex-direction: column;
+
+  }
+  .header{
+    border-bottom: 1px rgb(124, 124, 124) solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    align-items: center;
+    font-weight: 600;
+  }
+  .order_item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    align-items: center;
+  }
+  .product_item{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+    align-items: center;
+    border-bottom: 1px rgb(124, 124, 124) solid;
+    width: 100%;
+
+  }
