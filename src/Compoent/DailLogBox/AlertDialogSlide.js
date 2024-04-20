@@ -34,14 +34,7 @@ export default function AlertDialogSlide() {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        PaperProps={{
-          style: {
-            maxHeight: "100vh",
-            maxWidth:"80vw",
-            padding:"30px 70px",
-            overflow:"hidden"
-          }
-        }}
+        className={style.dialog}
       >
         <button className={style.close_btn} onClick={handleClose}><CloseIcon /></button>
         <div className={style.container}>
