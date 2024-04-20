@@ -197,19 +197,36 @@
   font-family: "Allura", cursive;
 }
 
-@media screen and (max-width: 784px) {
+@media screen and (max-width: 500px) {
   .additional_box {
     display: grid;
     grid-template-columns: 1fr ;
     gap: 1rem;
   }
   .inner_container,  .inner_container1 {
-    width: 14rem;
-    height: 22rem;
+    height: 30rem;
+    width: 28rem;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 2rem 1rem;
     border: 1px #7b0128 solid;
+  }
+  .add_box_img {
+    height: 18rem;
+  }
+  .offer_box {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #7b0128;
+    color: white;
+    margin-top: -1.5rem;
+    margin-right: -24rem;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Allura", cursive;
   }
 }
