@@ -90,7 +90,7 @@ function CartPageSectionSecond() {
               <button>Coupon Code</button>
               <button>APPLY COUPON → </button>
             </div>
-            <button>UPDATE CART → </button>
+            <button className={style.updatebtn}>UPDATE CART → </button>
           </div>
           <div className={style.cart_container}>
             <h6>CART TOTALS</h6>

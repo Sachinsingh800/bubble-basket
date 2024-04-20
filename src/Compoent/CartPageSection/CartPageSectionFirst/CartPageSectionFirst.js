@@ -21,13 +21,13 @@ function CartPageSectionFirst() {
     <div className={style.main}>
       <div
         className={style.background}
-        style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
+        style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={backgroundImage} alt="bg" className={style.bgImage} />
       </div>
       <div
         className={style.content}
-        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+        style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
           <h2>CART</h2>
