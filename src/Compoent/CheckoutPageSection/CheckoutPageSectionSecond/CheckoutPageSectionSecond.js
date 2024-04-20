@@ -162,7 +162,7 @@ function CheckoutPageSectionSecond() {
             />
           </div>
         </div>
-
+        <br/>
         <div className={style.order_summary}>
           <h2>YOUR ORDER</h2>
           <div className={style.order_items}>
@@ -184,10 +184,11 @@ function CheckoutPageSectionSecond() {
               <p>${calculateTotal()}</p>
             </div>
             <div className={style.order_item}>
-              <p>TOTAL</p>
-              <p>${calculateTotal()}</p>
+            <strong><p>TOTAL</p></strong>  
+           <strong><p>${calculateTotal()}</p></strong>   
             </div>
           </div>
+          <br/>
           <p>
             Sorry, it seems that there are no available payment methods for your
             state. Please contact us if you require assistance or wish to make
@@ -195,6 +196,7 @@ function CheckoutPageSectionSecond() {
             your order, support your experience throughout this website, and for
             other purposes described in our privacy policy.
           </p>
+          <br/>
           <button type="submit">PLACE ORDER</button>
         </div>
       </form>
