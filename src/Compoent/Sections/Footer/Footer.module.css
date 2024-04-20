@@ -47,6 +47,9 @@
   font-size: large;
   letter-spacing:.2cap;
 }
+.nav_bar span{
+  color: white;
+}
 
 .input_box {
   border: 1px rgb(255, 255, 255) solid;

@@ -12,7 +12,6 @@ import logo3 from "../../Images/paypal.png";
 import logo4 from "../../Images/american express.png";
 import logo5 from "../../Images/discover.png";
 
-
 function Footer() {
   return (
     <div className={style.main}>
@@ -42,15 +41,21 @@ function Footer() {
         <img src={logo} alt="logo" />
       </div>
       <div className={style.nav_bar}>
-        <span>HOME</span>
+        <a href="/">
+          <span>HOME</span>
+        </a>
         <span>PAGE</span>
-        <span>SHOP</span>
+        <a href="/ColumnPage">
+          <span>SHOP</span>
+        </a>
         <span>ORDERS</span>
-        <span>CONTACT</span>
+        <a href="/ContactUsPage">
+          <span>CONTACT</span>
+        </a>
         <span>ABOUT</span>
         <span>FAQ'S</span>
       </div>
-      <br/>
+      <br />
       <div className={style.input_box}>
         <input placeholder="YOUR MAIL" />
         <button>SUBMIT →</button>
@@ -60,23 +65,20 @@ function Footer() {
           <img src={logo1} alt="visa" />
         </div>
         <div className={style.payment_img_box}>
-        <img src={logo2} alt="paypal" />
+          <img src={logo2} alt="paypal" />
         </div>
         <div className={style.payment_img_box}>
-        <img src={logo3} alt="paypal" />
+          <img src={logo3} alt="paypal" />
         </div>
         <div className={style.payment_img_box}>
-        <img src={logo4} alt="paypal" />
+          <img src={logo4} alt="paypal" />
         </div>
         <div className={style.payment_img_box}>
-        <img src={logo5} alt="paypal" />
+          <img src={logo5} alt="paypal" />
         </div>
       </div>
       <div className={style.desc_box}>
-        <h6>
-          Copyright@2014 , dc wine and spirits , All
-          Rights Reserved .
-        </h6>
+        <h6>Copyright@2014 , dc wine and spirits , All Rights Reserved .</h6>
         <p>
           You must be at least 21 years of age to purchase wine or spirits. By
           placing an order through our website, you are representing yourself to
