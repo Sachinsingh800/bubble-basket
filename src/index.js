@@ -18,6 +18,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import CheckoutPage from './Compoent/Pages/CheckoutPage/CheckoutPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,6 +33,7 @@ root.render(
         <Route path={'/BlogPage'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
         <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
+        <Route path={'/CheckoutPage'} element={<CheckoutPage />} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

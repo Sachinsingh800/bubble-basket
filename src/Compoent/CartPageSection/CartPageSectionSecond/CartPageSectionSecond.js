@@ -1,55 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./CartPageSectionSecond.module.css";
+import { useRecoilState } from "recoil"; // Import useRecoilState to update the Recoil atom
 import { cartData } from "../../Recoil/Recoil";
-import { useRecoilState } from "recoil";
-
-
 
 function CartPageSectionSecond() {
   const [data, setData] = useRecoilState(cartData);
 
-  console.log(data)
+  console.log(data);
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];
-    updatedData[index].quantity = quantity;
-    updatedData[index].subTotal = `$ ${(
-      parseFloat(updatedData[index].price.slice(2)) * quantity
-    ).toFixed(2)}`;
-    setData(updatedData);
+    updatedData[index] = { ...updatedData[index], quantity: quantity }; // Update the quantity property
+    updatedData[index].subTotal = (
+      parseFloat(updatedData[index].price) * quantity // Calculate subTotal without "$"
+    ).toFixed(2);
+    setData(updatedData); // Update the Recoil atom with the new data
   };
 
   const handleRemoveProduct = (index) => {
     const updatedData = [...data];
     updatedData.splice(index, 1);
-    setData(updatedData);
+    setData(updatedData); // Update the Recoil atom with the new data
   };
 
   const calculateTotal = () => {
     let total = 0;
     data.forEach((item) => {
-      total += item.subTotal; // Assuming subTotal is already a number
+      total += parseFloat(item.subTotal); // Parse subTotal as float
     });
     return total.toFixed(2);
   };
 
   return (
     <div className={style.main}>
-      {data.length > 0  &&
-           <div className={style.header}>
-           <p className={style.product}>PRODUCT</p>
-           <p>PRICE</p>
-           <p>QUANTITY</p>
-           <p>SUBTOTAL</p>
-         </div>
-      }
- 
+      {data.length > 0 && (
+        <div className={style.header}>
+          <p className={style.product}>PRODUCT</p>
+          <p>PRICE</p>
+          <p>QUANTITY</p>
+          <p>SUBTOTAL</p>
+        </div>
+      )}
+
       {data.length === 0 ? (
         <div className={style.empty_cart}>
-           <p>YOUR CART IS CURRENTLY EMPTY.</p>
-           <a href="/"><button>RETURN TO SHOP →</button></a>
+          <p>YOUR CART IS CURRENTLY EMPTY.</p>
+          <a href="/">
+            <button>RETURN TO SHOP →</button>
+          </a>
         </div>
-       
       ) : (
         data.map((item, index) => (
           <div key={index} className={style.container}>
@@ -73,13 +72,14 @@ function CartPageSectionSecond() {
                 className={style.quantity_box}
                 value={item.quantity}
                 type="number"
+                min="1" // Set a minimum value for quantity
                 onChange={(e) =>
                   handleQuantityChange(index, parseInt(e.target.value))
                 }
               />
             </div>
 
-            <div className={style.para}>{item.subTotal}</div>
+            <div className={style.para}>$ {item.subTotal}</div>
           </div>
         ))
       )}

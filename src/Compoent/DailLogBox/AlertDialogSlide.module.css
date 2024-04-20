@@ -1,9 +1,17 @@
 .optionButton3{
     border: none;
     padding: .5rem;
+    height: 3rem;
     background-color:#7B0128;
     color: white;
     z-index: 999!important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.tick{
+    font-size: .5rem;
 }
 .container{
     height: 100vh!important;
