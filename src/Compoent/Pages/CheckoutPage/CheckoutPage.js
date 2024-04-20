@@ -18,6 +18,7 @@ import CartPageSectionSecond from "../../CartPageSection/CartPageSectionSecond/C
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import CheckoutPageSectionFirst from "../../CheckoutPageSection/CheckoutPageSectionFirst/CheckoutPageSectionFirst";
+import CheckoutPageSectionSecond from "../../CheckoutPageSection/CheckoutPageSectionSecond/CheckoutPageSectionSecond";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -147,7 +148,7 @@ export default function CheckoutPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <CheckoutPageSectionFirst  />
-        <CartPageSectionSecond />
+        <CheckoutPageSectionSecond />
         <Footer />
       </div>
     </React.Fragment>
