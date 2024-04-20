@@ -71,7 +71,8 @@
     height: 60rem;
   }
   .background img {
-    height: 100rem;
+    height:100rem;
+    width: 100rem;
   }
   .background {
     height: 200%;
