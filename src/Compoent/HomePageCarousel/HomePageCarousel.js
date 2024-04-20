@@ -4,13 +4,10 @@ import Carousel from "react-bootstrap/Carousel";
 import { Button, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./HomePageCarousel.module.css";
-import {
-  SlidingAnimation,
-  SlidingAnimation2,
-  SlidingAnimation3,
-} from "../SlidingAnimation/SlidingAnimation";
+
 import { GoArrowLeft } from "react-icons/go";
 import { GoArrowRight } from "react-icons/go";
+import product1 from "../Images/dom perignon lady gaga rose.png";
 
 function HomePageCarousel() {
   const [index, setIndex] = useState(0);
@@ -33,8 +30,13 @@ function HomePageCarousel() {
   return (
     <>
       <div className={style.button_container}>
-        <button onClick={onPrevClick}> <GoArrowLeft   className={style.icon} /></button>
-        <button onClick={onNextClick}><GoArrowRight  className={style.icon} /></button>
+        <button onClick={onPrevClick}>
+          {" "}
+          <GoArrowLeft className={style.icon} />
+        </button>
+        <button onClick={onNextClick}>
+          <GoArrowRight className={style.icon} />
+        </button>
       </div>
       <Carousel
         slide={true}
@@ -46,17 +48,32 @@ function HomePageCarousel() {
       >
         <Carousel.Item>
           <div className={style.carousel_box}>
-            <SlidingAnimation />
+             <div className={style.inner_container_ }>
+                <h1>MADE WITH PASSION</h1>
+                <div className={style.img_box}>
+                <img className="img" src={product1} alt="beer" />
+                </div>
+              </div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className={style.carousel_box}>
-            <SlidingAnimation2 />
+          <div className={style.inner_container_ }>
+                <h1>MADE WITH PASSION</h1>
+                <div className={style.img_box}>
+                <img className="img" src={product1} alt="beer" />
+                </div>
+              </div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className={style.carousel_box}>
-            <SlidingAnimation3 />
+          <div className={style.inner_container_ }>
+                <h1>MADE WITH PASSION</h1>
+                <div className={style.img_box}>
+                <img className="img" src={product1} alt="beer" />
+                </div>
+              </div>
           </div>
         </Carousel.Item>
       </Carousel>
