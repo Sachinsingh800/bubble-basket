@@ -84,10 +84,10 @@
     align-items: center;
     justify-content: center;
     height: 50rem;
-    padding-top: 8rem;
+    padding-top: 3rem;
   }
   .img_box {
-    height: 38rem;
+    height: 40rem;
     width: 30rem;
   }
   .img_box img {
