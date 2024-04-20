@@ -5,19 +5,156 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
+import product3 from "../../Images/perrier jouet grand brut.png";
 import { nanoid } from "nanoid";
 import { cartData } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { useParams } from "react-router-dom";
 
 function ProductSectionSecond() {
-  const [data, setData] = useRecoilState(cartData);
   const [showDescription, setShowDescription] = useState(true);
   const [showReview, setShowReview] = useState(false);
   const [showAddInfo, setShowAddInfo] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  const { id } = useParams(); // Change variable name to match the parameter name in the route
+  const [data, setData] = useRecoilState(cartData);
 
+  const collectionData = [
+    {
+      id: nanoid(),
+      productCategory: "Maschio Prosecco",
+      productName: "Brut DOC NU",
+      productDescription: "BOTTLES",
+      productImg: product1,
+      productRating: 4,
+      price: 79.0,
+      quantity: 1,
+      subTotal: 79.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Veuve Clicquot",
+      productName: "PERSONALISED",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 100.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Billecart-Salmon",
+      productName: "Brut Sous Bois",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Hand-Painted",
+      productName: "La Marca Prosecco",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 100.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Maschio Prosecco",
+      productName: "Brut DOC NU",
+      productDescription: "BOTTLES",
+      productImg: product1,
+      productRating: 4,
+      price: 79.0,
+      quantity: 1,
+      subTotal: 79.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Veuve Clicquot",
+      productName: "PERSONALISED",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 100.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Billecart-Salmon",
+      productName: "Brut Sous Bois",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+    {
+      id: nanoid(),
+      productCategory: "Hand-Painted",
+      productName: "La Marca Prosecco",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 100.0,
+      sku: "001",
+      tags: {
+        tag1: "Bottle",
+        tag2: "Drink",
+        tag3: "Whiskey",
+      },
+    },
+  ];
 
   const extraInfo = {
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris.",
@@ -32,158 +169,6 @@ function ProductSectionSecond() {
         customer: 3,
       },
     },
-  };
-
-  // Sample collection data
-  const collectionData = [
-    {
-      id: 1,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 2,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 3,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 4,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 5,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 6,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 7,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 8,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-  ];
-
-
-  // Filter the product based on the productId from URL
-  const product = collectionData.find((item) => item.id.toString() === id);
-  const handleAddToCart = () => {
-    const itemToAdd = { ...product, quantity: quantity };
-    setData([...data, itemToAdd]);
-  };
-
-  const handleQuantityChange = (e) => {
-    setQuantity(parseInt(e.target.value));
   };
 
   const handleToggleDescription = () => {
@@ -203,66 +188,65 @@ function ProductSectionSecond() {
     setShowDescription(false);
     setShowReview(false);
   };
+
   return (
     <div className={style.main}>
-      <div className={style.product_container} key={product.sku}>
-        <div className={style.img_box}>
-          <img src={product.productImg} alt="product" />
-        </div>
-        <div className={style.des_box}>
-          <h3>{product.productName}</h3>
-          <p>
-            {Array.from({ length: product.productRating }).map((_, i) => (
-              <span style={{ color: "#7B0128" }} key={i}>
-                ★
-              </span>
-            ))}
-            {Array.from({ length: 5 - product.productRating }).map((_, i) => (
-              <span style={{ color: "#7B0128" }} key={i + product.productRating}>
-                ✰
-              </span>
-            ))}
-            &nbsp;({product.customer} customer reviews)
-          </p>
-          <h4>${product.price}</h4>
-
-          <div className={style.input_box}>
-            <input
-              type="number"
-              value={quantity}
-              onChange={handleQuantityChange}
-            />
-            <button onClick={handleAddToCart}>ADD TO CART →</button>
+      {data.map((product) => (
+        <div className={style.product_container} key={product.sku}>
+          <div className={style.img_box}>
+            <img src={product.img} alt="product" />
           </div>
-          <br />
-          <p>♡ &nbsp;Add to wishlist </p>
-          <p>
-            <strong>SKU:</strong> {product.sku}
-          </p>
-          <p>
-            <strong>CATEGORY : </strong> {product.productCategory}
-          </p>
-          <p>
-            <strong>TAGS : </strong> {Object.values(product.tags).join(", ")}
-          </p>
-          <p className={style.icon_box}>
-            <strong>SHARE :</strong>
-            <span>
-              <FacebookRoundedIcon className={style.icon} />
-            </span>
-            <span>
-              <InstagramIcon className={style.icon} />
-            </span>
-            <span>
-              <LinkedInIcon className={style.icon} />
-            </span>
-            <span>
-              <TwitterIcon className={style.icon} />
-            </span>
-          </p>
+          <div className={style.des_box}>
+            <h3>{product.title}</h3>
+            <p>
+              {Array.from({ length: product.rating }).map((_, i) => (
+                <span style={{ color: "#7B0128" }} key={i}>
+                  ★
+                </span>
+              ))}
+              {Array.from({ length: 5 - product.rating }).map((_, i) => (
+                <span style={{ color: "#7B0128" }} key={i + product.rating}>
+                  ✰
+                </span>
+              ))}
+              &nbsp;({product.customer} customer reviews)
+            </p>
+            <h4>${product.price}</h4>
+
+            <div className={style.input_box}>
+              <input type="number" value={1} />
+              <button>ADD TO CART →</button>
+            </div>
+            <br />
+            <p>♡ &nbsp;Add to wishlist </p>
+            <p>
+              <strong>SKU:</strong> {product.sku}
+            </p>
+            <p>
+              <strong>CATEGORY : </strong> {product.category}
+            </p>
+            <p>
+              <strong>TAGS : </strong> {product.tags}
+            </p>
+            <p className={style.icon_box}>
+              <strong>SHARE :</strong>
+              <span>
+                <FacebookRoundedIcon className={style.icon} />
+              </span>
+              <span>
+                <InstagramIcon className={style.icon} />
+              </span>
+              <span>
+                <LinkedInIcon className={style.icon} />
+              </span>
+              <span>
+                <TwitterIcon className={style.icon} />
+              </span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className={style.product_des_box}>
+      ))}
+              <div className={style.product_des_box}>
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>

@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 function ColumnPageSectionSecond() {
   const collectionData = [
     {
-      id: nanoid(),
+      id: 1,
       productCategory: "Maschio Prosecco",
       productName: "Brut DOC NU",
       productDescription: "BOTTLES",
@@ -23,7 +23,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 2,
       productCategory: "Veuve Clicquot",
       productName: "PERSONALISED",
       productDescription: "Brut Yellow",
@@ -40,7 +40,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 3,
       productCategory: "Billecart-Salmon",
       productName: "Brut Sous Bois",
       productDescription: "Brut Yellow",
@@ -57,7 +57,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 4,
       productCategory: "Hand-Painted",
       productName: "La Marca Prosecco",
       productDescription: "Brut Yellow",
@@ -74,7 +74,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 5,
       productCategory: "Maschio Prosecco",
       productName: "Brut DOC NU",
       productDescription: "BOTTLES",
@@ -91,7 +91,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 6,
       productCategory: "Veuve Clicquot",
       productName: "PERSONALISED",
       productDescription: "Brut Yellow",
@@ -108,7 +108,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 7,
       productCategory: "Billecart-Salmon",
       productName: "Brut Sous Bois",
       productDescription: "Brut Yellow",
@@ -125,7 +125,7 @@ function ColumnPageSectionSecond() {
           }
     },
     {
-      id: nanoid(),
+      id: 8,
       productCategory: "Hand-Painted",
       productName: "La Marca Prosecco",
       productDescription: "Brut Yellow",
