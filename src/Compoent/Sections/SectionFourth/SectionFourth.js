@@ -60,6 +60,7 @@ function SectionFourth() {
   const handleAddToCart = (item) => {
     setShowCartTick(true);
     setData([...data, item]); // Add the clicked item to the cartData
+    localStorage.setItem("cartData", JSON.stringify([...data, item]));
   };
 
   const handleAddToLike = (item) => {

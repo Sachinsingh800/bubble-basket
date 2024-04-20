@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import productImage from "../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
+import productImage from "../Images/dom perignon lady gaga rose.png";
 import { nanoid } from "nanoid";
 
 export const cartData = atom({

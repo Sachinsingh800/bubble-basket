@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./CartPageSectionSecond.module.css";
 import { useRecoilState } from "recoil"; // Import useRecoilState to update the Recoil atom
 import { cartData } from "../../Recoil/Recoil";
@@ -6,7 +6,13 @@ import { cartData } from "../../Recoil/Recoil";
 function CartPageSectionSecond() {
   const [data, setData] = useRecoilState(cartData);
 
-  console.log(data);
+  useEffect(()=>{
+    const cartData=JSON.parse(localStorage.getItem("cartData")) 
+    if(cartData){
+      setData(cartData)
+    }
+ 
+  },[])
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];

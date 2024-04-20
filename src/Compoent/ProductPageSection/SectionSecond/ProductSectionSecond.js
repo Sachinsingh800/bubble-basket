@@ -180,6 +180,7 @@ function ProductSectionSecond() {
   const handleAddToCart = () => {
     const itemToAdd = { ...product, quantity: quantity };
     setData([...data, itemToAdd]);
+    localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
   };
 
   const handleQuantityChange = (e) => {

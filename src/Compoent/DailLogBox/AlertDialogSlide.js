@@ -32,6 +32,7 @@ export default function AlertDialogSlide({ cartdata }) {
   const handleAddToCart = () => {
     const itemToAdd = { ...cartdata, quantity: quantity };
     setData([...data, itemToAdd]);
+    localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
     setOpen(false);
   };
 
