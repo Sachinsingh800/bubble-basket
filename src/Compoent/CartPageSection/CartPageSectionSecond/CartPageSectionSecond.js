@@ -111,7 +111,7 @@ function CartPageSectionSecond() {
           </div>
           <br />
           <div className={style.buttons_box2}>
-            <button>PROCEED TO CHECKOUT → </button>
+          <a href="/CheckoutPage"><button>PROCEED TO CHECKOUT → </button></a>  
           </div>
         </>
       )}
