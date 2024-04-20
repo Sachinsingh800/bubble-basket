@@ -24,6 +24,10 @@ function SectionSixth() {
     },
   ];
 
+  const handleNavigate=()=>{
+    window.location.href="/ColumnPage"
+  }
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -37,9 +41,11 @@ function SectionSixth() {
       <div className={style.card_box}>
         {collectionData.map((item, index) => (
           <div key={item.id} className={style.inner_container}>
-            <div className={style.text_box}>
-              <h5>{item.title}</h5>
-            </div>
+      
+              <div className={style.text_box} onClick={handleNavigate}>
+                <h5>{item.title}</h5>
+              </div>
+      
           </div>
         ))}
       </div>
