@@ -1,5 +1,5 @@
 .main {
-    height: 30rem;
+    height: 33rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -20,10 +20,9 @@
     width: 30rem;
   }
   .background {
-    height: max-content;
-    width: 100%;
+    height: 100rem;
+    width: 100rem;
     filter: brightness(40%);
-    margin-top: 7rem;
   }
   .background img {
     height: 100%;

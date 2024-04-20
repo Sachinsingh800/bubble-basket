@@ -92,13 +92,13 @@ function BlogFullPageFirstSection() {
     <div className={style.main}>
       <div
         className={style.background}
-        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+        style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={selectedBlog.img} alt="bg" className={style.bgImage} />
       </div>
       <div
         className={style.content}
-        style={{ transform: `translateY(-${scrollPosition * 0.2}px)` }} // Adjust the speed here
+        style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
           <h2>BLOG - SINGLE</h2>

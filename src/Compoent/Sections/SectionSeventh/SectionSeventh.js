@@ -30,19 +30,19 @@ function SectionSeventh() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-              <h3>CORPORATE</h3>
-              <h2> BULK ORDER</h2>
-              <p>
-                Elevate corporate connections with our curated gift baskets,
-                perfect for bulk orders. Strengthen bonds through thoughtful
-                gifting!
-              </p>
-            </div>
-        <button className={style.btn}>SHOP NOW →</button>
+          <h3>CORPORATE</h3>
+          <h2> BULK ORDER</h2>
+          <p>
+            Elevate corporate connections with our curated gift baskets, perfect
+            for bulk orders. Strengthen bonds through thoughtful gifting!
+          </p>
+        </div>
+        <a href="/ColumnPage">
+          <button className={style.btn}>SHOP NOW →</button>
+        </a>
       </div>
     </div>
   );
 }
 
 export default SectionSeventh;
-
