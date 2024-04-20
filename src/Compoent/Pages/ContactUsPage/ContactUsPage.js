@@ -15,6 +15,8 @@ import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDr
 import Footer from "../../Sections/Footer/Footer";
 import ContactUsPageSectionFirst from "../../ContactUsPageSection/ContactUsPageSectionFirst/ContactUsPageSectionFirst";
 import ContactUsPageSectionSecond from "../../ContactUsPageSection/ContactUsPageSectionSecond/ContactUsPageSectionSecond";
+import { useRecoilState } from "recoil";
+import { cartData } from "../../Recoil/Recoil";
 
 
 function HideOnScroll(props) {
@@ -36,6 +38,7 @@ HideOnScroll.propTypes = {
 };
 
 export default function ContactUsPage(props) {
+  const [data, setData] = useRecoilState(cartData);
   const [showOptions, setShowOptions] = React.useState({
     1: false,
     2: false,
@@ -124,10 +127,12 @@ export default function ContactUsPage(props) {
                 <div className={style.icon_box}>
                   <img src={avatarimg} alt="user" />
                 </div>
-                <div className={style.icon_box}>
-                  <span className={style.cart_count}>1</span>
-                  <img src={shoppingCart} alt="shopping" />
-                </div>
+                <a href="/CartPage">
+                  <div className={style.icon_box}>
+                    <span className={style.cart_count}>{data.length}</span>
+                    <img src={shoppingCart} alt="shopping" />
+                  </div>
+                </a>
                 <div className={style.icon_box4}>
                   <img src={menuicon} alt="menu" />
                 </div>

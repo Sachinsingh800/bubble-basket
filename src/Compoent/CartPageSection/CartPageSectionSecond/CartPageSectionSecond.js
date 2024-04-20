@@ -1,31 +1,14 @@
 import React, { useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
-import productImage from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
+import { cartData } from "../../Recoil/Recoil";
+import { useRecoilState } from "recoil";
+
+
 
 function CartPageSectionSecond() {
-  const [data, setData] = useState([
-    {
-      productImg: productImage,
-      productName: "Cloudy Bay",
-      price: "$ 79.00",
-      quantity: 1,
-      subTotal: "$ 79.00",
-    },
-    {
-      productImg: productImage,
-      productName: "Cakebread Cellars",
-      price: "$ 199.00",
-      quantity: 1,
-      subTotal: "$ 199.00",
-    },
-    {
-      productImg: productImage,
-      productName: "Chimney Rock Stags Leap",
-      price: "$ 99.00",
-      quantity: 1,
-      subTotal: "$ 99.00",
-    },
-  ]);
+  const [data, setData] = useRecoilState(cartData);
+
+  console.log(data)
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];
@@ -45,7 +28,7 @@ function CartPageSectionSecond() {
   const calculateTotal = () => {
     let total = 0;
     data.forEach((item) => {
-      total += parseFloat(item.subTotal.slice(2));
+      total += item.subTotal; // Assuming subTotal is already a number
     });
     return total.toFixed(2);
   };

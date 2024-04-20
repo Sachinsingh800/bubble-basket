@@ -15,6 +15,8 @@ import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDr
 import Footer from "../../Sections/Footer/Footer";
 import BlogPageFirstSection from "../../BlogPageSection/BlogPageFirstSection/BlogPageFirstSection";
 import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/BlogPageSecondSection";
+import { useRecoilState } from "recoil";
+import { cartData } from "../../Recoil/Recoil";
 
 
 
@@ -45,6 +47,7 @@ HideOnScroll.propTypes = {
 
 export default function BlogPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
+  const [data, setData] = useRecoilState(cartData);
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -128,10 +131,12 @@ export default function BlogPage(props) {
                 <div className={style.icon_box}>
                   <img src={avatarimg} alt="user" />
                 </div>
-                <div className={style.icon_box}>
-                  <span className={style.cart_count}>1</span>
-                  <img src={shoppingCart} alt="shopping" />
-                </div>
+                <a href="/CartPage">
+                  <div className={style.icon_box}>
+                    <span className={style.cart_count}>{data.length}</span>
+                    <img src={shoppingCart} alt="shopping" />
+                  </div>
+                </a>
                 <div className={style.icon_box4}>
                   <img src={menuicon} alt="menu" />
                 </div>

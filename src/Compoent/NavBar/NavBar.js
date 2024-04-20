@@ -28,6 +28,9 @@ import SectionNinth from "../Sections/SectionNinth/SectionNinth";
 import SectionTenth from "../Sections/SectionTenth/SectionTenth";
 import Footer from "../Sections/Footer/Footer";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import { useRecoilState } from "recoil";
+import { cartData } from "../Recoil/Recoil";
+
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -48,6 +51,7 @@ HideOnScroll.propTypes = {
 };
 
 export default function HideAppBar(props) {
+  const [data, setData] = useRecoilState(cartData);
   const [showOptions, setShowOptions] = React.useState({
     1: false,
     2: false,
@@ -64,7 +68,9 @@ export default function HideAppBar(props) {
 
   return (
     <React.Fragment>
-     <span className={style.dawer}><AnchorTemporaryDrawer /></span> 
+      <span className={style.dawer}>
+        <AnchorTemporaryDrawer />
+      </span>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>
@@ -136,10 +142,13 @@ export default function HideAppBar(props) {
                 <div className={style.icon_box}>
                   <img src={avatarimg} alt="user" />
                 </div>
-                <div className={style.icon_box}>
-                  <span className={style.cart_count}>1</span>
-                  <img src={shoppingCart} alt="shopping" />
-                </div>
+                <a href="/CartPage">
+                  <div className={style.icon_box}>
+                    <span className={style.cart_count}>{data.length}</span>
+                    <img src={shoppingCart} alt="shopping" />
+                  </div>
+                </a>
+
                 <div className={style.icon_box4}>
                   <img src={menuicon} alt="menu" />
                 </div>

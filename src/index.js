@@ -11,11 +11,19 @@ import BlogPage from './Compoent/Pages/BlogPage/BlogPage';
 import BlogFullPage from './Compoent/Pages/BlogFullPage/BlogFullPage';
 import ContactUsPage from './Compoent/Pages/ContactUsPage/ContactUsPage';
 import ErrorPage from './Compoent/Pages/ErrorPage/ErrorPage';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+     <RecoilRoot>
+     <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<App />} />
         <Route path={'/ProductPage'} element={<ProductPage />} />
@@ -27,6 +35,8 @@ root.render(
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
+    </RecoilRoot>
+
   </React.StrictMode>
 );
 
