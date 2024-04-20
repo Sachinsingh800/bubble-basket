@@ -75,7 +75,7 @@
     width: 90%;
   }
   .carousel_box {
-    height: 40rem;
+    height: 50rem;
     width: 100%;
   }
   .inner_container_ {
@@ -83,11 +83,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 40rem;
-    padding-top: 2rem;
+    height: 50rem;
+    padding-top: 8rem;
   }
   .img_box {
-    height: 35rem;
+    height: 38rem;
     width: 30rem;
   }
   .img_box img {

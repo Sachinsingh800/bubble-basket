@@ -40,7 +40,6 @@ function HomePageCarousel() {
       </div>
       <Carousel
         slide={true}
-        interval={6000}
         onSelect={handleSelect}
         indicators={false}
         controls={false}
