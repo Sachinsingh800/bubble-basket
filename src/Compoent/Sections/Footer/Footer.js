@@ -82,7 +82,7 @@ function Footer() {
           placing an order through our website, you are representing yourself to
           us as at least 21 years of age. We reserve the right to ask for proof
           of identity before processing an order. An adult (over the age of 21)
-          signature with proof of age verication is required at the time of
+          signature with proof of age verification is required at the time of
           delivery
         </p>
       </div>
