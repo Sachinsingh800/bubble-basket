@@ -7,11 +7,153 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/perrier jouet grand brut.png";
+import { nanoid } from "nanoid";
 
 function ProductSectionSecond() {
   const [showDescription, setShowDescription] = useState(true);
   const [showReview, setShowReview] = useState(false);
   const [showAddInfo, setShowAddInfo] = useState(false);
+
+
+  const collectionData = [
+    {
+      id: nanoid(),
+      productCategory: "Maschio Prosecco",
+      productName: "Brut DOC NU",
+      productDescription: "BOTTLES",
+      productImg: product1,
+      productRating: 4,
+      price: 79.0,
+      quantity: 1,
+      subTotal: 79.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Veuve Clicquot",
+      productName: "PERSONALISED",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 100.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Billecart-Salmon",
+      productName: "Brut Sous Bois",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Hand-Painted",
+      productName: "La Marca Prosecco",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 100.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Maschio Prosecco",
+      productName: "Brut DOC NU",
+      productDescription: "BOTTLES",
+      productImg: product1,
+      productRating: 4,
+      price: 79.0,
+      quantity: 1,
+      subTotal: 79.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Veuve Clicquot",
+      productName: "PERSONALISED",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 100.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Billecart-Salmon",
+      productName: "Brut Sous Bois",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 199.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          }
+    },
+    {
+      id: nanoid(),
+      productCategory: "Hand-Painted",
+      productName: "La Marca Prosecco",
+      productDescription: "Brut Yellow",
+      productImg: product1,
+      productRating: 4,
+      price: 199.0,
+      quantity: 1,
+      subTotal: 100.0,
+      sku:"001",
+      tags:{
+        tag1:"Bottle",
+        tag2:"Drink",
+        tag3:"Whiskey",
+          },
+          
+    },
+  ];
 
   const data = [
     {
