@@ -94,7 +94,7 @@ function SecondSection() {
           </div>
         ))}
       </div>
-      <button className={style.viewAllbtn}>VIEW ALL →</button>
+     <a href="/ColumnPage"><button className={style.viewAllbtn}>VIEW ALL →</button></a> 
     </div>
   );
 }

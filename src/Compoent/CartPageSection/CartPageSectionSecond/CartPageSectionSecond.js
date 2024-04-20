@@ -47,7 +47,7 @@ function CartPageSectionSecond() {
       {data.length === 0 ? (
         <div className={style.empty_cart}>
            <p>YOUR CART IS CURRENTLY EMPTY.</p>
-           <button>RETURN TO SHOP →</button>
+           <a href="/"><button>RETURN TO SHOP →</button></a>
         </div>
        
       ) : (

@@ -1,18 +1,18 @@
-.main{
-    height: 40rem;
-    width: 100%;
-    background-image: url(../../Images/Pattern.png);
-    background-size: cover;
-    background-repeat: none;
-    overflow: hidden;
+.main {
+  height: 30rem;
+  width: 100%;
+  background-image: url(../../Images/Pattern.png);
+  background-size: cover;
+  background-repeat: none;
+  overflow: hidden;
 }
 @media screen and (max-width: 1089px) {
-  html{
+  html {
     font-size: 12px;
   }
 }
-@media screen and (max-width:784px) {
-    .main{
-        height: 42rem;
-    }
+@media screen and (max-width: 784px) {
+  .main {
+    height: 40rem;
+  }
 }
