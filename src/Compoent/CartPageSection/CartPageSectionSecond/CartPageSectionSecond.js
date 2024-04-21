@@ -39,6 +39,11 @@ function CartPageSectionSecond() {
     return total.toFixed(2);
   };
 
+  const handleFilterCheckoutData=()=>{
+    localStorage.setItem("cartData", JSON.stringify(data));
+    window.location.href="/CheckoutPage"
+  }
+
   return (
     <div className={style.main}>
       {data.length > 0 && (
@@ -113,9 +118,9 @@ function CartPageSectionSecond() {
           </div>
           <br />
           <div className={style.buttons_box2}>
-            <a href="/CheckoutPage">
-              <button>PROCEED TO CHECKOUT → </button>
-            </a>
+      
+              <button onClick={handleFilterCheckoutData}>PROCEED TO CHECKOUT → </button>
+
           </div>
         </>
       )}
