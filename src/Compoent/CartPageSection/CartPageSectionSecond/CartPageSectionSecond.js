@@ -6,13 +6,15 @@ import { cartData } from "../../Recoil/Recoil";
 function CartPageSectionSecond() {
   const [data, setData] = useRecoilState(cartData);
 
-  useEffect(()=>{
-    const cartData=JSON.parse(localStorage.getItem("cartData")) 
-    if(cartData){
-      setData(cartData)
+  useEffect(() => {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    if (cartData) {
+      setData(cartData.map(item => ({
+        ...item,
+        subTotal: (parseFloat(item.price) * item.quantity).toFixed(2)
+      })));
     }
- 
-  },[])
+  }, []);
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];
@@ -111,7 +113,9 @@ function CartPageSectionSecond() {
           </div>
           <br />
           <div className={style.buttons_box2}>
-          <a href="/CheckoutPage"><button>PROCEED TO CHECKOUT → </button></a>  
+            <a href="/CheckoutPage">
+              <button>PROCEED TO CHECKOUT → </button>
+            </a>
           </div>
         </>
       )}
