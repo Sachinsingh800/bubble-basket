@@ -18,6 +18,7 @@ import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/B
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import TermAndConditionSectionFirst from "../../TermAndConditionSection/TermAndConditionSectionFirst/TermAndConditionSectionFirst";
+import TermAndConditionSectionSecond from "../../TermAndConditionSection/TermAndConditionSectionSecond/TermAndConditionSectionSecond";
 
 
 
@@ -149,6 +150,7 @@ export default function TermsAndConditions(props) {
       <Toolbar />
       <div className={style.Container}>
          <TermAndConditionSectionFirst />
+         <TermAndConditionSectionSecond />
         <Footer />
       </div>
     </React.Fragment>

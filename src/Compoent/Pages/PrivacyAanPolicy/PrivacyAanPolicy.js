@@ -18,6 +18,7 @@ import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/B
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import PrivacyAndPolicySectionFirst from "../../PrivacyAndPolicySection/PrivacyAndPolicySectionFirst/PrivacyAndPolicySectionFirst";
+import PrivacyAndPolicySectionSecond from "../../PrivacyAndPolicySection/PrivacyAndPolicySectionSecond/PrivacyAndPolicySectionSecond";
 
 
 
@@ -149,6 +150,7 @@ export default function PrivacyAanPolicy(props) {
       <Toolbar />
       <div className={style.Container}>
         <PrivacyAndPolicySectionFirst/>
+        <PrivacyAndPolicySectionSecond />
         <Footer />
       </div>
     </React.Fragment>

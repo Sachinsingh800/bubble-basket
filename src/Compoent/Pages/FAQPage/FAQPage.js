@@ -18,6 +18,7 @@ import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/B
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import FAQSectionFirst from "../../FAQSection/FAQSectionFirst/FAQSectionFirst";
+import FAQSectionSecond from "../../FAQSection/FAQSectionSecond/FAQSectionSecond";
 
 
 
@@ -149,6 +150,7 @@ export default function FAQPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <FAQSectionFirst />
+        <FAQSectionSecond />
         <Footer />
       </div>
     </React.Fragment>

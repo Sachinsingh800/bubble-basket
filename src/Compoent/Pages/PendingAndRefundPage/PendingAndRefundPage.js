@@ -18,6 +18,7 @@ import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/B
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import PendingAndRefundSectionFirst from "../../PendingAndRefundSection/PendingAndRefundSectionFirst/PendingAndRefundSectionFirst";
+import PendingAndRefundSectionSecond from "../../PendingAndRefundSection/PendingAndRefundSectionSecond/PendingAndRefundSectionSecond";
 
 
 
@@ -149,6 +150,7 @@ export default function PendingAndRefundPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <PendingAndRefundSectionFirst />
+        <PendingAndRefundSectionSecond />
         <Footer />
       </div>
     </React.Fragment>
