@@ -11,6 +11,7 @@ import logo2 from "../../Images/master card.png";
 import logo3 from "../../Images/paypal.png";
 import logo4 from "../../Images/american express.png";
 import logo5 from "../../Images/discover.png";
+import PinterestIcon from '@mui/icons-material/Pinterest';
 
 function Footer() {
   return (
@@ -34,6 +35,9 @@ function Footer() {
           </span>
           <span className={style.icon}>
             <TwitterIcon className={style.instagramIcon} />
+          </span>
+          <span className={style.icon}>
+            <PinterestIcon className={style.instagramIcon} />
           </span>
         </div>
       </div>
