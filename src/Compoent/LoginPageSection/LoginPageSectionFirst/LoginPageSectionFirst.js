@@ -30,7 +30,7 @@ function LoginPageSectionFirst() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>CART</h2>
+          <h2>LOGIN</h2>
         </div>
       </div>
     </div>

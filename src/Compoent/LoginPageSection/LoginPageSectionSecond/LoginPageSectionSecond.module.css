@@ -16,7 +16,7 @@
     letter-spacing: 0.1cap;
 }
 
-.form div{
+.input_box{
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -32,20 +32,24 @@
     background-color: none!important;
     background: transparent!important;
 }
-.check_box{
+.checkbox{
     display: flex!important;
-    flex-direction: column!important;
-    align-items: center;
+    justify-content: space-between;
     gap: .5rem;
     width: 100%;
 }
-.check_box label{
-    display: flex!important;
-    flex-direction: column!important;
-    align-items: center;
-    gap: .5rem;
-    width: 100%;
+.check{
+position: absolute;
+left: -31.5%;
+margin-top: .3rem;
 }
+.checkbox  label{
+    width: 8rem;
+    margin-left:2rem ;
+}
+.checkbox input{
+}
+
 .check{
     width: 1rem;
 }

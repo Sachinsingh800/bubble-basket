@@ -24,7 +24,7 @@ function LoginPageSectionSecond() {
     <div className={style.main}>
       <form onSubmit={handleSubmit} className={style.form}>
         <h4>LOGIN</h4>
-        <div>
+        <div className={style.input_box}>
           <label htmlFor="usernameOrEmail">Username or email address *</label>
           <input
             type="text"
@@ -35,7 +35,7 @@ function LoginPageSectionSecond() {
             required
           />
         </div>
-        <div>
+        <div className={style.input_box}>
           <label htmlFor="password">Password *</label>
           <input
             type="password"
@@ -46,8 +46,9 @@ function LoginPageSectionSecond() {
             required
           />
         </div>
-        <div className={style.check_box}>
+        <div className={style.checkbox}>
           <input
+          className={style.check}
             type="checkbox"
             id="rememberMe"
             name="rememberMe"
