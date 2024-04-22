@@ -52,8 +52,12 @@ function Footer() {
         <a href="/ContactUsPage">
           <span>CONTACT</span>
         </a>
+        <a href="/AboutUsPage">
         <span>ABOUT</span>
-        <span>FAQ'S</span>
+        </a>
+       <a href="/FAQPage">
+       <span>FAQ'S</span>
+        </a> 
       </div>
       <br />
       <div className={style.input_box}>
