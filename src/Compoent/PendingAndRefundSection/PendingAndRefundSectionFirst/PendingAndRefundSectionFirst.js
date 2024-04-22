@@ -30,7 +30,7 @@ function PendingAndRefundSectionFirst() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>CART</h2>
+          <h2>Refund and Return Policy</h2>
         </div>
       </div>
     </div>
