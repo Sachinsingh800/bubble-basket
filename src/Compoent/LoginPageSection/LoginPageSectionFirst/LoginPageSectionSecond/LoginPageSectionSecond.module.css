@@ -39,6 +39,13 @@
     gap: .5rem;
     width: 100%;
 }
+.check_box label{
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+}
 .check{
     width: 1rem;
 }

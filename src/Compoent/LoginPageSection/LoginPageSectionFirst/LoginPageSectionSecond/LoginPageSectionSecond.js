@@ -57,11 +57,8 @@ function LoginPageSectionSecond() {
           <label htmlFor="rememberMe">Remember me</label>
         </div>
         <button type="submit">LOGIN →</button>
-        <p>
-        Lost your password? 
-      </p>
+        <p>Lost your password?</p>
       </form>
-
     </div>
   );
 }

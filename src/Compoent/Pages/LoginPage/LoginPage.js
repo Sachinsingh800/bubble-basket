@@ -18,7 +18,7 @@ import CartPageSectionSecond from "../../CartPageSection/CartPageSectionSecond/C
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import LoginPageSectionFirst from "../../LoginPageSection/LoginPageSectionFirst/LoginPageSectionFirst";
-import LoginPageSectionSecond from "../../LoginPageSection/LoginPageSectionSecond/LoginPageSectionSecond";
+import LoginPageSectionSecond from "../../LoginPageSection/LoginPageSectionFirst/LoginPageSectionSecond/LoginPageSectionSecond";
 
 function HideOnScroll(props) {
   const { children, window } = props;
