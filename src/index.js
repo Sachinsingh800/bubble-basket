@@ -20,6 +20,11 @@ import {
 } from 'recoil';
 import CheckoutPage from './Compoent/Pages/CheckoutPage/CheckoutPage';
 import LoginPage from './Compoent/Pages/LoginPage/LoginPage';
+import AboutUsPage from './Compoent/Pages/AboutUsPage/AboutUsPage';
+import FAQPage from './Compoent/Pages/FAQPage/FAQPage';
+import PendingAndRefundPage from './Compoent/Pages/PendingAndRefundPage/PendingAndRefundPage';
+import PrivacyAanPolicy from './Compoent/Pages/PrivacyAanPolicy/PrivacyAanPolicy';
+import TermsAndConditions from './Compoent/Pages/TermsAndConditions/TermsAndConditions';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,6 +41,11 @@ root.render(
         <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
         <Route path={'/CheckoutPage'} element={<CheckoutPage />} />
         <Route path={'/LoginPage'} element={<LoginPage />} />
+        <Route path={'/AboutUsPage'} element={<AboutUsPage />} />
+        <Route path={'/FAQPage'} element={<FAQPage/>} />
+        <Route path={'/PendingAndRefundPage'} element={<PendingAndRefundPage/>} />
+        <Route path={'/PrivacyAanPolicy'} element={<PrivacyAanPolicy/>} />
+        <Route path={'/TermsAndConditions'} element={<TermsAndConditions/>} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
