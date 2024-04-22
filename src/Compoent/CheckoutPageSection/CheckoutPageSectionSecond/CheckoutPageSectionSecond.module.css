@@ -1,125 +1,132 @@
 .main {
-    width: 100%;
-    margin: 0 auto;
-    padding: 4rem;
-  }
-  
-  .form_group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-  .main form  input[type="text"],
-  input[type="tel"],
-  input[type="email"] {
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem;
+}
 
-      width: 100%;
-      padding: 10px;
-      border: 1px #f5e3e3 solid; ;
-      border-radius: 4px;
-      outline: none;
-  }
+.form_group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.main form input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px #f5e3e3 solid;
+  border-radius: 4px;
+  outline: none;
+}
+.main form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px #f5e3e3 solid;
+  border-radius: 4px;
+  outline: none;
+  color: black;
+}
 
+.main button {
+  background-color: none;
+  color: #7b0128;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px #f5e3e3 solid;
+  background: transparent;
+  width: max-content;
+  font-weight: 400;
+  letter-spacing: 0.1cap;
+}
 
-  .main form  button {
-    background-color: none;
-    color: #7b0128;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px #f5e3e3 solid; ;
-    background: transparent;
-    width: max-content;
-    font-weight: 600;
-    letter-spacing: .1cap;
-  }
-  
-  .main form button:hover {
-    background-color:  #7b0128;
-    color: white;
-  }
-  
-  .order_items{
-    display: flex;
-    flex-direction: column;
+.main button:hover {
+  background-color: #7b0128;
+  color: white;
+}
 
-  }
-  .header{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0rem;
-    align-items: center;
-    font-weight: 500;
-    width: 80%;
-  }
-  .order_item{
-    display: flex;
-    justify-content: space-between;
-    padding: 0rem 1rem;
-    align-items: center;
-    border-bottom: 1px rgb(124, 124, 124) solid;
-  }
-  .product_item{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0rem;
-    align-items: center;
-    width: 80%;
-  }
-  .calculate_{
-    width: 5rem;
-  }
-  .user_detail_container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .billing_details{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .additional_info_box{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .additional_info_box div{
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-  .additional_info_box div textarea{
-    width: 100%;
-    padding: 10px;
-    border: 1px #f5e3e3 solid ;
-    border-radius: 4px;
-    outline: none;
-    height: 10rem;
-  }
-  .coupon_box{
-    border: 1px #f5e3e3 solid; 
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-  .user_detail_container h4{
-    letter-spacing: .1cap;
-  }
+.order_items {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  align-items: center;
+  font-weight: 500;
+  width: 80%;
+}
+.order_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+  align-items: center;
+  border-bottom: 1px #f5e3e3 solid;
+}
+.product_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  align-items: center;
+  width: 80%;
+}
+.calculate_ {
+  width: 5rem;
+}
+.user_detail_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.billing_details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.additional_info_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.additional_info_box div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.additional_info_box div textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px #f5e3e3 solid;
+  border-radius: 4px;
+  outline: none;
+  height: 10rem;
+}
+.coupon_box {
+  border: 1px #f5e3e3 solid;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user_detail_container h4 {
+  letter-spacing: 0.1cap;
+}
 
-  .coupon_field{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .coupon_field div{
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-  .order_summary{
-
-  }
+.coupon_field {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.coupon_field div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.info_box {
+  border: 1px #f5e3e3 solid;
+  padding: .5rem 2rem;
+  text-align: center;
+}
