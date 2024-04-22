@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./CheckoutPageSectionFirst.module.css";
-import backgroundImage from "../../Images/people-hands-getting-bottle-red-wine.jpg";
+import backgroundImage from "../../Images/checkout bg.png";
 
 function CheckoutPageSectionFirst() {
   const [scrollPosition, setScrollPosition] = useState(0);
