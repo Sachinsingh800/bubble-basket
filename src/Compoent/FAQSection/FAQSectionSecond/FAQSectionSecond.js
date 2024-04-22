@@ -1,52 +1,95 @@
-import React from "react";
-import style from "./FAQSectionSecond.module.css";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 
-function FAQSectionSecond() {
+const Accordion = styled((props) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  '&:not(:last-child)': {
+    borderBottom: 0,
+  },
+  '&::before': {
+    display: 'none',
+  },
+}));
+
+const AccordionSummary = styled((props) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)',
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
+}));
+
+export default function FAQSectionSecond() {
+  const [expanded, setExpanded] = React.useState('panel1');
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
-    <div className={style.main}>
-      <div className={style.title_box}>
-        <hr />
-        <span>Original recipe</span>
-        <hr />
-      </div>
-      <div className={style.header}>
-        <h1>REFINED WHISKEY</h1>
-        <p>
-          Ele atterum signiferumque his, sit in augue populae intellegam id
-          tales accusata in sea
-        </p>
-      </div>
-      <br/>
-      <div className={style.container}>
-        <div className={style.left}>
-          <p>
-            Senserit definitionem mei ad. Vocent numquam corrumpit usu an. Harum
-            definitionem sea id, wisi tota est ex. Pro in discere intellegam, at
-            eum melius eruditi. Ut viderer offendit nec, ea purto populo
-            vituperata vim. Eum ut volumus gloriatur omittantur. Integre
-            appareat et pro, no nec errem iriure. Quodsi contentiones usu ne, no
-            nam civibus definiebas. Eum vero omittam te. Te eirmod diceret
-            senserit quo, per ut laoreet fuisset. Harum definitionem sea id,
-            wisi tota est ex. Ea eum quando assentior, posse singulis adipiscing
-            vel ex, oporteat senserit has in. Ut usu utinam dolore appareat.
-          </p>
-        </div>
-        <div className={style.right}>
-          <p>
-            Lorem ipsum dolor sit amet, justo pertinax concludaturque vix ut,
-            bonorum commune deterruisset ex mei, solet eloquentiam vix ut. Ut
-            sit delicata moderatius consequuntur, an stet graeci habemus nec. At
-            vel error simul. An eos virtute atomorum, est ea hinc disputando.
-            Prompta feugiat pro no, in eum quis inermis. Pri sumo ipsum mazim
-            ex. Eam ex graeco persius similique. Mei graeci tamquam theophrastus
-            ut. Et alterum signiferumque his, sit in augue populo intellegam, id
-            tale accusata instructior sea. Corpora vituperatoribus quo cu, vim
-            nonumy diceret cu.
-          </p>
-        </div>
-      </div>
+    <div>
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>Collapsible Group Item #1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <Typography>Collapsible Group Item #2</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <Typography>Collapsible Group Item #3</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }
-
-export default FAQSectionSecond;
