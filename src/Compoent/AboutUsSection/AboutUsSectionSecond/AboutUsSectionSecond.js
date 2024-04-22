@@ -6,11 +6,11 @@ function AboutUsSectionSecond() {
     <div className={style.main}>
       <div className={style.title_box}>
         <hr />
-        <span>Original recipe</span>
+        <span>Luxury</span>
         <hr />
       </div>
       <div className={style.header}>
-        <h1>REFINED WHISKEY</h1>
+        <h1>BUBBLE BASKET</h1>
         <p>
           Ele atterum signiferumque his, sit in augue populae intellegam id
           tales accusata in sea

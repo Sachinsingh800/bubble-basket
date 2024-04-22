@@ -19,6 +19,7 @@ import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import AboutUsSectionFirst from "../../AboutUsSection/AboutUsSectionFirst/AboutUsSectionFirst";
 import AboutUsSectionSecond from "../../AboutUsSection/AboutUsSectionSecond/AboutUsSectionSecond";
+import AboutUsSectionThird from "../../AboutUsSection/AboutUsSectionThird/AboutUsSectionThird";
 
 
 
@@ -151,6 +152,7 @@ export default function AboutUsPage(props) {
       <div className={style.Container}>
         <AboutUsSectionFirst />
         <AboutUsSectionSecond />
+        <AboutUsSectionThird />
         <Footer />
       </div>
     </React.Fragment>

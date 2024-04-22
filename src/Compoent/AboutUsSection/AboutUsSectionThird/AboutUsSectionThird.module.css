@@ -1,0 +1,16 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  background-image: url(../../Images/red-wine-lafite-wine-glass-goblet-elegant-romantic-drink-wallpaper-background-illustration_912113-184184.jpg);
+  background-size: cover;
+  justify-content: center;
+  height: 20rem;
+  place-content: center;
+}
+.main div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
