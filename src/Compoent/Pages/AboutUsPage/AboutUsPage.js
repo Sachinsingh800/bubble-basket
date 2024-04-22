@@ -18,6 +18,7 @@ import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/B
 import { useRecoilState } from "recoil";
 import { cartData } from "../../Recoil/Recoil";
 import AboutUsSectionFirst from "../../AboutUsSection/AboutUsSectionFirst/AboutUsSectionFirst";
+import AboutUsSectionSecond from "../../AboutUsSection/AboutUsSectionSecond/AboutUsSectionSecond";
 
 
 
@@ -149,6 +150,7 @@ export default function AboutUsPage(props) {
       <Toolbar />
       <div className={style.Container}>
         <AboutUsSectionFirst />
+        <AboutUsSectionSecond />
         <Footer />
       </div>
     </React.Fragment>
