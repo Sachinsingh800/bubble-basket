@@ -100,7 +100,7 @@ function CartPageSectionSecond() {
         <>
           <div className={style.buttons_box}>
             <div>
-              <button>Coupon Code</button>
+              <input  placeholder="Coupon Code" />
               <button>APPLY COUPON → </button>
             </div>
             <button className={style.updatebtn}>UPDATE CART → </button>

@@ -71,6 +71,15 @@
   border-top: 1px #7b0128 solid;
   padding: 2rem 0rem;
 }
+.buttons_box input{
+  background-color: none;
+  background: transparent;
+  padding: 0.3rem 1rem;
+  border: 1px #7b0128 solid;
+  font-family: "Jost", sans-serif;
+  letter-spacing: .1cap;
+  outline: none;
+}
 .buttons_box button {
   background-color: none;
   background: transparent;
