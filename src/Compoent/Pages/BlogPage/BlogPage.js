@@ -135,9 +135,11 @@ export default function BlogPage(props) {
                 <div className={style.icon_box}>
                   <img src={searchicon} alt="search" />
                 </div>
-                <div className={style.icon_box}>
-                  <img src={avatarimg} alt="user" />
-                </div>
+                <a href="/AccountPage">
+                  <div className={style.icon_box}>
+                    <img src={avatarimg} alt="user" />
+                  </div>
+                </a>
                 <a href="/CartPage">
                   <div className={style.icon_box}>
                     <span className={style.cart_count}>{cartItem}</span>

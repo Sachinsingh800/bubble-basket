@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
-import style from "./TermsAndConditions.module.css";
+import style from "./AccountPage.module.css";
 import logo from "../../Images/logo2.jpg";
 import searchicon from "../../Images/search.png";
 import shoppingCart from "../../Images/shopping-basket.png";
@@ -13,14 +13,9 @@ import avatarimg from "../../Images/user.png";
 import menuicon from "../../Images/menu.png";
 import AnchorTemporaryDrawer from "../../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
 import Footer from "../../Sections/Footer/Footer";
-import BlogPageFirstSection from "../../BlogPageSection/BlogPageFirstSection/BlogPageFirstSection";
-import BlogPageSecondSection from "../../BlogPageSection/BlogPageSecondSection/BlogPageSecondSection";
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../../Recoil/Recoil";
-import TermAndConditionSectionFirst from "../../TermAndConditionSection/TermAndConditionSectionFirst/TermAndConditionSectionFirst";
-import TermAndConditionSectionSecond from "../../TermAndConditionSection/TermAndConditionSectionSecond/TermAndConditionSectionSecond";
-
-
+import AccountPageSectionFirst from "../../AccountPageSection/AccountPageSectionFirst/AccountPageSectionFirst";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -47,16 +42,16 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function TermsAndConditions(props) {
+export default function AccountPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
   const [update, setUpdate] = useRecoilState(updateCart);
-  const [cartItem,setCartItem] = React.useState()
+  const [cartItem, setCartItem] = React.useState();
 
-  React.useEffect(()=>{
-    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-    const cartItem=cartDatafromlocal.length
-    setCartItem(cartItem)
-  },[update])
+  React.useEffect(() => {
+    const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
+    const cartItem = cartDatafromlocal.length;
+    setCartItem(cartItem);
+  }, [update]);
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -67,13 +62,15 @@ export default function TermsAndConditions(props) {
   };
   return (
     <React.Fragment>
-          <span className={style.dawer}><AnchorTemporaryDrawer /></span> 
+      <span className={style.dawer}>
+        <AnchorTemporaryDrawer />
+      </span>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>
           <Toolbar>
             <div className={style.tool_bar}>
-            <ul className={style.left_section}>
+              <ul className={style.left_section}>
                 <li
                   onMouseEnter={() => showOptionDiv(1)}
                   onMouseLeave={() => closeOptionDiv(1)}
@@ -158,8 +155,7 @@ export default function TermsAndConditions(props) {
       </HideOnScroll>
       <Toolbar />
       <div className={style.Container}>
-         <TermAndConditionSectionFirst />
-         <TermAndConditionSectionSecond />
+          <AccountPageSectionFirst />
         <Footer />
       </div>
     </React.Fragment>
