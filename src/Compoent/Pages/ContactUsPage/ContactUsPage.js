@@ -107,14 +107,14 @@ export default function ContactUsPage(props) {
                   onMouseEnter={() => showOptionDiv(3)}
                   onMouseLeave={() => closeOptionDiv(3)}
                 >
-                  <a>TRACKORDER</a>
+                  <a href="/OrderHistory">TRACKORDER</a>
                   <div
                     className={style.bottom_div}
                     style={{
                       visibility: showOptions[3] ? "visible" : "hidden",
                     }}
                   >
-                    <p>Content for TRACKORDER</p>
+                    <p onClick={()=>window.location.href="/OrderHistory"}>Order History </p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>

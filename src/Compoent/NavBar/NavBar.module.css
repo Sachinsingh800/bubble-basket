@@ -143,6 +143,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: .3rem;
   background-color: white;
   padding: 2rem;
@@ -153,6 +154,9 @@
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
+.bottom_div  p{
+  width: 100%;
+}
 .left_section li:hover .bottom_div {
   opacity: 1;
 }

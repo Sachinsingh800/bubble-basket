@@ -31,7 +31,6 @@ import ImageSlider from "../ImageSlider/ImageSlider";
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../Recoil/Recoil";
 
-
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -52,13 +51,13 @@ HideOnScroll.propTypes = {
 
 export default function HideAppBar(props) {
   const [update, setUpdate] = useRecoilState(updateCart);
-  const [cartItem,setCartItem] = React.useState()
+  const [cartItem, setCartItem] = React.useState();
 
-  React.useEffect(()=>{
-    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-    const cartItem=cartDatafromlocal.length
-    setCartItem(cartItem)
-  },[update])
+  React.useEffect(() => {
+    const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
+    const cartItem = cartDatafromlocal.length;
+    setCartItem(cartItem);
+  }, [update]);
 
   const [showOptions, setShowOptions] = React.useState({
     1: false,
@@ -123,14 +122,14 @@ export default function HideAppBar(props) {
                   onMouseEnter={() => showOptionDiv(3)}
                   onMouseLeave={() => closeOptionDiv(3)}
                 >
-                  <a>TRACKORDER</a>
+                  <a href="/OrderHistory">TRACKORDER</a>
                   <div
                     className={style.bottom_div}
                     style={{
                       visibility: showOptions[3] ? "visible" : "hidden",
                     }}
                   >
-                    <p>Content for TRACKORDER</p>
+                    <p onClick={()=>window.location.href="/OrderHistory"}>Order History </p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>

@@ -19,6 +19,10 @@
 }
 
 
+.bottom_div  p{
+  width: 100%;
+}
+
 .left_section {
 	padding: 0;
 	margin: 0;

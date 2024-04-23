@@ -215,3 +215,7 @@
       width: 20rem;
       text-align: center;
   }
+  
+.bottom_div  p{
+    width: 100%;
+  }

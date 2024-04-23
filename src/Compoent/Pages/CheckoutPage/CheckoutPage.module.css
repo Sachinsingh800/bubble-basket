@@ -138,6 +138,10 @@
    z-index: 99;
   }
   
+.bottom_div  p{
+  width: 100%;
+}
+  
 /* NavBar.module.css */
 .bottom_div {
   position: absolute;
