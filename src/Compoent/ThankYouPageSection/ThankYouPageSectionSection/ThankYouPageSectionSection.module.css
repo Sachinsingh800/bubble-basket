@@ -57,3 +57,21 @@
     font-weight: bold;
   }
   
+  .btn_ {
+    display: flex;
+    align-items: center;
+    border: none;
+    border: 1px #8d5f5f solid;
+    padding: 0.5rem 1rem;
+    font-size: small;
+    letter-spacing: 0.3cap;
+    background-color: white;
+    width: max-content;
+  }
+  .btn_:hover {
+    background-color: #7b0128;
+    color: white;
+  }
+  .link{
+color: black;
+  }

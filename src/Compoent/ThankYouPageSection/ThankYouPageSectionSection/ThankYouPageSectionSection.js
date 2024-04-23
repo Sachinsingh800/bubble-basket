@@ -21,7 +21,8 @@ function ThankYouPageSectionSection() {
         <h2>Checkout</h2>
         <p>Thank you. Your order has been received.</p>
         <div>
-          <strong>ORDER NUMBER:</strong>{orderId}
+          <strong>ORDER NUMBER:</strong>
+          {orderId}
         </div>
         <div>
           <strong>DATE:</strong> {date}
@@ -61,12 +62,20 @@ function ThankYouPageSectionSection() {
               <td>{formData.paymentMethod}</td>
             </tr>
             <tr>
-              <td><strong>Total:</strong></td>
-              <td><strong>$ {calculateTotal()}</strong></td>
+              <td>
+                <strong>Total:</strong>
+              </td>
+              <td>
+                <strong>$ {calculateTotal()}</strong>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <br/>
+      <a href="/" className={style.link}>
+        <buttton className={style.btn_}>RETURN TO HOME →</buttton>
+      </a>
     </div>
   );
 }
