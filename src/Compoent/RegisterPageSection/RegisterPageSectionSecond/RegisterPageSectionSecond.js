@@ -95,7 +95,7 @@ function RegisterPageSectionSecond() {
           />
         </div>
         <button type="submit">REGISTER →</button>
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Already have an account? <a href="/Login">Login</a></p>
       </form>
     </div>
   );

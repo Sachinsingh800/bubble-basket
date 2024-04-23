@@ -42,7 +42,7 @@ root.render(
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
         <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
         <Route path={'/CheckoutPage'} element={<CheckoutPage />} />
-        <Route path={'/LoginPage'} element={<LoginPage />} />
+        <Route path={'/Login'} element={<LoginPage />} />
         <Route path={'/AboutUsPage'} element={<AboutUsPage />} />
         <Route path={'/FAQPage'} element={<FAQPage/>} />
         <Route path={'/PendingAndRefundPage'} element={<PendingAndRefundPage/>} />
