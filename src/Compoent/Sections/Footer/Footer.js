@@ -11,7 +11,7 @@ import logo2 from "../../Images/master card.png";
 import logo3 from "../../Images/paypal.png";
 import logo4 from "../../Images/american express.png";
 import logo5 from "../../Images/discover.png";
-import PinterestIcon from '@mui/icons-material/Pinterest';
+import PinterestIcon from "@mui/icons-material/Pinterest";
 
 function Footer() {
   return (
@@ -48,20 +48,24 @@ function Footer() {
         <a href="/">
           <span>HOME</span>
         </a>
-        <span>PAGE</span>
-        <a href="/ColumnPage">
-          <span>SHOP</span>
+        <a href="/OrderHistory">
+          <span>ORDERS</span>
         </a>
-        <span>ORDERS</span>
         <a href="/ContactUsPage">
           <span>CONTACT</span>
         </a>
-        <a href="/AboutUsPage">
-        <span>ABOUT</span>
+        <a href="/PrivacyAanPolicy">
+          <span>PRIVACY AND POLICY</span>
         </a>
-       <a href="/FAQPage">
-       <span>FAQ'S</span>
-        </a> 
+        <a href="/TermsAndConditions">
+          <span>TERMS AND CONDITIONS</span>
+        </a>
+        <a href="/AboutUsPage">
+          <span>ABOUT</span>
+        </a>
+        <a href="/FAQPage">
+          <span>FAQ'S</span>
+        </a>
       </div>
       <br />
       <div className={style.input_box}>
