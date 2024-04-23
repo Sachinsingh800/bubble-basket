@@ -56,7 +56,7 @@ export default function ThankYouPage(props) {
 
   React.useEffect(()=>{
     const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-    const cartItem=cartDatafromlocal.length
+    const cartItem = cartDatafromlocal?.length;
     setCartItem(cartItem)
   },[update])
 
