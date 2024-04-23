@@ -131,3 +131,14 @@ input[type="email"] {
   padding: .5rem 2rem;
   text-align: center;
 }
+
+.payment_box{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.payment_box label{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}

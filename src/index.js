@@ -25,6 +25,7 @@ import FAQPage from './Compoent/Pages/FAQPage/FAQPage';
 import PendingAndRefundPage from './Compoent/Pages/PendingAndRefundPage/PendingAndRefundPage';
 import PrivacyAanPolicy from './Compoent/Pages/PrivacyAanPolicy/PrivacyAanPolicy';
 import TermsAndConditions from './Compoent/Pages/TermsAndConditions/TermsAndConditions';
+import ThankYouPage from './Compoent/Pages/ThankYouPage/ThankYouPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -46,6 +47,7 @@ root.render(
         <Route path={'/PendingAndRefundPage'} element={<PendingAndRefundPage/>} />
         <Route path={'/PrivacyAanPolicy'} element={<PrivacyAanPolicy/>} />
         <Route path={'/TermsAndConditions'} element={<TermsAndConditions/>} />
+        <Route path={'/ThankYouPage'} element={<ThankYouPage/>} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

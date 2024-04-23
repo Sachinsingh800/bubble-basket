@@ -3,6 +3,7 @@ import style from "./CheckoutPageSectionSecond.module.css";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
+  const [couponError,setCouponError] = useState("")
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,7 +17,8 @@ function CheckoutPageSectionSecond() {
     phone: "",
     email: "",
     coupon: "",
-    orderNotes: ""
+    orderNotes: "",
+    paymentMethod: "cashOnDelivery", // Default payment method
   });
   const cartData = JSON.parse(localStorage.getItem("cartData"));
 
@@ -28,12 +30,14 @@ function CheckoutPageSectionSecond() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle form submission here, such as sending the data to the server
+
+    localStorage.setItem("checkoutFormData", JSON.stringify(formData));
+    // You can handle form submission here, such as sending the data to the server
     console.log(formData);
-    // Check if coupon exists, if not, show message
-    if (formData.coupon !== "yes") {
-      alert("Coupon 'yes' does not exist");
-    }
+    alert("Order placed successfully!");
   };
+
+
 
   const calculateTotal = () => {
     let total = 0;
@@ -46,6 +50,16 @@ function CheckoutPageSectionSecond() {
   const handleShowCouponField = () => {
     setShowCouponField(!showCouponField);
   };
+
+const handleCouponCheck=(e)=>{
+  e.preventDefault();
+  if (formData.coupon !== "yes") {
+    setCouponError(`Coupon ${formData.coupon} does not exist`)
+  }else{
+    setCouponError(`Coupon ${formData.coupon} apply successfully`)
+  }
+}
+
 
   return (
     <div className={style.main}>
@@ -66,6 +80,7 @@ function CheckoutPageSectionSecond() {
             marginTop: "20px",
           }}
         >
+          {couponError && <span style={{color:"red"}}>{couponError}</span>}
           <div>
             <label htmlFor="coupon">
               If you have a coupon code, please apply it below.
@@ -79,7 +94,7 @@ function CheckoutPageSectionSecond() {
               placeholder="Coupon Code"
             />
           </div>
-          <button type="submit">APPLY COUPON →</button>
+          <button onClick={handleCouponCheck}>APPLY COUPON →</button>
         </div>
 
         <br />
@@ -279,6 +294,30 @@ function CheckoutPageSectionSecond() {
         </p>
       </div>
         <br />
+        <div className={style.payment_box}>
+          {/* Payment method */}
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="cashOnDelivery"
+              checked={formData.paymentMethod === "cashOnDelivery"}
+              onChange={handleChange}
+            />
+            Cash on Delivery
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="online"
+              checked={formData.paymentMethod === "online"}
+              onChange={handleChange}
+            />
+            Online Payment
+          </label>
+        </div>
+        <br/>
         <button type="submit">PLACE ORDER →</button>
       </form>
     </div>
