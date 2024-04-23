@@ -46,6 +46,8 @@ HideOnScroll.propTypes = {
 export default function CartPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
   const [data, setData] = useRecoilState(cartData);
+  const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -131,7 +133,7 @@ export default function CartPage(props) {
                 </div>
                 <a href="/CartPage">
                   <div className={style.icon_box}>
-                    <span className={style.cart_count}>{data.length}</span>
+                    <span className={style.cart_count}>{cartItem}</span>
                     <img src={shoppingCart} alt="shopping" />
                   </div>
                 </a>

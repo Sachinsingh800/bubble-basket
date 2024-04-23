@@ -52,6 +52,8 @@ HideOnScroll.propTypes = {
 
 export default function HideAppBar(props) {
   const [data, setData] = useRecoilState(cartData);
+const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
   const [showOptions, setShowOptions] = React.useState({
     1: false,
     2: false,
@@ -144,7 +146,7 @@ export default function HideAppBar(props) {
                 </div>
                 <a href="/CartPage">
                   <div className={style.icon_box}>
-                    <span className={style.cart_count}>{data.length}</span>
+                    <span className={style.cart_count}>{cartItem}</span>
                     <img src={shoppingCart} alt="shopping" />
                   </div>
                 </a>
