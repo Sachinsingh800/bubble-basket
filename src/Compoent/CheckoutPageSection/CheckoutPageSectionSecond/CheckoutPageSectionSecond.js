@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
+import { useRecoilState } from "recoil";
+import { updateCart } from "../../Recoil/Recoil";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
+  const [update, setUpdate] = useRecoilState(updateCart);
   const [couponError,setCouponError] = useState("")
   const [formData, setFormData] = useState({
     firstName: "",
@@ -58,6 +61,9 @@ function CheckoutPageSectionSecond() {
     // You can handle form submission here, such as sending the data to the server
     console.log(formData);
     alert("Order placed successfully!");
+    // Clear the cart
+    localStorage.setItem("cartData", JSON.stringify([]));
+    setUpdate(update + 1)
     window.location.href = "/ThankYouPage";
   };
 
@@ -77,7 +83,7 @@ function CheckoutPageSectionSecond() {
 
 const handleCouponCheck=(e)=>{
   e.preventDefault();
-  if (formData.coupon !== "yes") {
+  if (formData.coupon !== "testing") {
     setCouponError(`Coupon ${formData.coupon} does not exist`)
   }else{
     setCouponError(`Coupon ${formData.coupon} apply successfully`)
