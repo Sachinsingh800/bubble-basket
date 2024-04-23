@@ -16,7 +16,7 @@ import Footer from "../../Sections/Footer/Footer";
 import ContactUsPageSectionFirst from "../../ContactUsPageSection/ContactUsPageSectionFirst/ContactUsPageSectionFirst";
 import ContactUsPageSectionSecond from "../../ContactUsPageSection/ContactUsPageSectionSecond/ContactUsPageSectionSecond";
 import { useRecoilState } from "recoil";
-import { cartData } from "../../Recoil/Recoil";
+import { cartData, updateCart } from "../../Recoil/Recoil";
 
 
 function HideOnScroll(props) {
@@ -38,9 +38,14 @@ HideOnScroll.propTypes = {
 };
 
 export default function ContactUsPage(props) {
-  const [data, setData] = useRecoilState(cartData);
-  const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
+  const [update, setUpdate] = useRecoilState(updateCart);
+  const [cartItem,setCartItem] = React.useState()
+
+  React.useEffect(()=>{
+    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+    const cartItem=cartDatafromlocal.length
+    setCartItem(cartItem)
+  },[update])
   const [showOptions, setShowOptions] = React.useState({
     1: false,
     2: false,

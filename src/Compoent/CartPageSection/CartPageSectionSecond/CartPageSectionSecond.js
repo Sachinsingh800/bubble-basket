@@ -1,48 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
-import { useRecoilState } from "recoil"; // Import useRecoilState to update the Recoil atom
-import { cartData } from "../../Recoil/Recoil";
+import { updateCart } from "../../Recoil/Recoil";
+import { useRecoilState } from "recoil";
 
 function CartPageSectionSecond() {
-  const [data, setData] = useRecoilState(cartData);
+  const [data, setData] = useState([]);
+  const [update, setUpdate] = useRecoilState(updateCart);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) {
-      setData(cartData.map(item => ({
-        ...item,
-        subTotal: (parseFloat(item.price) * item.quantity).toFixed(2)
-      })));
+      setData(
+        cartData.map((item) => ({
+          ...item,
+          subTotal: (parseFloat(item.price) * item.quantity).toFixed(2),
+        }))
+      );
     }
-  }, []);
+  }, [update]);
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];
-    updatedData[index] = { ...updatedData[index], quantity: quantity }; // Update the quantity property
+    updatedData[index] = { ...updatedData[index], quantity: quantity };
     updatedData[index].subTotal = (
-      parseFloat(updatedData[index].price) * quantity // Calculate subTotal without "$"
+      parseFloat(updatedData[index].price) * quantity
     ).toFixed(2);
-    setData(updatedData); // Update the Recoil atom with the new data
+    setData(updatedData);
+    localStorage.setItem("cartData", JSON.stringify(updatedData));
+    setUpdate(update + 1)
   };
 
   const handleRemoveProduct = (index) => {
     const updatedData = [...data];
     updatedData.splice(index, 1);
-    setData(updatedData); // Update the Recoil atom with the new data
+    setData(updatedData);
+    localStorage.setItem("cartData", JSON.stringify(updatedData));
+    setUpdate(update + 1)
   };
 
   const calculateTotal = () => {
     let total = 0;
     data.forEach((item) => {
-      total += parseFloat(item.subTotal); // Parse subTotal as float
+      total += parseFloat(item.subTotal);
     });
     return total.toFixed(2);
   };
 
-  const handleFilterCheckoutData=()=>{
+  const handleFilterCheckoutData = () => {
     localStorage.setItem("cartData", JSON.stringify(data));
-    window.location.href="/CheckoutPage"
-  }
+    setUpdate(update + 1)
+    window.location.href = "/CheckoutPage";
+  };
 
   return (
     <div className={style.main}>
@@ -85,7 +93,7 @@ function CartPageSectionSecond() {
                 className={style.quantity_box}
                 value={item.quantity}
                 type="number"
-                min="1" // Set a minimum value for quantity
+                min="1"
                 onChange={(e) =>
                   handleQuantityChange(index, parseInt(e.target.value))
                 }
@@ -100,7 +108,7 @@ function CartPageSectionSecond() {
         <>
           <div className={style.buttons_box}>
             <div>
-              <input  placeholder="Coupon Code" />
+              <input placeholder="Coupon Code" />
               <button>APPLY COUPON → </button>
             </div>
             <button className={style.updatebtn}>UPDATE CART → </button>
@@ -118,9 +126,9 @@ function CartPageSectionSecond() {
           </div>
           <br />
           <div className={style.buttons_box2}>
-      
-              <button onClick={handleFilterCheckoutData}>PROCEED TO CHECKOUT → </button>
-
+            <button onClick={handleFilterCheckoutData}>
+              PROCEED TO CHECKOUT →{" "}
+            </button>
           </div>
         </>
       )}

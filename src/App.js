@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './App.module.css'; // Import module-level CSS
 import HideAppBar from './Compoent/NavBar/NavBar';
+import productImage from "./Compoent/Images/dom perignon lady gaga rose.png";
+import { nanoid } from "nanoid";
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
+
+
 
   const handleClose = () => {
     setShowPopup(false);

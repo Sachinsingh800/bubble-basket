@@ -16,7 +16,7 @@ import Footer from "../../Sections/Footer/Footer";
 import BlogFullPageFirstSection from "../../BlogFullPageSection/BlogFullPageFirstSection/BlogFullPageFirstSection";
 import BlogFullPageSectionSecond from "../../BlogFullPageSection/BlogFullPageSectionSecond/BlogFullPageSectionSecond";
 import { useRecoilState } from "recoil";
-import { cartData } from "../../Recoil/Recoil";
+import { cartData, updateCart } from "../../Recoil/Recoil";
 
 
 
@@ -48,9 +48,14 @@ HideOnScroll.propTypes = {
 
 export default function BlogFullPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
-  const [data, setData] = useRecoilState(cartData);
-  const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
+  const [update, setUpdate] = useRecoilState(updateCart);
+  const [cartItem,setCartItem] = React.useState()
+
+  React.useEffect(()=>{
+    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+    const cartItem=cartDatafromlocal.length
+    setCartItem(cartItem)
+  },[update])
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });

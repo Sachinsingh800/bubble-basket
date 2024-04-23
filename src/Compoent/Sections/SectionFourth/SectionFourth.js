@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./SectionFourth.module.css";
-import product1 from "../../Images/26 pc.png";
 import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import product3 from "../../Images/dom perignon lady gaga rose.png";
-import textfile from "../../Images/text2.png";
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AlertDialogSlide from "../../DailLogBox/AlertDialogSlide";
-import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
-import { cartData } from "../../Recoil/Recoil";
+import {  updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
 
 function SectionFourth() {
-  const [data, setData] = useRecoilState(cartData);
+  const [data, setData] = useState([]);
   const [showCartTick, setShowCartTick] = useState(false);
   const [showLikeTick, setShowLikeTick] = useState(false);
+    const [update, setUpdate] = useRecoilState(updateCart);
+
+  useEffect(()=>{
+    const cartdata= JSON.parse(localStorage.getItem("cartData"))
+    setData(cartdata)
+  },[update])
 
   const collectionData = [
     {
@@ -61,6 +63,7 @@ function SectionFourth() {
     setShowCartTick(true);
     setData([...data, item]); // Add the clicked item to the cartData
     localStorage.setItem("cartData", JSON.stringify([...data, item]));
+    setUpdate(update + 1)
   };
 
   const handleAddToLike = (item) => {

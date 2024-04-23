@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -6,7 +6,7 @@ import style from "./AlertDialogSlide.module.css";
 import product from "../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRecoilState } from "recoil";
-import { cartData } from "../Recoil/Recoil";
+import { cartData, updateCart } from "../Recoil/Recoil";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -15,7 +15,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function AlertDialogSlide({ cartdata }) {
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = React.useState(1);
-  const [data, setData] = useRecoilState(cartData);
+  const [data, setData] = useState([]);
+  const [update, setUpdate] = useRecoilState(updateCart);
+
+  useEffect(()=>{
+    const cartdata= JSON.parse(localStorage.getItem("cartData"))
+    setData(cartdata)
+  },[update])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,6 +39,7 @@ export default function AlertDialogSlide({ cartdata }) {
     const itemToAdd = { ...cartdata, quantity: quantity };
     setData([...data, itemToAdd]);
     localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
+    setUpdate( update + 1)
     setOpen(false);
   };
 

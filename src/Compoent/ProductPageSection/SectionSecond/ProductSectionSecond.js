@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./ProductSectionSecond.module.css";
 import product1 from "../../Images/dom perignon lady gaga rose.png";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
@@ -6,17 +6,25 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { nanoid } from "nanoid";
-import { cartData } from "../../Recoil/Recoil";
+import { cartData, updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 
 function ProductSectionSecond() {
-  const [data, setData] = useRecoilState(cartData);
+  const [data, setData] = useState([]);
   const [showDescription, setShowDescription] = useState(true);
   const [showReview, setShowReview] = useState(false);
   const [showAddInfo, setShowAddInfo] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams(); // Change variable name to match the parameter name in the route
+
+
+  const [update, setUpdate] = useRecoilState(updateCart);
+
+  useEffect(()=>{
+    const cartdata= JSON.parse(localStorage.getItem("cartData"))
+    setData(cartdata)
+  },[update])
 
 
   const extraInfo = {
@@ -181,6 +189,7 @@ function ProductSectionSecond() {
     const itemToAdd = { ...product, quantity: quantity };
     setData([...data, itemToAdd]);
     localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
+    setUpdate(update + 1)
   };
 
   const handleQuantityChange = (e) => {

@@ -18,7 +18,7 @@ import ProductSectionSecond from "../../ProductPageSection/SectionSecond/Product
 import ColumnPageSectionFirst from "../../ColumnPageSection/ColumnPageSectionFirst/ColumnPageSectionFirst";
 import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
 import { useRecoilState } from "recoil";
-import { cartData } from "../../Recoil/Recoil";
+import { cartData, updateCart } from "../../Recoil/Recoil";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -47,9 +47,14 @@ HideOnScroll.propTypes = {
 
 export default function ColumnPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
-  const [data, setData] = useRecoilState(cartData);
-  const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
+  const [update, setUpdate] = useRecoilState(updateCart);
+  const [cartItem,setCartItem] = React.useState()
+
+  React.useEffect(()=>{
+    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+    const cartItem=cartDatafromlocal.length
+    setCartItem(cartItem)
+  },[update])
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });

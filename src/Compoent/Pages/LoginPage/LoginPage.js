@@ -16,7 +16,7 @@ import Footer from "../../Sections/Footer/Footer";
 import CartPageSectionFirst from "../../CartPageSection/CartPageSectionFirst/CartPageSectionFirst";
 import CartPageSectionSecond from "../../CartPageSection/CartPageSectionSecond/CartPageSectionSecond";
 import { useRecoilState } from "recoil";
-import { cartData } from "../../Recoil/Recoil";
+import { cartData, updateCart } from "../../Recoil/Recoil";
 import LoginPageSectionFirst from "../../LoginPageSection/LoginPageSectionFirst/LoginPageSectionFirst";
 import LoginPageSectionSecond from "../../LoginPageSection/LoginPageSectionSecond/LoginPageSectionSecond";
 
@@ -47,9 +47,14 @@ HideOnScroll.propTypes = {
 
 export default function LoginPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
-  const [data, setData] = useRecoilState(cartData);
-  const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
-  const cartItem=cartDatafromlocal ? cartDatafromlocal.length : data.length
+  const [update, setUpdate] = useRecoilState(updateCart);
+  const [cartItem,setCartItem] = React.useState()
+
+  React.useEffect(()=>{
+    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+    const cartItem=cartDatafromlocal.length
+    setCartItem(cartItem)
+  },[update])
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
