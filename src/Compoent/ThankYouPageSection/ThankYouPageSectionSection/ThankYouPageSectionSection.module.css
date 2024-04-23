@@ -10,10 +10,11 @@
 
   
   .thank_you {
-    background-color: #f9f9f9;
+    border: 1px #f5e3e3 solid;
     padding: 20px;
     border-radius: 5px;
     width: 100%;
+    font-family: "Jost", sans-serif;
   }
   .order_details{
     width: 100%;
@@ -39,7 +40,7 @@
   
   table th,
   table td {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #7b0128;
     padding: 8px;
     text-align: left;
   }

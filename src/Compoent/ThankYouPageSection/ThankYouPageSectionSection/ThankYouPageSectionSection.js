@@ -27,7 +27,7 @@ function ThankYouPageSectionSection() {
           <strong>DATE:</strong> {date}
         </div>
         <div>
-          <strong>TOTAL:</strong> £{calculateTotal()}
+          <strong>TOTAL:</strong> $ {calculateTotal()}
         </div>
         <div>
           <strong>PAYMENT METHOD:</strong> {formData.paymentMethod}
@@ -49,20 +49,20 @@ function ThankYouPageSectionSection() {
                 <td>
                   {item.productName} × {item.quantity}
                 </td>
-                <td>£{item.subTotal}</td>
+                <td>$ {item.subTotal}</td>
               </tr>
             ))}
             <tr>
               <td>Subtotal:</td>
-              <td>£{calculateTotal()}</td>
+              <td>$ {calculateTotal()}</td>
             </tr>
             <tr>
               <td>Payment method:</td>
               <td>{formData.paymentMethod}</td>
             </tr>
             <tr>
-              <td>Total:</td>
-              <td>£{calculateTotal()}</td>
+              <td><strong>Total:</strong></td>
+              <td><strong>$ {calculateTotal()}</strong></td>
             </tr>
           </tbody>
         </table>
