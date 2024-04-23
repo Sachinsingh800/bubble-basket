@@ -1,0 +1,82 @@
+.main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0rem;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    gap: 1rem;
+}
+.form h4{
+    letter-spacing: 0.1cap;
+}
+
+.input_box{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.form input{
+    width: 100%;
+    padding: 10px;
+    border: 1px #f5e3e3 solid;
+    border-radius: 4px;
+    outline: none;
+    color: rgb(98, 98, 98);
+    background-color: none!important;
+    background: transparent!important;
+}
+.phone_box{
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    color: rgb(98, 98, 98);
+    background-color: none!important;
+    background: transparent!important;
+}
+.checkbox{
+    display: flex!important;
+    justify-content: space-between;
+    gap: .5rem;
+    width: 100%;
+}
+.check{
+position: absolute;
+left: -31.5%;
+margin-top: .3rem;
+}
+.checkbox  label{
+    width: 8rem;
+    margin-left:2rem ;
+}
+.checkbox input{
+}
+
+.check{
+    width: 1rem;
+}
+.main button {
+    background-color: none;
+    color: #7b0128;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px #f5e3e3 solid;
+    background: transparent;
+    width: max-content;
+    font-weight: 400;
+    letter-spacing: 0.1cap;
+  }
+  
+  .main button:hover {
+    background-color: #7b0128;
+    color: white;
+  }
+  
