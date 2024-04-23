@@ -1,8 +1,13 @@
 import React from "react";
 import style from "./OrderHistoryPageSectionSecond.module.css";
 
+
 function OrderHistoryPageSectionSecond() {
+
   const orderHistory = JSON.parse(localStorage.getItem("orderhistory")) || [];
+
+
+
 
   return (
     <div className={style.main}>
@@ -11,19 +16,17 @@ function OrderHistoryPageSectionSecond() {
         <thead>
           <tr>
             <th>Order Date</th>
-            <th>Order ID</th>
             <th>Product Image</th>
             <th>Product Name</th>
             <th>Price</th>
-            <th>Quantity</th>
             <th>Subtotal</th>
+            <th>View All </th>
           </tr>
         </thead>
         <tbody>
           {orderHistory.map((order, index) => (
             <tr key={index}>
               <td>{order.date}</td>
-              <td>{order.orderId}</td>
               <td>
                 <div className={style.img_box}>
                   <img
@@ -34,8 +37,8 @@ function OrderHistoryPageSectionSecond() {
               </td>
               <td>{order.orderDetails[0].productName}</td>
               <td>${order.orderDetails[0].price}</td>
-              <td>{order.orderDetails[0].quantity}</td>
               <td>${order.orderDetails[0].subTotal}</td>
+              <td><a href={`/OrderDetail/${order.orderId}`}>view</a></td>
             </tr>
           ))}
         </tbody>

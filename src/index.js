@@ -29,6 +29,7 @@ import ThankYouPage from './Compoent/Pages/ThankYouPage/ThankYouPage';
 import RegisterPage from './Compoent/Pages/RegisterPage/RegisterPage';
 import AccountPage from './Compoent/Pages/AccountPage/AccountPage';
 import OrderHistoryPage from './Compoent/Pages/OrderHistoryPage/OrderHistoryPage';
+import OrderDetailPage from './Compoent/Pages/OrderDetail/OrderDetailPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -54,6 +55,7 @@ root.render(
         <Route path={'/RegisterPage'} element={<RegisterPage/>} />
         <Route path={'/AccountPage'} element={<AccountPage />} />
         <Route path={'/OrderHistory'} element={<OrderHistoryPage />} />
+        <Route path={'/OrderDetail/:id'} element={<OrderDetailPage />} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
