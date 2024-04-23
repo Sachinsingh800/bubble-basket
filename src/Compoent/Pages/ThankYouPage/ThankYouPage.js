@@ -20,6 +20,7 @@ import { cartData } from "../../Recoil/Recoil";
 import TermAndConditionSectionFirst from "../../TermAndConditionSection/TermAndConditionSectionFirst/TermAndConditionSectionFirst";
 import TermAndConditionSectionSecond from "../../TermAndConditionSection/TermAndConditionSectionSecond/TermAndConditionSectionSecond";
 import ThankYouPageSectionFirst from "../../ThankYouPageSection/ThankYouPageSectionFirst/ThankYouPageSectionFirst";
+import ThankYouPageSectionSection from "../../ThankYouPageSection/ThankYouPageSectionSection/ThankYouPageSectionSection";
 
 
 
@@ -151,7 +152,7 @@ export default function ThankYouPage(props) {
       <Toolbar />
       <div className={style.Container}>
          <ThankYouPageSectionFirst />
-         <TermAndConditionSectionSecond />
+         <ThankYouPageSectionSection />
         <Footer />
       </div>
     </React.Fragment>

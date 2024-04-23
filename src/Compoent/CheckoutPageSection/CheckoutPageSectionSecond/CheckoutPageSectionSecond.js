@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./CheckoutPageSectionSecond.module.css";
+import { nanoid } from "nanoid";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
@@ -27,20 +28,30 @@ function CheckoutPageSectionSecond() {
     setFormData({ ...formData, [name]: value });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Store form data and order details in localStorage
+    // Generate order ID
+    const orderId = nanoid(); // Function to generate order ID
+    // Get current date
+    const currentDate = new Date().toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+    // Store form data, order details, order ID, and current date in localStorage
     const orderData = {
       formData: formData,
       orderDetails: cartData,
+      orderId: orderId,
+      date: currentDate
     };
     localStorage.setItem("checkoutFormData", JSON.stringify(orderData));
     // You can handle form submission here, such as sending the data to the server
     console.log(formData);
     alert("Order placed successfully!");
-    window.location.href="/ThankYouPage"
+    window.location.href = "/ThankYouPage";
   };
-
 
 
   const calculateTotal = () => {

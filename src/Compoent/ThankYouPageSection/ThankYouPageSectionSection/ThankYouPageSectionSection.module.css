@@ -1,0 +1,58 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 2rem;
+}
+/* ThankYouPageSectionSection.module.css */
+
+
+  
+  .thank_you {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .order_details{
+    width: 100%;
+  }
+  .thank_you h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .order_details {
+    margin-top: 20px;
+  }
+  
+  .order_details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
