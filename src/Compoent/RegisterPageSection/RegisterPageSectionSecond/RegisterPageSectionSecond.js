@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import style from "./RegisterPageSectionSecond.module.css";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css'; // Import the CSS for the PhoneInput component
 
 function RegisterPageSectionSecond() {
   const [formData, setFormData] = useState({
@@ -63,13 +65,15 @@ function RegisterPageSectionSecond() {
         </div>
         <div className={style.input_box}>
           <label htmlFor="telephone">Telephone *</label>
-          <input
-            type="tel"
-            id="telephone"
-            name="telephone"
+          <PhoneInput
+          className={style.phone_box}
+            country="in" // Set the default country
             value={formData.telephone}
-            onChange={handleChange}
-            required
+            onChange={(value) => setFormData({ ...formData, telephone: value })}
+            inputProps={{
+              name: "telephone",
+              required: true,
+            }}
           />
         </div>
         <div className={style.input_box}>
