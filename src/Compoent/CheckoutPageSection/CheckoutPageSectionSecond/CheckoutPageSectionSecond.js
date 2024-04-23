@@ -21,7 +21,10 @@ function CheckoutPageSectionSecond() {
     orderNotes: "",
     paymentMethod: "cashOnDelivery", // Default payment method
   });
-  const cartData = JSON.parse(localStorage.getItem("cartData"));
+  const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+  const [orderHistory, setOrderHistory] = useState(
+    JSON.parse(localStorage.getItem("orderhistory")) || []
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,24 +37,30 @@ function CheckoutPageSectionSecond() {
     // Generate order ID
     const orderId = nanoid(); // Function to generate order ID
     // Get current date
-    const currentDate = new Date().toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    const currentDate = new Date().toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
     // Store form data, order details, order ID, and current date in localStorage
     const orderData = {
       formData: formData,
       orderDetails: cartData,
       orderId: orderId,
-      date: currentDate
+      date: currentDate,
     };
+    // Update order history
+    const updatedOrderHistory = [...orderHistory, orderData];
+    setOrderHistory(updatedOrderHistory);
     localStorage.setItem("checkoutFormData", JSON.stringify(orderData));
+    localStorage.setItem("orderhistory", JSON.stringify(updatedOrderHistory));
+
     // You can handle form submission here, such as sending the data to the server
     console.log(formData);
     alert("Order placed successfully!");
     window.location.href = "/ThankYouPage";
   };
+
 
 
   const calculateTotal = () => {

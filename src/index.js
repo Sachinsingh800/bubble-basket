@@ -28,6 +28,7 @@ import TermsAndConditions from './Compoent/Pages/TermsAndConditions/TermsAndCond
 import ThankYouPage from './Compoent/Pages/ThankYouPage/ThankYouPage';
 import RegisterPage from './Compoent/Pages/RegisterPage/RegisterPage';
 import AccountPage from './Compoent/Pages/AccountPage/AccountPage';
+import OrderHistoryPage from './Compoent/Pages/OrderHistoryPage/OrderHistoryPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -52,6 +53,7 @@ root.render(
         <Route path={'/ThankYouPage'} element={<ThankYouPage/>} />
         <Route path={'/RegisterPage'} element={<RegisterPage/>} />
         <Route path={'/AccountPage'} element={<AccountPage />} />
+        <Route path={'/OrderHistory'} element={<OrderHistoryPage />} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

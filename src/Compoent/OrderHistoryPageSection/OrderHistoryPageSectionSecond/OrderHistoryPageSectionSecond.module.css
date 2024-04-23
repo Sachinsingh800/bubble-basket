@@ -1,0 +1,39 @@
+.main{
+    width: 100%;
+    padding: 2rem;
+}
+.img_box{
+    height: 4rem;
+    width: 4rem;
+}
+.img_box img{
+    height: 100%;
+    width: 100%;
+}
+.order_table{
+    width: 100%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    border-bottom: 1px solid #7b0128;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #ffffff;
+  }
+  
+  table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
