@@ -11,14 +11,20 @@ function AccountPageSectionSecond() {
     <div className={style.main}>
         <h1>Manage Your Account</h1>
         <div className={style.container}>
-                 <div>
+               <a href='/RegisterPage'>
+               <div>
                      <HowToRegIcon  className={style.icon}  />
                     <span>Register</span>
                  </div>
-                 <div>
+                </a>  
+
+                <a href='/Login'>
+                <div>
                      <LoginIcon className={style.icon} />
                     <span>Login</span>
                  </div>
+                </a>
+             
                  <div>
                      <AccountCircleIcon className={style.icon} />
                     <span>Edit your account information</span>
