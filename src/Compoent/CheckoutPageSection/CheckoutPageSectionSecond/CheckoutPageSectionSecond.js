@@ -29,12 +29,16 @@ function CheckoutPageSectionSecond() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle form submission here, such as sending the data to the server
-
-    localStorage.setItem("checkoutFormData", JSON.stringify(formData));
+    // Store form data and order details in localStorage
+    const orderData = {
+      formData: formData,
+      orderDetails: cartData,
+    };
+    localStorage.setItem("checkoutFormData", JSON.stringify(orderData));
     // You can handle form submission here, such as sending the data to the server
     console.log(formData);
     alert("Order placed successfully!");
+    window.location.href="/ThankYouPage"
   };
 
 
