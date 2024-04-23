@@ -30,7 +30,7 @@ function AccountPageSectionFirst() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>Account </h2>
+          <h2>My Account</h2>
         </div>
       </div>
     </div>

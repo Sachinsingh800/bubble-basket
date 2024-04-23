@@ -16,6 +16,7 @@ import Footer from "../../Sections/Footer/Footer";
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../../Recoil/Recoil";
 import AccountPageSectionFirst from "../../AccountPageSection/AccountPageSectionFirst/AccountPageSectionFirst";
+import AccountPageSectionSecond from "../../AccountPageSection/AccountPageSectionSecond/AccountPageSectionSecond";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -156,6 +157,7 @@ export default function AccountPage(props) {
       <Toolbar />
       <div className={style.Container}>
           <AccountPageSectionFirst />
+          <AccountPageSectionSecond />
         <Footer />
       </div>
     </React.Fragment>
