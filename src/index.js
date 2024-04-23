@@ -49,7 +49,7 @@ root.render(
         <Route path={'/Login'} element={<LoginPage />} />
         <Route path={'/AboutUsPage'} element={<AboutUsPage />} />
         <Route path={'/FAQPage'} element={<FAQPage/>} />
-        <Route path={'/PendingAndRefundPage'} element={<PendingAndRefundPage/>} />
+        <Route path={'/RefundandReturnPolicy'} element={<PendingAndRefundPage/>} />
         <Route path={'/PrivacyAanPolicy'} element={<PrivacyAanPolicy/>} />
         <Route path={'/TermsAndConditions'} element={<TermsAndConditions/>} />
         <Route path={'/ThankYouPage'} element={<ThankYouPage/>} />
