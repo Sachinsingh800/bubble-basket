@@ -1,147 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./ColumnPageSectionSecond.module.css";
 import product1 from "../../Images/dom perignon lady gaga rose.png";
-import { nanoid } from "nanoid";
+import { getAllProduct } from "../../Apis/Apis";
 
 function ColumnPageSectionSecond() {
-  const collectionData = [
-    {
-      id: 1,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 2,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 3,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 4,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 5,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 6,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 7,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 8,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-  ];
+  const [productData, setProductData] = useState([]);
+  const [loading,setLoading] = useState(false)
+
+  useEffect(() => {
+    handleProductData();
+  }, []);
+
+  const handleProductData = async () => {
+    setLoading(true)
+    try {
+      const response = await getAllProduct();
+
+      if (response.status) {
+        // Show only the first three products
+        setProductData(response.data.slice(0, 8)); 
+        setLoading(false)
+      }
+    } catch (error) {
+      console.error("Error getting product data:", error);
+      setLoading(false)
+    }
+  };
+
+
 
   const  handleNaviagte=(id)=>{
     window.location.href=`/ProductPage/${id}`
@@ -149,100 +35,100 @@ function ColumnPageSectionSecond() {
   return (
     <div className={style.main}>
       <div className={style.additional_box}>
-        <div className={style.inner_container1} onClick={()=>handleNaviagte(collectionData[0].id)}>
+        <div className={style.inner_container1} onClick={()=>handleNaviagte(productData[0]._id)}>
           <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[0].productImg} alt="product" />
+            <img src={productData[0]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[0].productCategory}</span>
-          <span>{collectionData[0].productName}</span>
+          <span>{productData[0]?.category}</span>
+          <span>{productData[0]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[0].subTotal}</strong>
+            <strong>${productData[0]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[1].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[1]._id)}>
           <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[1].productImg} alt="product" />
+            <img src={productData[1]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[1].productCategory}</span>
-          <span>{collectionData[1].productName}</span>
+          <span>{productData[1]?.category}</span>
+          <span>{productData[1]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[1].subTotal}</strong>
+            <strong>${productData[1]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[2].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[2]._id)}>
           <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[2].productImg} alt="product" />
+            <img src={productData[2]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[2].productCategory}</span>
-          <span>{collectionData[2].productName}</span>
+          <span>{productData[2]?.category}</span>
+          <span>{productData[2]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[2].subTotal}</strong>
+            <strong>${productData[2]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[3].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[3]._id)}>
         <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[3].productImg} alt="product" />
+            <img src={productData[3]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[3].productCategory}</span>
-          <span>{collectionData[3].productName}</span>
+          <span>{productData[3]?.category}</span>
+          <span>{productData[3]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[3].subTotal}</strong>
+            <strong>${productData[3]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container1} onClick={()=>handleNaviagte(collectionData[4].id)}>
+        <div className={style.inner_container1} onClick={()=>handleNaviagte(productData[4]._id)}>
         <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[4].productImg} alt="product" />
+            <img src={productData[4]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[4].productCategory}</span>
-          <span>{collectionData[4].productName}</span>
+          <span>{productData[4]?.category}</span>
+          <span>{productData[4]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[4].subTotal}</strong>
+            <strong>${productData[4]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[5].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[5]._id)}>
         <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[5].productImg} alt="product" />
+            <img src={productData[5]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[5].productCategory}</span>
-          <span>{collectionData[5].productName}</span>
+          <span>{productData[5]?.category}</span>
+          <span>{productData[5]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[5].subTotal}</strong>
+            <strong>${productData[5]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[6].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[6]._id)}>
         <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[6].productImg} alt="product" />
+            <img src={productData[6]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[6].productCategory}</span>
-          <span>{collectionData[6].productName}</span>
+          <span>{productData[6]?.category}</span>
+          <span>{productData[6]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[6].subTotal}</strong>
+            <strong>${productData[6]?.price}</strong>
           </h6>
         </div>
-        <div className={style.inner_container} onClick={()=>handleNaviagte(collectionData[7].id)}>
+        <div className={style.inner_container} onClick={()=>handleNaviagte(productData[7]._id)}>
         <span className={style.offer_box}>new</span>
           <div className={style.add_box_img}>
-            <img src={collectionData[7].productImg} alt="product" />
+            <img src={productData[7]?.productImg[0]?.url} alt="product" />
           </div>
-          <span>{collectionData[7].productCategory}</span>
-          <span>{collectionData[7].productName}</span>
+          <span>{productData[7]?.category}</span>
+          <span>{productData[7]?.title}</span>
           <p>★★★★✰</p>
           <h6>
-            <strong>${collectionData[7].subTotal}</strong>
+            <strong>${productData[7]?.price}</strong>
           </h6>
         </div>
       </div>

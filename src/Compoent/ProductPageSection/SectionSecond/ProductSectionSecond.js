@@ -5,10 +5,10 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { nanoid } from "nanoid";
-import { cartData, updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
+import { AddtoCart, getAllProduct } from "../../Apis/Apis";
+import { updateCart } from "../../Recoil/Recoil";
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -17,15 +17,34 @@ function ProductSectionSecond() {
   const [showAddInfo, setShowAddInfo] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams(); // Change variable name to match the parameter name in the route
-
-
+  const [productData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
 
-  useEffect(()=>{
-    const cartdata= JSON.parse(localStorage.getItem("cartData"))
-    setData(cartdata)
-  },[update])
+  useEffect(() => {
+    handleProductData();
+  }, []);
 
+  const handleProductData = async () => {
+    setLoading(true);
+    try {
+      const response = await getAllProduct();
+
+      if (response.status) {
+        // Show only the first three products
+        setProductData(response.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error getting product data:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const cartdata = JSON.parse(localStorage.getItem("cartData")) || [];
+    setData(cartdata);
+  }, [update]);
 
   const extraInfo = {
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris.",
@@ -42,154 +61,37 @@ function ProductSectionSecond() {
     },
   };
 
-  // Sample collection data
-  const collectionData = [
-    {
-      id: 1,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 2,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 3,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 4,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 5,
-      productCategory: "Maschio Prosecco",
-      productName: "Brut DOC NU",
-      productDescription: "BOTTLES",
-      productImg: product1,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 6,
-      productCategory: "Veuve Clicquot",
-      productName: "PERSONALISED",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 7,
-      productCategory: "Billecart-Salmon",
-      productName: "Brut Sous Bois",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 199.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-    {
-      id: 8,
-      productCategory: "Hand-Painted",
-      productName: "La Marca Prosecco",
-      productDescription: "Brut Yellow",
-      productImg: product1,
-      productRating: 4,
-      price: 199.0,
-      quantity: 1,
-      subTotal: 100.0,
-      sku:"001",
-      tags:{
-        tag1:"Bottle",
-        tag2:"Drink",
-        tag3:"Whiskey",
-          }
-    },
-  ];
-
-
   // Filter the product based on the productId from URL
-  const product = collectionData.find((item) => item.id.toString() === id);
+  const product = productData.find((item) => item._id.toString() === id);
+
+  const handleAddToCartInBeckend = async (productId, quantity) => {
+    try {
+      const response = await AddtoCart(productId, quantity);
+      if (response.status) {
+        setUpdate(update + 1); // Trigger UI update
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleAddToCart = () => {
-    const itemToAdd = { ...product, quantity: quantity };
-    setData([...data, itemToAdd]);
-    localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
-    setUpdate(update + 1)
+    handleAddToCartInBeckend(product._id, quantity);
+    const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+    const existingProductIndex = cartData.findIndex(
+      (item) => item._id === product._id
+    );
+
+    if (existingProductIndex !== -1) {
+      // If the product already exists in the cart, update its quantity
+      const updatedCartData = [...cartData];
+      updatedCartData[existingProductIndex].quantity += quantity;
+      localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+    } else {
+      // If the product doesn't exist in the cart, add it with the specified quantity
+      const newItem = { ...product, quantity };
+      localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
+    }
   };
 
   const handleQuantityChange = (e) => {
@@ -213,28 +115,18 @@ function ProductSectionSecond() {
     setShowDescription(false);
     setShowReview(false);
   };
+
   return (
     <div className={style.main}>
-      <div className={style.product_container} key={product.sku}>
+      <div className={style.product_container}>
+        {loading && <p>Loading..</p>}
         <div className={style.img_box}>
-          <img src={product.productImg} alt="product" />
+          <img src={product?.productImg[0]?.url} alt={product?.title} />
         </div>
         <div className={style.des_box}>
-          <h3>{product.productName}</h3>
-          <p>
-            {Array.from({ length: product.productRating }).map((_, i) => (
-              <span style={{ color: "#7B0128" }} key={i}>
-                ★
-              </span>
-            ))}
-            {Array.from({ length: 5 - product.productRating }).map((_, i) => (
-              <span style={{ color: "#7B0128" }} key={i + product.productRating}>
-                ✰
-              </span>
-            ))}
-            &nbsp;({product.customer} customer reviews)
-          </p>
-          <h4>${product.price}</h4>
+          <h3>{product?.title}</h3>
+          <h4>${product?.price}</h4>
+          <p>{product?.description}</p>
 
           <div className={style.input_box}>
             <input
@@ -247,13 +139,15 @@ function ProductSectionSecond() {
           <br />
           <p>♡ &nbsp;Add to wishlist </p>
           <p>
-            <strong>SKU:</strong> {product.sku}
+            <strong>SKU:</strong>
+            {product?.sku}
           </p>
           <p>
-            <strong>CATEGORY : </strong> {product.productCategory}
+            <strong>CATEGORY : </strong> {product?.category}
           </p>
           <p>
-            <strong>TAGS : </strong> {Object.values(product.tags).join(", ")}
+            <strong>TAGS : </strong>
+            {product?.tag}
           </p>
           <p className={style.icon_box}>
             <strong>SHARE :</strong>

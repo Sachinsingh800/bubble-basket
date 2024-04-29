@@ -1,72 +1,65 @@
 import React, { useEffect, useState } from "react";
 import style from "./SecondSection.module.css";
-import product1 from "../../Images/26 pc.png";
-import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
-import product3 from "../../Images/dom perignon lady gaga rose.png";
 import AddIcon from "@mui/icons-material/Add";
-import CloseIcon from "@mui/icons-material/Close";
-import { nanoid } from "nanoid";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
+import { AddtoCart, getAllProduct } from "../../Apis/Apis";
 
 function SecondSection() {
-  const [openPopoverId, setOpenPopoverId] = useState(null);
   const [update, setUpdate] = useRecoilState(updateCart);
+  const [loading, setLoading] = useState(false);
   const [showTick, setShowTick] = useState(null);
+  const [productData, setProductData] = useState([]);
 
-  const collectionData = [
-    {
-      id: nanoid(),
-      productCategory: "HAND - PAINTED",
-      productName: "CHAMPAGNE",
-      productDescription:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
-      productImg: product3,
-      productRating: 4,
-      price: 79.0,
-      quantity: 1,
-      subTotal: 79.0,
-    },
-    {
-      id: nanoid(),
-      productCategory: "PERSONALISED",
-      productName: "WINE",
-      productDescription:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
-      productImg: product2,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 100.0,
-    },
-    {
-      id: nanoid(),
-      productCategory: "PERSONALISED",
-      productName: "CHOCOLATE",
-      productDescription:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
-      productImg: product1,
-      productRating: 4,
-      price: 100.0,
-      quantity: 1,
-      subTotal: 100.0,
-    },
-  ];
+  useEffect(() => {
+    handleProductData();
+  }, []);
 
-  const handleOpenPopover = (id) => {
-    setOpenPopoverId(id);
+  const handleProductData = async () => {
+    setLoading(true);
+    try {
+      const response = await getAllProduct();
+
+      if (response.status) {
+        // Show only the first three products
+        setProductData(response.data.slice(0, 3));
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error getting product data:", error);
+      setLoading(false);
+    }
   };
 
-  const handleClosePopover = () => {
-    setOpenPopoverId(null);
+  const handleAddToCartInBeckend = async (productId) => {
+    try {
+      const response = await AddtoCart(productId);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAddToCart = (item) => {
+    handleAddToCartInBeckend(item._id)
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
-    localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
+    const existingProductIndex = cartData.findIndex((product) => product._id === item._id);
+  
+    if (existingProductIndex !== -1) {
+      // If the product already exists in the cart, update its quantity
+      const updatedCartData = [...cartData];
+      updatedCartData[existingProductIndex].quantity += 1;
+      localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+    } else {
+      // If the product doesn't exist in the cart, add it with default quantity as 1
+      const newItem = { ...item, quantity: 1 };
+      localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
+    }
+  
+    // Trigger UI update
     setUpdate(update + 1);
-    setShowTick(item.id);
+    setShowTick(item._id);
   };
+  
 
   return (
     <div className={style.main}>
@@ -79,21 +72,22 @@ function SecondSection() {
         <h2>COLLECTION</h2>
       </div>
       <div className={style.card_box}>
-        {collectionData.map((item) => (
-          <div key={item.id} className={style.inner_container}>
+        {loading && <p>Loading...</p>}
+        {productData.map((item) => (
+          <div key={item._id} className={style.inner_container}>
             <button
               onClick={() => handleAddToCart(item)}
               className={style.addBtn}
             >
-              {showTick === item.id ? "✓" : <AddIcon />}
+              {showTick === item._id ? "✓" : <AddIcon />}
             </button>
 
             <div className={style.img_box}>
-              <img src={item.productImg} alt={item.title} />
+              <img src={item.productImg[0].url} alt={item.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item.productName}</h5>
-              <p>{item.productDescription}</p>
+              <h5>{item.category}</h5>
+              <p>{item.description}</p>
             </div>
           </div>
         ))}

@@ -3,10 +3,9 @@ import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import style from "./AlertDialogSlide.module.css";
-import product from "../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRecoilState } from "recoil";
-import { cartData, updateCart } from "../Recoil/Recoil";
+import { updateCart } from "../Recoil/Recoil";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -15,21 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function AlertDialogSlide({ cartdata }) {
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = React.useState(1);
-  const [data, setData] = useState([]);
   const [update, setUpdate] = useRecoilState(updateCart);
-
-  useEffect(()=>{
-    const cartdata= JSON.parse(localStorage.getItem("cartData"))
-    setData(cartdata)
-  },[update])
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleQuantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
@@ -37,15 +22,27 @@ export default function AlertDialogSlide({ cartdata }) {
 
   const handleAddToCart = () => {
     const itemToAdd = { ...cartdata, quantity: quantity };
-    setData([...data, itemToAdd]);
-    localStorage.setItem("cartData", JSON.stringify([...data, itemToAdd]));
-    setUpdate( update + 1)
+    const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+    const existingProductIndex = cartData.findIndex((product) => product._id === itemToAdd._id);
+
+    if (existingProductIndex !== -1) {
+      // If the product already exists in the cart, update its quantity
+      const updatedCartData = [...cartData];
+      updatedCartData[existingProductIndex].quantity += quantity;
+      localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+    } else {
+      // If the product doesn't exist in the cart, add it with specified quantity
+      localStorage.setItem("cartData", JSON.stringify([...cartData, itemToAdd]));
+    }
+
+    // Trigger UI update
+    setUpdate(update + 1);
     setOpen(false);
   };
 
   return (
     <React.Fragment>
-      <button className={style.optionButton3} onClick={handleClickOpen}>
+      <button className={style.optionButton3} onClick={() => setOpen(true)}>
         <VisibilityIcon />
       </button>
       <Dialog
@@ -54,24 +51,24 @@ export default function AlertDialogSlide({ cartdata }) {
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-describedby="alert-dialog-slide-description"
         className={style.dialog}
       >
-        <button className={style.close_btn} onClick={handleClose}>
+        <button className={style.close_btn} onClick={() => setOpen(false)}>
           <CloseIcon />
         </button>
         <div className={style.container}>
           <div className={style.left_box}>
             <div className={style.img_box}>
-              <img src={cartdata.productImg} alt="product" />
+              <img src={cartdata.productImg[0].url} alt="product" />
             </div>
           </div>
           <div className={style.right_box}>
             <div className={style.des_box}>
-              <h2>{cartdata.productName}</h2>
-              <h6>${cartdata.price}</h6>
-              <span>{cartdata.productDescription}</span>
+              <h2>{cartdata?.title}</h2>
+              <h6>${cartdata?.price}</h6>
+              <span>{cartdata?.description}</span>
               <div className={style.input_box}>
                 <input
                   type="number"

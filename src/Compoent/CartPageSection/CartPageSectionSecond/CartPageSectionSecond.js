@@ -2,32 +2,29 @@ import React, { useEffect, useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
+import { AddtoCart, getCheckout } from "../../Apis/Apis";
 
 function CartPageSectionSecond() {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useRecoilState(updateCart);
+  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
+  const [totalPrice, setTotalPrice] = useState(0); // State to store the total price
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) {
-      setData(
-        cartData.map((item) => ({
-          ...item,
-          subTotal: (parseFloat(item.price) * item.quantity).toFixed(2),
-        }))
-      );
+      setData(cartData);
+      calculateTotalPrice(cartData); // Calculate total price when cart data changes
     }
   }, [update]);
 
   const handleQuantityChange = (index, quantity) => {
     const updatedData = [...data];
     updatedData[index] = { ...updatedData[index], quantity: quantity };
-    updatedData[index].subTotal = (
-      parseFloat(updatedData[index].price) * quantity
-    ).toFixed(2);
     setData(updatedData);
     localStorage.setItem("cartData", JSON.stringify(updatedData));
-    setUpdate(update + 1)
+    setUpdate(update + 1);
+    calculateTotalPrice(updatedData); // Recalculate total price
   };
 
   const handleRemoveProduct = (index) => {
@@ -35,21 +32,49 @@ function CartPageSectionSecond() {
     updatedData.splice(index, 1);
     setData(updatedData);
     localStorage.setItem("cartData", JSON.stringify(updatedData));
-    setUpdate(update + 1)
+    setUpdate(update + 1);
+    calculateTotalPrice(updatedData); // Recalculate total price
+  };
+
+  const calculateSubtotal = () => {
+    return data
+      .reduce((total, item) => {
+        return total + parseFloat(item.price) * item.quantity;
+      }, 0)
+      .toFixed(2);
   };
 
   const calculateTotal = () => {
-    let total = 0;
-    data.forEach((item) => {
-      total += parseFloat(item.subTotal);
-    });
-    return total.toFixed(2);
+    return totalPrice.toFixed(2);
   };
+
+  const calculateTotalPrice = (cartData) => {
+    const total = cartData.reduce((total, item) => {
+      return total + parseFloat(item.price) * item.quantity;
+    }, 0);
+    setTotalPrice(total); // Update total price state
+    localStorage.setItem("totalPrice", total.toFixed(2)); // Store total price in localStorage
+  };
+
+
+  
+  const handleCheckoutOrder =async()=>{
+    try{
+     const response= await getCheckout()
+    }catch(error){
+      console.log(error)
+    }
+   }
 
   const handleFilterCheckoutData = () => {
     localStorage.setItem("cartData", JSON.stringify(data));
-    setUpdate(update + 1)
-    window.location.href = "/CheckoutPage";
+    setUpdate(update + 1);
+    if (loginStatus) {
+      handleCheckoutOrder()
+    } else {
+      localStorage.setItem("checkout", JSON.stringify(true));
+      window.location.href = "/Login";
+    }
   };
 
   return (
@@ -72,7 +97,7 @@ function CartPageSectionSecond() {
         </div>
       ) : (
         data.map((item, index) => (
-          <div key={index} className={style.container}>
+          <div key={item._id} className={style.container}>
             <div className={style.first_box}>
               <span
                 className={style.del_button}
@@ -81,12 +106,12 @@ function CartPageSectionSecond() {
                 x
               </span>
               <div className={style.img_box}>
-                <img src={item.productImg} alt={item.productName} />
+                <img src={item.productImg[0].url} alt={item.title} />
               </div>
-              {item.productName}
+              {item.title}
             </div>
 
-            <div className={style.para}>{item.price}</div>
+            <div className={style.para}>$ {item.price}</div>
 
             <div>
               <input
@@ -100,7 +125,9 @@ function CartPageSectionSecond() {
               />
             </div>
 
-            <div className={style.para}>$ {item.subTotal}</div>
+            <div className={style.para}>
+              $ {(item.price * item.quantity).toFixed(2)}
+            </div>
           </div>
         ))
       )}
@@ -117,7 +144,7 @@ function CartPageSectionSecond() {
             <h6>CART TOTALS</h6>
             <div className={style.cart_box}>
               <div className={style.first_box}>SUBTOTAL</div>
-              <div>$ {calculateTotal()}</div>
+              <div>$ {calculateSubtotal()}</div>
             </div>
             <div className={style.cart_box}>
               <div className={style.first_box}>TOTAL</div>

@@ -56,6 +56,9 @@ export default function ColumnPage(props) {
     setCartItem(cartItem)
   },[update])
 
+
+  
+
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
   };

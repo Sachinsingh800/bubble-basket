@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import style from "./RegisterPageSectionSecond.module.css";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'; // Import the CSS for the PhoneInput component
+import axios from "axios";
+import { RegisterUser } from "../../Apis/Apis";
 
 function RegisterPageSectionSecond() {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ function RegisterPageSectionSecond() {
     confirmPassword: "",
     rememberMe: false,
   });
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,10 +23,18 @@ function RegisterPageSectionSecond() {
     setFormData({ ...formData, [name]: val });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, such as registering the user
-    console.log(formData);
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+    setPasswordError(""); // Clear any previous password error
+    try {
+      await RegisterUser(formData);
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
 
   return (
@@ -66,7 +77,7 @@ function RegisterPageSectionSecond() {
         <div className={style.input_box}>
           <label htmlFor="telephone">Telephone *</label>
           <PhoneInput
-          className={style.phone_box}
+            className={style.phone_box}
             country="in" // Set the default country
             value={formData.telephone}
             onChange={(value) => setFormData({ ...formData, telephone: value })}
@@ -98,6 +109,7 @@ function RegisterPageSectionSecond() {
             required
           />
         </div>
+        {passwordError && <p className={style.error}>{passwordError}</p>}
         <button type="submit">REGISTER →</button>
         <p>Already have an account? <a href="/Login">Login</a></p>
       </form>
@@ -106,3 +118,5 @@ function RegisterPageSectionSecond() {
 }
 
 export default RegisterPageSectionSecond;
+
+
