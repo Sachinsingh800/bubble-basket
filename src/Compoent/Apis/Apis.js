@@ -78,6 +78,57 @@ export const AddtoCart = async (productId) => {
     }
   }
 };
+//removeFromCart
+
+export const removeFromCart = async (id) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.put(
+      `${BASE_URL}/user/cart/removeProduct`,
+      
+        {
+          "productId":"662c0492950d765de0bf5081",
+          "removeProduct":0
+      }
+      ,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
 
 // addAddress
 

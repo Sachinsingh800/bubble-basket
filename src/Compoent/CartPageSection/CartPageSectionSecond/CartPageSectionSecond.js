@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { AddtoCart, getCheckout } from "../../Apis/Apis";
+import { AddtoCart, getCheckout, removeFromCart } from "../../Apis/Apis";
 
 function CartPageSectionSecond() {
   const [data, setData] = useState([]);
@@ -77,6 +77,14 @@ function CartPageSectionSecond() {
     }
   };
 
+   const removeItemFromtheCart = async (id) => {
+    try {
+      const response = await removeFromCart(id) ;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleFilterCheckoutData = () => {
     localStorage.setItem("cartData", JSON.stringify(data));
     setUpdate(update + 1);
@@ -110,12 +118,22 @@ function CartPageSectionSecond() {
         data.map((item, index) => (
           <div key={item._id} className={style.container}>
             <div className={style.first_box}>
-              <span
-                className={style.del_button}
-                onClick={() => handleRemoveProduct(index)}
-              >
-                x
-              </span>
+            {loginStatus ? 
+                       <span
+                       className={style.del_button}
+                       onClick={() => removeItemFromtheCart(item._id)}
+                     >
+                       x
+                     </span>
+                     :
+            <span
+            className={style.del_button}
+            onClick={() => handleRemoveProduct(index)}
+          >
+            x
+          </span>}
+    
+   
               <div className={style.img_box}>
                 <img src={item.productImg[0].url} alt={item.title} />
               </div>
