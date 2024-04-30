@@ -76,7 +76,7 @@ function ProductSectionSecond() {
   };
 
   const handleAddToCart = () => {
-    handleAddToCartInBeckend(product._id, quantity);
+    // handleAddToCartInBeckend(product._id, quantity);
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex(
       (item) => item._id === product._id

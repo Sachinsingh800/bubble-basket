@@ -63,7 +63,7 @@ function SectionFourth() {
   };
 
   const handleAddToCart = (item) => {
-    handleAddToCartInBeckend(item._id)
+    // handleAddToCartInBeckend(item._id)
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex((product) => product._id === item._id);
   

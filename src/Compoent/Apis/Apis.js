@@ -1,68 +1,67 @@
-import axios from 'axios';
+import axios from "axios";
 
-
-
-
-const BASE_URL = 'https://wine-rnlq.onrender.com';
-
-
-
+const BASE_URL = "https://wine-rnlq.onrender.com";
 
 // Register
 
-
 export const RegisterUser = async (userData) => {
-    try {
-      const response = await axios.post(`${BASE_URL}/user/auth/register`, userData);
-      const { status, message, data, token } = response.data;
-      console.log(response)
-      if(status){
-        window.location.href = "/Login"; 
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Axios error (HTTP error)
-        const { response } = error;
-        // Set the error message
-        const errorMessage = response.data.message;
-        alert(errorMessage);
-        // Log the error message as a string
-      } else {
-        // Network error (e.g., no internet connection)
-        alert("Something went wrong");
-      }
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/register`,
+      userData
+    );
+    const { status, message, data, token } = response.data;
+    console.log(response);
+    if (status) {
+      window.location.href = "/Login";
     }
-  };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+    } else {
+      // Network error (e.g., no internet connection)
+      alert("Something went wrong");
+    }
+  }
+};
 
 //Add to Cart
 
-
 export const AddtoCart = async (productId) => {
   // Function to retrieve token from cookies
-    // Function to retrieve token from cookies
-    function getToken() {
-      return document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    }
-  
-    // Retrieve token
-    const token = getToken();
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
 
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
-      'Content-Type': 'application/json', // Set content type to JSON
+      "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.put(`${BASE_URL}/user/cart/addProduct`, 
-    {
-      "productId":productId
-  }
-    , { headers });
+    const response = await axios.put(
+      `${BASE_URL}/user/cart/addProduct`,
+      {
+        productId: productId,
+      },
+      { headers }
+    );
 
     const { status, message, data } = response.data;
     // console.log(response);
 
     // Handle response data as needed
-
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -82,29 +81,34 @@ export const AddtoCart = async (productId) => {
 
 // addAddress
 
-
 export const addAddress = async (formData) => {
   // Function to retrieve token from cookies
-    // Function to retrieve token from cookies
-    function getToken() {
-      return document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    }
-  
-    // Retrieve token
-    const token = getToken();
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
 
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
-      'Content-Type': 'application/json', // Set content type to JSON
+      "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.post(`${BASE_URL}/user/address/create`,formData,{ headers });
+    const response = await axios.post(
+      `${BASE_URL}/user/address/create`,
+      formData,
+      { headers }
+    );
 
     const { status, message, data } = response.data;
-    // console.log(response);
+    localStorage.setItem("address",JSON.stringify(data))
 
     // Handle response data as needed
-
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -113,9 +117,109 @@ export const addAddress = async (formData) => {
       const errorMessage = response.data.message;
       // alert(errorMessage);
       // Log the error message as a string
-      alert(errorMessage)
+      alert(errorMessage);
       console.error("Axios Error:", errorMessage);
-      window.location.href="/Login"
+      window.location.href = "/Login";
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+
+// oderPlace
+
+
+export const orderPlace = async (orderData) => {
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  const address = JSON.parse(localStorage.getItem("address")) || {};
+  const id=address?._id
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(
+      `${BASE_URL}/user/order/create/${id}`,
+      orderData,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    if (status) {
+      alert("Order placed successfully");
+      localStorage.setItem("orderData", JSON.stringify(data));
+      localStorage.removeItem("cartData");
+      window.location.href = "/ThankYouPage";
+    }
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+
+
+
+// getOrderHistory
+
+export const getOrderHistory = async () => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(
+      `${BASE_URL}/user/order/orderHistory`,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -126,118 +230,115 @@ export const addAddress = async (formData) => {
 
 
 
+
+
+
 // LOG IN USER
 
-
 export const loginUser = async (userData, rememberMe) => {
-    try {
-      const response = await axios.post(`${BASE_URL}/user/auth/logIn`, {
-        email: userData.email,
-        password: userData.password,
-        items: userData.items,
-        totalPrice: userData.totalPrice,
-        totalItems: userData.totalItems,
-      });
-      const { status, message, data, token } = response.data;
-      console.log(response.data.token
-  );
-      if (status) {
-        // If "Remember Me" is checked, save token to local storage
-        document.cookie = `token=${response.data.token}; path=/`;
+  try {
+    const response = await axios.post(`${BASE_URL}/user/auth/logIn`, {
+      email: userData.email,
+      password: userData.password,
+      items: userData.items,
+      totalPrice: userData.totalPrice,
+      totalItems: userData.totalItems,
+    });
+    const { status, message, data, token } = response.data;
+    console.log(response.data.token);
+    if (status) {
+      // If "Remember Me" is checked, save token to local storage
+      document.cookie = `token=${response.data.token}; path=/`;
 
-        // Save login status to local storage
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href="/"
+      // Save login status to local storage
+      localStorage.setItem("isLoggedIn", "true");
 
-        if (rememberMe) {
-          localStorage.setItem("token", JSON.stringify(token));
-        }
-        return { status, message, data, token };
+      if (rememberMe) {
+        localStorage.setItem("token", JSON.stringify(token));
       }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Axios error (HTTP error)
-        const { response } = error;
-        // Set the error message
-        const errorMessage = response.data.message;
-        // alert(errorMessage);
-        // Log the error message as a string
-        alert(errorMessage)
-        console.error("Axios Error:", errorMessage);
-      } else {
-        // Network error (e.g., no internet connection)
-        // alert("Something went wrong");
-        console.error("Network Error:", error.message);
-      }
+      return { status, message, data, token };
     }
-  };
-  
-
-
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
 
 // getAllProduct
 
-
 export const getAllProduct = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/admin/product/getAll`, );
-      const { status, message, data, token } = response.data;
-      console.log(response);
-      if (status) {
-        // If "Remember Me" is checked, save token to local storage
-        return { status, message, data, token };
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const { response } = error;
-        const errorMessage = response.data.message;
-        throw new Error(errorMessage);
-      } else {
-        throw new Error("Network Error");
-      }
+  try {
+    const response = await axios.get(`${BASE_URL}/admin/product/getAll`);
+    const { status, message, data, token } = response.data;
+    console.log(response);
+    if (status) {
+      // If "Remember Me" is checked, save token to local storage
+      return { status, message, data, token };
     }
-  };
-  
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const { response } = error;
+      const errorMessage = response.data.message;
+      throw new Error(errorMessage);
+    } else {
+      throw new Error("Network Error");
+    }
+  }
+};
 
+export const getCheckout = async (promoCode) => {
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
 
-  export const getCheckout = async (promoCode) => {
-    // Function to retrieve token from cookies
-    function getToken() {
-      return document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+  try {
+    // Retrieve token
+    const token = getToken();
+
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+
+    // Append promo code to the endpoint if provided
+    const url = promoCode
+      ? `${BASE_URL}/user/cart/checkout?promoCode=${promoCode}`
+      : `${BASE_URL}/user/cart/checkout`;
+
+    const response = await axios.get(url, { headers });
+    const { status, message, data } = response.data;
+    console.log(response);
+    localStorage.setItem("checkout", JSON.stringify(response?.data?.data));
+    const login = JSON.parse(localStorage.getItem("isLoggedIn"));
+    if (status && login) {
+      // If "Remember Me" is checked, save token to local storage
+      window.location.href = "/CheckoutPage";
+    } else {
+      window.location.href = "/Login";
     }
-  
-    try {
-      // Retrieve token
-      const token = getToken();
-  
-      const headers = {
-        "x-auth-token": token, // Pass the token in the header
-        'Content-Type': 'application/json', // Set content type to JSON
-      };
-  
-      // Append promo code to the endpoint if provided
-      const url = promoCode ? `${BASE_URL}/user/cart/checkout?promoCode=${promoCode}` : `${BASE_URL}/user/cart/checkout`;
-  
-      const response = await axios.get(url, { headers });
-      const { status, message, data } = response.data;
-      console.log(response);
-      localStorage.setItem("checkout", JSON.stringify(response?.data?.data))
-  
-      if (status) {
-        // If "Remember Me" is checked, save token to local storage
-        window.location.href = "/CheckoutPage";
-        // alert("Order placed successfully!");
-        // window.location.href = "/ThankYouPage";
-        return { status, message, data };
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const { response } = error;
-        const errorMessage = response.data.message;
-        alert(errorMessage);
-      } else {
-        console.error("Network Error:", error.message);
-      }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const { response } = error;
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+    } else {
+      console.error("Network Error:", error.message);
     }
-  };
-  
+  }
+};

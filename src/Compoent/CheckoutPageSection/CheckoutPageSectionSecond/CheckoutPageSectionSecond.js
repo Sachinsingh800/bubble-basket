@@ -3,7 +3,7 @@ import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../../Recoil/Recoil";
-import { addAddress, getCheckout } from "../../Apis/Apis";
+import { addAddress, getCheckout, orderPlace } from "../../Apis/Apis";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
@@ -39,46 +39,18 @@ function CheckoutPageSectionSecond() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const   handleOrder= async () => {
     try {
-      // Generate order ID
-      const orderId = nanoid();
-      // Get current date
-      const currentDate = new Date().toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
-      // Create order data
       const orderData = {
-        formData: formData,
-        orderId: orderId,
-        date: currentDate,
+        promoCode: "SUMMER28",
+        paymentMethod: {
+          cod: formData.paymentMethod === "cashOnDelivery", // Set payment method based on selection
+          online: formData.paymentMethod === "online", // Set payment method based on selection
+        },
       };
 
       // Send order data to server
-      const response = await addAddress(formData);
-      if (response.status) {
-        // Update order history
-        const updatedOrderHistory = [...orderHistory, orderData];
-        setOrderHistory(updatedOrderHistory);
-        // Store order data in local storage
-        localStorage.setItem("checkoutFormData", JSON.stringify(orderData));
-        localStorage.setItem(
-          "orderhistory",
-          JSON.stringify(updatedOrderHistory)
-        );
-        // Clear the cart
-        localStorage.setItem("cartData", JSON.stringify([]));
-        setUpdate((prevUpdate) => prevUpdate + 1);
-        // Redirect to thank you page
-      } else {
-        // Handle server response errors
-        console.error("Failed to place order:", response.error);
-        // Optionally, display an error message to the user
-        alert("Failed to place order. Please try again later.");
-      }
+      const response = await orderPlace(orderData);
     } catch (error) {
       // Handle unexpected errors
       console.error("An error occurred during form submission:", error);
@@ -86,6 +58,25 @@ function CheckoutPageSectionSecond() {
       // alert("An unexpected error occurred. Please try again later.");
     }
   };
+
+
+  const handleSubmitAddress = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await addAddress(formData);
+    console.log("Response from addAddress:", response.data); // Log the entire response object
+
+  } catch (error) {
+    // Handle unexpected errors
+    console.error("An error occurred during form submission:", error);
+    // Display an error message to the user
+    // alert("An unexpected error occurred. Please try again later.");
+    return
+  }finally{
+    handleOrder(); // Proceed with placing the order
+  }
+};
+
 
   const handleShowCouponField = () => {
     setShowCouponField(!showCouponField);
@@ -101,7 +92,7 @@ function CheckoutPageSectionSecond() {
 
   return (
     <div className={style.main}>
-      <form onSubmit={handleSubmit} className={style.form}>
+      <form onSubmit={handleSubmitAddress} className={style.form}>
         <div className={style.coupon_box}>
           <span>Have a coupon? </span>
           <span onClick={handleShowCouponField}>

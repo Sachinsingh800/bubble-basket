@@ -1,50 +1,75 @@
 import React, { useState } from "react";
 import style from "./CheckoutPageSectionSecond.module.css";
+import { nanoid } from "nanoid";
+import { useRecoilState } from "recoil";
+import { updateCart } from "../../Recoil/Recoil";
+import { addAddress, getCheckout, orderPlace } from "../../Apis/Apis";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
+  const [update, setUpdate] = useRecoilState(updateCart);
+  const [couponError, setCouponError] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     companyName: "",
     country: "",
-    streetAddress: "",
-    apartment: "",
-    city: "",
-    county: "",
-    postcode: "",
+    streetAddress: {
+      houseNoAndStreetName: "",
+      apartment: "",
+    },
+    townCity: "", // Updated field
+    stateCounty: "", // Updated field
+    postcodeZIP: "", // Updated field
     phone: "",
     email: "",
-    coupon: "",
-    orderNotes: ""
+    orderNotes: "",
+    setAsDefault: true,
   });
-  const cartData = JSON.parse(localStorage.getItem("cartData"));
+  const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can handle form submission here, such as sending the data to the server
-    console.log(formData);
-    // Check if coupon exists, if not, show message
-    if (formData.coupon !== "yes") {
-      alert("Coupon 'yes' does not exist");
+  const handleOder = async () => {
+    try {
+      const id = cartData.cartId;
+      const orderData = {
+        promoCode: "SUMMER28",
+        paymentMethod: {
+          cod: formData.paymentMethod === "cashOnDelivery", // Set payment method based on selection
+          online: formData.paymentMethod === "online", // Set payment method based on selection
+        },
+      };
+
+      // Send order data to server
+      const response = await orderPlace(id, orderData);
+      if (response.status) {
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("An error occurred during form submission:", error);
+      // Display an error message to the user
+      // alert("An unexpected error occurred. Please try again later.");
     }
-  };
-
-  const calculateTotal = () => {
-    let total = 0;
-    cartData.forEach((item) => {
-      total += parseFloat(item.subTotal);
-    });
-    return total.toFixed(2);
   };
 
   const handleShowCouponField = () => {
     setShowCouponField(!showCouponField);
+  };
+
+  const handleCouponCheck = async () => {
+    try {
+      const response = await getCheckout(formData.coupon);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,6 +91,7 @@ function CheckoutPageSectionSecond() {
             marginTop: "20px",
           }}
         >
+          {couponError && <span style={{ color: "red" }}>{couponError}</span>}
           <div>
             <label htmlFor="coupon">
               If you have a coupon code, please apply it below.
@@ -79,7 +105,7 @@ function CheckoutPageSectionSecond() {
               placeholder="Coupon Code"
             />
           </div>
-          <button type="submit">APPLY COUPON →</button>
+          <button onClick={handleCouponCheck}>APPLY COUPON →</button>
         </div>
 
         <br />
@@ -136,26 +162,44 @@ function CheckoutPageSectionSecond() {
               </select>
             </div>
             <div className={style.form_group}>
-              <label htmlFor="streetAddress">Street address *</label>
+              <label htmlFor="streetAddress.houseNoAndStreetName">
+                Street address *
+              </label>
               <input
                 type="text"
-                id="streetAddress"
-                name="streetAddress"
-                value={formData.streetAddress}
-                onChange={handleChange}
+                id="streetAddress.houseNoAndStreetName"
+                name="streetAddress.houseNoAndStreetName"
+                value={formData.streetAddress.houseNoAndStreetName}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    streetAddress: {
+                      ...prevData.streetAddress,
+                      houseNoAndStreetName: e.target.value,
+                    },
+                  }))
+                }
                 required
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="apartment">
+              <label htmlFor="streetAddress.apartment">
                 Apartment, suite, unit, etc. (optional)
               </label>
               <input
                 type="text"
-                id="apartment"
-                name="apartment"
-                value={formData.apartment}
-                onChange={handleChange}
+                id="streetAddress.apartment"
+                name="streetAddress.apartment"
+                value={formData.streetAddress.apartment}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    streetAddress: {
+                      ...prevData.streetAddress,
+                      apartment: e.target.value,
+                    },
+                  }))
+                }
               />
             </div>
             <div className={style.form_group}>
@@ -163,29 +207,29 @@ function CheckoutPageSectionSecond() {
               <input
                 type="text"
                 id="city"
-                name="city"
-                value={formData.city}
+                name="townCity"
+                value={formData.townCity}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="county">County (optional)</label>
+              <label htmlFor="stateCounty">County (optional)</label>
               <input
                 type="text"
-                id="county"
-                name="county"
-                value={formData.county}
+                id="stateCounty"
+                name="stateCounty"
+                value={formData.stateCounty}
                 onChange={handleChange}
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="postcode">Postcode *</label>
+              <label htmlFor="postcodeZIP">postcodeZIP *</label>
               <input
                 type="text"
-                id="postcode"
-                name="postcode"
-                value={formData.postcode}
+                id="postcodeZIP"
+                name="postcodeZIP"
+                value={formData.postcodeZIP}
                 onChange={handleChange}
                 required
               />
@@ -229,55 +273,112 @@ function CheckoutPageSectionSecond() {
         </div>
         <br />
         <div className={style.order_summary}>
-        <h4>YOUR ORDER</h4>
-        <div>
-          <div className={style.order_item}>
-            <div className={style.header}>
-              <span>PRODUCT</span>
-              <span>SUBTOTAL</span>
-            </div>
-          </div>
-
-          {cartData.map((item, index) => (
-            <div key={index} className={style.order_item}>
-              <div className={style.product_item}>
-                <span>
-                  {item.productName} x <strong>{item.quantity}</strong>
-                </span>
-                <span className={style.calculate_}>${item.subTotal}</span>
+          <h4>YOUR ORDER</h4>
+          <div>
+            <div className={style.order_item}>
+              <div className={style.header}>
+                <span>PRODUCT</span>
+                <span>SUBTOTAL</span>
               </div>
             </div>
-          ))}
-          <div className={style.order_item}>
-            <div className={style.product_item}>
-              <span>SUBTOTAL</span>
-              <span className={style.calculate_}>${calculateTotal()}</span>
+
+            {cartData.productsData.map((item, index) => (
+              <div key={index} className={style.order_item}>
+                <div className={style.product_item}>
+                  <span>
+                    {item?.Product_category} x{" "}
+                    <strong>{item?.Product_quantity}</strong>
+                  </span>
+                  <span className={style.calculate_}>
+                    ${item?.productTotal}
+                  </span>
+                </div>
+              </div>
+            ))}
+            <div className={style.order_item}>
+              <div className={style.product_item}>
+                <span>SUBTOTAL</span>
+                <span className={style.calculate_}>
+                  ${cartData?.allProductTotal}
+                </span>
+              </div>
+            </div>
+            <div className={style.order_item}>
+              <div className={style.product_item}>
+                <span>
+                  Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
+                </span>
+                <span className={style.calculate_}>
+                  ${cartData?.totalShipping}
+                </span>
+              </div>
+            </div>
+            <div className={style.order_item}>
+              <div className={style.product_item}>
+                <span>Tax ({cartData?.taxPercent}%):</span>
+                <span className={style.calculate_}>${cartData?.totalTax}</span>
+              </div>
+            </div>
+            {cartData?.promoDiscount && (
+              <div className={style.order_item}>
+                <div className={style.product_item}>
+                  <span>
+                    Coupon Discount({cartData?.couponDiscountPercent}%):
+                  </span>
+                  <span className={style.calculate_}>
+                    ${cartData?.promoDiscount}
+                  </span>
+                </div>
+              </div>
+            )}
+            <div className={style.order_item}>
+              <div className={style.product_item}>
+                <strong>
+                  <span>TOTAL</span>
+                </strong>
+                <strong className={style.calculate_}>
+                  <span>${cartData?.totalPrice}</span>
+                </strong>
+              </div>
             </div>
           </div>
-          <div className={style.order_item}>
-            <div className={style.product_item}>
-              <strong>
-                <span>TOTAL</span>
-              </strong>
-              <strong className={style.calculate_}>
-                <span>${calculateTotal()}</span>
-              </strong>
-            </div>
-          </div>
+          <br />
+          <p className={style.info_box}>
+            Sorry, it seems that there are no available payment methods for your
+            state. Please contact us if you require assistance or wish to make
+            alternate arrangements.
+          </p>
+          <br />
+          <p>
+            Your personal data will be used to process your order, support your
+            experience throughout this website, and for other purposes described
+            in our privacy policy.
+          </p>
         </div>
         <br />
-        <p className={style.info_box}>
-          Sorry, it seems that there are no available payment methods for your
-          state. Please contact us if you require assistance or wish to make
-          alternate arrangements.
-        </p>
-        <br />
-        <p>
-          Your personal data will be used to process your order, support your
-          experience throughout this website, and for other purposes described
-          in our privacy policy.
-        </p>
-      </div>
+        <div className={style.payment_box}>
+          {/* Payment method */}
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="cashOnDelivery"
+              checked={formData.paymentMethod === "cashOnDelivery"}
+              onChange={handleChange}
+            />
+            Cash on Delivery
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="online"
+              checked={formData.paymentMethod === "online"}
+              onChange={handleChange}
+            />
+            Online Payment
+          </label>
+        </div>
         <br />
         <button type="submit">PLACE ORDER →</button>
       </form>
