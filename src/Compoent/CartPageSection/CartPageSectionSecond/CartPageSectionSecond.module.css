@@ -171,3 +171,25 @@
     width: 12rem;
   }
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  align-items: center;
+  font-weight: 500;
+  width: 80%;
+}
+.order_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+  align-items: center;
+  border-bottom: 1px #7b0128 solid;
+}
+.product_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  align-items: center;
+  width: 80%;
+}

@@ -63,7 +63,10 @@ function SectionFourth() {
   };
 
   const handleAddToCart = (item) => {
-    // handleAddToCartInBeckend(item._id)
+    const loginStatus=JSON.parse(localStorage.getItem("isLoggedIn"))
+    if(loginStatus){
+      handleAddToCartInBeckend(item._id)
+    }
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex((product) => product._id === item._id);
   

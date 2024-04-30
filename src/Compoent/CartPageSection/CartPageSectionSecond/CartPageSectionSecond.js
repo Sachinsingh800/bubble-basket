@@ -9,6 +9,9 @@ function CartPageSectionSecond() {
   const [update, setUpdate] = useRecoilState(updateCart);
   const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
   const [totalPrice, setTotalPrice] = useState(0); // State to store the total price
+  const [coupon,setCoupon] = useState("")
+
+  const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -65,6 +68,14 @@ function CartPageSectionSecond() {
       console.log(error)
     }
    }
+
+   const handleCouponCheck = async () => {
+    try {
+      const response = await getCheckout(coupon);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleFilterCheckoutData = () => {
     localStorage.setItem("cartData", JSON.stringify(data));
@@ -135,11 +146,88 @@ function CartPageSectionSecond() {
         <>
           <div className={style.buttons_box}>
             <div>
-              <input placeholder="Coupon Code" />
-              <button>APPLY COUPON → </button>
+              <input value={coupon} onChange={(e)=>setCoupon(e.target.value)} placeholder="Coupon Code" />
+              <button onClick={handleCouponCheck} >APPLY COUPON → </button>
             </div>
             <button className={style.updatebtn}>UPDATE CART → </button>
           </div>
+       {loginStatus ? 
+       
+       <div className={style.order_summary}>
+<h4>YOUR ORDER</h4>
+<div>
+  <div className={style.order_item}>
+    <div className={style.header}>
+      <span>PRODUCT</span>
+      <span>SUBTOTAL</span>
+    </div>
+  </div>
+
+  {cartData.productsData.map((item, index) => (
+    <div key={index} className={style.order_item}>
+      <div className={style.product_item}>
+        <span>
+          {item?.Product_category} x{" "}
+          <strong>{item?.Product_quantity}</strong>
+        </span>
+        <span className={style.calculate_}>
+          ${item?.productTotal}
+        </span>
+      </div>
+    </div>
+  ))}
+  <div className={style.order_item}>
+    <div className={style.product_item}>
+      <span>SUBTOTAL</span>
+      <span className={style.calculate_}>
+        ${cartData?.allProductTotal}
+      </span>
+    </div>
+  </div>
+  <div className={style.order_item}>
+    <div className={style.product_item}>
+      <span>
+        Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
+      </span>
+      <span className={style.calculate_}>
+        ${cartData?.totalShipping}
+      </span>
+    </div>
+  </div>
+  <div className={style.order_item}>
+    <div className={style.product_item}>
+      <span>Tax ({cartData?.taxPercent}%):</span>
+      <span className={style.calculate_}>${cartData?.totalTax}</span>
+    </div>
+  </div>
+  {cartData?.promoDiscount && (
+    <div className={style.order_item}>
+      <div className={style.product_item}>
+        <span>
+          Coupon Discount({cartData?.couponDiscountPercent}%):
+        </span>
+        <span className={style.calculate_}>
+          ${cartData?.promoDiscount}
+        </span>
+      </div>
+    </div>
+  )}
+  <div className={style.order_item}>
+    <div className={style.product_item}>
+      <strong>
+        <span>TOTAL</span>
+      </strong>
+      <strong className={style.calculate_}>
+        <span>${cartData?.totalPrice}</span>
+      </strong>
+    </div>
+  </div>
+</div>
+</div>
+       
+       :
+       
+     
           <div className={style.cart_container}>
             <h6>CART TOTALS</h6>
             <div className={style.cart_box}>
@@ -151,6 +239,7 @@ function CartPageSectionSecond() {
               <div className={style.total_price}>$ {calculateTotal()}</div>
             </div>
           </div>
+            }
           <br />
           <div className={style.buttons_box2}>
             <button onClick={handleFilterCheckoutData}>

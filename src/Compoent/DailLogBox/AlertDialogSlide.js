@@ -6,6 +6,7 @@ import style from "./AlertDialogSlide.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../Recoil/Recoil";
+import { AddtoCart } from "../Apis/Apis";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,7 +21,19 @@ export default function AlertDialogSlide({ cartdata }) {
     setQuantity(parseInt(e.target.value));
   };
 
+  const handleAddToCartInBeckend = async (productId) => {
+    try {
+      const response = await AddtoCart(productId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleAddToCart = () => {
+    const loginStatus=JSON.parse(localStorage.getItem("isLoggedIn"))
+    if(loginStatus){
+      handleAddToCartInBeckend(cartdata._id)
+    }
     const itemToAdd = { ...cartdata, quantity: quantity };
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex((product) => product._id === itemToAdd._id);

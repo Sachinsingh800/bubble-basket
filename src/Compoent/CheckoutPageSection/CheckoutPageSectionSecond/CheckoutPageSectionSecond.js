@@ -27,9 +27,6 @@ function CheckoutPageSectionSecond() {
     setAsDefault: true,
   });
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
-  const [orderHistory, setOrderHistory] = useState(
-    JSON.parse(localStorage.getItem("orderhistory")) || []
-  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
