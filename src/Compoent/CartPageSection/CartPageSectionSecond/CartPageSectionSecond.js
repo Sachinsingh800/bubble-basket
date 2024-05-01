@@ -52,7 +52,9 @@ function CartPageSectionSecond() {
     return totalPrice.toFixed(2);
   };
 
-
+useEffect(()=>{
+  handleCheckoutOrder()
+},[])
 
   const calculateTotalPrice = (cartData) => {
     const total = cartData.reduce((total, item) => {
@@ -72,11 +74,10 @@ function CartPageSectionSecond() {
     }
   };
 
-  useEffect(()=>{
-    handleCheckoutOrder()
-  },[])
+
 
   const handleCouponCheck = async () => {
+  
     try {
       const response = await getCheckout(coupon);
     } catch (error) {
