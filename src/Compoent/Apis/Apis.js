@@ -364,14 +364,14 @@ export const getCheckout = async (promoCode) => {
     const { status, message, data } = response.data;
     console.log(response);
     localStorage.setItem("checkout", JSON.stringify(response?.data?.data));
-    const login = JSON.parse(localStorage.getItem("isLoggedIn"));
+    const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
 
     if (checkoutStatus) {
       window.location.href = "/CheckoutPage";
     }
-
-    if (status && login) {
+ 
+    if (login) {
       // If "Remember Me" is checked, save token to local storage
     } else {
       window.location.href = "/Login";

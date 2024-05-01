@@ -89,6 +89,8 @@ function CheckoutPageSectionSecond() {
       const response = await getCheckout(formData.coupon);
     } catch (error) {
       console.log(error);
+    }finally{
+      window.location.reload()
     }
   };
 
