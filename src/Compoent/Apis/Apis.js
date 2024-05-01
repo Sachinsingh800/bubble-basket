@@ -100,12 +100,11 @@ export const removeFromCart = async (id) => {
     };
     const response = await axios.put(
       `${BASE_URL}/user/cart/removeProduct`,
-      
-        {
-          "productId":"662c0492950d765de0bf5081",
-          "removeProduct":0
-      }
-      ,
+
+      {
+        productId: id,
+        removeProduct: "0",
+      },
       { headers }
     );
 
@@ -157,7 +156,7 @@ export const addAddress = async (formData) => {
     );
 
     const { status, message, data } = response.data;
-    localStorage.setItem("address",JSON.stringify(data))
+    localStorage.setItem("address", JSON.stringify(data));
 
     // Handle response data as needed
   } catch (error) {
@@ -179,9 +178,7 @@ export const addAddress = async (formData) => {
   }
 };
 
-
 // oderPlace
-
 
 export const orderPlace = async (orderData) => {
   // Function to retrieve token from cookies
@@ -195,7 +192,7 @@ export const orderPlace = async (orderData) => {
   // Retrieve token
   const token = getToken();
   const address = JSON.parse(localStorage.getItem("address")) || {};
-  const id=address?._id
+  const id = address?._id;
 
   try {
     const headers = {
@@ -230,9 +227,6 @@ export const orderPlace = async (orderData) => {
   }
 };
 
-
-
-
 // getOrderHistory
 
 export const getOrderHistory = async () => {
@@ -252,10 +246,9 @@ export const getOrderHistory = async () => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(
-      `${BASE_URL}/user/order/orderHistory`,
-      { headers }
-    );
+    const response = await axios.get(`${BASE_URL}/user/order/orderHistory`, {
+      headers,
+    });
 
     const { status, message, data } = response.data;
     console.log(response);
@@ -278,11 +271,6 @@ export const getOrderHistory = async () => {
     }
   }
 };
-
-
-
-
-
 
 // LOG IN USER
 
@@ -377,9 +365,14 @@ export const getCheckout = async (promoCode) => {
     console.log(response);
     localStorage.setItem("checkout", JSON.stringify(response?.data?.data));
     const login = JSON.parse(localStorage.getItem("isLoggedIn"));
+    const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
+
+    if (checkoutStatus) {
+      window.location.href = "/CheckoutPage";
+    }
+
     if (status && login) {
       // If "Remember Me" is checked, save token to local storage
-      window.location.href = "/CheckoutPage";
     } else {
       window.location.href = "/Login";
     }

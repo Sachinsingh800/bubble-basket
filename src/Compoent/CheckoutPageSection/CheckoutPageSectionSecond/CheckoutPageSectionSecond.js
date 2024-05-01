@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
 import { useRecoilState } from "recoil";
@@ -27,6 +27,11 @@ function CheckoutPageSectionSecond() {
     setAsDefault: true,
   });
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
+
+  useEffect(()=>{
+    localStorage.setItem("checkoutStatus", JSON.stringify(false));
+  },[])
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
