@@ -78,6 +78,7 @@ export const AddtoCart = async (productId) => {
     }
   }
 };
+
 //removeFromCart
 
 export const removeFromCart = async (id) => {
@@ -128,6 +129,56 @@ export const removeFromCart = async (id) => {
     }
   }
 };
+//removeFromCart
+
+export const updateFromCart = async (id, quantity) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.put(
+      `${BASE_URL}/user/cart/removeProduct`,
+
+      {
+        productId: id,
+        removeProduct: quantity,
+      },
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
 
 // addAddress
 
@@ -151,6 +202,100 @@ export const addAddress = async (formData) => {
     };
     const response = await axios.post(
       `${BASE_URL}/user/address/create`,
+      formData,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    localStorage.setItem("address", JSON.stringify(data));
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+      window.location.href = "/Login";
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+// getAddress
+
+export const getAddress = async () => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(`${BASE_URL}/user/address/getAll`, {
+      headers,
+    });
+
+    const { status, message, data } = response.data;
+    localStorage.setItem("allAdress", JSON.stringify(data));
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+// updateAddress
+
+export const updateAddress = async (formData, id) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(
+      `${BASE_URL}/user/address/update/${id}`,
       formData,
       { headers }
     );
@@ -370,7 +515,7 @@ export const getCheckout = async (promoCode) => {
     if (checkoutStatus) {
       window.location.href = "/CheckoutPage";
     }
- 
+
     if (login) {
       // If "Remember Me" is checked, save token to local storage
     } else {

@@ -25,6 +25,7 @@ import UpdateInformationSectionFirst from "../../UpdateInformationSection/Update
 import UpdateInformationSectionSecond from "../../UpdateInformationSection/UpdateInformationSectionSecond/UpdateInformationSectionSecond";
 import UpdatePasswordPageSection from "../../UpdateInformationSection/UpdatePasswordPageSection/UpdatePasswordPageSection";
 import UpdateAddressPageSection from "../../UpdateInformationSection/UpdateAddressPageSection/UpdateAddressPageSection";
+import { getAddress, updateAddress } from "../../Apis/Apis";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -70,6 +71,18 @@ export default function UpdateInformation(props) {
   const closeOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: false });
   };
+
+  const handlegetAlladress = async () => {
+    try {
+      const response = await getAddress();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(()=>{
+    handlegetAlladress()
+  },[])
   return (
     <React.Fragment>
       <span className={style.dawer}>

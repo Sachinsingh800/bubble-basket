@@ -14,7 +14,7 @@ function UpdateAddressPageSection() {
     region: "",
     mobileNo: "",
   });
-
+  const allAdress = JSON.parse(localStorage.getItem("allAdress"));
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAddressData({ ...addressData, [name]: value });
@@ -41,6 +41,40 @@ function UpdateAddressPageSection() {
 
   return (
     <div className={style.main}>
+      <div>
+        <h1>All address</h1>
+        <br/>
+        <div className={style.all_address}>
+          {allAdress.map((item) => (
+            <div key={item._id} className={style.address_container}>
+              <div>
+                <div>
+                  <strong> firstName</strong>
+                  <span>{item.firstName}</span>
+                </div>
+                <div>
+                  <strong> lastName</strong>
+                  <span>{item.lastName}</span>
+                </div>
+                <div>
+                  <strong>email</strong>
+                  <span>{item.email}</span>
+                </div>
+                <div>
+                  <strong>phone</strong>
+                  <span>{item.phone}</span>
+                </div>
+                <div>
+                  <strong>postcodeZIP</strong>
+                  <span>{item.postcodeZIP}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <br/>
+      <br/>
       <h2>Edit Address</h2>
       <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.input_box}>

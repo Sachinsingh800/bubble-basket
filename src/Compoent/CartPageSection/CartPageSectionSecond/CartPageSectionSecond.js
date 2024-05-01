@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { getCheckout, removeFromCart } from "../../Apis/Apis"; // Removed unnecessary import of AddtoCart
+import { getCheckout, removeFromCart, updateFromCart } from "../../Apis/Apis"; // Removed unnecessary import of AddtoCart
 // Removed unused import of getCheckout from Recoil
 // Removed unused import of updateCart from Recoil
 
@@ -13,6 +13,7 @@ function CartPageSectionSecond() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [coupon, setCoupon] = useState("");
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
+  const [productId,setProductId] = useState(null)
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -23,6 +24,7 @@ function CartPageSectionSecond() {
   }, [update]);
 
   const handleQuantityChange = (index, quantity) => {
+    updateItemFromtheCart()
     const updatedData = [...data];
     updatedData[index] = { ...updatedData[index], quantity: quantity };
     setData(updatedData);
@@ -90,6 +92,21 @@ useEffect(()=>{
   const removeItemFromtheCart = async (id) => {
     try {
       const response = await removeFromCart(id);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      const updatedData = data.filter((item) => item._id !== id);
+      setData(updatedData);
+      localStorage.setItem("cartData", JSON.stringify(updatedData));
+      setUpdate(update + 1);
+      calculateTotalPrice(updatedData);
+      handleCheckoutOrder();
+    }
+  };
+  
+  const updateItemFromtheCart = async (id,quantity) => {
+    try {
+      const response = await updateFromCart(id,quantity);
     } catch (error) {
       console.log(error);
     } finally {
