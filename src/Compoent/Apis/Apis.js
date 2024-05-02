@@ -209,7 +209,6 @@ export const createReview = async (id, reviewData) => {
 
     const { status, message, data } = response.data;
     // console.log(response);
-    localStorage.setItem("user_review",JSON.stringify(data))
 
     // Handle response data as needed
   } catch (error) {

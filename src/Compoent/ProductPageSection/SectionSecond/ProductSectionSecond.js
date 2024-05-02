@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./ProductSectionSecond.module.css";
-import product1 from "../../Images/dom perignon lady gaga rose.png";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -34,33 +33,12 @@ function ProductSectionSecond() {
   const [rating, setRating] = useState("");
   const [updateReview, setUpdateReview] = useState(0);
   const [userReview, setUserReview] = useState([]);
-  const [allProduct,setAllProduct] = useState([])
-
-
-
-
-
-  const handleAllProductData = async () => {
-    setLoading(true)
-    try {
-      const response = await getAllProduct();
-
-      if (response.status) {
-        // Show only the first three products
-        setAllProduct(response.data.slice(0, 8)); 
-        setLoading(false)
-      }
-    } catch (error) {
-      console.error("Error getting product data:", error);
-      setLoading(false)
-    }
-  };
+  const [userCreateReview,setUserCreateReview] = useState(null)
 
 
   useEffect(() => {
     handleProductData();
     handleGetAllReview();
-    handleAllProductData()
   }, []);
 
   useEffect(() => {
@@ -170,17 +148,17 @@ console.log(product)
       console.log("error");
     } finally {
       setUpdateReview(updateReview + 1);
+      setUserCreateReview(reviewData)
+      setName("")
+      setEmail("")
+      setRating(0)
+      setReviewText("")
     }
   };
 
   const ratingChanged = (newRating) => {
     setRating(newRating);
   };
-
-  // const array =userReview.reviews
-  // const lastItem = array.reverse();
-  // console.log( lastItem);
-
 
   return (
     <div className={style.main}>
@@ -197,7 +175,7 @@ console.log(product)
             count={5}
             onChange={null}
             filledIcon={null}
-            value={Math.ceil(reviews.reviews.averageRating)}
+            value={Math.ceil(reviews?.reviews?.averageRating)}
             size={20}
             activeColor="#ffd700"
           />
@@ -244,7 +222,7 @@ console.log(product)
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
           <h5 onClick={handleToggleReview}>
-            REVIEWS ({reviews.reviews.length})
+            REVIEWS ({reviews?.reviews?.length})
           </h5>
         </div>
         <div className={style.des_container}>
@@ -263,7 +241,7 @@ console.log(product)
             <div>
               <h6>3 REVIEW FOR BUBBLE BASKET</h6>
               <br />
-              {userReview && (
+              {userCreateReview && (
                 <div className={style.user_review_container}>
                   <div className={style.user_dp}>
                     <AccountCircleOutlinedIcon className={style.dp_icon} />
@@ -273,17 +251,18 @@ console.log(product)
                       count={5}
                       onChange={null}
                       filledIcon={null}
-                      // value={item.rating}
+                      value={userCreateReview.rating}
                       size={20}
                       activeColor="#ffd700"
                     />
-                    <span>sahdgh</span> - <span>sachin</span>
-                    <p>dashj</p>
+                    <span>Your review is awaiting approval</span>
+                    <span>{userCreateReview.name}</span> - <span>{userCreateReview.email}</span>
+                    <p>{userCreateReview.reviewText}</p>
                   </div>
                 </div>
               )}
 
-              {reviews.reviews.map((item) => (
+              {reviews?.reviews?.map((item) => (
                 <div className={style.user_review_container}>
                   <div className={style.user_dp}>
                     <AccountCircleOutlinedIcon className={style.dp_icon} />
