@@ -50,6 +50,7 @@ function UpdateAddressPageSection() {
 
   const handleAddressSelect = (selectedAddress) => {
     setAddressData(selectedAddress);
+    localStorage.setItem("selectedAddress",JSON.stringify(selectedAddress))
     setAddressId(selectedAddress._id)
   };
 
