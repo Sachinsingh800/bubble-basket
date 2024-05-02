@@ -266,6 +266,7 @@ export const getAddress = async () => {
       // Log the error message as a string
       alert(errorMessage);
       console.error("Axios Error:", errorMessage);
+      window.location.href = "/Login";
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -274,9 +275,9 @@ export const getAddress = async () => {
   }
 };
 
-// updateAddress
+// deleteAddress
 
-export const updateAddress = async (formData, id) => {
+export const deleteAddress = async (id) => {
   // Function to retrieve token from cookies
   // Function to retrieve token from cookies
   function getToken() {
@@ -294,14 +295,61 @@ export const updateAddress = async (formData, id) => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.post(
+    const response = await axios.delete(
+      `${BASE_URL}/user/address/delete/${id}`,
+      {
+        headers,
+      }
+    );
+
+    const { status, message, data } = response.data;
+    localStorage.setItem("allAdress", JSON.stringify(data));
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+// updateAddress
+
+export const updateAddress = async (addressData, addressId) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  const id = addressId;
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.put(
       `${BASE_URL}/user/address/update/${id}`,
-      formData,
+      addressData,
       { headers }
     );
 
     const { status, message, data } = response.data;
-    localStorage.setItem("address", JSON.stringify(data));
 
     // Handle response data as needed
   } catch (error) {
@@ -314,7 +362,6 @@ export const updateAddress = async (formData, id) => {
       // Log the error message as a string
       alert(errorMessage);
       console.error("Axios Error:", errorMessage);
-      window.location.href = "/Login";
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
