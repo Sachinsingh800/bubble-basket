@@ -17,6 +17,7 @@ import ProductSectionFirst from "../../ProductPageSection/SectionFirst/ProductSe
 import ProductSectionSecond from "../../ProductPageSection/SectionSecond/ProductSectionSecond";
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../../Recoil/Recoil";
+import { createReview } from "../../Apis/Apis";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -46,13 +47,13 @@ HideOnScroll.propTypes = {
 export default function ProductPage(props) {
   const [showOptions, setShowOptions] = React.useState({});
   const [update, setUpdate] = useRecoilState(updateCart);
-  const [cartItem,setCartItem] = React.useState()
+  const [cartItem, setCartItem] = React.useState();
 
-  React.useEffect(()=>{
-    const cartDatafromlocal=JSON.parse(localStorage.getItem("cartData"))
+  React.useEffect(() => {
+    const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length;
-    setCartItem(cartItem)
-  },[update])
+    setCartItem(cartItem);
+  }, [update]);
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -61,15 +62,18 @@ export default function ProductPage(props) {
   const closeOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: false });
   };
+
   return (
     <React.Fragment>
-         <span className={style.dawer}><AnchorTemporaryDrawer /></span> 
+      <span className={style.dawer}>
+        <AnchorTemporaryDrawer />
+      </span>
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>
           <Toolbar>
             <div className={style.tool_bar}>
-            <ul className={style.left_section}>
+              <ul className={style.left_section}>
                 <li
                   onMouseEnter={() => showOptionDiv(1)}
                   onMouseLeave={() => closeOptionDiv(1)}
@@ -115,7 +119,9 @@ export default function ProductPage(props) {
                       visibility: showOptions[3] ? "visible" : "hidden",
                     }}
                   >
-                    <p onClick={()=>window.location.href="/OrderHistory"}>Order History </p>
+                    <p onClick={() => (window.location.href = "/OrderHistory")}>
+                      Order History{" "}
+                    </p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>
                     <p>Content for TRACKORDER</p>

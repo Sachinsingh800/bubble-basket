@@ -7,8 +7,15 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
-import { AddtoCart, getAllProduct } from "../../Apis/Apis";
+import {
+  AddtoCart,
+  createReview,
+  getAllProduct,
+  getAllReview,
+} from "../../Apis/Apis";
 import { updateCart } from "../../Recoil/Recoil";
+import ReactStars from "react-rating-stars-component";
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -20,10 +27,33 @@ function ProductSectionSecond() {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [rating, setRating] = useState("");
+  const [updateReview,setUpdateReview] = useState(0)
+  const  [userReview,setUserReview] = useState([])
 
   useEffect(() => {
     handleProductData();
+    handleGetAllReview();
   }, []);
+
+
+  useEffect(()=>{
+  const userreview=JSON.parse(localStorage.getItem("user_review"));
+  setUserReview(userreview)
+  },[updateReview])
+
+  const reviews = JSON.parse(localStorage.getItem("review"));
+
+  const handleGetAllReview = async () => {
+    try {
+      const response = await getAllReview(id);
+    } catch (error) {
+      console.log("errror");
+    }
+  };
 
   const handleProductData = async () => {
     setLoading(true);
@@ -64,19 +94,19 @@ function ProductSectionSecond() {
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
 
-  const handleAddToCartInBeckend = async (productId, quantity) => {
+  const handleAddToCartInBeckend = async () => {
     try {
-      const response = await AddtoCart(productId, quantity);
-      if (response.status) {
-        setUpdate(update + 1); // Trigger UI update
-      }
+      const response = await AddtoCart(id);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleAddToCart = () => {
-    // handleAddToCartInBeckend(product._id, quantity);
+    const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
+    if (loginStatus) {
+      handleAddToCartInBeckend();
+    }
     const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex(
       (item) => item._id === product._id
@@ -114,6 +144,27 @@ function ProductSectionSecond() {
     setShowAddInfo(!showAddInfo);
     setShowDescription(false);
     setShowReview(false);
+  };
+
+  const handleCreateReview = async (e) => {
+    e.preventDefault();
+    const reviewData = {
+      name: name,
+      email: email,
+      rating: rating,
+      reviewText: reviewText,
+    };
+    try {
+      const response = await createReview(id, reviewData);
+    } catch (error) {
+      console.log("error");
+    }finally{
+      setUpdateReview(updateReview + 1)
+    }
+  };
+
+  const ratingChanged = (newRating) => {
+    setRating(newRating);
   };
 
   return (
@@ -170,7 +221,7 @@ function ProductSectionSecond() {
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
-          <h5 onClick={handleToggleReview}>REVIEWS (3)</h5>
+          <h5 onClick={handleToggleReview}>REVIEWS ({reviews.length})</h5>
         </div>
         <div className={style.des_container}>
           {showAddInfo && (
@@ -188,34 +239,51 @@ function ProductSectionSecond() {
             <div>
               <h6>3 REVIEW FOR BUBBLE BASKET</h6>
               <br />
-              <div className={style.user_review_container}>
-                <div className={style.user_dp}>
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQey3S6VQ4qIppedXehx8CQYDshaMBwU1UwpQ&s"
-                    alt="dp"
-                  />
+              {userReview  && 
+                     <div className={style.user_review_container}>
+                     <div className={style.user_dp}>
+                       <AccountCircleOutlinedIcon className={style.dp_icon} />
+                     </div>
+                     <div>
+                       <ReactStars
+                         count={5}
+                         onChange={null}
+                         filledIcon={null}
+                         // value={item.rating}
+                         size={20}
+                         activeColor="#ffd700"
+                       />
+                       <span>sahdgh</span> - <span>sachin</span>
+                       <p>dashj</p>
+                     </div>
+                   </div>
+              }
+       
+              {reviews.map((item) => (
+                <div className={style.user_review_container}>
+                  <div className={style.user_dp}>
+                    <AccountCircleOutlinedIcon className={style.dp_icon} />
+                  </div>
+                  <div>
+                    <ReactStars
+                      count={5}
+                      onChange={null}
+                      filledIcon={null}
+                      value={item.rating}
+                      size={20}
+                      activeColor="#ffd700"
+                    />
+                    <span>{item.name}</span> - <span>{item.email}</span>
+                    <p>{item.reviewText}</p>
+                  </div>
                 </div>
-                <div>
-                  <p>
-                    {Array.from({
-                      length: extraInfo.addinfo.review.rating,
-                    }).map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                    {Array.from({
-                      length: 5 - extraInfo.addinfo.review.rating,
-                    }).map((_, i) => (
-                      <span key={i + extraInfo.addinfo.review.rating}>✰</span>
-                    ))}
-                  </p>
-                  <span>{extraInfo.addinfo.review.reviewtitle}</span>
-                  <p>{extraInfo.addinfo.review.reviewdes}</p>
-                </div>
-              </div>
+              ))}
+      
+
               <br />
               <br />
               <br />
-              <form className={style.form}>
+              <form className={style.form} onSubmit={handleCreateReview}>
                 <p>
                   <strong>ADD A REVIEW</strong>
                 </p>
@@ -224,16 +292,28 @@ function ProductSectionSecond() {
                     Your email address will not be published. Required fields
                     are marked * Your Rating
                   </p>
-                  <p>
-                    {[...Array(5)].map((_, i) => (
-                      <label key={i}>{i < 3 ? "★" : "✰"}</label>
-                    ))}
-                  </p>
+                  <ReactStars
+                    count={5}
+                    onChange={ratingChanged}
+                    size={24}
+                    activeColor="#ffd700"
+                  />
                 </div>
-                <textarea placeholder="Your Review*" />
+                <textarea
+                  onChange={(e) => setReviewText(e.target.value)}
+                  placeholder="Your Review*"
+                />
                 <div className={style.user_input_box}>
-                  <input type="text" placeholder="Name*" />
-                  <input type="email" placeholder="Email*" />
+                  <input
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Name*"
+                  />
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="Email*"
+                  />
                 </div>
                 <div>
                   <input type="checkbox" />

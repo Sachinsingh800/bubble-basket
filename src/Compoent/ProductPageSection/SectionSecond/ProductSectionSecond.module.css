@@ -109,7 +109,14 @@ justify-content: center;
 }
 .user_dp{
     height: 4rem;
-    width: 6rem;
+    width: 4rem;
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dp_icon{
+    font-size: 3rem!important;
 }
 .user_dp img{
     height: 100%;

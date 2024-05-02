@@ -129,6 +129,7 @@ export const removeFromCart = async (id) => {
     }
   }
 };
+
 //removeFromCart
 
 export const updateFromCart = async (id, quantity) => {
@@ -161,6 +162,101 @@ export const updateFromCart = async (id, quantity) => {
 
     const { status, message, data } = response.data;
     // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+//createReview
+
+export const createReview = async (id, reviewData) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.put(
+      `${BASE_URL}/user/reviews/create/${id}`,
+      reviewData,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+    localStorage.setItem("user_review",JSON.stringify(data))
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+
+//createReview
+
+export const getAllReview = async (id) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(
+      `${BASE_URL}/user/reviews/getAll/${id}`,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    localStorage.setItem("review",JSON.stringify(response.data.reviews))
 
     // Handle response data as needed
   } catch (error) {
