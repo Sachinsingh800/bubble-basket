@@ -256,7 +256,7 @@ export const getAllReview = async (id) => {
     );
 
     const { status, message, data } = response.data;
-    localStorage.setItem("review",JSON.stringify(response.data.reviews))
+    localStorage.setItem("review",JSON.stringify(response.data))
 
     // Handle response data as needed
   } catch (error) {

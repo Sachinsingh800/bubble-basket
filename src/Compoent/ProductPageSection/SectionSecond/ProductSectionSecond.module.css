@@ -168,8 +168,7 @@ height: 12rem;
     width: 100%;
 }
 .additional_box{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+   width: 100%;
 }
 .inner_container{
     width: 13rem;

@@ -15,7 +15,8 @@ import {
 } from "../../Apis/Apis";
 import { updateCart } from "../../Recoil/Recoil";
 import ReactStars from "react-rating-stars-component";
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -31,19 +32,41 @@ function ProductSectionSecond() {
   const [email, setEmail] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("");
-  const [updateReview,setUpdateReview] = useState(0)
-  const  [userReview,setUserReview] = useState([])
+  const [updateReview, setUpdateReview] = useState(0);
+  const [userReview, setUserReview] = useState([]);
+  const [allProduct,setAllProduct] = useState([])
+
+
+
+
+
+  const handleAllProductData = async () => {
+    setLoading(true)
+    try {
+      const response = await getAllProduct();
+
+      if (response.status) {
+        // Show only the first three products
+        setAllProduct(response.data.slice(0, 8)); 
+        setLoading(false)
+      }
+    } catch (error) {
+      console.error("Error getting product data:", error);
+      setLoading(false)
+    }
+  };
+
 
   useEffect(() => {
     handleProductData();
     handleGetAllReview();
+    handleAllProductData()
   }, []);
 
-
-  useEffect(()=>{
-  const userreview=JSON.parse(localStorage.getItem("user_review"));
-  setUserReview(userreview)
-  },[updateReview])
+  useEffect(() => {
+    const userreview = JSON.parse(localStorage.getItem("user_review"));
+    setUserReview(userreview);
+  }, [updateReview]);
 
   const reviews = JSON.parse(localStorage.getItem("review"));
 
@@ -76,24 +99,11 @@ function ProductSectionSecond() {
     setData(cartdata);
   }, [update]);
 
-  const extraInfo = {
-    des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris.",
-    addinfo: {
-      weight: "0.5 kg",
-      dimensions: "10 x 10 x 15 cm",
-      review: {
-        reviewtitle: "HEATHER HUGHES – July 2, 2020",
-        reviewdes:
-          "Vix ne odio deseruisse percipitur, vel cu epicuri officiis. Debet dicunt suscipit per id, iuvaret indoctum an has. Duo te populo tritani, pro id reque atomorum convenire.",
-        rating: 4,
-        customer: 3,
-      },
-    },
-  };
+  
 
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
-
+console.log(product)
   const handleAddToCartInBeckend = async () => {
     try {
       const response = await AddtoCart(id);
@@ -158,14 +168,19 @@ function ProductSectionSecond() {
       const response = await createReview(id, reviewData);
     } catch (error) {
       console.log("error");
-    }finally{
-      setUpdateReview(updateReview + 1)
+    } finally {
+      setUpdateReview(updateReview + 1);
     }
   };
 
   const ratingChanged = (newRating) => {
     setRating(newRating);
   };
+
+  // const array =userReview.reviews
+  // const lastItem = array.reverse();
+  // console.log( lastItem);
+
 
   return (
     <div className={style.main}>
@@ -178,7 +193,14 @@ function ProductSectionSecond() {
           <h3>{product?.title}</h3>
           <h4>${product?.price}</h4>
           <p>{product?.description}</p>
-
+          <ReactStars
+            count={5}
+            onChange={null}
+            filledIcon={null}
+            value={Math.ceil(reviews.reviews.averageRating)}
+            size={20}
+            activeColor="#ffd700"
+          />
           <div className={style.input_box}>
             <input
               type="number"
@@ -221,45 +243,47 @@ function ProductSectionSecond() {
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
-          <h5 onClick={handleToggleReview}>REVIEWS ({reviews.length})</h5>
+          <h5 onClick={handleToggleReview}>
+            REVIEWS ({reviews.reviews.length})
+          </h5>
         </div>
         <div className={style.des_container}>
           {showAddInfo && (
             <div className={style.add_info_box}>
               <p>
-                <strong>WEIGHT</strong> <span>{extraInfo.addinfo.weight}</span>
+                <strong>Measure Unit</strong> <span>{product?.measureUnit}</span>
               </p>
               <p>
-                <strong>DIMENSIONS</strong> {extraInfo.addinfo.dimensions}
+                <strong>DIMENSIONS</strong> {product?.dimension}
               </p>
             </div>
           )}
-          {showDescription && <p>{extraInfo.des}</p>}
+          {showDescription && <p>{product?.description}</p>}
           {showReview && (
             <div>
               <h6>3 REVIEW FOR BUBBLE BASKET</h6>
               <br />
-              {userReview  && 
-                     <div className={style.user_review_container}>
-                     <div className={style.user_dp}>
-                       <AccountCircleOutlinedIcon className={style.dp_icon} />
-                     </div>
-                     <div>
-                       <ReactStars
-                         count={5}
-                         onChange={null}
-                         filledIcon={null}
-                         // value={item.rating}
-                         size={20}
-                         activeColor="#ffd700"
-                       />
-                       <span>sahdgh</span> - <span>sachin</span>
-                       <p>dashj</p>
-                     </div>
-                   </div>
-              }
-       
-              {reviews.map((item) => (
+              {userReview && (
+                <div className={style.user_review_container}>
+                  <div className={style.user_dp}>
+                    <AccountCircleOutlinedIcon className={style.dp_icon} />
+                  </div>
+                  <div>
+                    <ReactStars
+                      count={5}
+                      onChange={null}
+                      filledIcon={null}
+                      // value={item.rating}
+                      size={20}
+                      activeColor="#ffd700"
+                    />
+                    <span>sahdgh</span> - <span>sachin</span>
+                    <p>dashj</p>
+                  </div>
+                </div>
+              )}
+
+              {reviews.reviews.map((item) => (
                 <div className={style.user_review_container}>
                   <div className={style.user_dp}>
                     <AccountCircleOutlinedIcon className={style.dp_icon} />
@@ -278,7 +302,6 @@ function ProductSectionSecond() {
                   </div>
                 </div>
               ))}
-      
 
               <br />
               <br />
@@ -330,52 +353,7 @@ function ProductSectionSecond() {
         </div>
       </div>
       <div className={style.additional_box}>
-        <div className={style.inner_container1}>
-          <span className={style.offer_box}>new</span>
-          <div className={style.add_box_img}>
-            <img src={product1} alt="product" />
-          </div>
-          <span>Maschio Prosecco</span>
-          <span>Brut DOC NU</span>
-          <p>★★★★✰</p>
-          <h6>
-            <strong>$79.00</strong>
-          </h6>
-        </div>
-        <div className={style.inner_container}>
-          <div className={style.add_box_img}>
-            <img src={product1} alt="product" />
-          </div>
-          <span>Veuve Clicquot</span>
-          <span>Brut Yellow</span>
-          <p>★★★★✰</p>
-          <h6>
-            <strong>$99.00</strong>
-          </h6>
-        </div>
-        <div className={style.inner_container}>
-          <div className={style.add_box_img}>
-            <img src={product1} alt="product" />
-          </div>
-          <span>Billecart-Salmon</span>
-          <span>Brut Sous Bois</span>
-          <p>★★★★✰</p>
-          <h6>
-            <strong>$199.00</strong>
-          </h6>
-        </div>
-        <div className={style.inner_container}>
-          <span className={style.offer_box}>offer</span>
-          <div className={style.add_box_img}>
-            <img src={product1} alt="product" />
-          </div>
-          <span>Hand-Painted</span>
-          <span>La Marca Prosecco</span>
-          <p>★★★★✰</p>
-          <h6>
-            <strong>$99.00</strong>
-          </h6>
-        </div>
+              <ColumnPageSectionSecond />
       </div>
     </div>
   );
