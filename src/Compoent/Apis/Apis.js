@@ -11,7 +11,30 @@ export const RegisterUser = async (userData) => {
       userData
     );
     const { status, message, data, token } = response.data;
-    console.log(response);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+    } else {
+      // Network error (e.g., no internet connection)
+      alert("Something went wrong");
+    }
+  }
+};
+
+// verifyEmail
+
+export const verifyEmail = async (userData) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/verifyEmail`,
+      userData
+    );
+    const { status, message, data, token } = response.data;
     if (status) {
       window.location.href = "/Login";
     }
@@ -23,6 +46,7 @@ export const RegisterUser = async (userData) => {
       const errorMessage = response.data.message;
       alert(errorMessage);
       // Log the error message as a string
+      localStorage.removeItem("cartData")
     } else {
       // Network error (e.g., no internet connection)
       alert("Something went wrong");
@@ -181,6 +205,8 @@ export const updateFromCart = async (id, quantity) => {
   }
 };
 
+
+
 //createReview
 
 export const createReview = async (id, reviewData) => {
@@ -324,6 +350,9 @@ export const addAddress = async (formData) => {
   }
 };
 
+
+
+
 // getAddress
 
 export const getAddress = async () => {
@@ -417,6 +446,9 @@ export const deleteAddress = async (id) => {
     }
   }
 };
+
+
+
 
 // updateAddress
 
@@ -513,6 +545,7 @@ export const orderPlace = async (orderData) => {
     }
   }
 };
+
 
 // getOrderHistory
 

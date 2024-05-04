@@ -78,6 +78,7 @@ function LoginPageSectionSecond() {
       }
     } finally {
       setLoading(false);
+      
     }
   };
 

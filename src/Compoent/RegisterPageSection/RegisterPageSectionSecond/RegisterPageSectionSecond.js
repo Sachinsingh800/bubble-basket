@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./RegisterPageSectionSecond.module.css";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css'; // Import the CSS for the PhoneInput component
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css"; // Import the CSS for the PhoneInput component
 import axios from "axios";
-import { RegisterUser } from "../../Apis/Apis";
+import { RegisterUser, verifyEmail } from "../../Apis/Apis";
 
 function RegisterPageSectionSecond() {
   const [formData, setFormData] = useState({
@@ -15,7 +15,24 @@ function RegisterPageSectionSecond() {
     confirmPassword: "",
     rememberMe: false,
   });
+  const [otp, setOtp] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showVerification, setShowVerification] = useState(false);
+  const [data, setData] = useState([]);
+  const [totalprice, setTotalPrice] = useState(null);
+
+  useEffect(() => {
+    const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
+    if (rememberMeData) {
+      setFormData(rememberMeData);
+    }
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    const priceData = JSON.parse(localStorage.getItem("totalPrice"));
+    if (cartData) {
+      setData(cartData);
+      setTotalPrice(priceData);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -32,13 +49,43 @@ function RegisterPageSectionSecond() {
     setPasswordError(""); // Clear any previous password error
     try {
       await RegisterUser(formData);
+      setShowVerification(true);
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
 
+  const handleVerification = async () => {
+    try {
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        telephone: formData.telephone,
+        otp: otp,
+        items: data.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity,
+        })),
+        totalPrice: totalprice,
+        totalItems: data.length,
+      };
+      const response = await verifyEmail(userData);
+      // Handle response as needed
+    } catch (error) {
+      console.error("Error verifying user:", error);
+    }
+  };
+
   return (
     <div className={style.main}>
+      {showVerification && (
+        <div>
+          <input placeholder="otp" onChange={(e) => setOtp(e.target.value)} />
+          <button onClick={handleVerification}>verify Email </button>
+        </div>
+      )}
       <form onSubmit={handleSubmit} className={style.form}>
         <h4>REGISTER</h4>
         <div className={style.input_box}>
@@ -111,12 +158,12 @@ function RegisterPageSectionSecond() {
         </div>
         {passwordError && <p className={style.error}>{passwordError}</p>}
         <button type="submit">REGISTER →</button>
-        <p>Already have an account? <a href="/Login">Login</a></p>
+        <p>
+          Already have an account? <a href="/Login">Login</a>
+        </p>
       </form>
     </div>
   );
 }
 
 export default RegisterPageSectionSecond;
-
-
