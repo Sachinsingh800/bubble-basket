@@ -36,6 +36,7 @@ function ProductSectionSecond() {
   const [userCreateReview,setUserCreateReview] = useState(null)
 
 
+
   useEffect(() => {
     handleProductData();
     handleGetAllReview();
@@ -82,6 +83,7 @@ function ProductSectionSecond() {
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
 console.log(product)
+
   const handleAddToCartInBeckend = async () => {
     try {
       const response = await AddtoCart(id);
@@ -89,6 +91,8 @@ console.log(product)
       console.log(error);
     }
   };
+
+
 
   const handleAddToCart = () => {
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
@@ -105,10 +109,12 @@ console.log(product)
       const updatedCartData = [...cartData];
       updatedCartData[existingProductIndex].quantity += quantity;
       localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+      setUpdate(update + 1)
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
       localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
+      setUpdate(update + 1)
     }
   };
 
