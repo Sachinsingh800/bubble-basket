@@ -36,7 +36,7 @@ export const verifyEmail = async (userData) => {
     );
     const { status, message, data, token } = response.data;
     if (status) {
-      window.location.href = "/Login";
+      // window.location.href = "/Login";
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -54,10 +54,111 @@ export const verifyEmail = async (userData) => {
   }
 };
 
+
+
+
+//forgetPassword
+
+export const forgetPassword = async (email) => {
+
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/forgetPass`,
+      {
+        email: email,
+      },
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+
+//resetPassword
+
+export const resetPassword = async (passwordData) => {
+
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/resetPass`,
+      passwordData,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+
 //Add to Cart
 
 export const AddtoCart = async (productId) => {
-  // Function to retrieve token from cookies
+
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -102,6 +203,8 @@ export const AddtoCart = async (productId) => {
     }
   }
 };
+
+
 
 //removeFromCart
 
@@ -341,7 +444,7 @@ export const addAddress = async (formData) => {
       // Log the error message as a string
       alert(errorMessage);
       console.error("Axios Error:", errorMessage);
-      window.location.href = "/Login";
+      // window.location.href = "/Login";
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -390,7 +493,7 @@ export const getAddress = async () => {
       // Log the error message as a string
       alert(errorMessage);
       console.error("Axios Error:", errorMessage);
-      window.location.href = "/Login";
+      // window.location.href = "/Login";
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -694,7 +797,7 @@ export const getCheckout = async (promoCode) => {
     if (login) {
       // If "Remember Me" is checked, save token to local storage
     } else {
-      window.location.href = "/Login";
+      // window.location.href = "/Login";
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -1,74 +1,104 @@
 import React, { useState } from "react";
 import style from "./UpdatePasswordPageSection.module.css";
+import { forgetPassword, resetPassword } from "../../Apis/Apis";
 
 function UpdatePasswordPageSection() {
   const [passwordData, setPasswordData] = useState({
-    password: "",
     newPassword: "",
-    confirmPassword: "",
+     otp: "",
+     email:""
   });
+
+  const [email, setEmail] = useState("");
+  const [showPasswordContainer, setPasswordContainer] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPasswordData({ ...passwordData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Validate passwords
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-    // Handle form submission, such as updating password on the backend
-    console.log(passwordData);
-    // Clear the form fields
+    try {
+      const response = await resetPassword(passwordData);
+    } catch (error) {
+      console.log("error");
+    } finally {
+          // Clear the form fields
     setPasswordData({
-      password: "",
       newPassword: "",
-      confirmPassword: "",
+      otp: "",
+      email:""
     });
+    }
+     
+
+  };
+
+  const handleForgetPassword = async () => {
+    try {
+      const response = await forgetPassword(email);
+    } catch (error) {
+      console.log("error");
+    } finally {
+      setPasswordContainer(false)
+    }
   };
 
   return (
     <div className={style.main}>
-      <h2>Your Password</h2>
-      <form onSubmit={handleSubmit} className={style.form}>
-        <div className={style.input_box}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={passwordData.password}
-            onChange={handleChange}
-            required
-          />
+        <h2>Your Password</h2>
+      {showPasswordContainer ? (
+        <div className={style.form}>
+          <div className={style.input_box}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <button onClick={handleForgetPassword}>Reset</button>
         </div>
-        <div className={style.input_box}>
-          <label htmlFor="newPassword">New Password</label>
-          <input
-            type="password"
-            id="newPassword"
-            name="newPassword"
-            value={passwordData.newPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={style.input_box}>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={passwordData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Update Password →</button>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit} className={style.form}>
+          <div className={style.input_box}>
+            <label htmlFor="newPassword">newPassword</label>
+            <input
+              type="newPassword"
+              id="newPassword"
+              name="newPassword"
+              value={passwordData.newPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={style.input_box}>
+            <label htmlFor="otp">OTP</label>
+            <input
+              type="otp"
+              id="otp"
+              name="otp"
+              value={passwordData.otp}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={style.input_box}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={passwordData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Update Password →</button>
+        </form>
+      )}
     </div>
   );
 }
