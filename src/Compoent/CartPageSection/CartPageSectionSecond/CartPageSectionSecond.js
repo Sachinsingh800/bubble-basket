@@ -56,7 +56,7 @@ function CartPageSectionSecond() {
 
 useEffect(()=>{
   handleCheckoutOrder()
-},[])
+},[loginStatus])
 
   const calculateTotalPrice = (cartData) => {
     const total = cartData.reduce((total, item) => {
