@@ -11,6 +11,11 @@
   place-items: center;
   font-weight: 600;
   letter-spacing: .1cap;
+  width: 100%!important;
+  padding: 1rem 0rem!important;
+}
+.header p{
+  width: max-content;
 }
 .img_box {
   height: 4rem;
@@ -41,19 +46,18 @@
 }
 
 .product {
-  width: 23rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  width: 20rem!important;
 }
 .first_box {
   display: flex;
   align-items: center;
-  width: 100%;
   gap: 1rem;
-  width: 23rem;
   letter-spacing: .1cap;
+  width: 20rem!important;
 }
 .quantity_box {
   width: 3.5rem;
@@ -61,6 +65,7 @@
   outline: none;
   border: 1px #7b0128 solid;
   color: #7b0128;
+
 }
 .del_button {
   width: 2rem;

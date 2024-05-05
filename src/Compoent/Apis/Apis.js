@@ -249,7 +249,7 @@ export const removeFromCart = async (id) => {
 
 //updateItemQuatity
 
-export const updateItemQuatity = async (id,quantity) => {
+export const updateItemQuantity = async (id,quantity) => {
   // Function to retrieve token from cookies
   // Function to retrieve token from cookies
   function getToken() {

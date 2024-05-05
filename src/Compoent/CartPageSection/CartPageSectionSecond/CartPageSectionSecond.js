@@ -6,6 +6,7 @@ import {
   getCheckout,
   removeFromCart,
   updateFromCart,
+  updateItemQuantity,
   updateItemQuatity,
 } from "../../Apis/Apis"; // Removed unnecessary import of AddtoCart
 // Removed unused import of getCheckout from Recoil
@@ -109,7 +110,7 @@ function CartPageSectionSecond() {
 
   const removeQuantityOfItem = async (id, quantity) => {
     try {
-      const response = await updateItemQuatity(id, quantity);
+      const response = await updateItemQuantity(id, quantity);
     } catch (error) {
       console.log(error);
     } finally {
@@ -158,9 +159,9 @@ function CartPageSectionSecond() {
       {data.length > 0 && (
         <div className={style.header}>
           <p className={style.product}>PRODUCT</p>
-          <p>PRICE</p>
-          <p>QUANTITY</p>
-          <p>SUBTOTAL</p>
+          <p className={style.product}>PRICE</p>
+          <p className={style.product}>QUANTITY</p>
+          <p className={style.product}>SUBTOTAL</p>
         </div>
       )}
 
@@ -217,12 +218,12 @@ function CartPageSectionSecond() {
                   )
                 }
               >
-                <input
+            <input
                   className={style.quantity_box}
-                  value={productQuantity || item.Product_quantity} 
+                  value={item.quantity}
                   type="number"
                   min="1"
-                  onChange={(e) => setProductQuantity(e.target.value)}
+                  onChange={(e) =>setProductQuantity(e.target.value)}
                 />
               </div>
             ) : (
@@ -260,7 +261,7 @@ function CartPageSectionSecond() {
               />
               <button onClick={handleCouponCheck}>APPLY COUPON → </button>
             </div>
-            <button className={style.updatebtn}>UPDATE CART → </button>
+            <button className={style.updatebtn} onClick={handleCheckoutOrder}>UPDATE CART → </button>
           </div>
           {loginStatus ? (
             <div className={style.order_summary}>
