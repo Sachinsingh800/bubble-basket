@@ -31,14 +31,28 @@ function CartPageSectionSecond() {
   }, [update]);
 
   const handleQuantityChange = (index, quantity) => {
-    updateItemFromtheCart();
+    // If the quantity is less than 1, don't update it and return
+    if (quantity < 1) return;
+  
+    // Clone the data array to avoid mutating state directly
     const updatedData = [...data];
+  
+    // Update the quantity of the item at the specified index
     updatedData[index] = { ...updatedData[index], quantity: quantity };
+  
+    // Update the state with the new data
     setData(updatedData);
+  
+    // Update localStorage with the updated data
     localStorage.setItem("cartData", JSON.stringify(updatedData));
+  
+    // Update the update state to trigger re-render
     setUpdate(update + 1);
+  
+    // Recalculate the total price
     calculateTotalPrice(updatedData);
   };
+  
 
   const handleRemoveProduct = (index) => {
     const updatedData = [...data];
