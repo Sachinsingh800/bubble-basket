@@ -803,7 +803,7 @@ export const getCheckout = async (promoCode) => {
     if (axios.isAxiosError(error)) {
       const { response } = error;
       const errorMessage = response.data.message;
-      alert(errorMessage);
+      // alert(errorMessage);
     } else {
       console.error("Network Error:", error.message);
     }

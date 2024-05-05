@@ -8,6 +8,23 @@ function App() {
   const [showPopup, setShowPopup] = useState(false);
 
 
+  useEffect(()=>{
+      // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  if(!token){
+    localStorage.setItem("isLoggedIn",false)
+  }
+
+  },[])
+
 
   const handleClose = () => {
     setShowPopup(false);
