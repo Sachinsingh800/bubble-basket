@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import style from "./CartPageSectionSecond.module.css";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { getCheckout, removeFromCart, updateFromCart } from "../../Apis/Apis"; // Removed unnecessary import of AddtoCart
+import {
+  getCheckout,
+  removeFromCart,
+  updateFromCart,
+  updateItemQuatity,
+} from "../../Apis/Apis"; // Removed unnecessary import of AddtoCart
 // Removed unused import of getCheckout from Recoil
 // Removed unused import of updateCart from Recoil
 
@@ -13,7 +18,8 @@ function CartPageSectionSecond() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [coupon, setCoupon] = useState("");
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
-  const [productId,setProductId] = useState(null)
+  const [productId, setProductId] = useState(null);
+  const [productQuantity, setProductQuantity] = useState(null);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -24,7 +30,7 @@ function CartPageSectionSecond() {
   }, [update]);
 
   const handleQuantityChange = (index, quantity) => {
-    updateItemFromtheCart()
+    updateItemFromtheCart();
     const updatedData = [...data];
     updatedData[index] = { ...updatedData[index], quantity: quantity };
     setData(updatedData);
@@ -54,9 +60,9 @@ function CartPageSectionSecond() {
     return totalPrice.toFixed(2);
   };
 
-useEffect(()=>{
-  handleCheckoutOrder()
-},[loginStatus])
+  useEffect(() => {
+    handleCheckoutOrder();
+  }, [loginStatus]);
 
   const calculateTotalPrice = (cartData) => {
     const total = cartData.reduce((total, item) => {
@@ -71,20 +77,17 @@ useEffect(()=>{
       const response = await getCheckout();
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       setUpdate(update + 1);
     }
   };
 
-
-
   const handleCouponCheck = async () => {
-  
     try {
       const response = await getCheckout(coupon);
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       setUpdate(update + 1);
     }
   };
@@ -103,10 +106,30 @@ useEffect(()=>{
       handleCheckoutOrder();
     }
   };
-  
-  const updateItemFromtheCart = async (id,quantity) => {
+
+  const removeQuantityOfItem = async (id, quantity) => {
     try {
-      const response = await updateFromCart(id,quantity);
+      const response = await updateItemQuatity(id, quantity);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      const updatedData = data.map((item) => {
+        if (item._id === id) {
+          return { ...item, quantity: quantity };
+        }
+        return item;
+      });
+      setData(updatedData);
+      localStorage.setItem("cartData", JSON.stringify(updatedData));
+      setUpdate(update + 1);
+      calculateTotalPrice(updatedData);
+      handleCheckoutOrder();
+    }
+  };
+
+  const updateItemFromtheCart = async (id, quantity) => {
+    try {
+      const response = await updateFromCart(id, quantity);
     } catch (error) {
       console.log(error);
     } finally {
@@ -155,7 +178,7 @@ useEffect(()=>{
               {loginStatus ? (
                 <span
                   className={style.del_button}
-                  onClick={() => removeItemFromtheCart(item._id)}
+                  onClick={() => removeItemFromtheCart(item.Product_id)}
                 >
                   x
                 </span>
@@ -168,29 +191,61 @@ useEffect(()=>{
                 </span>
               )}
 
-              <div className={style.img_box}>
-                <img src={item.productImg[0].url} alt={item.title} />
-              </div>
-              {item.title}
+              {loginStatus ? (
+                <div className={style.img_box}>
+                  <img src={item.Product_image} alt={item.title} />
+                </div>
+              ) : (
+                <div className={style.img_box}>
+                  <img src={item.productImg[0].url} alt={item.title} />
+                </div>
+              )}
+              {loginStatus ? item.Product_category : item.title}
             </div>
+            {loginStatus ? (
+              <div className={style.para}>$ {item.Product_price}</div>
+            ) : (
+              <div className={style.para}>$ {item.price}</div>
+            )}
 
-            <div className={style.para}>$ {item.price}</div>
-
-            <div>
-              <input
-                className={style.quantity_box}
-                value={item.quantity}
-                type="number"
-                min="1"
-                onChange={(e) =>
-                  handleQuantityChange(index, parseInt(e.target.value))
+            {loginStatus ? (
+              <div
+                onClick={() =>
+                  removeQuantityOfItem(
+                    item.Product_id,
+                    parseInt(productQuantity)
+                  )
                 }
-              />
-            </div>
+              >
+                <input
+                  className={style.quantity_box}
+                  value={productQuantity || item.Product_quantity} 
+                  type="number"
+                  min="1"
+                  onChange={(e) => setProductQuantity(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div>
+                <input
+                  className={style.quantity_box}
+                  value={item.quantity}
+                  type="number"
+                  min="1"
+                  onChange={(e) =>
+                    handleQuantityChange(index, parseInt(e.target.value))
+                  }
+                />
+              </div>
+            )}
 
-            <div className={style.para}>
-              $ {(item.price * item.quantity).toFixed(2)}
-            </div>
+            {loginStatus ? (
+              <div className={style.para}>$ {item.productTotal}</div>
+            ) : (
+              <div className={style.para}>
+                $ {(item.price * item.quantity).toFixed(2)}
+              </div>
+            )}
           </div>
         ))
       )}

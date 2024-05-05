@@ -46,7 +46,7 @@ export const verifyEmail = async (userData) => {
       const errorMessage = response.data.message;
       alert(errorMessage);
       // Log the error message as a string
-      localStorage.removeItem("cartData")
+      localStorage.removeItem("cartData");
     } else {
       // Network error (e.g., no internet connection)
       alert("Something went wrong");
@@ -54,13 +54,9 @@ export const verifyEmail = async (userData) => {
   }
 };
 
-
-
-
 //forgetPassword
 
 export const forgetPassword = async (email) => {
-
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -106,11 +102,9 @@ export const forgetPassword = async (email) => {
   }
 };
 
-
 //resetPassword
 
 export const resetPassword = async (passwordData) => {
-
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -154,11 +148,9 @@ export const resetPassword = async (passwordData) => {
   }
 };
 
-
 //Add to Cart
 
 export const AddtoCart = async (productId) => {
-
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -204,8 +196,6 @@ export const AddtoCart = async (productId) => {
   }
 };
 
-
-
 //removeFromCart
 
 export const removeFromCart = async (id) => {
@@ -232,6 +222,57 @@ export const removeFromCart = async (id) => {
       {
         productId: id,
         removeProduct: "0",
+      },
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    // console.log(response);
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
+//updateItemQuatity
+
+export const updateItemQuatity = async (id,quantity) => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.put(
+      `${BASE_URL}/user/cart/removeProduct`,
+
+      {
+        productId: id,
+        removeProduct: quantity,
       },
       { headers }
     );
@@ -308,8 +349,6 @@ export const updateFromCart = async (id, quantity) => {
   }
 };
 
-
-
 //createReview
 
 export const createReview = async (id, reviewData) => {
@@ -357,7 +396,6 @@ export const createReview = async (id, reviewData) => {
   }
 };
 
-
 //createReview
 
 export const getAllReview = async (id) => {
@@ -378,13 +416,12 @@ export const getAllReview = async (id) => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(
-      `${BASE_URL}/user/reviews/getAll/${id}`,
-      { headers }
-    );
+    const response = await axios.get(`${BASE_URL}/user/reviews/getAll/${id}`, {
+      headers,
+    });
 
     const { status, message, data } = response.data;
-    localStorage.setItem("review",JSON.stringify(response.data))
+    localStorage.setItem("review", JSON.stringify(response.data));
 
     // Handle response data as needed
   } catch (error) {
@@ -452,9 +489,6 @@ export const addAddress = async (formData) => {
     }
   }
 };
-
-
-
 
 // getAddress
 
@@ -549,9 +583,6 @@ export const deleteAddress = async (id) => {
     }
   }
 };
-
-
-
 
 // updateAddress
 
@@ -649,7 +680,6 @@ export const orderPlace = async (orderData) => {
   }
 };
 
-
 // getOrderHistory
 
 export const getOrderHistory = async () => {
@@ -714,6 +744,7 @@ export const loginUser = async (userData, rememberMe) => {
 
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "/";
 
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(token));
@@ -785,7 +816,7 @@ export const getCheckout = async (promoCode) => {
 
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
-    console.log(response);
+   localStorage.setItem("cartData",JSON.stringify(data.productsData))
     localStorage.setItem("checkout", JSON.stringify(response?.data?.data));
     const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));

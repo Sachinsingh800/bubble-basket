@@ -62,15 +62,13 @@ function LoginPageSectionSecond() {
 
       if (response.status) {
         // If login is successful, save token to local storage
-        localStorage.setItem("token", JSON.stringify(response.token));
         handleCheckoutOrder()
-        // Redirect to dashboard or desired page
         // Example: history.push('/dashboard');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const { response } = error;
-        const errorMessage = response?.data?.message;
+        const errorMessage = response;
         console.log("Error Message:", errorMessage);
       } else {
         const errorMessage = error.message;
