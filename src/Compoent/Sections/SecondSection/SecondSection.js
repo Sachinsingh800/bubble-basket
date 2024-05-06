@@ -62,6 +62,10 @@ function SecondSection() {
     setUpdate(update + 1);
     setShowTick(item._id);
   };
+
+  function renderHTML(htmlString) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
   
 
   return (
@@ -90,7 +94,7 @@ function SecondSection() {
             </div>
             <div className={style.text_box}>
               <h5>{item.category}</h5>
-              <p>{item.description}</p>
+              <p>{renderHTML(item.description)}</p>
             </div>
           </div>
         ))}

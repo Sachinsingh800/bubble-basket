@@ -89,6 +89,10 @@ function SectionFourth() {
     setShowLikeTick(true);
   };
 
+  function renderHTML(htmlString) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -107,7 +111,7 @@ function SectionFourth() {
             </div>
             <div className={style.text_box}>
               <h5>{item?.title}</h5>
-              <p>{item?.description}</p>
+              <p>{renderHTML(item?.description)}</p>
             </div>
             <div
               className={style.optionsBox}
