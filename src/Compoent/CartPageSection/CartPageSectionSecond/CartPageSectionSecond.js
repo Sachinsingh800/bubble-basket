@@ -128,7 +128,7 @@ function CartPageSectionSecond() {
     } catch (error) {
       console.log(error);
     } finally {
-      const updatedData = data.map((item) => {
+      const updatedData = data?.map((item) => {
         if (item._id === id) {
           return { ...item, quantity: quantity };
         }
@@ -170,7 +170,7 @@ function CartPageSectionSecond() {
 
   return (
     <div className={style.main}>
-      {data.length > 0 && (
+      {data?.length > 0 && (
         <div className={style.header}>
           <p className={style.product}>PRODUCT</p>
           <p className={style.product}>PRICE</p>
@@ -179,7 +179,7 @@ function CartPageSectionSecond() {
         </div>
       )}
 
-      {data.length === 0 ? (
+      {data?.length === 0 ? (
         <div className={style.empty_cart}>
           <p>YOUR CART IS CURRENTLY EMPTY.</p>
           <a href="/">
@@ -187,13 +187,13 @@ function CartPageSectionSecond() {
           </a>
         </div>
       ) : (
-        data.map((item, index) => (
+        data?.map((item, index) => (
           <div key={item._id} className={style.container}>
             <div className={style.first_box}>
               {loginStatus ? (
                 <span
                   className={style.del_button}
-                  onClick={() => removeItemFromtheCart(item.Product_id)}
+                  onClick={() => removeItemFromtheCart(item?.Product_id)}
                 >
                   x
                 </span>
@@ -208,33 +208,33 @@ function CartPageSectionSecond() {
 
               {loginStatus ? (
                 <div className={style.img_box}>
-                  <img src={item.Product_image} alt={item.title} />
+                  <img src={item?.Product_image} alt={item?.title} />
                 </div>
               ) : (
                 <div className={style.img_box}>
-                  <img src={item.productImg[0].url} alt={item.title} />
+                  <img src={item?.productImg[0]?.url} alt={item?.title} />
                 </div>
               )}
-              {loginStatus ? item.Product_category : item.title}
+              {loginStatus ? item?.Product_category : item?.title}
             </div>
             {loginStatus ? (
-              <div className={style.para}>$ {item.Product_price}</div>
+              <div className={style.para}>$ {item?.Product_price}</div>
             ) : (
-              <div className={style.para}>$ {item.price}</div>
+              <div className={style.para}>$ {item?.price}</div>
             )}
 
             {loginStatus ? (
               <div
                 onClick={() =>
                   removeQuantityOfItem(
-                    item.Product_id,
+                    item?.Product_id,
                     parseInt(productQuantity)
                   )
                 }
               >
             <input
                   className={style.quantity_box}
-                  value={item.quantity}
+                  value={item?.quantity}
                   type="number"
                   min="1"
                   onChange={(e) =>setProductQuantity(e.target.value)}
@@ -244,7 +244,7 @@ function CartPageSectionSecond() {
               <div>
                 <input
                   className={style.quantity_box}
-                  value={item.quantity}
+                  value={item?.quantity}
                   type="number"
                   min="1"
                   onChange={(e) =>
@@ -255,16 +255,16 @@ function CartPageSectionSecond() {
             )}
 
             {loginStatus ? (
-              <div className={style.para}>$ {item.productTotal}</div>
+              <div className={style.para}>$ {item?.productTotal}</div>
             ) : (
               <div className={style.para}>
-                $ {(item.price * item.quantity).toFixed(2)}
+                $ {(item?.price * item?.quantity).toFixed(2)}
               </div>
             )}
           </div>
         ))
       )}
-      {data.length > 0 && (
+      {data?.length > 0 && (
         <>
           <div className={style.buttons_box}>
             <div>
@@ -288,7 +288,7 @@ function CartPageSectionSecond() {
                   </div>
                 </div>
 
-                {cartData.productsData.map((item, index) => (
+                {cartData?.productsData?.map((item, index) => (
                   <div key={index} className={style.order_item}>
                     <div className={style.product_item}>
                       <span>
