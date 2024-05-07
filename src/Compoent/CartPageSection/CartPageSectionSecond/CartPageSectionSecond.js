@@ -84,7 +84,7 @@ function CartPageSectionSecond() {
       return total + parseFloat(item.price) * item.quantity;
     }, 0);
     setTotalPrice(total);
-    localStorage.setItem("totalPrice", total.toFixed(2));
+    localStorage.setItem("totalPrice", total.toFixed(2) || null);
   };
 
   const handleCheckoutOrder = async () => {

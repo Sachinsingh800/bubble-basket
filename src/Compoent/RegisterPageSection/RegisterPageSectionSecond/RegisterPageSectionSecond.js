@@ -26,8 +26,8 @@ function RegisterPageSectionSecond() {
     if (rememberMeData) {
       setFormData(rememberMeData);
     }
-    const cartData = JSON.parse(localStorage.getItem("cartData"));
-    const priceData = JSON.parse(localStorage.getItem("totalPrice"));
+    const cartData = JSON.parse(localStorage.getItem("cartData") || "[]");
+    const priceData = JSON.parse(localStorage.getItem("totalPrice") || "null");
     if (cartData) {
       setData(cartData);
       setTotalPrice(priceData);
@@ -58,18 +58,18 @@ function RegisterPageSectionSecond() {
   const handleVerification = async () => {
     try {
       const userData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        telephone: formData.telephone,
+        firstName: formData?.firstName,
+        lastName: formData?.lastName,
+        email: formData?.email,
+        password: formData?.password,
+        telephone: formData?.telephone,
         otp: otp,
         items: data.map((item) => ({
-          productId: item._id,
-          quantity: item.quantity,
+          productId: item?._id,
+          quantity: item?.quantity,
         })),
-        totalPrice: totalprice,
-        totalItems: data.length,
+        totalPrice: totalprice ? totalprice : null,
+        totalItems: data?.length,
       };
       const response = await verifyEmail(userData);
       // Handle response as needed
