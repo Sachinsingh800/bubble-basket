@@ -52,13 +52,14 @@ input[type="email"] {
   display: flex;
   flex-direction: column;
 }
-.header {
-  display: flex;
-  justify-content: space-between;
+.headers {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
   padding: 1rem 0rem;
   align-items: center;
   font-weight: 500;
   width: 80%;
+  border: 2px red solid;
 }
 .order_item {
   display: flex;

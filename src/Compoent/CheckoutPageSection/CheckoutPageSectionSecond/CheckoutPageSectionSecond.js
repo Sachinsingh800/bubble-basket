@@ -346,7 +346,7 @@ function CheckoutPageSectionSecond() {
           <h4>YOUR ORDER</h4>
           <div>
             <div className={style.order_item}>
-              <div className={style.header}>
+              <div className={style.headers}>
                 <span>PRODUCT</span>
                 <span>SUBTOTAL</span>
               </div>
