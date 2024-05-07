@@ -515,7 +515,7 @@ export const getAddress = async () => {
     });
 
     const { status, message, data } = response.data;
-    localStorage.setItem("allAdress", JSON.stringify(data));
+    localStorage.setItem("allAdress", JSON.stringify(data) || []);
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -525,6 +525,7 @@ export const getAddress = async () => {
       const errorMessage = response.data.message;
       // alert(errorMessage);
       // Log the error message as a string
+      localStorage.setItem("allAdress", JSON.stringify([]) );
       alert(errorMessage);
       console.error("Axios Error:", errorMessage);
       // window.location.href = "/Login";
@@ -645,7 +646,10 @@ export const orderPlace = async (orderData) => {
   // Retrieve token
   const token = getToken();
   const address = JSON.parse(localStorage.getItem("address")) || {};
-  const id = address?._id;
+  const selectedAddress = JSON.parse(localStorage.getItem("selectedAddress")) || {};
+  const ad_id = JSON.parse(localStorage.getItem("ad_id")) || false;
+
+  const id =  ad_id  ? selectedAddress?._id : address?._id;
 
   try {
     const headers = {

@@ -99,3 +99,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.select_btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

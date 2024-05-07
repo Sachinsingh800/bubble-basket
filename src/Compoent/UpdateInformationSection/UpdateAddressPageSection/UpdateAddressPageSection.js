@@ -22,11 +22,16 @@ function UpdateAddressPageSection() {
   });
   const [allAddress, setAllAddress] = useState([]);
   const [update, setUpdate] = useState(0);
-  const [addressId,setAddressId] = useState(null)
+  const [addressId, setAddressId] = useState(null);
 
   useEffect(() => {
-    const address = JSON.parse(localStorage.getItem("allAdress"));
+    const address = JSON.parse(localStorage.getItem("allAdress") || []);
     setAllAddress(address);
+    if (address.length > 0) {
+      setAddressData(address[0]);
+      setAddressId(address[0]._id);
+      localStorage.setItem("selectedAddress", JSON.stringify(address[0]));
+    }
   }, [update]);
 
   const handleDeleteAddress = async (id) => {
@@ -50,9 +55,19 @@ function UpdateAddressPageSection() {
 
   const handleAddressSelect = (selectedAddress) => {
     setAddressData(selectedAddress);
-    localStorage.setItem("selectedAddress",JSON.stringify(selectedAddress))
-    setAddressId(selectedAddress._id)
+    setAddressId(selectedAddress._id);
+  
+    // Update localStorage with the selected address
+    localStorage.setItem("selectedAddress", JSON.stringify(selectedAddress));
+  
+    // Update allAddress state to mark the selected address as checked
+    const updatedAllAddress = allAddress.map((item) => ({
+      ...item,
+      checked: item._id === selectedAddress._id,
+    }));
+    setAllAddress(updatedAllAddress);
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +77,7 @@ function UpdateAddressPageSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await updateAddress(addressData,addressId);
+      const response = await updateAddress(addressData, addressId);
       handleUpdateAddress();
       console.log("Address updated successfully:", response);
     } catch (error) {
@@ -84,7 +99,6 @@ function UpdateAddressPageSection() {
         phone: "",
         email: "",
         orderNotes: "",
-        setAsDefault: false,
       });
     }
   };
@@ -102,9 +116,17 @@ function UpdateAddressPageSection() {
               onClick={() => handleAddressSelect(item)}
             >
               <div>
-                <button onClick={() => handleDeleteAddress(item?._id)}>
-                  Delete
-                </button>
+                <div className={style.select_btn}>
+                  <button onClick={() => handleDeleteAddress(item?._id)}>
+                    Delete
+                  </button>
+                  <input
+                    type="radio"
+                    checked={item.checked}
+                    onChange={() => handleAddressSelect(item)}
+                  />
+                </div>
+
                 <div>
                   <strong>First Name:</strong>
                   <span>{item?.firstName}</span>
@@ -175,7 +197,9 @@ function UpdateAddressPageSection() {
           />
         </div>
         <div className={style.input_box}>
-          <label htmlFor="streetAddress.houseNoAndStreetName">Street Address</label>
+          <label htmlFor="streetAddress.houseNoAndStreetName">
+            Street Address
+          </label>
           <input
             type="text"
             id="streetAddress.houseNoAndStreetName"
@@ -261,10 +285,12 @@ function UpdateAddressPageSection() {
             id="setAsDefault"
             name="setAsDefault"
             checked={addressData?.setAsDefault}
-            onChange={(e) => setAddressData({ ...addressData, setAsDefault: e.target.checked })}
+            onChange={(e) =>
+              setAddressData({ ...addressData, setAsDefault: e.target.checked })
+            }
           />
         </div>
-        <button type="submit">Save Address →</button>
+        <button type="submit">Update Address →</button>
       </form>
     </div>
   );

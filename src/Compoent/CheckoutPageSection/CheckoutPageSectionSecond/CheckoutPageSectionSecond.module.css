@@ -148,3 +148,7 @@ input[type="email"] {
     grid-template-columns: 1fr ;
   }
 }
+.add_select{
+  display: flex;
+  gap: .5rem;
+}

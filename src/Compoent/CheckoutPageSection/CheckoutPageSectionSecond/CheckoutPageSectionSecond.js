@@ -9,6 +9,7 @@ function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
   const [update, setUpdate] = useRecoilState(updateCart);
   const [couponError, setCouponError] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,14 +25,13 @@ function CheckoutPageSectionSecond() {
     phone: "",
     email: "",
     orderNotes: "",
-    setAsDefault: true,
+    setAsDefault: false,
   });
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
-  },[])
-
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,15 +41,22 @@ function CheckoutPageSectionSecond() {
     }));
   };
 
-  const   handleOrder= async () => {
+  const handleOrder = async () => {
     try {
       const orderData = {
-        promoCode: "SUMMER28",
+        // promoCode: "SUMMER28",
         paymentMethod: {
           cod: formData.paymentMethod === "cashOnDelivery", // Set payment method based on selection
           online: formData.paymentMethod === "online", // Set payment method based on selection
         },
       };
+
+      if (formData.paymentMethod === "online") {
+        orderData.paymentInfo = {
+          id: "123456",
+          status: "successful",
+        };
+      }
 
       // Send order data to server
       const response = await orderPlace(orderData);
@@ -61,24 +68,21 @@ function CheckoutPageSectionSecond() {
     }
   };
 
-
   const handleSubmitAddress = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await addAddress(formData);
-    console.log("Response from addAddress:", response.data); // Log the entire response object
-
-  } catch (error) {
-    // Handle unexpected errors
-    console.error("An error occurred during form submission:", error);
-    // Display an error message to the user
-    // alert("An unexpected error occurred. Please try again later.");
-    return
-  }finally{
-    handleOrder(); // Proceed with placing the order
-  }
-};
-
+    e.preventDefault();
+    try {
+      const response = await addAddress(formData);
+      console.log("Response from addAddress:", response.data); // Log the entire response object
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("An error occurred during form submission:", error);
+      // Display an error message to the user
+      // alert("An unexpected error occurred. Please try again later.");
+      return;
+    } finally {
+      handleOrder(); // Proceed with placing the order
+    }
+  };
 
   const handleShowCouponField = () => {
     setShowCouponField(!showCouponField);
@@ -89,10 +93,46 @@ function CheckoutPageSectionSecond() {
       const response = await getCheckout(formData.coupon);
     } catch (error) {
       console.log(error);
-    }finally{
-      window.location.reload()
+    } finally {
+      window.location.reload();
     }
   };
+
+  const handleSelectAddress = (e) => {
+    const { checked } = e.target;
+    setIsChecked(checked);
+  };
+
+  useEffect(() => {
+    if (isChecked) {
+      const selectedAddress = JSON.parse(
+        localStorage.getItem("selectedAddress")
+      );
+      setFormData(selectedAddress);
+      localStorage.setItem("ad_id", JSON.stringify(true));
+    } else {
+      // Handle the case when the default address is unchecked
+      // For example, you may want to clear the form data
+      setFormData({
+        firstName: "",
+        lastName: "",
+        companyName: "",
+        country: "",
+        streetAddress: {
+          houseNoAndStreetName: "",
+          apartment: "",
+        },
+        townCity: "",
+        stateCounty: "",
+        postcodeZIP: "",
+        phone: "",
+        email: "",
+        orderNotes: "",
+        setAsDefault: false,
+      });
+      localStorage.setItem("ad_id", JSON.stringify(false));
+    }
+  }, [isChecked]);
 
   return (
     <div className={style.main}>
@@ -135,6 +175,14 @@ function CheckoutPageSectionSecond() {
         <div className={style.user_detail_container}>
           <div className={style.billing_details}>
             <h4>BILLING DETAILS</h4>
+            <div className={style.add_select}>
+              <label>Default Address</label>
+              <input
+                type="radio"
+                checked={isChecked}
+                onChange={handleSelectAddress}
+              />
+            </div>
             <div className={style.form_group}>
               <label htmlFor="firstName">First name *</label>
               <input
