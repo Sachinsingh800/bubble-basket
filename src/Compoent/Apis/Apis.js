@@ -36,7 +36,7 @@ export const verifyEmail = async (userData) => {
     );
     const { status, message, data, token } = response.data;
     if (status) {
-      // window.location.href = "/Login";
+      window.location.href = "/Login";
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
