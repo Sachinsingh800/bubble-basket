@@ -42,7 +42,35 @@ function CheckoutPageSectionSecond() {
     }));
   };
 
-  const handleOrder = async () => {
+  const handleOrder = async (e) => {
+    e.preventDefault();
+    try {
+      const orderData = {
+        promoCode: "SUMMER28",
+        paymentMethod: {
+          cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
+          online: formData?.paymentMethod === "online", // Set payment method based on selection
+        },
+      };
+
+      if (formData?.paymentMethod === "online") {
+        orderData.paymentInfo = {
+          id: "123456",
+          status: "successful",
+        };
+      }
+
+      // Send order data to server
+      const response = await orderPlace(orderData);
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("An error occurred during form submission:", error);
+      // Display an error message to the user
+      // alert("An unexpected error occurred. Please try again later.");
+    }
+  };
+  const afterAddresshandleOrder = async () => {
+
     try {
       const orderData = {
         promoCode: "SUMMER28",
@@ -81,7 +109,7 @@ function CheckoutPageSectionSecond() {
       // alert("An unexpected error occurred. Please try again later.");
       return;
     } finally {
-      handleOrder(); // Proceed with placing the order
+      afterAddresshandleOrder()
     }
   };
 
@@ -148,7 +176,7 @@ function CheckoutPageSectionSecond() {
 
   return (
     <div className={style.main}>
-      <form onSubmit={handleSubmitAddress} className={style.form}>
+      <form  className={style.form}>
         <div className={style.coupon_box}>
           <span>Have a coupon? </span>
           <span onClick={handleShowCouponField}>
@@ -465,7 +493,8 @@ function CheckoutPageSectionSecond() {
           </label>
         </div>
         <br />
-        <button type="submit">PLACE ORDER →</button>
+        {isChecked ?  <button onClick={handleOrder }>PLACE ORDER →</button> :  <button onClick={handleSubmitAddress}>PLACE ORDER →</button> }
+
       </form>
     </div>
   );
