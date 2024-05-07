@@ -166,6 +166,10 @@ console.log(product)
     setRating(newRating);
   };
 
+  function renderHTML(htmlString) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
+
   return (
     <div className={style.main}>
       <div className={style.product_container}>
@@ -176,11 +180,9 @@ console.log(product)
         <div className={style.des_box}>
           <h3>{product?.title}</h3>
           <h4>${product?.price}</h4>
-          <p>{product?.description}</p>
+          <p>{renderHTML(product?.description)}</p>
           <ReactStars
             count={5}
-            onChange={null}
-            filledIcon={null}
             value={Math.ceil(reviews?.reviews?.averageRating)}
             size={20}
             activeColor="#ffd700"

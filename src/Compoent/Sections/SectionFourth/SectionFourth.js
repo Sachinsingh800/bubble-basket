@@ -95,6 +95,7 @@ function SectionFourth() {
 
   return (
     <div className={style.main}>
+              {loading && <p>Loading..</p>}
       <div className={style.heading_box}>
         <h2>BOTTLES THAT WOW</h2>
       </div>
