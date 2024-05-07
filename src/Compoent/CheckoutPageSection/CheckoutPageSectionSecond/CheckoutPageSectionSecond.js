@@ -28,6 +28,7 @@ function CheckoutPageSectionSecond() {
     setAsDefault: false,
   });
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
+  const selectedDataAddress = JSON.parse(localStorage.getItem("selectedAddress") || false)
 
   useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
@@ -44,14 +45,14 @@ function CheckoutPageSectionSecond() {
   const handleOrder = async () => {
     try {
       const orderData = {
-        // promoCode: "SUMMER28",
+        promoCode: "SUMMER28",
         paymentMethod: {
-          cod: formData.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: formData.paymentMethod === "online", // Set payment method based on selection
+          cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
+          online: formData?.paymentMethod === "online", // Set payment method based on selection
         },
       };
 
-      if (formData.paymentMethod === "online") {
+      if (formData?.paymentMethod === "online") {
         orderData.paymentInfo = {
           id: "123456",
           status: "successful",
@@ -90,7 +91,7 @@ function CheckoutPageSectionSecond() {
 
   const handleCouponCheck = async () => {
     try {
-      const response = await getCheckout(formData.coupon);
+      const response = await getCheckout(formData?.coupon);
     } catch (error) {
       console.log(error);
     } finally {
@@ -162,7 +163,7 @@ function CheckoutPageSectionSecond() {
               type="text"
               id="coupon"
               name="coupon"
-              value={formData.coupon}
+              value={formData?.coupon}
               onChange={handleChange}
               placeholder="Coupon Code"
             />
@@ -175,21 +176,24 @@ function CheckoutPageSectionSecond() {
         <div className={style.user_detail_container}>
           <div className={style.billing_details}>
             <h4>BILLING DETAILS</h4>
-            <div className={style.add_select}>
-              <label>Default Address</label>
-              <input
-                type="radio"
-                checked={isChecked}
-                onChange={handleSelectAddress}
-              />
-            </div>
+            {selectedDataAddress  &&
+                       <div className={style.add_select}>
+                       <label>Default Address</label>
+                       <input
+                         type="radio"
+                         checked={isChecked}
+                         onChange={handleSelectAddress}
+                       />
+                     </div>
+            }
+ 
             <div className={style.form_group}>
               <label htmlFor="firstName">First name *</label>
               <input
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={formData.firstName}
+                value={formData?.firstName}
                 onChange={handleChange}
                 required
               />
@@ -200,7 +204,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="lastName"
                 name="lastName"
-                value={formData.lastName}
+                value={formData?.lastName}
                 onChange={handleChange}
                 required
               />
@@ -211,7 +215,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="companyName"
                 name="companyName"
-                value={formData.companyName}
+                value={formData?.companyName}
                 onChange={handleChange}
               />
             </div>
@@ -220,7 +224,7 @@ function CheckoutPageSectionSecond() {
               <select
                 id="country"
                 name="country"
-                value={formData.country}
+                value={formData?.country}
                 onChange={handleChange}
                 required
               >
@@ -239,7 +243,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="streetAddress.houseNoAndStreetName"
                 name="streetAddress.houseNoAndStreetName"
-                value={formData.streetAddress.houseNoAndStreetName}
+                value={formData?.streetAddress?.houseNoAndStreetName}
                 onChange={(e) =>
                   setFormData((prevData) => ({
                     ...prevData,
@@ -260,7 +264,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="streetAddress.apartment"
                 name="streetAddress.apartment"
-                value={formData.streetAddress.apartment}
+                value={formData?.streetAddress?.apartment}
                 onChange={(e) =>
                   setFormData((prevData) => ({
                     ...prevData,
@@ -278,7 +282,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="city"
                 name="townCity"
-                value={formData.townCity}
+                value={formData?.townCity}
                 onChange={handleChange}
                 required
               />
@@ -289,7 +293,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="stateCounty"
                 name="stateCounty"
-                value={formData.stateCounty}
+                value={formData?.stateCounty}
                 onChange={handleChange}
               />
             </div>
@@ -299,7 +303,7 @@ function CheckoutPageSectionSecond() {
                 type="text"
                 id="postcodeZIP"
                 name="postcodeZIP"
-                value={formData.postcodeZIP}
+                value={formData?.postcodeZIP}
                 onChange={handleChange}
                 required
               />
@@ -310,7 +314,7 @@ function CheckoutPageSectionSecond() {
                 type="tel"
                 id="phone"
                 name="phone"
-                value={formData.phone}
+                value={formData?.phone}
                 onChange={handleChange}
                 required
               />
@@ -321,7 +325,7 @@ function CheckoutPageSectionSecond() {
                 type="email"
                 id="email"
                 name="email"
-                value={formData.email}
+                value={formData?.email}
                 onChange={handleChange}
                 required
               />
@@ -334,7 +338,7 @@ function CheckoutPageSectionSecond() {
               <textarea
                 id="orderNotes"
                 name="orderNotes"
-                value={formData.orderNotes}
+                value={formData?.orderNotes}
                 onChange={handleChange}
                 placeholder="Notes about your order, e.g. special notes for delivery."
               />

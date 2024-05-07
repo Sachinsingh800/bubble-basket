@@ -53,6 +53,33 @@ export const verifyEmail = async (userData) => {
     }
   }
 };
+// resendOtp
+
+export const resendOtp = async (email) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/resendOtp`,
+     email
+    );
+    const { status, message, data, token } = response.data;
+    if (status) {
+      // window.location.href = "/Login";
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+      localStorage.removeItem("cartData");
+    } else {
+      // Network error (e.g., no internet connection)
+      alert("Something went wrong");
+    }
+  }
+};
 
 //forgetPassword
 
@@ -268,11 +295,9 @@ export const updateItemQuantity = async (id,quantity) => {
       "Content-Type": "application/json", // Set content type to JSON
     };
     const response = await axios.put(
-      `${BASE_URL}/user/cart/removeProduct`,
-
+      `${BASE_URL}/user/cart/incQuantity/${id}`,
       {
-        productId: id,
-        removeProduct: quantity,
+        incQuantity: quantity,
       },
       { headers }
     );

@@ -3,7 +3,7 @@ import style from "./RegisterPageSectionSecond.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css"; // Import the CSS for the PhoneInput component
 import axios from "axios";
-import { RegisterUser, verifyEmail } from "../../Apis/Apis";
+import { RegisterUser, resendOtp, verifyEmail } from "../../Apis/Apis";
 
 function RegisterPageSectionSecond() {
   const [formData, setFormData] = useState({
@@ -48,7 +48,8 @@ function RegisterPageSectionSecond() {
     }
     setPasswordError(""); // Clear any previous password error
     try {
-      await RegisterUser(formData);
+     const response = await RegisterUser(formData);
+      console.log(response,"response")
       setShowVerification(true);
     } catch (error) {
       console.error("Error registering user:", error);
@@ -78,6 +79,18 @@ function RegisterPageSectionSecond() {
     }
   };
 
+  const handleResendOtp=async()=>{
+    try {
+      const email={
+        email:formData?.email
+      }
+      const response = await resendOtp(email);
+      // Handle response as needed
+    } catch (error) {
+      console.error("Error verifying user:", error);
+    }
+  }
+
   return (
     <div className={style.main}>
       {showVerification ? (
@@ -86,6 +99,7 @@ function RegisterPageSectionSecond() {
             <h4>VERIFY YOUR EMAIL</h4>
             <input type="number" placeholder="otp" onChange={(e) => setOtp(e.target.value)} />
             <button onClick={handleVerification}>VERIFY EMAIL →</button>
+            <button onClick={handleResendOtp}>Resend OTP</button>
           </div>
         </div>
       ) : (

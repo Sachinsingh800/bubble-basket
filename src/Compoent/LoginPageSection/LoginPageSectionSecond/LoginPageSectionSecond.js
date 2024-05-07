@@ -79,6 +79,12 @@ function LoginPageSectionSecond() {
       
     }
   };
+  const handleLostPassword=()=>{
+
+  }
+  const handleResgister=()=>{
+   window.location.href="/RegisterPage"
+  }
 
   return (
     <div className={style.main}>
@@ -118,7 +124,8 @@ function LoginPageSectionSecond() {
           <label htmlFor="rememberMe">Remember me</label>
         </div>
         <button type="submit">LOGIN →</button>
-        <p>Lost your password?</p>
+        <p onClick={handleLostPassword}>Lost your password?</p>
+        <p onClick={handleResgister}>Register</p>
       </form>
     </div>
   );

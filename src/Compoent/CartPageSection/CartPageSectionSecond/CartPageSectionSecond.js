@@ -20,7 +20,8 @@ function CartPageSectionSecond() {
   const [coupon, setCoupon] = useState("");
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const [productId, setProductId] = useState(null);
-  const [productQuantity, setProductQuantity] = useState(null);
+  const [productQuantity, setProductQuantity] = useState(0);
+
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -32,6 +33,7 @@ function CartPageSectionSecond() {
 
   const handleQuantityChange = (index, quantity) => {
     // If the quantity is less than 1, don't update it and return
+    setProductQuantity(quantity)
     if (quantity < 1) return;
   
     // Clone the data array to avoid mutating state directly
@@ -122,40 +124,17 @@ function CartPageSectionSecond() {
     }
   };
 
-  const removeQuantityOfItem = async (id, quantity) => {
+  const handleQuantityOfproduct = async () => {
     try {
-      const response = await updateItemQuantity(id, quantity);
+      const response = await updateItemQuantity(productId, productQuantity);
     } catch (error) {
       console.log(error);
     } finally {
-      const updatedData = data?.map((item) => {
-        if (item._id === id) {
-          return { ...item, quantity: quantity };
-        }
-        return item;
-      });
-      setData(updatedData);
-      localStorage.setItem("cartData", JSON.stringify(updatedData));
-      setUpdate(update + 1);
-      calculateTotalPrice(updatedData);
       handleCheckoutOrder();
     }
   };
 
-  const updateItemFromtheCart = async (id, quantity) => {
-    try {
-      const response = await updateFromCart(id, quantity);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      const updatedData = data.filter((item) => item._id !== id);
-      setData(updatedData);
-      localStorage.setItem("cartData", JSON.stringify(updatedData));
-      setUpdate(update + 1);
-      calculateTotalPrice(updatedData);
-      handleCheckoutOrder();
-    }
-  };
+
 
   const handleFilterCheckoutData = () => {
     localStorage.setItem("cartData", JSON.stringify(data));
@@ -223,28 +202,11 @@ function CartPageSectionSecond() {
               <div className={style.para}>$ {item?.price}</div>
             )}
 
-            {loginStatus ? (
-              <div
-                onClick={() =>
-                  removeQuantityOfItem(
-                    item?.Product_id,
-                    parseInt(productQuantity)
-                  )
-                }
-              >
-            <input
-                  className={style.quantity_box}
-                  value={item?.quantity}
-                  type="number"
-                  min="1"
-                  onChange={(e) =>setProductQuantity(e.target.value)}
-                />
-              </div>
-            ) : (
-              <div>
+ 
+              <div onMouseEnter={()=>setProductId(item?.Product_id)} >
                 <input
                   className={style.quantity_box}
-                  value={item?.quantity}
+                  value={item?.quantity ? item?.quantity : item?.Product_quantity}
                   type="number"
                   min="1"
                   onChange={(e) =>
@@ -252,7 +214,7 @@ function CartPageSectionSecond() {
                   }
                 />
               </div>
-            )}
+    
 
             {loginStatus ? (
               <div className={style.para}>$ {item?.productTotal}</div>
@@ -275,7 +237,7 @@ function CartPageSectionSecond() {
               />
               <button onClick={handleCouponCheck}>APPLY COUPON → </button>
             </div>
-            <button className={style.updatebtn} onClick={handleCheckoutOrder}>UPDATE CART → </button>
+            <button className={style.updatebtn} onClick={handleQuantityOfproduct }>UPDATE CART → </button>
           </div>
           {loginStatus ? (
             <div className={style.order_summary}>
