@@ -53,14 +53,19 @@ input[type="email"] {
   flex-direction: column;
 }
 .headers {
- display: grid;
- grid-template-columns: 1fr 1fr;
-  padding: 1rem 0rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+   padding: 1rem 0rem;
+   align-items: center;
+   font-weight: 500;
+   width: 100%;
+
+ }
+ .subtotal_box{
+  display: flex;
   align-items: center;
-  font-weight: 500;
-  width: 80%;
-  border: 2px red solid;
-}
+  justify-content: center;
+ }
 .order_item {
   display: flex;
   justify-content: space-between;
