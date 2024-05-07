@@ -555,7 +555,7 @@ export const getAddress = async () => {
       // alert(errorMessage);
       // Log the error message as a string
       localStorage.setItem("allAdress", JSON.stringify([]) );
-      alert(errorMessage);
+      // alert(errorMessage);
       console.error("Axios Error:", errorMessage);
       // window.location.href = "/Login";
     } else {
