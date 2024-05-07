@@ -3,7 +3,7 @@ import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../../Recoil/Recoil";
-import { addAddress, getCheckout, orderPlace } from "../../Apis/Apis";
+import { addAddress, getAddress, getCheckout, orderPlace } from "../../Apis/Apis";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
@@ -104,7 +104,18 @@ function CheckoutPageSectionSecond() {
     setIsChecked(checked);
   };
 
+  const handleUpdateAddress = async () => {
+    try {
+      const response = await getAddress();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setUpdate(update + 1);
+    }
+  };
+
   useEffect(() => {
+    handleUpdateAddress()
     if (isChecked) {
       const selectedAddress = JSON.parse(
         localStorage.getItem("selectedAddress")

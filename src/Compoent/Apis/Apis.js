@@ -540,7 +540,11 @@ export const getAddress = async () => {
     });
 
     const { status, message, data } = response.data;
-    localStorage.setItem("allAdress", JSON.stringify(data) || []);
+    if(status){
+      localStorage.setItem("allAdress", JSON.stringify(data) || []);
+      localStorage.setItem("selectedAddress", JSON.stringify(data[0]));
+    }
+
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {

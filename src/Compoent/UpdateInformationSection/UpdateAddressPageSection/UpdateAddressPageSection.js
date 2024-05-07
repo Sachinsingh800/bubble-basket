@@ -29,7 +29,7 @@ function UpdateAddressPageSection() {
     setAllAddress(address);
     if (address.length > 0) {
       setAddressData(address[0]);
-      setAddressId(address[0]._id);
+      setAddressId(address[0]?._id);
       localStorage.setItem("selectedAddress", JSON.stringify(address[0]));
     }
   }, [update]);
