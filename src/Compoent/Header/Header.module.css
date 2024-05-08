@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@100&display=swap');
 .tool_bar {
   display: flex;
   width: 100%;
@@ -161,7 +160,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width:1006px) {
+@media screen and (max-width:1130px) {
   .left_section{
     display: none;
   }
