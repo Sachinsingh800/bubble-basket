@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Futura+PT:wght@400&display=swap');
+
 .main{
     height: 35rem;
-    border: 1px  #F5E3E3 solid;
+    border: 1px  #7b0128 solid;
     width: 100%;
     display: flex;
     align-items: center;
@@ -108,7 +108,7 @@
 @media screen and (max-width:500px) {
     .main{
         height: max-content;
-        border: 1px  #F5E3E3 solid;
+        border: 1px  #7b0128 solid;
         width: 100%;
         display: flex;
         align-items: center;

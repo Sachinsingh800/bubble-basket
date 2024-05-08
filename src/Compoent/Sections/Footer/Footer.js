@@ -12,6 +12,7 @@ import logo3 from "../../Images/paypal.png";
 import logo4 from "../../Images/american express.png";
 import logo5 from "../../Images/discover.png";
 import PinterestIcon from "@mui/icons-material/Pinterest";
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function Footer() {
   return (
@@ -26,6 +27,9 @@ function Footer() {
         <div className={style.icon_container}>
           <span className={style.icon}>
             <FacebookRoundedIcon className={style.instagramIcon} />
+          </span>
+          <span className={style.icon}>
+            <YouTubeIcon  className={style.instagramIcon} />
           </span>
           <span className={style.icon}>
             <InstagramIcon className={style.instagramIcon} />

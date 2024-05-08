@@ -4,6 +4,7 @@ import HideAppBar from './Compoent/NavBar/NavBar';
 import productImage from "./Compoent/Images/dom perignon lady gaga rose.png";
 import { nanoid } from "nanoid";
 import AcceptCookies from './Compoent/AcceptCookies/AcceptCookies';
+import NavBar from './Compoent/NavBar/NavBar';
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <div className={styles.App}> {/* Use module-level CSS class */}
-      <HideAppBar />
+      <NavBar />
       <AcceptCookies />
       {showPopup && (
         <div className={styles.popup}> {/* Use module-level CSS class */}

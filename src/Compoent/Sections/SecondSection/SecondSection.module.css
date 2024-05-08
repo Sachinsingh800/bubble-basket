@@ -1,6 +1,6 @@
 .main {
   height: 35rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   width: 100%;
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@ a{
   flex-direction: column;
   height: 20rem;
   width: 15rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   align-items: center;
   gap: 1rem;
   padding: 2rem 1rem 0rem 1rem;
@@ -75,7 +75,7 @@ a{
   display: flex;
   align-items: center;
   border: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 0.5rem 1rem;
   font-size: small;
   letter-spacing: 0.3cap;
@@ -221,7 +221,7 @@ a{
     flex-direction: column;
     height: 30rem;
     width: 28rem;
-    border: 1px #f5e3e3 solid;
+    border: 1px #7b0128 solid;
     align-items: center;
     gap: 1rem;
     padding: 2rem 1rem 0rem 1rem;
