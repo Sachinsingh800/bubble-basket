@@ -8,11 +8,12 @@
   align-items: center;
   justify-content: center;
   height: 33rem;
-  padding-top: 1rem;
+  padding-top: 2.5rem;
 }
 .img_box {
   height: 29rem;
   width: 23rem;
+
 }
 .img_box img {
   height: 100%;
