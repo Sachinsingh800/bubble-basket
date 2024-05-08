@@ -15,7 +15,7 @@ input[type="tel"],
 input[type="email"] {
   width: 100%;
   padding: 10px;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   border-radius: 4px;
   outline: none;
   color: rgb(98, 98, 98);
@@ -23,7 +23,7 @@ input[type="email"] {
 .main form select {
   width: 100%;
   padding: 10px;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   border-radius: 4px;
   outline: none;
   color: rgb(98, 98, 98);
@@ -36,7 +36,7 @@ input[type="email"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   background: transparent;
   width: max-content;
   font-weight: 400;
@@ -106,13 +106,13 @@ input[type="email"] {
 .additional_info_box div textarea {
   width: 100%;
   padding: 10px;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   border-radius: 4px;
   outline: none;
   height: 10rem;
 }
 .coupon_box {
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -133,7 +133,7 @@ input[type="email"] {
   gap: 0.5rem;
 }
 .info_box {
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: .5rem 2rem;
   text-align: center;
 }

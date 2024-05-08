@@ -1,7 +1,7 @@
 .main {
   height: max-content;
   width: 100%;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -34,14 +34,14 @@
 }
 .input_box input {
   width: 2.5rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   outline: none;
 }
 .input_box button {
   display: flex;
   align-items: center;
   border: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 0.5rem 1rem;
   font-size: small;
   letter-spacing: 0.3cap;
@@ -71,7 +71,7 @@
 }
 .extraInfo_btn {
   display: flex;
-  border-bottom: 1px #f5e3e3 solid;
+  border-bottom: 1px #7b0128 solid;
   padding: 0.3rem 1rem;
   width: 50rem;
   justify-content: space-between;
@@ -118,7 +118,7 @@
   height: 15rem;
   padding: 0.5rem;
   outline: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   resize: none;
 }
 .user_input_box {
@@ -129,13 +129,13 @@
 .user_input_box input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
 }
 .form button {
   display: flex;
   align-items: center;
   border: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 0.5rem 1rem;
   font-size: small;
   letter-spacing: 0.3cap;

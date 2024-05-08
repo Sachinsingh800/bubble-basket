@@ -144,7 +144,7 @@
   height: 15rem;
   padding: 0.5rem;
   outline: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   resize: none;
 }
 .user_input_box {
@@ -155,18 +155,18 @@
 .user_input_box input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
 }
 .input_website {
   width: 100%;
   padding: 0.5rem;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
 }
 .form button {
   display: flex;
   align-items: center;
   border: none;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 0.5rem 1rem;
   font-size: small;
   letter-spacing: 0.3cap;

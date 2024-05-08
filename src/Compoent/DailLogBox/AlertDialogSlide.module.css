@@ -25,8 +25,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   border-right: 1px #F5E3E3 solid ;
-   border-left: 1px #F5E3E3 solid;
+   border-right: 1px #7b0128 solid ;
+   border-left: 1px #7b0128  solid;
    overflow: hidden!important;
 }
 .right_box{
@@ -67,14 +67,14 @@
 }
 .input_box input{
     width: 2.5rem;
-    border: 1px #F5E3E3 solid;
+    border: 1px #7b0128  solid;
     outline: none;
 }
 .input_box button{
     display:flex ;
     align-items: center;
     border: none;
-    border: 1px #F5E3E3 solid;
+    border: 1px #7b0128  solid;
     padding: .5rem 1rem;
     font-size: small;
     letter-spacing: .3cap;
@@ -118,8 +118,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-       border-right: 1px #F5E3E3 solid ;
-       border-left: 1px #F5E3E3 solid;
+       border-right: 1px #7b0128  solid ;
+       border-left: 1px #7b0128  solid;
        overflow: hidden!important;
     }
     .right_box{

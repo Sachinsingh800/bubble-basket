@@ -20,17 +20,17 @@
   gap: 2rem;
 }
 .product_item{
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 2rem;
 }
 .additional_notes{
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 2rem;
 }
 .billing_info_box{
   display: grid;
   grid-template-columns: 1fr 1fr ;
   width: 100%;
-  border: 1px #f5e3e3 solid;
+  border: 1px #7b0128 solid;
   padding: 2rem;
 }
