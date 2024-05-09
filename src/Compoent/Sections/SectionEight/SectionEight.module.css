@@ -1,5 +1,5 @@
 .main{
-    height: 35rem;
+    height: max-content;
     width: 100%;
     padding: 1rem 0rem;
     display: flex;
