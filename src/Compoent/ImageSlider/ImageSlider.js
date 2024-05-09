@@ -1,92 +1,83 @@
-import React, { useState } from "react";
+// ImageSlider.js
+import React from "react";
 import style from "./ImageSlider.module.css";
 import image1 from "../Images/Dom Perignon.png";
 import image2 from "../Images/Gaymus Vineyards.png";
 import image3 from "../Images/Moet & Champagne.png";
 import image4 from "../Images/Veuve Clicquot.png";
-import { GoArrowLeft } from "react-icons/go";
-import { GoArrowRight } from "react-icons/go";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 
 function ImageSlider() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const handleScrollLeft = () => {
-    const newPosition = Math.max(0, scrollPosition - 200); // Adjust scroll step as needed
-    setScrollPosition(newPosition);
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 2000, min: 1000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   };
 
-  const handleScrollRight = () => {
-    const newPosition = scrollPosition + 200; // Adjust scroll step as needed
-    setScrollPosition(newPosition);
+  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
+    const {
+      carouselState: { currentSlide },
+    } = rest;
+    return (
+      <div className={style.custom_button}>
+        <button
+          onClick={() => previous()}
+        >
+      <GoArrowLeft className={style.icon} />
+        </button>
+        <button  onClick={() => next()}>
+        <GoArrowRight className={style.icon} />
+        </button>
+      </div>
+    );
   };
 
   return (
-    <div className={style.main_container}>
-            <div className={style.heading_box}>
+    <div className={style.mainContainer}>
+      <div className={style.headingBox}>
         <h2>SHOP BY BRANDS</h2>
       </div>
-      <div className={style.main}>
-    <button className={style.scrollBtn} onClick={handleScrollLeft}>
-        <GoArrowLeft  className={style.icon} />
-      </button>
-        <div className={style.slider}>
-
-      <div
-        className={style.slide}
+      <div className={style.carousel_box}>
+      <Carousel
+        arrows={false}
+        renderButtonGroupOutside={true}
+        customButtonGroup={<ButtonGroup />}
+        responsive={responsive}
       >
-        <div className={style.images}       style={{
-          transform: `translateX(-${scrollPosition}px)`,
-          transition: "transform 0.5s ease",
-        }}>
-          <div className={style.img_box}>
-            <img src={image1} alt="Image 1" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image2} alt="Image 2" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image3} alt="Image 3" className={style.image} />
-          </div>
-
-          <div className={style.img_box}>
-            <img src={image4} alt="Image 4" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image1} alt="Image 1" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image2} alt="Image 2" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image3} alt="Image 3" className={style.image} />
-          </div>
-
-          <div className={style.img_box}>
-            <img src={image4} alt="Image 4" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image1} alt="Image 1" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image2} alt="Image 2" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image3} alt="Image 3" className={style.image} />
-          </div>
-          <div className={style.img_box}>
-            <img src={image4} alt="Image 4" className={style.image} />
-          </div>
+        <div className={style.img_box}>
+          <img src={image1} alt="slide 1" />
         </div>
+        <div className={style.img_box}>
+          <img src={image2} alt="slide 2" />
+        </div>
+        <div className={style.img_box}>
+          <img src={image3} alt="slide 3" />
+        </div>
+        <div className={style.img_box}>
+          <img src={image4} alt="slide 4" />
+        </div>
+        <div className={style.img_box}>
+          <img src={image4} alt="slide 5" />
+        </div>
+      </Carousel>
       </div>
 
     </div>
-    <button className={style.scrollBtn} onClick={handleScrollRight}>
-        <GoArrowRight className={style.icon} />
-      </button>
-    </div>
-    </div>
-    
-    
   );
 }
 
