@@ -27,7 +27,7 @@
   position: absolute;
 }
 .date_lable{
-  width: 9rem;
+  width: max-content;
 }
 
 .option_box::-webkit-scrollbar-track
@@ -81,8 +81,9 @@
 }
 .container {
   display: flex;
-  gap: 3rem;
-  width: 80%;
+
+  width: 100%;
+  justify-content: space-evenly;
   color: #7b0128;
   align-items: center ;
 }
