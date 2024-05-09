@@ -907,20 +907,18 @@ export const getCheckout = async (promoCode) => {
 
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
-   localStorage.setItem("cartData",JSON.stringify(data.productsData))
-    localStorage.setItem("checkout", JSON.stringify(response?.data?.data));
-    const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
+    if(status){
+      localStorage.setItem("cartData",JSON.stringify(data.productsData) || [])
+      localStorage.setItem("checkout", JSON.stringify(response?.data?.data) || []);
+      const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
+    }
+ 
     const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
 
     if (checkoutStatus) {
       window.location.href = "/CheckoutPage";
     }
 
-    if (login) {
-      // If "Remember Me" is checked, save token to local storage
-    } else {
-      // window.location.href = "/Login";
-    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const { response } = error;
