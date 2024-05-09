@@ -53,6 +53,10 @@ export default function AlertDialogSlide({ cartdata }) {
     setOpen(false);
   };
 
+  function renderHTML(htmlString) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
+
   return (
     <React.Fragment>
       <button className={style.optionButton3} onClick={() => setOpen(true)}>
@@ -81,7 +85,7 @@ export default function AlertDialogSlide({ cartdata }) {
             <div className={style.des_box}>
               <h2>{cartdata?.title}</h2>
               <h6>${cartdata?.price}</h6>
-              <span>{cartdata?.description}</span>
+              <span>{renderHTML(cartdata?.description)}</span>
               <div className={style.input_box}>
                 <input
                   type="number"
