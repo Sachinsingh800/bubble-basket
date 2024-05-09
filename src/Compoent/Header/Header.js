@@ -14,6 +14,7 @@ import menuicon from "../Images/menu.png";
 import AnchorTemporaryDrawer from "../AnchorTemporaryDrawer/AnchorTemporaryDrawer";
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../Recoil/Recoil";
+import axios from "axios";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -36,11 +37,13 @@ HideOnScroll.propTypes = {
 export default function Header(props) {
   const [update, setUpdate] = useRecoilState(updateCart);
   const [cartItem, setCartItem] = React.useState();
+  const [category,setCategory] = React.useState([])
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length;
     setCartItem(cartItem);
+    getAllCategory()
   }, [update]);
 
   const [showOptions, setShowOptions] = React.useState({
@@ -55,6 +58,58 @@ export default function Header(props) {
 
   const closeOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: false });
+  };
+
+  console.log(category,"category")
+
+  const getAllCategory = async () => {
+    // Function to retrieve token from cookies
+    // Function to retrieve token from cookies
+    function getToken() {
+      return document.cookie.replace(
+        /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      );
+    }
+  
+    // Retrieve token
+    const token = getToken();
+  
+    try {
+      const headers = {
+        "x-auth-token": token, // Pass the token in the header
+        "Content-Type": "application/json", // Set content type to JSON
+      };
+      const response = await axios.get(`https://wine-rnlq.onrender.com/admin/product/getAll`, {
+        headers,
+      });
+  
+      const { status, message, data } = response.data;
+      if(status){
+     console.log(data,"data aaa raha")
+     
+     setCategory(data)
+      }
+  
+      // Handle response data as needed
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        // Axios error (HTTP error)
+        const { response } = error;
+        // Set the error message
+        const errorMessage = response.data.message;
+        // alert(errorMessage);
+        // Log the error message as a string
+        localStorage.setItem("allAdress", JSON.stringify([]) );
+        // alert(errorMessage);
+        console.error("Axios Error:", errorMessage);
+        // window.location.href = "/Login";
+      } else {
+        // Network error (e.g., no internet connection)
+        // alert("Something went wrong");
+        console.error("Network Error:", error.message);
+      }
+    }
   };
 
   return (
@@ -72,6 +127,7 @@ export default function Header(props) {
                   onMouseEnter={() => showOptionDiv(1)}
                   onMouseLeave={() => closeOptionDiv(1)}
                 >
+                  
                   <a href="/">HOME</a>
                   <div
                     className={style.bottom_div}
@@ -79,10 +135,12 @@ export default function Header(props) {
                       visibility: showOptions[1] ? "visible" : "hidden",
                     }}
                   >
-                    <p>Content for HOME</p>
-                    <p>Content for HOME</p>
-                    <p>Content for HOME</p>
-                    <p>Content for HOME</p>
+                    {category.map((item)=>
+                    <div className={style.category_box}>
+                  <a href={`/Product/${item.category}`}><p>{item.category}</p></a>
+                    </div>
+                    )}
+                
                   </div>
                 </li>
                 <li

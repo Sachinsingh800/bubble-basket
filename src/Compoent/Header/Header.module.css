@@ -159,6 +159,9 @@
 .left_section li:hover .bottom_div {
   opacity: 1;
 }
+.category_box{
+ width: 100%;
+}
 
 @media screen and (max-width:1130px) {
   .left_section{

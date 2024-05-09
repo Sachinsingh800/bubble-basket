@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./SectionSixth.module.css";
-import product1 from "../../Images/26 pc.png";
-import product2 from "../../Images/Moet & Chandon Imperial Brut Champagne With 8pc 1.png";
-import product3 from "../../Images/dom perignon lady gaga rose.png";
-import textfile from "../../Images/text2.png";
+import { getAllCategory } from "../../Apis/Apis";
+import axios from "axios";
 
 function SectionSixth() {
+
+
+
+
+const getAllCategory = async (e,title) => {
+  e.preventDefault()
+  window.location.href=`/Product/${title}`
+};
   const collectionData = [
     {
       id: 1,
@@ -24,9 +30,9 @@ function SectionSixth() {
     },
   ];
 
-  const handleNavigate=()=>{
-    window.location.href="/ColumnPage"
-  }
+  const handleNavigate = () => {
+    // window.location.href = "/ColumnPage";
+  };
 
   return (
     <div className={style.main}>
@@ -40,12 +46,10 @@ function SectionSixth() {
       </div>
       <div className={style.card_box}>
         {collectionData.map((item, index) => (
-          <div key={item.id} className={style.inner_container}>
-      
-              <div className={style.text_box} onClick={handleNavigate}>
-                <h5>{item.title}</h5>
-              </div>
-      
+          <div key={item.id} className={style.inner_container} onClick={(e)=>getAllCategory(e,item.title)}>
+            <div className={style.text_box} onClick={handleNavigate}>
+              <h5>{item.title}</h5>
+            </div>
           </div>
         ))}
       </div>

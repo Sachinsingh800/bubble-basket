@@ -566,6 +566,57 @@ export const getAddress = async () => {
   }
 };
 
+// getAllCategory
+
+export const getAllCategory = async () => {
+  // Function to retrieve token from cookies
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(`${BASE_URL}/admin/category/getAll`, {
+      headers,
+    });
+
+    const { status, message, data } = response.data;
+    if(status){
+   console.log(data,"data aaa raha")
+   localStorage.setItem("all_category",JSON.stringify(data) || [])
+    }
+
+    // Handle response data as needed
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      localStorage.setItem("allAdress", JSON.stringify([]) );
+      // alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+      // window.location.href = "/Login";
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
+
 // deleteAddress
 
 export const deleteAddress = async (id) => {
@@ -804,7 +855,7 @@ export const loginUser = async (userData, rememberMe) => {
 
 // getAllProduct
 
-export const getAllProduct = async () => {
+export const getAllProduct = async (category) => {
   try {
     const response = await axios.get(`${BASE_URL}/admin/product/getAll`);
     const { status, message, data, token } = response.data;
