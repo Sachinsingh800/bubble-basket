@@ -29,7 +29,7 @@ function CheckoutPageSectionSecond() {
   });
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(localStorage.getItem("selectedAddress") || false)
-
+  
   useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
   }, []);

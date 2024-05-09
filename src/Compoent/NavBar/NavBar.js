@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import FirstSection from "../Sections/FirstSection/FirstSection";
 import SecondSection from "../Sections/SecondSection/SecondSection";
@@ -15,6 +15,7 @@ import style from "./NavBar.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 
 function NavBar() {
+
   return (
     <div>
       <Header />

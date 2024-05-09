@@ -21,6 +21,7 @@ function CartPageSectionSecond() {
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const [productId, setProductId] = useState(null);
   const [productQuantity, setProductQuantity] = useState(0);
+  
 
 
   useEffect(() => {
@@ -136,7 +137,8 @@ function CartPageSectionSecond() {
 
 
 
-  const handleFilterCheckoutData = () => {
+  const handleFilterCheckoutData = (e) => {
+    e.preventDefault()
     localStorage.setItem("cartData", JSON.stringify(data));
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     setUpdate(update + 1);
@@ -328,7 +330,7 @@ function CartPageSectionSecond() {
           )}
           <br />
           <div className={style.buttons_box2}>
-            <button onClick={handleFilterCheckoutData}>
+            <button onClick={(e)=>handleFilterCheckoutData(e)}>
               PROCEED TO CHECKOUT →{" "}
             </button>
           </div>

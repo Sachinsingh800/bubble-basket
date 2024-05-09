@@ -828,13 +828,8 @@ export const loginUser = async (userData, rememberMe) => {
 
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
+      getCheckout()
 
-      const checkoutStatus = JSON.stringify(localStorage.getItem("checkoutStatus"))
-      if (checkoutStatus) {
-        window.location.href = "/CheckoutPage";
-      }else{
-        window.location.href = "/";
-      }
      
 
       if (rememberMe) {
@@ -875,9 +870,9 @@ export const getAllProduct = async (category) => {
     if (axios.isAxiosError(error)) {
       const { response } = error;
       const errorMessage = response.data.message;
-      throw new Error(errorMessage);
+
     } else {
-      throw new Error("Network Error");
+     
     }
   }
 };
@@ -910,14 +905,15 @@ export const getCheckout = async (promoCode) => {
     if(status){
       localStorage.setItem("cartData",JSON.stringify(data.productsData) || [])
       localStorage.setItem("checkout", JSON.stringify(response?.data?.data) || []);
+      const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"))
+
+      if (checkoutStatus) {
+        window.location.href = "/CheckoutPage";
+      }
       const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }
  
-    const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
 
-    if (checkoutStatus) {
-      window.location.href = "/CheckoutPage";
-    }
 
   } catch (error) {
     if (axios.isAxiosError(error)) {

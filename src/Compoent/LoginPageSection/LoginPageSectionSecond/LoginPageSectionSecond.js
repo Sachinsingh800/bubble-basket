@@ -62,7 +62,7 @@ function LoginPageSectionSecond() {
 
       if (response.status) {
         // If login is successful, save token to local storage
-        handleCheckoutOrder()
+        
         // Example: history.push('/dashboard');
       }
     } catch (error) {
@@ -76,6 +76,7 @@ function LoginPageSectionSecond() {
       }
     } finally {
       setLoading(false);
+      // handleCheckoutOrder()
       
     }
   };
