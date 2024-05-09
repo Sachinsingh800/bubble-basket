@@ -41,6 +41,7 @@ root.render(
         <Route path={'/'} element={<App />} />
         <Route path={'/ProductPage/:id'} element={<ProductPage />} />
         <Route path={'/Product/:category'} element={<ColumnPage />} />
+        <Route path={'/Product'} element={<ColumnPage />} />
         <Route path={'/CartPage'} element={<CartPage />} />
         <Route path={'/BlogPage'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
