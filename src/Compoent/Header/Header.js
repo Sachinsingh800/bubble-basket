@@ -140,6 +140,7 @@ export default function Header(props) {
                     {category.map((item) => (
                       <div className={style.category_box}>
                         <p
+                        className={style.option}
                           onClick={() =>
                             (window.location.href = `/Product/${item.category}`)
                           }

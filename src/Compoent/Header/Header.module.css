@@ -162,6 +162,9 @@
 .category_box{
  width: 100%;
 }
+.option{
+  cursor: pointer;
+}
 
 @media screen and (max-width:1130px) {
   .left_section{
