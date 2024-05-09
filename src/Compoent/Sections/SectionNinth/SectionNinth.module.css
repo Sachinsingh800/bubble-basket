@@ -23,6 +23,12 @@
   overflow-y: scroll;
   padding: 1rem;
 }
+.date_box{
+  position: absolute;
+}
+.date_lable{
+  width: 9rem;
+}
 
 .option_box::-webkit-scrollbar-track
 {
@@ -75,9 +81,8 @@
 }
 .container {
   display: flex;
-
+  gap: 3rem;
   width: 80%;
-  justify-content: space-evenly;
   color: #7b0128;
   align-items: center ;
 }
@@ -114,6 +119,7 @@ select {
 .para {
   font-family: "Allura", cursive;
   font-weight: 400;
+  font-size: 2rem;
   font-style: normal;
 }
 

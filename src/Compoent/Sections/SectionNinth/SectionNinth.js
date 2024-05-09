@@ -3,11 +3,14 @@ import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
+import { Calendar } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
 function SectionNinth() {
   const [person, setPerson] = useState("person");
   const [time, setTime] = useState("6:00 am");
-  const [date, setDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [showPerson, setShowPerson] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showDate, setShowDate] = useState(false);
@@ -63,22 +66,24 @@ function SectionNinth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", { person, time, date });
+    console.log("Form submitted:", { person, time, selectedDate });
     // You can add your form submission logic here
   };
 
-  const handlePerson=(person)=>{
-    setPerson(person)
-    setShowPerson(false)
-  }
-  const handleTime=(time)=>{
-    setTime(time)
-    setShowTime(false)
-  }
-  const handleDate=(e)=>{
-    setDate(e.target.value)
-    setShowDate(false)
-  }
+  const handlePerson = (person) => {
+    setPerson(person);
+    setShowPerson(false);
+  };
+  
+  const handleTime = (time) => {
+    setTime(time);
+    setShowTime(false);
+  };
+
+  const handleSelect = (date) => {
+    setSelectedDate(date);
+    setShowDate(false);
+  };
 
   return (
     <div className={style.main}>
@@ -112,22 +117,27 @@ function SectionNinth() {
         <div className={style.para}>for</div>
 
         <div className={style.option_container} ref={dateRef}>
-          <label onClick={handleToggleDate}>
+          <label onClick={handleToggleDate} className={style.date_lable}>
             <WorkHistoryOutlinedIcon />
-            {date}
+            {selectedDate.toLocaleDateString(undefined, {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
           </label>
           {showDate && (
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => handleDate(e)}
-              className={style.dateInput}
-              open // to make the date picker open by default
-            />
+            <div className={style.date_box}>
+              <Calendar
+                date={selectedDate}
+                onChange={handleSelect}
+                minDate={new Date()}
+              />
+            </div>
           )}
         </div>
 
         <div className={style.para}>at</div>
+        
         <div className={style.option_container} ref={timeRef}>
           <label onClick={handleToggleTime}>
             <AccessAlarmsOutlinedIcon />
