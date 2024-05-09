@@ -34,7 +34,7 @@ function SectionThird() {
           <img src={textfile} alt="text" />
           <h2>E L E G A N T &amp; U N I Q U E</h2>
         </div>
-        <a href="/ColumnPage">
+        <a href="/Product">
           <button className={style.btn}>DISCOVER →</button>
         </a>
       </div>
