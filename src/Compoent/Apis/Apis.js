@@ -828,7 +828,14 @@ export const loginUser = async (userData, rememberMe) => {
 
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
-      window.location.href = "/";
+
+      const checkoutStatus = JSON.stringify(localStorage.getItem("checkoutStatus"))
+      if (checkoutStatus) {
+        window.location.href = "/CheckoutPage";
+      }else{
+        window.location.href = "/";
+      }
+     
 
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(token));
