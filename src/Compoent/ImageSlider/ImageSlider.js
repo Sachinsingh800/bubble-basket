@@ -35,13 +35,11 @@ function ImageSlider() {
     } = rest;
     return (
       <div className={style.custom_button}>
-        <button
-          onClick={() => previous()}
-        >
-      <GoArrowLeft className={style.icon} />
+        <button onClick={() => previous()}>
+          <GoArrowLeft className={style.icon} />
         </button>
-        <button  onClick={() => next()}>
-        <GoArrowRight className={style.icon} />
+        <button onClick={() => next()}>
+          <GoArrowRight className={style.icon} />
         </button>
       </div>
     );
@@ -53,30 +51,55 @@ function ImageSlider() {
         <h2>SHOP BY BRANDS</h2>
       </div>
       <div className={style.carousel_box}>
-      <Carousel
-        arrows={false}
-        renderButtonGroupOutside={true}
-        customButtonGroup={<ButtonGroup />}
-        responsive={responsive}
-      >
-        <div className={style.img_box}>
-          <img src={image1} alt="slide 1" />
-        </div>
-        <div className={style.img_box}>
-          <img src={image2} alt="slide 2" />
-        </div>
-        <div className={style.img_box}>
-          <img src={image3} alt="slide 3" />
-        </div>
-        <div className={style.img_box}>
-          <img src={image4} alt="slide 4" />
-        </div>
-        <div className={style.img_box}>
-          <img src={image4} alt="slide 5" />
-        </div>
-      </Carousel>
-      </div>
+        <Carousel
+          arrows={false}
+          renderButtonGroupOutside={true}
+          customButtonGroup={<ButtonGroup />}
+          responsive={responsive}
+        >
+          <div
+            className={style.img_box}
+            onClick={() =>
+              (window.location.href = `/Product/${"Dom Perignon"}`)
+            }
+          >
+            <img src={image1} alt="slide 1" />
+          </div>
 
+          <div
+            className={style.img_box}
+            onClick={() =>
+              (window.location.href = `/Product/${"Caymus Vineyards"}`)
+            }
+          >
+            <img src={image2} alt="slide 2" />
+          </div>
+          <div
+            className={style.img_box}
+            onClick={() =>
+              (window.location.href = `/Product/${"Moet & Chandon"}`)
+            }
+          >
+            <img src={image3} alt="slide 3" />
+          </div>
+          <div
+            className={style.img_box}
+            onClick={() =>
+              (window.location.href = `/Product/${"Veuve Clicquot"}`)
+            }
+          >
+            <img src={image4} alt="slide 4" />
+          </div>
+          <div
+            className={style.img_box}
+            onClick={() =>
+              (window.location.href = `/Product/${"Dom Perignon"}`)
+            }
+          >
+            <img src={image4} alt="slide 5" />
+          </div>
+        </Carousel>
+      </div>
     </div>
   );
 }
