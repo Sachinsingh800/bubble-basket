@@ -1,38 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 
 function SectionNinth() {
-  const [formData, setFormData] = useState({
-    persons: "1 Person",
-    date: new Date().toISOString().substr(0, 10),
-    time: new Date().toTimeString().substr(0, 5),
-  });
+  const [person, setPerson] = useState("person");
+  const [time, setTime] = useState("6:00 am");
+  const [date, setDate] = useState("");
+  const [showPerson, setShowPerson] = useState(false);
+  const [showTime, setShowTime] = useState(false);
+  const [showDate, setShowDate] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const personRef = useRef(null);
+  const timeRef = useRef(null);
+  const dateRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        personRef.current &&
+        !personRef.current.contains(event.target) &&
+        showPerson
+      ) {
+        setShowPerson(false);
+      }
+
+      if (
+        timeRef.current &&
+        !timeRef.current.contains(event.target) &&
+        showTime
+      ) {
+        setShowTime(false);
+      }
+
+      if (
+        dateRef.current &&
+        !dateRef.current.contains(event.target) &&
+        showDate
+      ) {
+        setShowDate(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPerson, showTime, showDate]);
+
+  const handleToggle = () => {
+    setShowPerson(!showPerson);
   };
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString(undefined, {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
+  const handleToggleTime = () => {
+    setShowTime(!showTime);
   };
 
-  const formatTime = (time) => {
-    return time;
+  const handleToggleDate = () => {
+    setShowDate(!showDate);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", { person, time, date });
     // You can add your form submission logic here
   };
+
+  const handlePerson=(person)=>{
+    setPerson(person)
+    setShowPerson(false)
+  }
+  const handleTime=(time)=>{
+    setTime(time)
+    setShowTime(false)
+  }
+  const handleDate=(e)=>{
+    setDate(e.target.value)
+    setShowDate(false)
+  }
 
   return (
     <div className={style.main}>
@@ -44,47 +90,64 @@ function SectionNinth() {
         </p>
         <h2>TAKE AT OUR</h2>
       </div>
-     
-        <form className={style.container} onSubmit={handleSubmit}>
-          <label>
-            <PersonOutlinedIcon />
-            <select name="persons" value={formData.persons} onChange={handleChange}>
-              <option value="1 Person">1 Person</option>
-              <option value="2 Persons">2 Persons</option>
-              <option value="3 Persons">3 Persons</option>
-            </select>
-          </label>
-          <div className={style.para}>for</div>
 
-          <label htmlFor="Date" className={style.dateLabel}>
+      <form className={style.container} onSubmit={handleSubmit}>
+        <div className={style.option_container} ref={personRef}>
+          <label onClick={handleToggle}>
+            <PersonOutlinedIcon />
+            {person}
+          </label>
+          {showPerson && (
+            <ul className={style.option_box}>
+              <li onClick={() => handlePerson("1 Person")}>1 Person</li>
+              <li onClick={() => handlePerson("2 Person")}>2 Person</li>
+              <li onClick={() => handlePerson("3 Person")}>3 Person</li>
+              <li onClick={() => handlePerson("4 Person")}>4 Person</li>
+              <li onClick={() => handlePerson("5 Person")}>5 Person</li>
+              <li onClick={() => handlePerson("6 Person")}>6 Person</li>
+            </ul>
+          )}
+        </div>
+
+        <div className={style.para}>for</div>
+
+        <div className={style.option_container} ref={dateRef}>
+          <label onClick={handleToggleDate}>
             <WorkHistoryOutlinedIcon />
-            <span>{formatDate(formData.date)}</span>
+            {date}
+          </label>
+          {showDate && (
             <input
               type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              id="Date"
+              value={date}
+              onChange={(e) => handleDate(e)}
+              className={style.dateInput}
+              open // to make the date picker open by default
             />
-          </label>
+          )}
+        </div>
 
-          <div className={style.para}>at</div>
-          <label htmlFor="Time" className={style.timeLabel}>
+        <div className={style.para}>at</div>
+        <div className={style.option_container} ref={timeRef}>
+          <label onClick={handleToggleTime}>
             <AccessAlarmsOutlinedIcon />
-            <span>{formatTime(formData.time)}</span>
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              id="Time"
-            />
+            {time}
           </label>
+          {showTime && (
+            <ul className={style.option_box}>
+              <li onClick={() => handleTime("6:00 am")}>6:00 am</li>
+              <li onClick={() => handleTime("7:00 am")}>7:00 am</li>
+              <li onClick={() => handleTime("8:00 am")}>8:00 am</li>
+              <li onClick={() => handleTime("9:00 am")}>9:00 am</li>
+              <li onClick={() => handleTime("10:00 am")}>10:00 am</li>
+              <li onClick={() => handleTime("11:00 am")}>11:00 am</li>
+            </ul>
+          )}
+        </div>
 
-          <div className={style.para}>go!</div>
-          <button type="submit">R E S E R V A T I O N →</button>
-        </form>
-     
+        <div className={style.para}>go!</div>
+        <button type="submit">R E S E R V A T I O N →</button>
+      </form>
     </div>
   );
 }
