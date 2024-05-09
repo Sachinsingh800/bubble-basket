@@ -112,7 +112,7 @@ function SectionFourth() {
             </div>
             <div className={style.text_box}>
               <h5>{item?.title}</h5>
-              <p>{renderHTML(item?.description)}</p>
+              <p>{item?.category}</p>
             </div>
             <div
               className={style.optionsBox}
