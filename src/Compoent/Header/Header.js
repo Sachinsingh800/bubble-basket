@@ -38,7 +38,8 @@ export default function Header(props) {
   const [update, setUpdate] = useRecoilState(updateCart);
   const [cartItem, setCartItem] = React.useState();
   const [category, setCategory] = React.useState([]);
-  const [seacrh, setSearch] = React.useState("");
+  const [search, setSearch] = React.useState("");
+  const [showSearch,setShowSearch] = React.useState(false)
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
@@ -62,6 +63,10 @@ export default function Header(props) {
   };
 
   console.log(category, "category");
+
+  const handleToggleSearch=()=>{
+    setShowSearch(!showSearch)
+  }
 
   const getAllCategory = async () => {
     // Function to retrieve token from cookies
@@ -115,6 +120,19 @@ export default function Header(props) {
       }
     }
   };
+
+  const handleClickOutsideSearch = (event) => {
+    if (event.target.closest(`.${style.search_box}`) === null) {
+      setShowSearch(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener("click", handleClickOutsideSearch);
+    return () => {
+      document.removeEventListener("click", handleClickOutsideSearch);
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -197,7 +215,7 @@ export default function Header(props) {
               </div>
               <div className={style.right_section}>
                 <div className={style.search_box}>
-                  <button className={style.btn_search}>
+                  <button className={style.btn_search} onClick={handleToggleSearch}>
                     <div className={style.icon_box}>
                       <img src={searchicon} alt="search" />
                     </div>
@@ -208,9 +226,13 @@ export default function Header(props) {
                     placeholder="Type to Search..."
                     onChange={(e) => setSearch(e.target.value)}
                   />
-                  {seacrh.length > 0 && (
+                  {showSearch && (
                     <ul className={style.option_box}>
-                      {category.map((item) => (
+                      {category
+                           .filter((elem) => {
+                            return elem.title.toLowerCase().includes(search.toLowerCase());
+                          })
+                      .map((item) => (
                         <li    onClick={() =>
                           (window.location.href = `/Product/${item.category}`)
                         }>
