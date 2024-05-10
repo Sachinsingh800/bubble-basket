@@ -127,13 +127,13 @@ function SectionFourth() {
                   {showCartTick && <span className={style.tick}>✓</span>}
                   <ShoppingCartIcon />
                 </button>
-                <button
+                {/* <button
                   className={style.optionButton2}
                   onClick={() => handleAddToLike(item)}
                 >
                   {showLikeTick && <span className={style.tick}>✓</span>}
                   <FavoriteBorderIcon />
-                </button>
+                </button> */}
                 <span className={style.optionButton3}>
                   <AlertDialogSlide cartdata={item} />
                 </span>

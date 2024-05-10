@@ -140,7 +140,7 @@ export default function Header(props) {
                     {category.map((item) => (
                       <div className={style.category_box}>
                         <p
-                        className={style.option}
+                          className={style.option}
                           onClick={() =>
                             (window.location.href = `/Product/${item.category}`)
                           }
@@ -195,13 +195,20 @@ export default function Header(props) {
                 </div>
               </div>
               <div className={style.right_section}>
-              <div className={style.search_box}>
-      <button className={style.btn_search}>            <div className={style.icon_box}>
-                  <img src={searchicon} alt="search" />
-                </div></button>
-      <input type="text" className={style.input_search} placeholder="Type to Search..." />
-    </div>
-    
+                <div className={style.search_box}>
+                  <button className={style.btn_search}>
+                    {" "}
+                    <div className={style.icon_box}>
+                      <img src={searchicon} alt="search" />
+                    </div>
+                  </button>
+                  <input
+                    type="text"
+                    className={style.input_search}
+                    placeholder="Type to Search..."
+                  />
+                </div>
+
                 <a href="/AccountPage">
                   <div className={style.icon_box}>
                     <img src={avatarimg} alt="user" />
