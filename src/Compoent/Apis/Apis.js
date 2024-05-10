@@ -909,6 +909,9 @@ export const getCheckout = async (promoCode) => {
 
       if (checkoutStatus) {
         window.location.href = "/CheckoutPage";
+      }else{
+        localStorage.removeItem("cartData")
+        window.location.href = "/";
       }
       const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }

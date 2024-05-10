@@ -99,7 +99,7 @@ function SecondSection() {
           </div>
         ))}
       </div>
-      <a href={`/Product/${``}`}>
+      <a href="/Product">
         <button className={style.viewAllbtn}>VIEW ALL →</button>
       </a>
     </div>
