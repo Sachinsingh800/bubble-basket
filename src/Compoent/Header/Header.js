@@ -208,14 +208,23 @@ export default function Header(props) {
                     placeholder="Type to Search..."
                     onChange={(e) => setSearch(e.target.value)}
                   />
-                  {category.length > 0 && (
-                    <div className={style.option_box}>
+                  {seacrh.length > 0 && (
+                    <ul className={style.option_box}>
                       {category.map((item) => (
-                        <div>
-
-                        </div>
+                        <li    onClick={() =>
+                          (window.location.href = `/Product/${item.category}`)
+                        }>
+                         <div className={style.search_img_box}>
+                          <img src={item?.productImg[0]?.url} alt={item.title}/>
+                         </div>
+                         <div  className={style.price_box}>
+                         <h6>{item?.title}</h6> 
+                         <span>${item?.price}</span> 
+                         </div>
+                       
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
                 </div>
 
