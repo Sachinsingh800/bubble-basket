@@ -27,6 +27,7 @@
 }
 .date_lable{
   width: max-content;
+  min-width: 10rem;
 }
 
 .option_box::-webkit-scrollbar-track
