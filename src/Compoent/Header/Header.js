@@ -195,9 +195,13 @@ export default function Header(props) {
                 </div>
               </div>
               <div className={style.right_section}>
-                <div className={style.icon_box}>
+              <div className={style.search_box}>
+      <button className={style.btn_search}>            <div className={style.icon_box}>
                   <img src={searchicon} alt="search" />
-                </div>
+                </div></button>
+      <input type="text" className={style.input_search} placeholder="Type to Search..." />
+    </div>
+    
                 <a href="/AccountPage">
                   <div className={style.icon_box}>
                     <img src={avatarimg} alt="user" />
