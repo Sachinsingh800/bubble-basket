@@ -38,6 +38,7 @@ export default function Header(props) {
   const [update, setUpdate] = useRecoilState(updateCart);
   const [cartItem, setCartItem] = React.useState();
   const [category, setCategory] = React.useState([]);
+  const [seacrh, setSearch] = React.useState("");
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
@@ -205,7 +206,17 @@ export default function Header(props) {
                     type="text"
                     className={style.input_search}
                     placeholder="Type to Search..."
+                    onChange={(e) => setSearch(e.target.value)}
                   />
+                  {category.length > 0 && (
+                    <div className={style.option_box}>
+                      {category.map((item) => (
+                        <div>
+
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <a href="/AccountPage">
