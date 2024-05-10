@@ -197,7 +197,6 @@ export default function Header(props) {
               <div className={style.right_section}>
                 <div className={style.search_box}>
                   <button className={style.btn_search}>
-                    {" "}
                     <div className={style.icon_box}>
                       <img src={searchicon} alt="search" />
                     </div>

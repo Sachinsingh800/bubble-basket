@@ -10,7 +10,6 @@
 }
 .option_container{
   width: 8rem;
-
 }
 .option_box{
   position: absolute;
@@ -51,6 +50,7 @@
 .option_box li{
   list-style: none;
   margin-left: -.5rem;
+  
 }
 
 .heading_box {
@@ -75,17 +75,14 @@
   color: #7b0128;
 }
 .heading_box h2 {
-  font-family: "Futura PT", sans-serif;
   letter-spacing: 0.5cap;
-  /* margin-top: -.5rem; */
 }
 .container {
   display: flex;
-
-  width: 100%;
   justify-content: space-evenly;
   color: #7b0128;
   align-items: center ;
+  width: 100%;
 }
 
 .container label {
@@ -94,6 +91,7 @@
   border: 1px #7b0128 solid;
   gap: 0.5rem;
   padding: .4rem;
+  width: 100%;
 }
 
 .container label input,
@@ -101,6 +99,7 @@ select {
   border: none;
   outline: none;
   color: #7b0128;
+
 }
 
 .container button {
@@ -122,6 +121,7 @@ select {
   font-weight: 400;
   font-size: 2rem;
   font-style: normal;
+  text-align: center;
 }
 
 @media screen and (max-width:784px) {
@@ -135,14 +135,22 @@ select {
     gap: 3rem;
     justify-content: center;
     padding: 3rem 0rem;
+
   }
   .container {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
     gap: 2rem;
-    width: 80%;
-    justify-content: space-evenly;
+    width:100%;
     color: #7b0128;
-    align-items: center ;
+    /* align-items: center ; */
+    padding: 1rem!important;
+    margin: 0rem!important;
+  }
+  .option_container{
+    width: 100%;
+  }
+  .option_box{
+    width: 100%;
   }
 }
