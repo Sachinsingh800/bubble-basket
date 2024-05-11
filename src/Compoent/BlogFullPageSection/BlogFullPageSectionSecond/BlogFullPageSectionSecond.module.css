@@ -140,10 +140,10 @@
 }
 .user_dp {
   height: 3.5rem;
-  width: 5rem !important;
+  width: 3.5rem !important;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #7b0128;
+  background-color: #ffffff;
 }
 .user_dp img {
   height: 100%;

@@ -6,6 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { getAllBlog } from "../../Apis/Apis";
+import dp from "../../Images/Avatar icon profile icon member_5247852.png"
 
 function BlogFullPageSectionSecond() {
   const { id } = useParams(); // Fetching the blog ID from the URL params
@@ -53,6 +54,29 @@ function BlogFullPageSectionSecond() {
   // Get the previous and next posts
   const prevPost = allBlog[prevIndex];
   const nextPost = allBlog[nextIndex];
+
+
+ const  userComment=[
+  {
+    "userimg": dp,
+    "date": "2024-05-11T08:27:20.263Z",
+    "username": "User1",
+    "comment": "This is the first comment."
+  },
+  {
+    "userimg": dp,
+    "date": "2024-05-12T10:15:30.123Z",
+    "username": "User2",
+    "comment": "This is the second comment."
+  },
+  {
+    "userimg": dp,
+    "date": "2024-05-13T12:45:50.456Z",
+    "username": "User3",
+    "comment": "This is the third comment."
+  }
+ ]
+
 
 
   return (
@@ -132,20 +156,20 @@ function BlogFullPageSectionSecond() {
       </div>
 
        <div className={style.comment_box}>
-        {/* <h6>{selectedBlog.comments.length} COMMENTS</h6> */}
+        <h6>{userComment.length} COMMENTS</h6>
         <br />
-        {/* {selectedBlog.comments.map((item, index) => (
+        {userComment.map((item, index) => (
           <div className={style.user_review_container} key={index}>
             <div className={style.user_dp}>
               <img src={item.userimg} alt="dp" />
             </div>
             <div>
-              <span>{item.date}</span>
+              <span>{convertDate(item.date)}</span>
               <p className={style.username}>{item.username}</p>
               <p>{item.comment}</p>
             </div>
           </div>
-        ))} */}
+        ))}
         <br />
         <br />
         <br />
