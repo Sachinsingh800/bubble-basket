@@ -128,7 +128,7 @@ function BlogFullPageSectionSecond() {
                 {selectedBlog?.authorTitle}
               </span>
             </div>
-            <span>{selectedBlog?.authorTitle}</span>
+            <span>{selectedBlog?.authorDescription}</span>
             <div className={style.bottom_box}>
               <div></div>
               <ul>
