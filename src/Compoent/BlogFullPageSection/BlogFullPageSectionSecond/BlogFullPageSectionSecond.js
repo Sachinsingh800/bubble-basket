@@ -13,6 +13,28 @@ function BlogFullPageSectionSecond() {
 
   const [allBlog, setAllBlog] = useState([]);
   const [loading, SetIsloading] = useState(false);
+  const [usename,setUserName] = useState("")
+  const [userComment,setUserComment] = useState("")
+  const [userComments, setUserComments] = useState([
+    {
+      userimg: dp,
+      date: "2024-05-11T08:27:20.263Z",
+      username: "User1",
+      comment: "This is the first comment."
+    },
+    {
+      userimg: dp,
+      date: "2024-05-12T10:15:30.123Z",
+      username: "User2",
+      comment: "This is the second comment."
+    },
+    {
+      userimg: dp,
+      date: "2024-05-13T12:45:50.456Z",
+      username: "User3",
+      comment: "This is the third comment."
+    }
+  ]);
 
   useEffect(() => {
     handleAllBlog();
@@ -36,6 +58,7 @@ function BlogFullPageSectionSecond() {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString("en-US", options);
   };
+
   function convertToJSX(htmlString) {
     return React.createElement("div", {
       dangerouslySetInnerHTML: { __html: htmlString },
@@ -55,29 +78,9 @@ function BlogFullPageSectionSecond() {
   const prevPost = allBlog[prevIndex];
   const nextPost = allBlog[nextIndex];
 
-
- const  userComment=[
-  {
-    "userimg": dp,
-    "date": "2024-05-11T08:27:20.263Z",
-    "username": "User1",
-    "comment": "This is the first comment."
-  },
-  {
-    "userimg": dp,
-    "date": "2024-05-12T10:15:30.123Z",
-    "username": "User2",
-    "comment": "This is the second comment."
-  },
-  {
-    "userimg": dp,
-    "date": "2024-05-13T12:45:50.456Z",
-    "username": "User3",
-    "comment": "This is the third comment."
-  }
- ]
-
-
+  const handleCommentSubmit = (newComment) => {
+    setUserComments([...userComments, newComment]);
+  };
 
   return (
     <div className={style.main}>
@@ -155,10 +158,10 @@ function BlogFullPageSectionSecond() {
         </a>
       </div>
 
-       <div className={style.comment_box}>
-        <h6>{userComment.length} COMMENTS</h6>
+      <div className={style.comment_box}>
+        <h6>{userComments.length} COMMENTS</h6>
         <br />
-        {userComment.map((item, index) => (
+        {userComments.map((item, index) => (
           <div className={style.user_review_container} key={index}>
             <div className={style.user_dp}>
               <img src={item.userimg} alt="dp" />
@@ -183,9 +186,9 @@ function BlogFullPageSectionSecond() {
               marked *
             </p>
           </div>
-          <textarea placeholder="Your Comment*" />
+          <textarea placeholder="Your Comment*" onChange={(e)=>setUserComment(e.target.value)} />
           <div className={style.user_input_box}>
-            <input type="text" placeholder="Your Name*" />
+            <input type="text" placeholder="Your Name*" onChange={(e)=>setUserName(e.target.value)} />
             <input type="email" placeholder="Your Email*" />
           </div>
           <input
@@ -201,9 +204,19 @@ function BlogFullPageSectionSecond() {
               I comment.
             </span>
           </div>
-          <button type="submit">POST COMMENT →</button>
+          <button 
+            type="button" 
+            onClick={() => handleCommentSubmit({
+              userimg: dp,
+              date: new Date().toISOString(),
+              username:usename,
+              comment: userComment
+            })}
+          >
+            POST COMMENT →
+          </button>
         </form>
-      </div> 
+      </div>
     </div>
   );
 }
