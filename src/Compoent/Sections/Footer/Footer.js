@@ -70,6 +70,9 @@ function Footer() {
         <a href="/FAQPage">
           <span>FAQ'S</span>
         </a>
+        <a href="/Blog">
+          <span>BLOG</span>
+        </a>
       </div>
       <br />
       <div className={style.input_box}>

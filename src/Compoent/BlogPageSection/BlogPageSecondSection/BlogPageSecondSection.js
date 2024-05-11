@@ -41,6 +41,7 @@ const [loading,SetIsloading] = useState(false)
   
   return (
     <div className={style.main}>
+      {loading && <p>Loading...</p>}
       {allBlog.map((item) => (
         <div className={style.container} key={item._id}>
           <div className={style.blog_img_box}>

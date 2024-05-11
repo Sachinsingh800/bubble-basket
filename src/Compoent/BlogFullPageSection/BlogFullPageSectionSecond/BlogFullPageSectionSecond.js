@@ -54,13 +54,11 @@ function BlogFullPageSectionSecond() {
   const prevPost = allBlog[prevIndex];
   const nextPost = allBlog[nextIndex];
 
-  if (!selectedBlog) {
-    return <div>Loading...</div>; // or handle the error gracefully
-  }
 
   return (
     <div className={style.main}>
       <div className={style.container}>
+      {loading && <p>Loading...</p>}
         <div className={style.blog_box}>
           <img src={selectedBlog?.blogImage?.url} alt={selectedBlog?.blogTitle} />
         </div>

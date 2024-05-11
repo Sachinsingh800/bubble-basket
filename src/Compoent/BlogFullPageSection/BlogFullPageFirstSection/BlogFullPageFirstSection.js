@@ -51,6 +51,7 @@ const [loading,SetIsloading] = useState(false)
 
   return (
     <div className={style.main}>
+            {loading && <p>Loading...</p>}
       <div
         className={style.background}
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
