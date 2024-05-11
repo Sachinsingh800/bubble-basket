@@ -43,7 +43,7 @@ root.render(
         <Route path={'/Product/:category'} element={<ColumnPage />} />
         <Route path={'/Product'} element={<ColumnPage />} />
         <Route path={'/CartPage'} element={<CartPage />} />
-        <Route path={'/BlogPage'} element={<BlogPage />} />
+        <Route path={'/Blog'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
         <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
         <Route path={'/CheckoutPage'} element={<CheckoutPage />} />

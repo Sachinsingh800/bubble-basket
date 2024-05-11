@@ -1,137 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import style from "./BlogFullPageSectionSecond.module.css";
-import blog1 from "../../Images/image-007.png";
-import blog2 from "../../Images/image-009.png";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import dp from "../../Images/image-010.png";
-import userDp from "../../Images/user dp.png";
+import { getAllBlog } from "../../Apis/Apis";
 
 function BlogFullPageSectionSecond() {
   const { id } = useParams(); // Fetching the blog ID from the URL params
 
-  const blogData = [
-    {
-      _id: 1,
-      img: blog1,
-      author: "John Wilson",
-      date: "July 2, 2020",
-      authorimg: dp,
-      authorusername: "Caterer",
-      authorbio:
-        "Sed ne omnis homero. Eam reque intellegam denitionem ne. Vicu accusam reformidans at,has at timeam arum vis a impedit",
-      title: "CORPORATE BULK ORDER",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris dapibus commodo eu quis ligula. Nulla hendrerit, turpis in semper rhoncus, est dui accumsan augue, id iaculis metus augue vel urna",
-      likes: "",
-      comments: [
-        {
-          username: "IRWIN TAYLOR",
-          date: "September 3, 2020",
-          userimg: userDp,
-          comment:
-            "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
-        },
-        {
-          username: "HEATHER HUGHES",
-          date: "September 3, 2020",
-          userimg: userDp,
-          comment:
-            "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
-        },
-      ],
-    },
-    {
-      _id: 2,
-      img: blog2,
-      author: "Mohan Nilson",
-      date: "July 2, 2020",
-      authorimg: dp,
-      authorusername: "Caterer",
-      authorbio:
-        "Sed ne omnis homero. Eam reque intellegam definitionem ne. Vicu accusam reformidans at,has at timeam arum vis a impedit",
-      title: "THE HEADLINE HERE",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum ac purus sed luctus. Proin pretium pharetra sagittis. Pellentesque sit amet semper urna. Aenean quis leo sed ex consequat faucibus. Quisque felis diam, suscipit vel mauris sit amet, gravida lacinia orci. Ut quis mauris nec mauris dapibus commodo eu quis ligula. Nulla hendrerit, turpis in semper rhoncus, est dui accumsan augue, id iaculis metus augue vel urna",
-      likes: "",
-      comments: [
-        {
-          username: "IRWIN TAYLOR",
-          date: "September 3, 2020",
-          userimg: userDp,
-          comment:
-            "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
-        },
-        {
-          username: "HEATHER HUGHES",
-          date: "September 3, 2020",
-          userimg: userDp,
-          comment:
-            "Lorem ipsum dolor sit amet, est nostro mandamus dignissim ea. Simul primis assentior vis cu, no nec percipit salutatus, tractatos tincidunt te quo. Ut mel numquam accommodare eum.",
-        },
-      ],
-    },
-  ];
+  const [allBlog, setAllBlog] = useState([]);
+  const [loading, SetIsloading] = useState(false);
+
+  useEffect(() => {
+    handleAllBlog();
+  }, []);
+
+  const handleAllBlog = async () => {
+    SetIsloading(true);
+    try {
+      const response = await getAllBlog();
+      console.log(response.data, "response");
+      setAllBlog(response.data);
+    } catch (error) {
+      console.error("Error getting products:", error.message);
+    } finally {
+      SetIsloading(false);
+    }
+  };
+
+  const convertDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+  function convertToJSX(htmlString) {
+    return React.createElement("div", {
+      dangerouslySetInnerHTML: { __html: htmlString },
+    });
+  }
 
   // Filter the blog data based on the ID fetched from the URL
-  const selectedBlog = blogData.find((blog) => blog._id.toString() === id);
-
+  const selectedBlog = allBlog.find((blog) => blog._id.toString() === id);
   // Find the index of the current blog post
-  const currentIndex = blogData.findIndex((blog) => blog._id.toString() === id);
+  const currentIndex = allBlog.findIndex((blog) => blog._id.toString() === id);
 
   // Determine the index of the previous and next posts
-  const prevIndex = (currentIndex - 1 + blogData.length) % blogData.length;
-  const nextIndex = (currentIndex + 1) % blogData.length;
+  const prevIndex = (currentIndex - 1 + allBlog?.length) % allBlog?.length;
+  const nextIndex = (currentIndex + 1) % allBlog?.length;
 
   // Get the previous and next posts
-  const prevPost = blogData[prevIndex];
-  const nextPost = blogData[nextIndex];
+  const prevPost = allBlog[prevIndex];
+  const nextPost = allBlog[nextIndex];
+
+  if (!selectedBlog) {
+    return <div>Loading...</div>; // or handle the error gracefully
+  }
 
   return (
     <div className={style.main}>
       <div className={style.container}>
         <div className={style.author_box}>
-          <p>{selectedBlog.author}</p>
-          <p>-</p> <p>{selectedBlog.date}</p>
+          <p>{selectedBlog?.authorName}</p>
+          <p>-</p> <p>{convertDate(selectedBlog?.createdAt)}</p>
         </div>
-        <div>
-          <h6>{selectedBlog.title}</h6>
-          <p>{selectedBlog.content}</p>
-          <p>
-            Eu sed copiosae consetetur, eu errem dolore virtute nec. Vix ne odio
-            deseruisse percipitur, vel cu epicuri ofciis. Debet dicunt suscipit
-            per id, iuvaret indoctum an has. Duo te populo tritani, pro id reque
-            atomorum convenire. Eum consulatu scripserit ne, quas eruditi sed
-            ne, vim equidem consulatu an. Aeterno labitur no eam, feugait
-            appareat volutpat vel ex. Te vim nostro fabulas.
-          </p>
-          <h5 className={style.demotext}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, us magnatus nec ullamcorper mattis, pulvinar son dapibus
-            leom.
-          </h5>
-          <p>
-            Lorem ipsum dolor sit amet, id eam facilis moderatius, eu has
-            expetenda dignissim. Vis dico labores accusamus ei, modolamt
-            salutatus ius ei, usu ad hendrerit. An modus invidunt conceptam usu.
-            Per eius voluptatibus ad, per sint tation id. Latine perpet
-            imperdiet ad vel, detracto periculis quaerendum sea.
-          </p>
-          <div>
-            <img style={{ width: "100%" }} src={blog2} alt="" />
-          </div>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet, id eam facilis moderatius, eu has
-            expetenda dignissim. Vis dico labores accusamus ei, modolamt
-            salutatus ius ei, usu ad hendrerit. An modus invidunt conceptam usu.
-            Per eius voluptatibus ad, per sint tation id. Latine perpet
-            imperdiet ad vel, detracto periculis quaerendum sea ei. Ad duo
-            utamur saperemo.
-          </p>
+        <div className={style.title_box}>
+          <h6>{selectedBlog?.blogTitle}</h6>
+          <p>{convertToJSX(selectedBlog?.description)}</p>
         </div>
         <div className={style.bottom_box}>
           <div></div>
@@ -154,16 +90,16 @@ function BlogFullPageSectionSecond() {
       <div className={style.author_info_box}>
         <div className={style.inner_container}>
           <div className={style.user_box_img}>
-            <img src={dp} alt="dp" />
+            <img src={selectedBlog?.authorImage?.url} alt="dp" />
           </div>
           <div className={style.des_box}>
             <div>
-              <h5>{selectedBlog.author}</h5>
+              <h5>{selectedBlog?.authorName}</h5>
               <span style={{ fontWeight: 600 }}>
-                {selectedBlog.authorusername}
+                {selectedBlog?.authorTitle}
               </span>
             </div>
-            <span>{selectedBlog.authorbio}</span>
+            <span>{selectedBlog?.authorTitle}</span>
             <div className={style.bottom_box}>
               <div></div>
               <ul>
@@ -185,19 +121,19 @@ function BlogFullPageSectionSecond() {
         </div>
       </div>
       <div className={style.button_box}>
-        <a href={`/blog/${prevPost._id}`}>
+        <a href={`/blog/${prevPost?._id}`}>
           <button>← Prev post</button>
         </a>
-        <a href={`/blog/${nextPost._id}`}>
+        <a href={`/blog/${nextPost?._id}`}>
           <button>Next post →</button>
         </a>
       </div>
 
-      <div className={style.comment_box}>
+      {/* <div className={style.comment_box}>
         <h6>{selectedBlog.comments.length} COMMENTS</h6>
         <br />
-        {selectedBlog.comments.map((item) => (
-          <div className={style.user_review_container}>
+        {selectedBlog.comments.map((item, index) => (
+          <div className={style.user_review_container} key={index}>
             <div className={style.user_dp}>
               <img src={item.userimg} alt="dp" />
             </div>
@@ -241,7 +177,7 @@ function BlogFullPageSectionSecond() {
           </div>
           <button type="submit">POST COMMENT →</button>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 }
