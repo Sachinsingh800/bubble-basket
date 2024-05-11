@@ -27,6 +27,9 @@
     gap: .5rem;
     align-items: center;
 }
+.title_box h6{
+    padding: 0rem!important;
+}
 .bottom_box{
     display: flex;
     justify-content: space-between;

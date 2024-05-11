@@ -51,7 +51,7 @@ const [loading,SetIsloading] = useState(false)
             <p>{item?.authorName}</p>
             <p>-</p> <p>{convertDate(item?.createdAt)}</p>
           </div>
-          <div>
+          <div className={style.title_box}>
             <h6>{item?.blogTitle}</h6>
             <p>{item?.shortDescription}</p>
           </div>
