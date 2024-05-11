@@ -61,6 +61,10 @@ function BlogFullPageSectionSecond() {
   return (
     <div className={style.main}>
       <div className={style.container}>
+        <div className={style.blog_box}>
+          <img src={selectedBlog?.blogImage?.url} alt={selectedBlog?.blogTitle} />
+        </div>
+        <br/>
         <div className={style.author_box}>
           <p>{selectedBlog?.authorName}</p>
           <p>-</p> <p>{convertDate(selectedBlog?.createdAt)}</p>
@@ -129,10 +133,10 @@ function BlogFullPageSectionSecond() {
         </a>
       </div>
 
-      {/* <div className={style.comment_box}>
-        <h6>{selectedBlog.comments.length} COMMENTS</h6>
+       <div className={style.comment_box}>
+        {/* <h6>{selectedBlog.comments.length} COMMENTS</h6> */}
         <br />
-        {selectedBlog.comments.map((item, index) => (
+        {/* {selectedBlog.comments.map((item, index) => (
           <div className={style.user_review_container} key={index}>
             <div className={style.user_dp}>
               <img src={item.userimg} alt="dp" />
@@ -143,7 +147,7 @@ function BlogFullPageSectionSecond() {
               <p>{item.comment}</p>
             </div>
           </div>
-        ))}
+        ))} */}
         <br />
         <br />
         <br />
@@ -177,7 +181,7 @@ function BlogFullPageSectionSecond() {
           </div>
           <button type="submit">POST COMMENT →</button>
         </form>
-      </div> */}
+      </div> 
     </div>
   );
 }
