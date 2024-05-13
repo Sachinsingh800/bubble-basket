@@ -31,8 +31,8 @@ function SectionEight() {
   return (
     <div className={style.main}>
       <h2>B L O G S</h2>
-      <div className={style.container}>
       {loading && <p>Loading...</p>}
+      <div className={style.container}>
        <a href={`/Blog/${allBlog[0]?._id}`}> <div className={style.img_box}>
            <img src={allBlog[0]?.blogImage?.url}  alt={allBlog[0]?.blogTitle}/>
         </div>
