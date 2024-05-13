@@ -1,12 +1,41 @@
 .main {
-  height: 50vh;
+  height: 18rem;
   width: 100%;
   border: 1px #7b0128 solid;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6rem;
+  gap: 4rem;
   justify-content: center;
+  position: relative;
+}
+.right_top_design{
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  height: 15rem;
+}
+.right_top_design img{
+height: 20rem;
+margin-top: -6rem;
+margin-right:-6rem ;
+transform: rotate(-30deg) ;
+}
+.left_top_design{
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 15rem;
+}
+.left_top_design img{
+height: 20rem;
+margin-top: -5rem;
+margin-left:-8rem ;
+transform: rotate(-30deg) ;
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
 }
 .option_container{
   width: 8rem;
@@ -83,7 +112,7 @@
   justify-content: space-evenly;
   color: #7b0128;
   align-items: center ;
-  width: 100%;
+  width: 90%;
 }
 
 .container label {
