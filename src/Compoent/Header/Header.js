@@ -97,7 +97,7 @@ export default function Header(props) {
       if (status) {
         console.log(data, "data aaa raha");
 
-        setCategory(data);
+        setCategory(data.slice(0,3));
       }
 
       // Handle response data as needed
