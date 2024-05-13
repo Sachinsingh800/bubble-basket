@@ -31,9 +31,16 @@ function SectionThird() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <img src={textfile} alt="text" />
-          <h2>E L E G A N T &amp; U N I Q U E</h2>
+        <div className={style.heading_box}>
+        <p>
+          <hr />
+          Best Gift For You
+          <hr />
+        </p>
+        <h2>ELEGANT & UNIQUE</h2>
+      </div>
         </div>
+        <br/>
         <a href="/Product">
           <button className={style.btn}>DISCOVER →</button>
         </a>
