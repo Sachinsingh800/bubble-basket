@@ -7,10 +7,12 @@ import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import design from "../../Images/Grape Leaf.png"
+import EmailIcon from '@mui/icons-material/Email';
+import CakeIcon from '@mui/icons-material/Cake';
 
 function SectionNinth() {
-  const [person, setPerson] = useState("person");
-  const [time, setTime] = useState("6:00 am");
+  const [name, setName] = useState("NAME");
+  const [email, setEmail] = useState("EMAIL");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showPerson, setShowPerson] = useState(false);
   const [showTime, setShowTime] = useState(false);
@@ -24,22 +26,6 @@ function SectionNinth() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        personRef.current &&
-        !personRef.current.contains(event.target) &&
-        showPerson
-      ) {
-        setShowPerson(false);
-      }
-
-      if (
-        timeRef.current &&
-        !timeRef.current.contains(event.target) &&
-        showTime
-      ) {
-        setShowTime(false);
-      }
-
-      if (
         dateRef.current &&
         !dateRef.current.contains(event.target) &&
         showDate
@@ -52,7 +38,7 @@ function SectionNinth() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPerson, showTime, showDate]);
+  }, [ showDate]);
 
   const handleToggle = () => {
     setShowPerson(!showPerson);
@@ -68,18 +54,16 @@ function SectionNinth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", { person, time, selectedDate });
+    console.log("Form submitted:", { name, email, selectedDate });
     // You can add your form submission logic here
   };
 
-  const handlePerson = (person) => {
-    setPerson(person);
-    setShowPerson(false);
+  const handleName = (e) => {
+    setName(e.target.value);
   };
   
-  const handleTime = (time) => {
-    setTime(time);
-    setShowTime(false);
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
   };
 
   const handleSelect = (date) => {
@@ -105,28 +89,23 @@ function SectionNinth() {
       </div>
 
       <form className={style.container} onSubmit={handleSubmit}>
-        <div className={style.option_container} ref={personRef}>
-          <label onClick={handleToggle}>
+        <div className={style.option_container} >
+          <label >
             <PersonOutlinedIcon />
-            {person}
+            <input required type="text" value={name} onChange={(e)=>handleName(e)}/>
           </label>
-          {showPerson && (
-            <ul className={style.option_box}>
-              <li onClick={() => handlePerson("1 Person")}>1 Person</li>
-              <li onClick={() => handlePerson("2 Person")}>2 Person</li>
-              <li onClick={() => handlePerson("3 Person")}>3 Person</li>
-              <li onClick={() => handlePerson("4 Person")}>4 Person</li>
-              <li onClick={() => handlePerson("5 Person")}>5 Person</li>
-              <li onClick={() => handlePerson("6 Person")}>6 Person</li>
-            </ul>
-          )}
         </div>
 
-        <div className={style.para}>for</div>
+        <div className={style.option_container}>
+          <label  >
+            <EmailIcon />
+            <input className={style.email} required type="email" value={email} onChange={(e)=>handleEmail(e)}/>
+          </label>
+        </div>
 
         <div className={style.option_container} ref={dateRef}>
           <label onClick={handleToggleDate} className={style.date_lable}>
-            <WorkHistoryOutlinedIcon />
+            <CakeIcon />
             {selectedDate.toLocaleDateString(undefined, {
               month: "long",
               day: "numeric",
@@ -143,28 +122,7 @@ function SectionNinth() {
             </div>
           )}
         </div>
-
-        <div className={style.para}>at</div>
-        
-        <div className={style.option_container} ref={timeRef}>
-          <label onClick={handleToggleTime}>
-            <AccessAlarmsOutlinedIcon />
-            {time}
-          </label>
-          {showTime && (
-            <ul className={style.option_box}>
-              <li onClick={() => handleTime("6:00 am")}>6:00 am</li>
-              <li onClick={() => handleTime("7:00 am")}>7:00 am</li>
-              <li onClick={() => handleTime("8:00 am")}>8:00 am</li>
-              <li onClick={() => handleTime("9:00 am")}>9:00 am</li>
-              <li onClick={() => handleTime("10:00 am")}>10:00 am</li>
-              <li onClick={() => handleTime("11:00 am")}>11:00 am</li>
-            </ul>
-          )}
-        </div>
-
-        <div className={style.para}>go!</div>
-        <button type="submit">R E S E R V A T I O N →</button>
+        <button className={style.summit_btn} type="submit">SUMMIT →</button>
       </form>
     </div>
   );
