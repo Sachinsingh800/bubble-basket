@@ -89,8 +89,8 @@ function Footer() {
       </div>
       <br />
       <div className={style.input_box}>
-        <input placeholder="YOUR MAIL" />
-        <button>SUBMIT →</button>
+        <input placeholder="Y O U R  M A I L" />
+        <button className={style.submit_btn}>SUBMIT →</button>
       </div>
       <div className={style.paymet_conatainer}>
         <div className={style.payment_img_box}>

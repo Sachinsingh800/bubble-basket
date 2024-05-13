@@ -7,6 +7,9 @@
   color: white;
   gap: 1rem;
 }
+.submit_btn{
+  letter-spacing: .5cap;
+}
 .img_box {
   height: 20rem;
   overflow: hidden;
