@@ -91,10 +91,10 @@ function SectionNinth() {
       <div className={style.heading_box}>
         <p>
           <hr />
-          Visit us
+          SUBSCRIBE
           <hr />
         </p>
-        <h2>TAKE AT OUR</h2>
+        <h2>SIGN UP FOR OUR NEWS LETTER</h2>
       </div>
 
       <form className={style.container} onSubmit={handleSubmit}>
