@@ -67,7 +67,9 @@ function SecondSection() {
       <div className={style.card_box}>
         {loading && <p>Loading...</p>}
         {productData.map((item) => (
-          <div key={item._id} className={style.inner_container}>
+          <div key={item._id} className={style.inner_container}      onClick={() =>
+            (window.location.href = `/Product/${item.categoryName}`)
+          }>
             <button
               // onClick={() => handleAddToCart(item)}
               className={style.addBtn}

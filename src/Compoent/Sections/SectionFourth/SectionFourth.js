@@ -101,8 +101,9 @@ console.log(productData,"datatatatat")
           <div
             key={item.id}
             className={style.inner_container}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() =>
+              (window.location.href = `/Product/${item.categoryName}`)
+            }
           >
             <div className={style.img_box}>
               <img src={item?.categoryImg?.url} alt={item.title} />

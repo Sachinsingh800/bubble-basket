@@ -37,7 +37,7 @@ function SectionSeventh() {
             for bulk orders. Strengthen bonds through thoughtful gifting!
           </p>
         </div>
-        <a href="/ContactUsPage">
+        <a href="/Product">
           <button className={style.btn}>SHOP NOW </button>
         </a>
       </div>
