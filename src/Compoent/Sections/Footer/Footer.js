@@ -12,7 +12,7 @@ import logo3 from "../../Images/paypal.png";
 import logo4 from "../../Images/american express.png";
 import logo5 from "../../Images/discover.png";
 import PinterestIcon from "@mui/icons-material/Pinterest";
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function Footer() {
   return (
@@ -20,28 +20,42 @@ function Footer() {
       <div className={style.header}>
         <div className={style.left_box}>
           <span className={style.icon}>
-            <CallIcon className={style.instagramIcon} />
+            <div>
+              <CallIcon className={style.instagramIcon} />
+            </div>
           </span>
-          <span>2 0 2 . 4 5 9 . 8 4 8 9</span>
+          <span className={style.no_code}>2 0 2 . 4 5 9 . 8 4 8 9</span>
         </div>
         <div className={style.icon_container}>
           <span className={style.icon}>
-            <FacebookRoundedIcon className={style.instagramIcon} />
+            <div>
+              <FacebookRoundedIcon className={style.instagramIcon} />
+            </div>
           </span>
           <span className={style.icon}>
-            <YouTubeIcon  className={style.instagramIcon} />
+            <div>
+              <YouTubeIcon className={style.instagramIcon} />
+            </div>
           </span>
           <span className={style.icon}>
-            <InstagramIcon className={style.instagramIcon} />
+            <div>
+              <InstagramIcon className={style.instagramIcon} />
+            </div>
           </span>
           <span className={style.icon}>
-            <LinkedInIcon className={style.instagramIcon} />
+            <div>
+              <LinkedInIcon className={style.instagramIcon} />
+            </div>
           </span>
           <span className={style.icon}>
-            <TwitterIcon className={style.instagramIcon} />
+            <div>
+              <TwitterIcon className={style.instagramIcon} />
+            </div>
           </span>
           <span className={style.icon}>
-            <PinterestIcon className={style.instagramIcon} />
+            <div>
+              <PinterestIcon className={style.instagramIcon} />
+            </div>
           </span>
         </div>
       </div>
@@ -50,28 +64,27 @@ function Footer() {
       </div>
       <div className={style.nav_bar}>
         <a href="/">
-          <span>HOME</span>
+          <div className={style.opt}>HOME </div>
         </a>
         <a href="/OrderHistory">
-          <span>ORDERS</span>
+          <div className={style.opt}>PAGES </div>
         </a>
         <a href="/ContactUsPage">
-          <span>CONTACT</span>
+          <div className={style.opt}>SHOP </div>
         </a>
         <a href="/PrivacyAanPolicy">
-          <span>PRIVACY AND POLICY</span>
+          <div className={style.opt}>ORDERS </div>
         </a>
-        <a href="/TermsAndConditions">
-          <span>TERMS AND CONDITIONS</span>
+        <a href="/ContactUsPage">
+          <div className={style.opt}>CONTACT</div>
         </a>
         <a href="/AboutUsPage">
-          <span>ABOUT</span>
+          <div className={style.opt}>ABOUT</div>
         </a>
         <a href="/FAQPage">
-          <span>FAQ'S</span>
-        </a>
-        <a href="/Blog">
-          <span>BLOG</span>
+          <div className={style.opt} style={{ borderRight: "none" }}>
+            FAQ'S{" "}
+          </div>
         </a>
       </div>
       <br />
