@@ -87,7 +87,7 @@ export default function Header(props) {
         "Content-Type": "application/json", // Set content type to JSON
       };
       const response = await axios.get(
-        `https://wine-rnlq.onrender.com/admin/product/getAll`,
+        `https://wine-rnlq.onrender.com/admin/category/getAll`,
         {
           headers,
         }
@@ -164,7 +164,7 @@ export default function Header(props) {
                             (window.location.href = `/Product/${item.category}`)
                           }
                         >
-                          {item.category}
+                          {item.categoryName}
                         </p>
                       </div>
                     ))}
