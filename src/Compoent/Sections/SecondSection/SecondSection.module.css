@@ -50,7 +50,12 @@ a{
   border: 1px #7b0128 solid;
   align-items: center;
   gap: 1rem;
-  padding: 2rem 1rem .5rem 1rem;
+  padding: .8rem 1rem .5rem 1rem;
+}
+.inner_container p{
+  font-weight: 600;
+ letter-spacing: 0.1cap;
+ font-size: 1rem;
 }
 .inner_container div {
   text-align: center;
@@ -75,14 +80,15 @@ a{
   display: flex;
   align-items: center;
   border: none;
-  border: 1px #7b0128 solid;
-  padding: 0.5rem 1rem;
+  /* border: 1px #7b0128 solid; */
+  padding: 0.5rem 2rem;
   font-size: small;
   letter-spacing: 0.3cap;
-  background-color: white;
+  background-color: #7b0128;
+  color: white;
 }
 .viewAllbtn:hover {
-  background-color: #7b0128;
+  background-color: #8d0530;
   color: white;
 }
 .addBtn {
@@ -96,7 +102,7 @@ a{
   color: white;
   position: relative;
   right: -6rem;
-  top: -1.5rem;
+  top: 0rem;
   border: none;
   font-size: medium;
 }

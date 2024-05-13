@@ -3,7 +3,7 @@ import style from "./SecondSection.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { AddtoCart, getAllProduct } from "../../Apis/Apis";
+import { AddtoCart, getAllCategory, getAllProduct } from "../../Apis/Apis";
 
 function SecondSection() {
   const [update, setUpdate] = useRecoilState(updateCart);
@@ -12,24 +12,10 @@ function SecondSection() {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
-    handleProductData();
+    const allcategory=JSON.parse(localStorage.getItem("all_category"))
+    setProductData(allcategory)
   }, []);
 
-  const handleProductData = async () => {
-    setLoading(true);
-    try {
-      const response = await getAllProduct();
-
-      if (response.status) {
-        // Show only the first three products
-        setProductData(response.data.slice(0, 3));
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error("Error getting product data:", error);
-      setLoading(false);
-    }
-  };
 
   const handleAddToCartInBeckend = async (productId) => {
     try {
@@ -83,24 +69,25 @@ function SecondSection() {
         {productData.map((item) => (
           <div key={item._id} className={style.inner_container}>
             <button
-              onClick={() => handleAddToCart(item)}
+              // onClick={() => handleAddToCart(item)}
               className={style.addBtn}
             >
               {showTick === item._id ? "✓" : <AddIcon />}
             </button>
 
             <div className={style.img_box}>
-              <img src={item.productImg[0].url} alt={item.title} />
+              <img src={item?.categoryImg?.url} alt={item.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item.category}</h5>
-              <p>{renderHTML(item.description)}</p>
+              <h5>{item.categoryName}</h5>
+              {/* <p>{renderHTML(item.description)}</p> */}
+              <p>Lorem ipsum sita met , consectetur</p>
             </div>
           </div>
         ))}
       </div>
       <a href="/Product">
-        <button className={style.viewAllbtn}>VIEW ALL →</button>
+        <button className={style.viewAllbtn}>VIEW ALL  ⟶</button>
       </a>
     </div>
   );

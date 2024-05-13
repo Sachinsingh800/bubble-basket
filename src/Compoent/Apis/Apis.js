@@ -592,28 +592,12 @@ export const getAllCategory = async () => {
 
     const { status, message, data } = response.data;
     if(status){
-   console.log(data,"data aaa raha")
    localStorage.setItem("all_category",JSON.stringify(data) || [])
     }
 
     // Handle response data as needed
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      // alert(errorMessage);
-      // Log the error message as a string
-      localStorage.setItem("allAdress", JSON.stringify([]) );
-      // alert(errorMessage);
-      console.error("Axios Error:", errorMessage);
-      // window.location.href = "/Login";
-    } else {
-      // Network error (e.g., no internet connection)
-      // alert("Something went wrong");
-      console.error("Network Error:", error.message);
-    }
+
   }
 };
 
