@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AlertDialogSlide from "../../DailLogBox/AlertDialogSlide";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { AddtoCart, getAllProduct } from "../../Apis/Apis";
+import { AddtoCart, getAllCategory, getAllProduct } from "../../Apis/Apis";
 import leftbottomimage from "../../Images/Grape.png"
 import righttopimage from "../../Images/Grape Leaf.png"
 
@@ -17,25 +17,14 @@ function SectionFourth() {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+console.log(productData,"datatatatat")
+
   useEffect(() => {
-    handleProductData();
+    const allcategory=JSON.parse(localStorage.getItem("all_category"))
+    setProductData(allcategory.slice(2,4))
   }, []);
 
-  const handleProductData = async () => {
-    setLoading(true);
-    try {
-      const response = await getAllProduct();
 
-      if (response.status) {
-        // Show only the first three products
-        setProductData(response.data.slice(0, 2));
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error("Error getting product data:", error);
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     const cartdata = JSON.parse(localStorage.getItem("cartData"));
@@ -108,7 +97,7 @@ function SectionFourth() {
         <h2>BOTTLES THAT WOW</h2>
       </div>
       <div className={style.card_box}>
-        {productData.map((item, index) => (
+        {productData?.map((item, index) => (
           <div
             key={item.id}
             className={style.inner_container}
@@ -116,11 +105,12 @@ function SectionFourth() {
             onMouseLeave={() => handleMouseLeave(index)}
           >
             <div className={style.img_box}>
-              <img src={item.productImg[0].url} alt={item.title} />
+              <img src={item?.categoryImg?.url} alt={item.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item?.title}</h5>
-              <p>{item?.category}</p>
+              <h5>{item?.categoryName}</h5>
+              {/* <p>{item?.categoryName}</p> */}
+              <p>BOTTLES</p>
             </div>
             <div
               className={style.optionsBox}
@@ -128,13 +118,13 @@ function SectionFourth() {
               style={{ opacity: 0 }}
             >
               <div className={style.options}>
-                <button
+                {/* <button
                   className={style.optionButton1}
                   onClick={() => handleAddToCart(item)}
                 >
                   {showCartTick && <span className={style.tick}>✓</span>}
                   <ShoppingCartIcon />
-                </button>
+                </button> */}
                 {/* <button
                   className={style.optionButton2}
                   onClick={() => handleAddToLike(item)}
@@ -142,9 +132,9 @@ function SectionFourth() {
                   {showLikeTick && <span className={style.tick}>✓</span>}
                   <FavoriteBorderIcon />
                 </button> */}
-                <span className={style.optionButton3}>
+                {/* <span className={style.optionButton3}>
                   <AlertDialogSlide cartdata={item} />
-                </span>
+                </span> */}
               </div>
             </div>
           </div>

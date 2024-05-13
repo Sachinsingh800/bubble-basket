@@ -70,7 +70,6 @@
 .card_box{
   display: grid;
   grid-template-columns: 1fr 1fr ;
-  gap: 5rem;
   place-items: center;
   width: 80%;
 }

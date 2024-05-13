@@ -13,7 +13,7 @@ function SecondSection() {
 
   useEffect(() => {
     const allcategory=JSON.parse(localStorage.getItem("all_category"))
-    setProductData(allcategory)
+    setProductData(allcategory.slice(0,3))
   }, []);
 
 
