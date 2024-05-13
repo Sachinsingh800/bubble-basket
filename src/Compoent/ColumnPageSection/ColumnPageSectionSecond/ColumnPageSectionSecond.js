@@ -50,7 +50,7 @@ function ColumnPageSectionSecond() {
           {productData.map((product, index) => (
             <div
               key={index}
-              className={index === 0 ? style.inner_container1 : style.inner_container}
+              className={index === 3 ? style.inner_container1 : style.inner_container}
               onClick={() => handleNavigate(product._id)}
             >
               {product.offer && <span className={style.offer_box}>new</span>}
@@ -58,11 +58,11 @@ function ColumnPageSectionSecond() {
                 <img src={product.productImg[0]?.url} alt="product" />
               </div>
               <span>{product.category}</span>
-              <span>{product.title}</span>
+              <span className={style.product}>{product.title}</span>
               <p>★★★★✰</p>
-              <h6>
+              <span>
                 <strong>${product.price}</strong>
-              </h6>
+              </span>
             </div>
           ))}
         </div>

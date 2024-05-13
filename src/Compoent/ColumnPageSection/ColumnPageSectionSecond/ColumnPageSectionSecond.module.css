@@ -165,7 +165,13 @@
   align-items: center;
   flex-direction: column;
   padding: 2rem 1rem;
-  border-left: 1px #7b0128 solid;
+  border-right: 1px #7b0128 solid;
+}
+.product_title{
+  height: 2rem!important;
+}
+.inner_container span{
+  text-align: center;
 }
 .inner_container p {
   color: #7b0128;
