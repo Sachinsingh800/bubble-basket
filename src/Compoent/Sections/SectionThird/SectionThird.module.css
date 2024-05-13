@@ -8,6 +8,12 @@
   overflow: hidden;
   position: relative;
 }
+.heading_box p span {
+  width: 3rem;
+  border: none;
+  border-bottom: 1px solid #ffffff; /* Solid border with desired color */
+  height: 2px;
+}
 .heading_box {
   text-align: center;
   display: flex;
@@ -24,6 +30,7 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #ffffff;
   font-size: 2rem;
+  font-weight: 100!important;
 }
 .heading_box p hr {
   width: 3rem;

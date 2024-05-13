@@ -29,9 +29,11 @@ a{
   color: #7b0128;
   font-size: large;
 }
-.heading_box p hr {
+.heading_box p span {
   width: 3rem;
-  color: #7b0128;
+  border: none;
+  border-bottom: 1px solid #7b0128; /* Solid border with desired color */
+  height: 2px;
 }
 .heading_box h2 {
   letter-spacing: 0.5cap;

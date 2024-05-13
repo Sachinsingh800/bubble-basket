@@ -38,9 +38,9 @@ const getAllCategory = async (e,title) => {
     <div className={style.main}>
       <div className={style.heading_box}>
         <p>
-          <hr />
+          <span />
           Explore Our Most Popular Gifts
-          <hr />
+          <span />
         </p>
         <h2>SHOP BY OCCASION</h2>
       </div>

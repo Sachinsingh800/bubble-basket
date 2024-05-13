@@ -9,6 +9,12 @@
   justify-content: center;
   position: relative;
 }
+.heading_box p span {
+  width: 3rem;
+  border: none;
+  border-bottom: 1px solid #7b0128; /* Solid border with desired color */
+  height: 2px;
+}
 .right_top_design{
   position: absolute;
   top: 0;

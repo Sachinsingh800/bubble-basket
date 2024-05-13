@@ -9,6 +9,12 @@
     padding: 2rem;
     gap: 2rem;
 }
+.heading_box p span {
+    width: 3rem;
+    border: none;
+    border-bottom: 1px solid #7b0128; /* Solid border with desired color */
+    height: 2px;
+  }
 .heading_box{
     text-align: center;
     display: flex;

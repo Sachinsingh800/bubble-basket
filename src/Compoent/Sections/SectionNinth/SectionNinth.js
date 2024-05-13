@@ -81,9 +81,9 @@ function SectionNinth() {
       </div>
       <div className={style.heading_box}>
         <p>
-          <hr />
+          <span />
           SUBSCRIBE
-          <hr />
+          <span />
         </p>
         <h2>SIGN UP FOR OUR NEWS LETTER</h2>
       </div>

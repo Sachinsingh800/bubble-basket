@@ -58,9 +58,9 @@ function SecondSection() {
     <div className={style.main}>
       <div className={style.heading_box}>
         <p>
-          <hr />
+          <span />
           Gift Basket
-          <hr />
+          <span />
         </p>
         <h2>COLLECTION</h2>
       </div>

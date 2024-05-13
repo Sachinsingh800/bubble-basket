@@ -33,9 +33,9 @@ function SectionThird() {
         <div className={style.description_box}>
         <div className={style.heading_box}>
         <p>
-          <hr />
+          <span />
           Best Gift For You
-          <hr />
+          <span />
         </p>
         <h2>ELEGANT & UNIQUE</h2>
       </div>
