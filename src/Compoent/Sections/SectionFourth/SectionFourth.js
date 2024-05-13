@@ -6,6 +6,8 @@ import AlertDialogSlide from "../../DailLogBox/AlertDialogSlide";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
 import { AddtoCart, getAllProduct } from "../../Apis/Apis";
+import leftbottomimage from "../../Images/Grape.png"
+import righttopimage from "../../Images/Grape Leaf.png"
 
 function SectionFourth() {
   const [data, setData] = useState([]);
@@ -95,6 +97,12 @@ function SectionFourth() {
 
   return (
     <div className={style.main}>
+      <div className={style.left_bottom_design}>
+       <img src={leftbottomimage}  />
+      </div>
+      <div className={style.right_top_design}>
+       <img src={righttopimage}  />
+      </div>
               {loading && <p>Loading..</p>}
       <div className={style.heading_box}>
         <h2>BOTTLES THAT WOW</h2>

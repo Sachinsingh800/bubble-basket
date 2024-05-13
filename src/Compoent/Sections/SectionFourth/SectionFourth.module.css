@@ -7,6 +7,42 @@
     flex-direction: column;
     padding: 3rem;
     gap: 5rem;
+    position: relative;
+
+}
+.left_bottom_design{
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    display: flex;
+    width: 16rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden!important;
+    padding-right:1.8rem ;
+    height: 20rem;
+}
+
+.left_bottom_design img{
+    margin-bottom: -2.5rem;
+    height: 20rem;
+}
+.right_top_design{
+    position: absolute;
+    top: 0;
+    right: 0%;
+    display: flex;
+    width: 15rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden!important;
+    padding-right:1.8rem ;
+}
+.right_top_design img{
+  height: 30rem;
+  margin-right:-5rem ;
+  margin-top: -9rem;
+  transform: rotate(-30deg) ;
 }
 .heading_box{
     text-align: center;
@@ -28,7 +64,6 @@
     width: 3rem;
 }
 .heading_box  h2{
-    font-family: 'Futura PT', sans-serif;
     letter-spacing: .5cap;
     /* margin-top: -.5rem; */
 }
