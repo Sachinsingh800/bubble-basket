@@ -101,6 +101,7 @@
 .text_box{
     overflow: hidden;
     font-size: small;
+    letter-spacing: .3cap;
 }
 .viewAllbtn{
     display:flex ;

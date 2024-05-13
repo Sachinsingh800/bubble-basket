@@ -21,7 +21,7 @@ console.log(productData,"datatatatat")
 
   useEffect(() => {
     const allcategory=JSON.parse(localStorage.getItem("all_category"))
-    setProductData(allcategory.slice(2,4))
+    setProductData(allcategory.slice(3,5))
   }, []);
 
 
@@ -108,7 +108,7 @@ console.log(productData,"datatatatat")
               <img src={item?.categoryImg?.url} alt={item.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item?.categoryName}</h5>
+              <h6>{item?.categoryName}</h6>
               {/* <p>{item?.categoryName}</p> */}
               <p>BOTTLES</p>
             </div>
