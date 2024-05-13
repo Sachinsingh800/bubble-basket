@@ -45,10 +45,10 @@ const getAllCategory = async (e,title) => {
         <h2>SHOP BY OCCASION</h2>
       </div>
       <div className={style.card_box}>
-        {collectionData.map((item, index) => (
-          <div key={item.id} className={style.inner_container} onClick={(e)=>getAllCategory(e,item.title)}>
+        {collectionData?.map((item, index) => (
+          <div key={item.id} className={style.inner_container} onClick={(e)=>getAllCategory(e,item?.title)}>
             <div className={style.text_box} onClick={handleNavigate}>
-              <h5>{item.title}</h5>
+              <h5>{item?.title}</h5>
             </div>
           </div>
         ))}

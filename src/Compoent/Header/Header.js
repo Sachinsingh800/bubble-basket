@@ -97,7 +97,7 @@ export default function Header(props) {
       if (status) {
         console.log(data, "data aaa raha");
 
-        setCategory(data.slice(0,3));
+        setCategory(data?.slice(0,3));
       }
 
       // Handle response data as needed
@@ -161,10 +161,10 @@ export default function Header(props) {
                         <p
                           className={style.option}
                           onClick={() =>
-                            (window.location.href = `/Product/${item.categoryName}`)
+                            (window.location.href = `/Product/${item?.categoryName}`)
                           }
                         >
-                          {item.categoryName}
+                          {item?.categoryName}
                         </p>
                       </div>
                     ))}

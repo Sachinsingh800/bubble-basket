@@ -13,7 +13,7 @@ function SecondSection() {
 
   useEffect(() => {
     const allcategory=JSON.parse(localStorage.getItem("all_category"))
-    setProductData(allcategory.slice(0,3))
+    setProductData(allcategory)
   }, []);
 
 
@@ -66,9 +66,9 @@ function SecondSection() {
       </div>
       <div className={style.card_box}>
         {loading && <p>Loading...</p>}
-        {productData.map((item) => (
+        {productData?.map((item) => (
           <div key={item._id} className={style.inner_container}      onClick={() =>
-            (window.location.href = `/Product/${item.categoryName}`)
+            (window.location.href = `/Product/${item?.categoryName}`)
           }>
             <button
               // onClick={() => handleAddToCart(item)}
@@ -78,10 +78,10 @@ function SecondSection() {
             </button>
 
             <div className={style.img_box}>
-              <img src={item?.categoryImg?.url} alt={item.title} />
+              <img src={item?.categoryImg?.url} alt={item?.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item.categoryName}</h5>
+              <h5>{item?.categoryName}</h5>
               {/* <p>{renderHTML(item.description)}</p> */}
               <p>Lorem ipsum sita met , consectetur</p>
             </div>

@@ -47,21 +47,21 @@ function ColumnPageSectionSecond() {
         <div>{error}</div>
       ) : (
         <div className={style.additional_box}>
-          {productData.map((product, index) => (
+          {productData?.map((product, index) => (
             <div
               key={index}
               className={index === 3 ? style.inner_container1 : style.inner_container}
               onClick={() => handleNavigate(product._id)}
             >
-              {product.offer && <span className={style.offer_box}>new</span>}
+              {product?.offer && <span className={style.offer_box}>new</span>}
               <div className={style.add_box_img}>
-                <img src={product.productImg[0]?.url} alt="product" />
+                <img src={product?.productImg[0]?.url} alt="product" />
               </div>
-              <span>{product.category}</span>
-              <span className={style.product}>{product.title}</span>
+              <span>{product?.category}</span>
+              <span className={style.product}>{product?.title}</span>
               <p>★★★★✰</p>
               <span>
-                <strong>${product.price}</strong>
+                <strong>${product?.price}</strong>
               </span>
             </div>
           ))}

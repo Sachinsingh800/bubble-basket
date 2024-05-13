@@ -21,7 +21,7 @@ console.log(productData,"datatatatat")
 
   useEffect(() => {
     const allcategory=JSON.parse(localStorage.getItem("all_category"))
-    setProductData(allcategory.slice(3,5))
+    setProductData(allcategory)
   }, []);
 
 
@@ -102,11 +102,11 @@ console.log(productData,"datatatatat")
             key={item.id}
             className={style.inner_container}
             onClick={() =>
-              (window.location.href = `/Product/${item.categoryName}`)
+              (window.location.href = `/Product/${item?.categoryName}`)
             }
           >
             <div className={style.img_box}>
-              <img src={item?.categoryImg?.url} alt={item.title} />
+              <img src={item?.categoryImg?.url} alt={item?.title} />
             </div>
             <div className={style.text_box}>
               <h6>{item?.categoryName}</h6>

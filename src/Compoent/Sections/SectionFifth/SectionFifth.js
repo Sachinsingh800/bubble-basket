@@ -36,9 +36,9 @@ function SectionFifth() {
                 label="category"
                  style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
               >
-                {categoryData.map((item, index) => (
-                  <MenuItem key={index} value={item.categoryName}>
-                    {item.categoryName}
+                {categoryData?.map((item, index) => (
+                  <MenuItem key={index} value={item?.categoryName}>
+                    {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
@@ -59,9 +59,9 @@ function SectionFifth() {
                 label="category"
                  style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
               >
-                {categoryData.map((item, index) => (
-                  <MenuItem key={index} value={item.categoryName}>
-                    {item.categoryName}
+                {categoryData?.map((item, index) => (
+                  <MenuItem key={index} value={item?.categoryName}>
+                    {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
@@ -82,9 +82,9 @@ function SectionFifth() {
                 label="category"
                 style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
               >
-                {categoryData.map((item, index) => (
-                  <MenuItem key={index} value={item.categoryName}>
-                    {item.categoryName}
+                {categoryData?.map((item, index) => (
+                  <MenuItem key={index} value={item?.categoryName}>
+                    {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
@@ -105,9 +105,9 @@ function SectionFifth() {
                 label="Category"
                  style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
               >
-                {categoryData.map((item, index) => (
-                  <MenuItem key={index} value={item.categoryName}>
-                    {item.categoryName}
+                {categoryData?.map((item, index) => (
+                  <MenuItem key={index} value={item?.categoryName}>
+                    {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
