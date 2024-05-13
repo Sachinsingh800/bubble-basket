@@ -4,12 +4,16 @@
     color: #7B0128;
 }
 .input_container p{
-    margin-top: 1.2rem;
+    margin-top: 1rem;
+    font-weight: 700;
 }
 .container h6{
     font-size: small;
     margin-top: -.5rem;
-    color: #7B0128;
+    color: #000000;
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
 }
 .container{
     display: flex;
@@ -17,7 +21,6 @@
     flex-direction: column;
     text-align: left;
     padding: 0rem 7rem;
-
 }
 .main{
   display: flex;
