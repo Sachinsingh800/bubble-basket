@@ -38,7 +38,7 @@ function SectionSeventh() {
           </p>
         </div>
         <a href="/ContactUsPage">
-          <button className={style.btn}>CONTACT US →</button>
+          <button className={style.btn}>SHOP NOW </button>
         </a>
       </div>
     </div>
