@@ -15,6 +15,7 @@ import AnchorTemporaryDrawer from "../AnchorTemporaryDrawer/AnchorTemporaryDrawe
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../Recoil/Recoil";
 import axios from "axios";
+import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx"
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -55,6 +56,27 @@ export default function Header(props) {
     2: false,
     3: false,
   });
+
+
+  const downloadExcel = () => {
+    // Path to the Excel file in your project folder
+    const excelFilePath = bulkOrderForm;
+    
+    fetch(excelFilePath)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Luxury_Bubble_Basket.xlsx');
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      })
+      .catch(error => {
+        console.error('Error downloading the Excel file:', error);
+      });
+  };
 
   const showOptionDiv = (index) => {
     setShowOptions({ ...showOptions, [index]: true });
@@ -228,38 +250,13 @@ export default function Header(props) {
                   onMouseEnter={() => showOptionDiv(2)}
                   onMouseLeave={() => closeOptionDiv(2)}
                 >
-                  <a>BULK ORDER</a>
-                  <div
-                    className={style.bottom_div}
-                    style={{
-                      visibility: showOptions[2] ? "visible" : "hidden",
-                    }}
-                  >
-                    <p>Content for BULKORDER</p>
-                    <p>Content for BULKORDER</p>
-                    <p>Content for BULKORDER</p>
-                    <p>Content for BULKORDER</p>
-                  </div>
+                  <a onClick={downloadExcel}>BULK ORDER</a>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(3)}
                   onMouseLeave={() => closeOptionDiv(3)}
                 >
                   <a href="/OrderHistory">TRACK ORDER</a>
-                  <div
-                    className={style.bottom_div}
-                    style={{
-                      visibility: showOptions[3] ? "visible" : "hidden",
-                    }}
-                  >
-                    <p onClick={() => (window.location.href = "/OrderHistory")}>
-                      Order History{" "}
-                    </p>
-                    <p>Content for TRACKORDER</p>
-                    <p>Content for TRACKORDER</p>
-                    <p>Content for TRACKORDER</p>
-                    <p>Content for TRACKORDER</p>
-                  </div>
                 </li>
               </ul>
               <div className={style.middle_section}>
