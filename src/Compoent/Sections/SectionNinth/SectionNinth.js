@@ -6,7 +6,8 @@ import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import design from "../../Images/Grape Leaf.png"
+import design1 from "../../Images/Leaf 1.png"
+import design2 from "../../Images/Leaf 2.png"
 import EmailIcon from '@mui/icons-material/Email';
 import CakeIcon from '@mui/icons-material/Cake';
 
@@ -74,10 +75,10 @@ function SectionNinth() {
   return (
     <div className={style.main}>
       <div className={style.right_top_design}>
-        <img src={design} alt="Luxury Basket" />
+        <img src={design1} alt="Luxury Basket" />
       </div>
       <div className={style.left_top_design}>
-        <img src={design} alt="Luxury Basket" />
+        <img src={design2} alt="Luxury Basket" />
       </div>
       <div className={style.heading_box}>
         <p>
