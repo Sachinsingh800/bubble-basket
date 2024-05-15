@@ -40,6 +40,9 @@ function SectionSeventh() {
         <a href="/Product">
           <button className={style.btn}>SHOP NOW </button>
         </a>
+        <a href="/Product">
+          <button className={style.btn}>DOWNLOAD FORM </button>
+        </a>
       </div>
     </div>
   );
