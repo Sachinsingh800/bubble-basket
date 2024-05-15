@@ -250,7 +250,7 @@ export default function Header(props) {
                   onMouseEnter={() => showOptionDiv(2)}
                   onMouseLeave={() => closeOptionDiv(2)}
                 >
-                  <a onClick={downloadExcel}>BULK ORDER</a>
+                  <a onClick={downloadExcel} className={style.bulk_order}>BULK ORDER</a>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(3)}

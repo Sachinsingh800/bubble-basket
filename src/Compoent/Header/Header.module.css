@@ -152,7 +152,9 @@
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
-
+.bulk_order{
+  cursor: pointer;
+}
 .bottom_div  p{
   width: 100%;
 }
