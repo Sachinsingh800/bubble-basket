@@ -7,7 +7,7 @@ import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
 import { AddtoCart, getAllCategory, getAllProduct } from "../../Apis/Apis";
 import leftbottomimage from "../../Images/Grape.png"
-import righttopimage from "../../Images/Grape Leaf.png"
+import righttopimage from "../../Images/Leaf 1.png"
 import axios from "axios";
 
 function SectionFourth() {
