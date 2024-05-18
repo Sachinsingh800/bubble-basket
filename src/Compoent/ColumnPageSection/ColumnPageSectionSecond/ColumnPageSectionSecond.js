@@ -14,7 +14,7 @@ function ColumnPageSectionSecond() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let url = "https://wine-rnlq.onrender.com/admin/product/getAll";
+        let url = "https://www.backend.luxurybubblebasket.com/admin/product/getAll";
         if (category) {
           url += `?category=${category}`;
         }
