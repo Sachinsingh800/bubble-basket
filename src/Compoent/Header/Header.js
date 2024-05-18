@@ -111,7 +111,7 @@ export default function Header(props) {
         "Content-Type": "application/json", // Set content type to JSON
       };
       const response = await axios.get(
-        `https://wine-rnlq.onrender.com/admin/category/getAll`,
+        `https://www.backend.luxurybubblebasket.com/admin/category/getAll/admin/category/getAll`,
         {
           headers,
         }
@@ -163,7 +163,7 @@ export default function Header(props) {
         "Content-Type": "application/json", // Set content type to JSON
       };
       const response = await axios.get(
-        `https://wine-rnlq.onrender.com/admin/product/getAll`,
+        `https://www.backend.luxurybubblebasket.com/admin/category/getAll/admin/product/getAll`,
         {
           headers,
         }
