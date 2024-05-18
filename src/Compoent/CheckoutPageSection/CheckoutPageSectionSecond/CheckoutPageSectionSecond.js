@@ -27,12 +27,13 @@ function CheckoutPageSectionSecond() {
     orderNotes: "",
     setAsDefault: false,
   });
+  localStorage.setItem("checkoutStatus", JSON.stringify(false));
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(localStorage.getItem("selectedAddress") || false)
-  
-  useEffect(() => {
+    useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
   }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

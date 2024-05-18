@@ -12,7 +12,7 @@ function LoginPageSectionSecond() {
   });
 
   const [data, setData] = useState([]);
-  const[ totalprice, setTotalprice] = useState(null);
+  const [totalprice, setTotalprice] = useState(null);
 
   useEffect(() => {
     const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
@@ -23,7 +23,7 @@ function LoginPageSectionSecond() {
     const priceData = JSON.parse(localStorage.getItem("totalPrice"));
     if (cartData) {
       setData(cartData);
-      setTotalprice(priceData)
+      setTotalprice(priceData);
     }
   }, []);
 
@@ -33,36 +33,35 @@ function LoginPageSectionSecond() {
     setFormData({ ...formData, [name]: val });
   };
 
-
-  const handleCheckoutOrder =async()=>{
-    try{
-     const response= await getCheckout()
-    }catch(error){
-      console.log(error)
+  const handleCheckoutOrder = async () => {
+    try {
+      const response = await getCheckout();
+    } catch (error) {
+      console.log(error);
     }
-   }
-
-
+  };
 
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
 
     try {
-      const response = await loginUser({
-        email: formData.usernameOrEmail,
-        password: formData.password,
-        items: data.map((item) => ({
-          productId: item._id,
-          quantity: item.quantity,
-        })),
-        totalPrice: totalprice,
-        totalItems: data.length,
-      }, formData.rememberMe);
+      const response = await loginUser(
+        {
+          email: formData.usernameOrEmail,
+          password: formData.password,
+          items: data.map((item) => ({
+            productId: item._id,
+            quantity: item.quantity,
+          })),
+          totalPrice: totalprice,
+          totalItems: data.length,
+        },
+        formData.rememberMe
+      );
 
       if (response.status) {
         // If login is successful, save token to local storage
-        
         // Example: history.push('/dashboard');
       }
     } catch (error) {
@@ -77,15 +76,15 @@ function LoginPageSectionSecond() {
     } finally {
       setLoading(false);
       // handleCheckoutOrder()
-      
     }
   };
-  const handleLostPassword=()=>{
-
-  }
-  const handleResgister=()=>{
-   window.location.href="/RegisterPage"
-  }
+  const handleLostPassword = () => {
+    localStorage.setItem(JSON.stringify("category","password"))
+    window.location.href = "/UpdateInformation";
+  };
+  const handleResgister = () => {
+    window.location.href = "/RegisterPage";
+  };
 
   return (
     <div className={style.main}>

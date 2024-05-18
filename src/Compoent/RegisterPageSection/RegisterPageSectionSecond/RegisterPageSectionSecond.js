@@ -34,6 +34,11 @@ function RegisterPageSectionSecond() {
     }
   }, []);
 
+  useEffect(() => {
+    const verifyEmail = JSON.parse(localStorage.getItem("OtpVerification"));
+    setShowVerification(verifyEmail);
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
@@ -48,9 +53,7 @@ function RegisterPageSectionSecond() {
     }
     setPasswordError(""); // Clear any previous password error
     try {
-     const response = await RegisterUser(formData);
-      console.log(response,"response")
-      setShowVerification(true);
+      const response = await RegisterUser(formData);
     } catch (error) {
       console.error("Error registering user:", error);
     }
@@ -79,17 +82,17 @@ function RegisterPageSectionSecond() {
     }
   };
 
-  const handleResendOtp=async()=>{
+  const handleResendOtp = async () => {
     try {
-      const email={
-        email:formData?.email
-      }
+      const email = {
+        email: formData?.email,
+      };
       const response = await resendOtp(email);
       // Handle response as needed
     } catch (error) {
       console.error("Error verifying user:", error);
     }
-  }
+  };
 
   return (
     <div className={style.main}>
@@ -97,7 +100,11 @@ function RegisterPageSectionSecond() {
         <div className={style.form}>
           <div className={style.input_box}>
             <h4>VERIFY YOUR EMAIL</h4>
-            <input type="number" placeholder="otp" onChange={(e) => setOtp(e.target.value)} />
+            <input
+              type="number"
+              placeholder="otp"
+              onChange={(e) => setOtp(e.target.value)}
+            />
             <button onClick={handleVerification}>VERIFY EMAIL →</button>
             <button onClick={handleResendOtp}>Resend OTP</button>
           </div>
@@ -154,7 +161,7 @@ function RegisterPageSectionSecond() {
             />
           </div>
           <div className={style.input_box}>
-            <label htmlFor="password">Password *</label>
+          <label htmlFor="password">Password *</label>
             <input
               type="password"
               id="password"

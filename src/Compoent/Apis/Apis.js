@@ -11,6 +11,10 @@ export const RegisterUser = async (userData) => {
       userData
     );
     const { status, message, data, token } = response.data;
+    if(status){
+      localStorage.setItem("OtpVerification", JSON.stringify(true));
+      window.location.reload()
+    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)

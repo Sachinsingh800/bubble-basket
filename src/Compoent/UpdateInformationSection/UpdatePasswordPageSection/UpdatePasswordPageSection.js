@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./UpdatePasswordPageSection.module.css";
-import { forgetPassword, resetPassword } from "../../Apis/Apis";
+import { forgetPassword, resendOtp, resetPassword } from "../../Apis/Apis";
 
 function UpdatePasswordPageSection() {
   const [passwordData, setPasswordData] = useState({
@@ -25,11 +25,11 @@ function UpdatePasswordPageSection() {
       console.log("error");
     } finally {
           // Clear the form fields
-    setPasswordData({
-      newPassword: "",
-      otp: "",
-      email:""
-    });
+    // setPasswordData({
+    //   newPassword: "",
+    //   otp: "",
+    //   email:""
+    // });
     }
      
 
@@ -42,6 +42,15 @@ function UpdatePasswordPageSection() {
       console.log("error");
     } finally {
       setPasswordContainer(false)
+    }
+  };
+
+  const handleResendOtp = async () => {
+    try {
+      const response = await forgetPassword(email);
+      // Handle response as needed
+    } catch (error) {
+      console.error("Error verifying user:", error);
     }
   };
 
@@ -84,6 +93,7 @@ function UpdatePasswordPageSection() {
               onChange={handleChange}
               required
             />
+            <p onClick={handleResendOtp}>RESEND OTP</p>
           </div>
           <div className={style.input_box}>
             <label htmlFor="email">Email</label>
