@@ -33,7 +33,7 @@ function SectionFifth() {
         "Content-Type": "application/json", // Set content type to JSON
       };
       const response = await axios.get(
-        `https://wine-rnlq.onrender.com/admin/category/getAll`,
+        `https://www.backend.luxurybubblebasket.com/admin/category/getAll/admin/category/getAll`,
         {
           headers,
         }
