@@ -105,7 +105,11 @@ export default function Header(props) {
       const response = await getAllProduct();
 
       // Handle response data as needed
-    } catch (error) {}
+    } catch (error) {
+
+    }finally{
+      setUpdate(update + 1)
+    }
   };
 
   const handleClickOutsideSearch = (event) => {
