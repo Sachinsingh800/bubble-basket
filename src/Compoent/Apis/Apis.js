@@ -845,14 +845,25 @@ export const loginUser = async (userData, rememberMe) => {
 
 // getAllProduct
 
-export const getAllProduct = async (category) => {
+export const getAllProduct = async () => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+  
   try {
-    const response = await axios.get(`${BASE_URL}/admin/product/getAll`);
-    const { status, message, data, token } = response.data;
-    console.log(response);
+    const token = getToken();
+
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(`${BASE_URL}/admin/product/getAll`,{headers});
+    const { status, message, data } = response.data;
     if (status) {
-      // If "Remember Me" is checked, save token to local storage
-      return { status, message, data, token };
+      localStorage.setItem("all_product",JSON.stringify(data) || [])
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {

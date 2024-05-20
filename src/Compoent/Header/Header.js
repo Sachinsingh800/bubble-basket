@@ -15,8 +15,8 @@ import AnchorTemporaryDrawer from "../AnchorTemporaryDrawer/AnchorTemporaryDrawe
 import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../Recoil/Recoil";
 import axios from "axios";
-import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx"
-import { getAllCategory } from "../Apis/Apis";
+import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
+import { getAllCategory, getAllProduct } from "../Apis/Apis";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -42,14 +42,18 @@ export default function Header(props) {
   const [category, setCategory] = React.useState([]);
   const [product, setProduct] = React.useState([]);
   const [search, setSearch] = React.useState("");
-  const [showSearch,setShowSearch] = React.useState(false)
+  const [showSearch, setShowSearch] = React.useState(false);
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length;
     setCartItem(cartItem);
     handleAllCategory();
-    getAllProduct()
+    handleAllProduct();
+    const allProduct=JSON.parse(localStorage.getItem("all_product"))
+    setProduct(allProduct)
+    const allCategory=JSON.parse(localStorage.getItem("all_category")) 
+    setCategory(allCategory)
   }, [update]);
 
   const [showOptions, setShowOptions] = React.useState({
@@ -58,26 +62,23 @@ export default function Header(props) {
     3: false,
   });
 
-
-
-
   const downloadExcel = () => {
     // Path to the Excel file in your project folder
     const excelFilePath = bulkOrderForm;
-    
+
     fetch(excelFilePath)
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
-        link.setAttribute('download', 'Luxury_Bubble_Basket.xlsx');
+        link.setAttribute("download", "Luxury_Bubble_Basket.xlsx");
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
       })
-      .catch(error => {
-        console.error('Error downloading the Excel file:', error);
+      .catch((error) => {
+        console.error("Error downloading the Excel file:", error);
       });
   };
 
@@ -89,70 +90,22 @@ export default function Header(props) {
     setShowOptions({ ...showOptions, [index]: false });
   };
 
-  
-
-  const handleToggleSearch=()=>{
-    setShowSearch(!showSearch)
-  }
+  const handleToggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
 
   const handleAllCategory = async () => {
-    try{
-  const response= await getAllCategory()
-    }catch(error){
-
-    }
-  };
-  const getAllProduct = async () => {
-    // Function to retrieve token from cookies
-    // Function to retrieve token from cookies
-    function getToken() {
-      return document.cookie.replace(
-        /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-        "$1"
-      );
-    }
-
-    // Retrieve token
-    const token = getToken();
-
     try {
-      const headers = {
-        "x-auth-token": token, // Pass the token in the header
-        "Content-Type": "application/json", // Set content type to JSON
-      };
-      const response = await axios.get(
-        `https://www.backend.luxurybubblebasket.com/admin/category/getAll/admin/product/getAll`,
-        {
-          headers,
-        }
-      );
+      const response = await getAllCategory();
+    } catch (error) {}
+  };
 
-      const { status, message, data } = response.data;
-      if (status) {
-        console.log(data, "data aaa raha");
-
-        setProduct(data);
-      }
+  const handleAllProduct = async () => {
+    try {
+      const response = await getAllProduct();
 
       // Handle response data as needed
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Axios error (HTTP error)
-        const { response } = error;
-        // Set the error message
-        const errorMessage = response.data.message;
-        // alert(errorMessage);
-        // Log the error message as a string
-        localStorage.setItem("allAdress", JSON.stringify([]));
-        // alert(errorMessage);
-        console.error("Axios Error:", errorMessage);
-        // window.location.href = "/Login";
-      } else {
-        // Network error (e.g., no internet connection)
-        // alert("Something went wrong");
-        console.error("Network Error:", error.message);
-      }
-    }
+    } catch (error) {}
   };
 
   const handleClickOutsideSearch = (event) => {
@@ -208,7 +161,9 @@ export default function Header(props) {
                   onMouseEnter={() => showOptionDiv(2)}
                   onMouseLeave={() => closeOptionDiv(2)}
                 >
-                  <a onClick={downloadExcel} className={style.bulk_order}>BULK ORDER</a>
+                  <a onClick={downloadExcel} className={style.bulk_order}>
+                    BULK ORDER
+                  </a>
                 </li>
                 <li
                   onMouseEnter={() => showOptionDiv(3)}
@@ -224,7 +179,10 @@ export default function Header(props) {
               </div>
               <div className={style.right_section}>
                 <div className={style.search_box}>
-                  <button className={style.btn_search} onClick={handleToggleSearch}>
+                  <button
+                    className={style.btn_search}
+                    onClick={handleToggleSearch}
+                  >
                     <div className={style.icon_box}>
                       <img src={searchicon} alt="search" />
                     </div>
@@ -238,23 +196,29 @@ export default function Header(props) {
                   {showSearch && (
                     <ul className={style.option_box}>
                       {product
-                           .filter((elem) => {
-                            return elem?.title?.toLowerCase().includes(search?.toLowerCase());
-                          })
-                      .map((item) => (
-                        <li    onClick={() =>
-                          (window.location.href = `/Product/${item.category}`)
-                        }>
-                         <div className={style.search_img_box}>
-                          <img src={item?.productImg[0]?.url} alt={item.title}/>
-                         </div>
-                         <div  className={style.price_box}>
-                         <h6>{item?.title}</h6> 
-                         <span>${item?.price}</span> 
-                         </div>
-                       
-                        </li>
-                      ))}
+                        .filter((elem) => {
+                          return elem?.title
+                            ?.toLowerCase()
+                            .includes(search?.toLowerCase());
+                        })
+                        .map((item) => (
+                          <li
+                            onClick={() =>
+                              (window.location.href = `/Product/${item.category}`)
+                            }
+                          >
+                            <div className={style.search_img_box}>
+                              <img
+                                src={item?.productImg[0]?.url}
+                                alt={item.title}
+                              />
+                            </div>
+                            <div className={style.price_box}>
+                              <h6>{item?.title}</h6>
+                              <span>${item?.price}</span>
+                            </div>
+                          </li>
+                        ))}
                     </ul>
                   )}
                 </div>
