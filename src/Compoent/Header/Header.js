@@ -16,6 +16,7 @@ import { useRecoilState } from "recoil";
 import { cartData, updateCart } from "../Recoil/Recoil";
 import axios from "axios";
 import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx"
+import { getAllCategory } from "../Apis/Apis";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -47,7 +48,7 @@ export default function Header(props) {
     const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length;
     setCartItem(cartItem);
-    getAllCategory();
+    handleAllCategory();
     getAllProduct()
   }, [update]);
 
@@ -56,6 +57,8 @@ export default function Header(props) {
     2: false,
     3: false,
   });
+
+
 
 
   const downloadExcel = () => {
@@ -92,56 +95,11 @@ export default function Header(props) {
     setShowSearch(!showSearch)
   }
 
-  const getAllCategory = async () => {
-    // Function to retrieve token from cookies
-    // Function to retrieve token from cookies
-    function getToken() {
-      return document.cookie.replace(
-        /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-        "$1"
-      );
-    }
+  const handleAllCategory = async () => {
+    try{
+  const response= await getAllCategory()
+    }catch(error){
 
-    // Retrieve token
-    const token = getToken();
-
-    try {
-      const headers = {
-        "x-auth-token": token, // Pass the token in the header
-        "Content-Type": "application/json", // Set content type to JSON
-      };
-      const response = await axios.get(
-        `https://www.backend.luxurybubblebasket.com/admin/category/getAll/admin/category/getAll`,
-        {
-          headers,
-        }
-      );
-
-      const { status, message, data } = response.data;
-      if (status) {
-        console.log(data, "data aaa raha");
-
-        setCategory(data?.slice(0,3));
-      }
-
-      // Handle response data as needed
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Axios error (HTTP error)
-        const { response } = error;
-        // Set the error message
-        const errorMessage = response.data.message;
-        // alert(errorMessage);
-        // Log the error message as a string
-        localStorage.setItem("allAdress", JSON.stringify([]));
-        // alert(errorMessage);
-        console.error("Axios Error:", errorMessage);
-        // window.location.href = "/Login";
-      } else {
-        // Network error (e.g., no internet connection)
-        // alert("Something went wrong");
-        console.error("Network Error:", error.message);
-      }
     }
   };
   const getAllProduct = async () => {
