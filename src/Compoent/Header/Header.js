@@ -108,7 +108,7 @@ export default function Header(props) {
     } catch (error) {
 
     }finally{
-      setUpdate(update + 1)
+
     }
   };
 
