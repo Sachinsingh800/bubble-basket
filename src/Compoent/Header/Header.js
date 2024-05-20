@@ -143,7 +143,7 @@ export default function Header(props) {
                       visibility: showOptions[1] ? "visible" : "hidden",
                     }}
                   >
-                    {category.map((item) => (
+                    {category?.map((item) => (
                       <div className={style.category_box}>
                         <p
                           className={style.option}
@@ -196,21 +196,21 @@ export default function Header(props) {
                   {showSearch && (
                     <ul className={style.option_box}>
                       {product
-                        .filter((elem) => {
+                        ?.filter((elem) => {
                           return elem?.title
                             ?.toLowerCase()
                             .includes(search?.toLowerCase());
                         })
-                        .map((item) => (
+                        ?.map((item) => (
                           <li
                             onClick={() =>
-                              (window.location.href = `/Product/${item.category}`)
+                              (window.location.href = `/Product/${item?.category}`)
                             }
                           >
                             <div className={style.search_img_box}>
                               <img
                                 src={item?.productImg[0]?.url}
-                                alt={item.title}
+                                alt={item?.title}
                               />
                             </div>
                             <div className={style.price_box}>
