@@ -34,10 +34,7 @@ function RegisterPageSectionSecond() {
     }
   }, []);
 
-  useEffect(() => {
-    const verifyEmail = JSON.parse(localStorage.getItem("OtpVerification"));
-    setShowVerification(verifyEmail);
-  }, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -54,6 +51,10 @@ function RegisterPageSectionSecond() {
     setPasswordError(""); // Clear any previous password error
     try {
       const response = await RegisterUser(formData);
+      if (response.status) {
+        alert(response.message);
+        setShowVerification(true)
+      }
     } catch (error) {
       console.error("Error registering user:", error);
     }
@@ -85,7 +86,7 @@ function RegisterPageSectionSecond() {
   const handleResendOtp = async () => {
     try {
       const email = {
-        email: formData?.email,
+        email: formData.email,
       };
       const response = await resendOtp(email);
       // Handle response as needed
@@ -161,7 +162,7 @@ function RegisterPageSectionSecond() {
             />
           </div>
           <div className={style.input_box}>
-          <label htmlFor="password">Password *</label>
+            <label htmlFor="password">Password *</label>
             <input
               type="password"
               id="password"

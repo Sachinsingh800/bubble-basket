@@ -5,28 +5,24 @@ const BASE_URL = "https://www.backend.luxurybubblebasket.com";
 // Register
 
 export const RegisterUser = async (userData) => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
   try {
     const response = await axios.post(
       `${BASE_URL}/user/auth/register`,
       userData
     );
-    const { status, message, data, token } = response.data;
-    if (status) {
-      localStorage.setItem("OtpVerification", JSON.stringify(true));
-      window.location.reload();
-    }
+    console.log(response, "Response from axios");
+
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      alert(errorMessage);
-      // Log the error message as a string
-    } else {
-      // Network error (e.g., no internet connection)
-      alert("Something went wrong");
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
 
@@ -835,6 +831,9 @@ export const loginUser = async (userData, rememberMe) => {
   }
 };
 
+
+
+
 // getAllProduct
 
 export const getAllProduct = async () => {
@@ -845,28 +844,23 @@ export const getAllProduct = async () => {
     );
   }
 
+  // Retrieve token
+  const token = getToken();
   try {
-    const token = getToken();
-
     const headers = {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, {
-      headers,
-    });
-    const { status, message, data } = response.data;
-    if (status) {
-      localStorage.setItem("all_product", JSON.stringify(data) || []);
-    }
+    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, { headers });
+    console.log(response, "Response from axios");
+
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const { response } = error;
-      const errorMessage = response.data.message;
-    } else {
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
 
 export const getCheckout = async (promoCode) => {
   // Function to retrieve token from cookies

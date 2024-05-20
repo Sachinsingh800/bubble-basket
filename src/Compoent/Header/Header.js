@@ -50,8 +50,8 @@ export default function Header(props) {
     setCartItem(cartItem);
     handleAllCategory();
     handleAllProduct();
-    const allProduct=JSON.parse(localStorage.getItem("all_product"))
-    setProduct(allProduct)
+
+   
 
 
   }, [update]);
@@ -106,12 +106,9 @@ export default function Header(props) {
   const handleAllProduct = async () => {
     try {
       const response = await getAllProduct();
-      
-      // Handle response data as needed
+      setProduct(response.data)
     } catch (error) {
-
-    }finally{
-
+      console.error("Error in handleAllCategory function:", error);
     }
   };
 

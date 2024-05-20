@@ -33,9 +33,7 @@ function ProductSectionSecond() {
   const [rating, setRating] = useState("");
   const [updateReview, setUpdateReview] = useState(0);
   const [userReview, setUserReview] = useState([]);
-  const [userCreateReview,setUserCreateReview] = useState(null)
-
-
+  const [userCreateReview, setUserCreateReview] = useState(null);
 
   useEffect(() => {
     handleProductData();
@@ -61,12 +59,9 @@ function ProductSectionSecond() {
     setLoading(true);
     try {
       const response = await getAllProduct();
-
-      if (response.status) {
-        // Show only the first three products
-        setProductData(response.data);
-        setLoading(false);
-      }
+      // Show only the first three products
+      setProductData(response.data);
+      setLoading(false);
     } catch (error) {
       console.error("Error getting product data:", error);
       setLoading(false);
@@ -78,11 +73,9 @@ function ProductSectionSecond() {
     setData(cartdata);
   }, [update]);
 
-  
-
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
-console.log(product)
+  console.log(product);
 
   const handleAddToCartInBeckend = async () => {
     try {
@@ -91,8 +84,6 @@ console.log(product)
       console.log(error);
     }
   };
-
-
 
   const handleAddToCart = () => {
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
@@ -109,12 +100,12 @@ console.log(product)
       const updatedCartData = [...cartData];
       updatedCartData[existingProductIndex].quantity += quantity;
       localStorage.setItem("cartData", JSON.stringify(updatedCartData));
-      setUpdate(update + 1)
+      setUpdate(update + 1);
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
       localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
-      setUpdate(update + 1)
+      setUpdate(update + 1);
     }
   };
 
@@ -154,11 +145,11 @@ console.log(product)
       console.log("error");
     } finally {
       setUpdateReview(updateReview + 1);
-      setUserCreateReview(reviewData)
-      setName("")
-      setEmail("")
-      setRating(0)
-      setReviewText("")
+      setUserCreateReview(reviewData);
+      setName("");
+      setEmail("");
+      setRating(0);
+      setReviewText("");
     }
   };
 
@@ -166,6 +157,9 @@ console.log(product)
     setRating(newRating);
   };
 
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
   function renderHTML(htmlString) {
     return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
   }
@@ -237,14 +231,15 @@ console.log(product)
           {showAddInfo && (
             <div className={style.add_info_box}>
               <p>
-                <strong>Measure Unit</strong> <span>{product?.measureUnit}</span>
+                <strong>Measure Unit</strong>{" "}
+                <span>{product?.measureUnit}</span>
               </p>
               <p>
                 <strong>DIMENSIONS</strong> {product?.dimension}
               </p>
             </div>
           )}
-          {showDescription && <p>{product?.description}</p>}
+          {showDescription && <p>{renderHTML(product?.description)}</p>}
           {showReview && (
             <div>
               <h6>3 REVIEW FOR BUBBLE BASKET</h6>
@@ -257,14 +252,14 @@ console.log(product)
                   <div>
                     <ReactStars
                       count={5}
-                      onChange={null}
-                      filledIcon={null}
-                      value={userCreateReview.rating}
+                      value={rating}
+                      onChange={handleRatingChange}
                       size={20}
                       activeColor="#ffd700"
                     />
                     <span>Your review is awaiting approval</span>
-                    <span>{userCreateReview.name}</span> - <span>{userCreateReview.email}</span>
+                    <span>{userCreateReview.name}</span> -{" "}
+                    <span>{userCreateReview.email}</span>
                     <p>{userCreateReview.reviewText}</p>
                   </div>
                 </div>
@@ -340,7 +335,7 @@ console.log(product)
         </div>
       </div>
       <div className={style.additional_box}>
-              <ColumnPageSectionSecond />
+        <ColumnPageSectionSecond />
       </div>
     </div>
   );
