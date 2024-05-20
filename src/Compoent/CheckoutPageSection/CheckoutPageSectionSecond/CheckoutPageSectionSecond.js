@@ -47,7 +47,7 @@ function CheckoutPageSectionSecond() {
     e.preventDefault();
     try {
       const orderData = {
-        promoCode: "SUMMER28",
+        promoCode: "",
         paymentMethod: {
           cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
           online: formData?.paymentMethod === "online", // Set payment method based on selection
@@ -74,7 +74,7 @@ function CheckoutPageSectionSecond() {
 
     try {
       const orderData = {
-        promoCode: "SUMMER28",
+        promoCode: "",
         paymentMethod: {
           cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
           online: formData?.paymentMethod === "online", // Set payment method based on selection

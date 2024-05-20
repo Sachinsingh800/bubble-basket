@@ -21,8 +21,6 @@ function CartPageSectionSecond() {
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const [productId, setProductId] = useState(null);
   const [productQuantity, setProductQuantity] = useState(0);
-  
-
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -34,28 +32,27 @@ function CartPageSectionSecond() {
 
   const handleQuantityChange = (index, quantity) => {
     // If the quantity is less than 1, don't update it and return
-    setProductQuantity(quantity)
+    setProductQuantity(quantity);
     if (quantity < 1) return;
-  
+
     // Clone the data array to avoid mutating state directly
     const updatedData = [...data];
-  
+
     // Update the quantity of the item at the specified index
     updatedData[index] = { ...updatedData[index], quantity: quantity };
-  
+
     // Update the state with the new data
     setData(updatedData);
-  
+
     // Update localStorage with the updated data
     localStorage.setItem("cartData", JSON.stringify(updatedData));
-  
+
     // Update the update state to trigger re-render
     setUpdate(update + 1);
-  
+
     // Recalculate the total price
     calculateTotalPrice(updatedData);
   };
-  
 
   const handleRemoveProduct = (index) => {
     const updatedData = [...data];
@@ -135,10 +132,8 @@ function CartPageSectionSecond() {
     }
   };
 
-
-
   const handleFilterCheckoutData = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     localStorage.setItem("cartData", JSON.stringify(data));
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     setUpdate(update + 1);
@@ -204,19 +199,17 @@ function CartPageSectionSecond() {
               <div className={style.para}>$ {item?.price}</div>
             )}
 
- 
-              <div onMouseEnter={()=>setProductId(item?.Product_id)} >
-                <input
-                  className={style.quantity_box}
-                  value={item?.quantity ? item?.quantity : item?.Product_quantity}
-                  type="number"
-                  min="1"
-                  onChange={(e) =>
-                    handleQuantityChange(index, parseInt(e.target.value))
-                  }
-                />
-              </div>
-    
+            <div onMouseEnter={() => setProductId(item?.Product_id)}>
+              <input
+                className={style.quantity_box}
+                value={item?.quantity ? item?.quantity : item?.Product_quantity}
+                type="number"
+                min="1"
+                onChange={(e) =>
+                  handleQuantityChange(index, parseInt(e.target.value))
+                }
+              />
+            </div>
 
             {loginStatus ? (
               <div className={style.para}>$ {item?.productTotal}</div>
@@ -239,7 +232,12 @@ function CartPageSectionSecond() {
               />
               <button onClick={handleCouponCheck}>APPLY COUPON → </button>
             </div>
-            <button className={style.updatebtn} onClick={handleQuantityOfproduct }>UPDATE CART → </button>
+            <button
+              className={style.updatebtn}
+              onClick={handleQuantityOfproduct}
+            >
+              UPDATE CART →{" "}
+            </button>
           </div>
           {loginStatus ? (
             <div className={style.order_summary}>
@@ -330,7 +328,7 @@ function CartPageSectionSecond() {
           )}
           <br />
           <div className={style.buttons_box2}>
-            <button onClick={(e)=>handleFilterCheckoutData(e)}>
+            <button onClick={(e) => handleFilterCheckoutData(e)}>
               PROCEED TO CHECKOUT →{" "}
             </button>
           </div>

@@ -565,7 +565,6 @@ export const getAddress = async () => {
 
 // getAllCategory
 
-
 export const getAllCategory = async () => {
   function getToken() {
     return document.cookie.replace(
@@ -581,7 +580,9 @@ export const getAllCategory = async () => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/category/getAll`, { headers });
+    const response = await axios.get(`${BASE_URL}/admin/category/getAll`, {
+      headers,
+    });
     console.log(response, "Response from axios");
 
     // Directly return the data from axios response
@@ -591,8 +592,6 @@ export const getAllCategory = async () => {
     throw error; // Re-throw error to handle it in handleAllCategory
   }
 };
-
-
 
 // deleteAddress
 
@@ -831,9 +830,6 @@ export const loginUser = async (userData, rememberMe) => {
   }
 };
 
-
-
-
 // getAllProduct
 
 export const getAllProduct = async () => {
@@ -851,7 +847,9 @@ export const getAllProduct = async () => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, { headers });
+    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, {
+      headers,
+    });
     console.log(response, "Response from axios");
 
     // Directly return the data from axios response
@@ -860,7 +858,6 @@ export const getAllProduct = async () => {
     console.error("Error in getAllCategory function:", error);
   }
 };
-
 
 export const getCheckout = async (promoCode) => {
   // Function to retrieve token from cookies
@@ -888,7 +885,7 @@ export const getCheckout = async (promoCode) => {
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
     if (status) {
-      localStorage.setItem("cartData", JSON.stringify(data.productsData) || []);
+      localStorage.setItem("cartData", JSON.stringify(response?.data?.data?.productsData) || []);
       localStorage.setItem(
         "checkout",
         JSON.stringify(response?.data?.data) || []
@@ -898,8 +895,7 @@ export const getCheckout = async (promoCode) => {
       if (checkoutStatus) {
         window.location.href = "/CheckoutPage";
       } else {
-        localStorage.removeItem("cartData");
-        window.location.href = "/";
+     
       }
       const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }
