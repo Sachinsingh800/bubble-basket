@@ -11,9 +11,9 @@ export const RegisterUser = async (userData) => {
       userData
     );
     const { status, message, data, token } = response.data;
-    if(status){
+    if (status) {
       localStorage.setItem("OtpVerification", JSON.stringify(true));
-      window.location.reload()
+      window.location.reload();
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -61,10 +61,7 @@ export const verifyEmail = async (userData) => {
 
 export const resendOtp = async (email) => {
   try {
-    const response = await axios.post(
-      `${BASE_URL}/user/auth/resendOtp`,
-     email
-    );
+    const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email);
     const { status, message, data, token } = response.data;
     if (status) {
       // window.location.href = "/Login";
@@ -280,7 +277,7 @@ export const removeFromCart = async (id) => {
 
 //updateItemQuatity
 
-export const updateItemQuantity = async (id,quantity) => {
+export const updateItemQuantity = async (id, quantity) => {
   // Function to retrieve token from cookies
   // Function to retrieve token from cookies
   function getToken() {
@@ -544,7 +541,7 @@ export const getAddress = async () => {
     });
 
     const { status, message, data } = response.data;
-    if(status){
+    if (status) {
       localStorage.setItem("allAdress", JSON.stringify(data) || []);
       localStorage.setItem("selectedAddress", JSON.stringify(data[0]));
     }
@@ -558,7 +555,7 @@ export const getAddress = async () => {
       const errorMessage = response.data.message;
       // alert(errorMessage);
       // Log the error message as a string
-      localStorage.setItem("allAdress", JSON.stringify([]) );
+      localStorage.setItem("allAdress", JSON.stringify([]));
       // alert(errorMessage);
       console.error("Axios Error:", errorMessage);
       // window.location.href = "/Login";
@@ -572,9 +569,8 @@ export const getAddress = async () => {
 
 // getAllCategory
 
+
 export const getAllCategory = async () => {
-  // Function to retrieve token from cookies
-  // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -584,26 +580,23 @@ export const getAllCategory = async () => {
 
   // Retrieve token
   const token = getToken();
-
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/category/getAll`, {
-      headers,
-    });
+    const response = await axios.get(`${BASE_URL}/admin/category/getAll`, { headers });
+    console.log(response, "Response from axios");
 
-    const { status, message, data } = response.data;
-    if(status){
-   localStorage.setItem("all_category",JSON.stringify(data) || [])
-    }
-
-    // Handle response data as needed
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-
+    console.error("Error in getAllCategory function:", error);
+    throw error; // Re-throw error to handle it in handleAllCategory
   }
 };
+
+
 
 // deleteAddress
 
@@ -714,10 +707,11 @@ export const orderPlace = async (orderData) => {
   // Retrieve token
   const token = getToken();
   const address = JSON.parse(localStorage.getItem("address")) || {};
-  const selectedAddress = JSON.parse(localStorage.getItem("selectedAddress")) || {};
+  const selectedAddress =
+    JSON.parse(localStorage.getItem("selectedAddress")) || {};
   const ad_id = JSON.parse(localStorage.getItem("ad_id")) || false;
 
-  const id =  ad_id  ? selectedAddress?._id : address?._id;
+  const id = ad_id ? selectedAddress?._id : address?._id;
 
   try {
     const headers = {
@@ -816,9 +810,7 @@ export const loginUser = async (userData, rememberMe) => {
 
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
-      getCheckout()
-
-     
+      getCheckout();
 
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(token));
@@ -852,7 +844,7 @@ export const getAllProduct = async () => {
       "$1"
     );
   }
-  
+
   try {
     const token = getToken();
 
@@ -860,18 +852,18 @@ export const getAllProduct = async () => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/product/getAll`,{headers});
+    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, {
+      headers,
+    });
     const { status, message, data } = response.data;
     if (status) {
-      localStorage.setItem("all_product",JSON.stringify(data) || [])
+      localStorage.setItem("all_product", JSON.stringify(data) || []);
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const { response } = error;
       const errorMessage = response.data.message;
-
     } else {
-     
     }
   }
 };
@@ -901,22 +893,22 @@ export const getCheckout = async (promoCode) => {
 
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
-    if(status){
-      localStorage.setItem("cartData",JSON.stringify(data.productsData) || [])
-      localStorage.setItem("checkout", JSON.stringify(response?.data?.data) || []);
-      const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"))
+    if (status) {
+      localStorage.setItem("cartData", JSON.stringify(data.productsData) || []);
+      localStorage.setItem(
+        "checkout",
+        JSON.stringify(response?.data?.data) || []
+      );
+      const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
 
       if (checkoutStatus) {
         window.location.href = "/CheckoutPage";
-      }else{
-        localStorage.removeItem("cartData")
+      } else {
+        localStorage.removeItem("cartData");
         window.location.href = "/";
       }
       const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }
- 
-
-
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const { response } = error;
@@ -928,12 +920,9 @@ export const getCheckout = async (promoCode) => {
   }
 };
 
-
 // getAllBlog
 
-export const getAllBlog= async () => {
-
-  
+export const getAllBlog = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/admin/blog/getAll`);
     const { status, message, data } = response.data;
@@ -943,9 +932,9 @@ export const getAllBlog= async () => {
       // Axios error (HTTP error)
       const { response } = error;
       // Set the error message
-      const errorMessage = response.data.message
+      const errorMessage = response.data.message;
 
-         alert(errorMessage)
+      alert(errorMessage);
       // Log the error message as a string
     } else {
       // Network error (e.g., no internet connection)

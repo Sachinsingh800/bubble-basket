@@ -52,8 +52,8 @@ export default function Header(props) {
     handleAllProduct();
     const allProduct=JSON.parse(localStorage.getItem("all_product"))
     setProduct(allProduct)
-    const allCategory=JSON.parse(localStorage.getItem("all_category")) 
-    setCategory(allCategory)
+
+
   }, [update]);
 
   const [showOptions, setShowOptions] = React.useState({
@@ -97,13 +97,16 @@ export default function Header(props) {
   const handleAllCategory = async () => {
     try {
       const response = await getAllCategory();
-    } catch (error) {}
+      setCategory(response.data)
+    } catch (error) {
+      console.error("Error in handleAllCategory function:", error);
+    }
   };
 
   const handleAllProduct = async () => {
     try {
       const response = await getAllProduct();
-
+      
       // Handle response data as needed
     } catch (error) {
 

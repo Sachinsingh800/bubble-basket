@@ -18,14 +18,20 @@ function SectionFourth() {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-console.log(productData,"datatatatat")
+
 
 useEffect(() => {
-    const allCategory=JSON.parse(localStorage.getItem("all_category")) 
-    const data=allCategory?.slice(3,5)
-    console.log(data,"ye wala data",allCategory)
-    setProductData(data)
+  handleAllCategory()
 }, []);
+
+const handleAllCategory = async () => {
+  try {
+    const response = await getAllCategory();
+    setProductData(response?.data?.slice(3,5))
+  } catch (error) {
+    console.error("Error in handleAllCategory function:", error);
+  }
+};
 
   useEffect(() => {
     const cartdata = JSON.parse(localStorage.getItem("cartData"));

@@ -5,15 +5,24 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
+import { getAllCategory } from "../../Apis/Apis";
 
 function SectionFifth() {
   const [category, setCategory] = useState("");
   const [categoryData, setCategoryData] = useState([]);
 
   useEffect(() => {
-    const allCategory=JSON.parse(localStorage.getItem("all_category")) 
-    setCategoryData(allCategory)
+    handleAllCategory()
 }, []);
+
+const handleAllCategory = async () => {
+  try {
+    const response = await getAllCategory();
+    setCategoryData(response?.data)
+  } catch (error) {
+    console.error("Error in handleAllCategory function:", error);
+  }
+};
   
 
   const handleChange = (event) => {

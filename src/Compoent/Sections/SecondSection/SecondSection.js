@@ -13,14 +13,22 @@ function SecondSection() {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
-    const allCategory=JSON.parse(localStorage.getItem("all_category")) 
-    setProductData(allCategory?.slice(0,3));
+    handleAllCategory()
 }, []);
 
+const handleAllCategory = async () => {
+  try {
+    const response = await getAllCategory();
+    setProductData(response?.data?.slice(0,3));
+  } catch (error) {
+    console.error("Error in handleAllCategory function:", error);
+  }
+};
 
   const handleAddToCartInBeckend = async (productId) => {
     try {
       const response = await AddtoCart(productId);
+
     } catch (error) {
       console.log(error);
     }
