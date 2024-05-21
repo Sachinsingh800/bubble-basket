@@ -16,6 +16,7 @@ import { updateCart } from "../../Recoil/Recoil";
 import ReactStars from "react-rating-stars-component";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
+import ProductDescriptionBlog from "../../ProductDescriptionBlog/ProductDescriptionBlog";
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -334,6 +335,9 @@ function ProductSectionSecond() {
             </div>
           )}
         </div>
+      </div>
+      <div>
+        <ProductDescriptionBlog />
       </div>
       <div className={style.additional_box}>
         <ColumnPageSectionSecond />
