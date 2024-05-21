@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./ColumnPageSectionSecond.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getAllProduct } from "../../Apis/Apis";
 
 function ColumnPageSectionSecond() {
   const [productData, setProductData] = useState([]);
@@ -14,17 +15,10 @@ function ColumnPageSectionSecond() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let url = "https://www.backend.luxurybubblebasket.com/admin/product/getAll";
-        if (category) {
-          url += `?category=${category}`;
-        }
-        const response = await axios.get(url);
-        const { status, message, data } = response.data;
-        if (status) {
-          setProductData(data.slice(0, 8));
-        } else {
-          setError(message);
-        }
+        const response = await getAllProduct(category) ;
+
+          setProductData(response.data.slice(0, 8));
+
       } catch (error) {
         setError("An error occurred while fetching data.");
       } finally {

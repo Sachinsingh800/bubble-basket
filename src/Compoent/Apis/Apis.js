@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://www.backend.luxurybubblebasket.com";
+const BASE_URL = "https://wine-rnlq.onrender.com";
 
 // Register
 
@@ -589,7 +589,6 @@ export const getAllCategory = async () => {
     return response.data;
   } catch (error) {
     console.error("Error in getAllCategory function:", error);
-    throw error; // Re-throw error to handle it in handleAllCategory
   }
 };
 
@@ -832,7 +831,7 @@ export const loginUser = async (userData, rememberMe) => {
 
 // getAllProduct
 
-export const getAllProduct = async () => {
+export const getAllProduct = async (category) => {
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -847,7 +846,11 @@ export const getAllProduct = async () => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/product/getAll`, {
+    let url = `${BASE_URL}/admin/product/getAll`;
+    if (category) {
+      url += `?category=${category}`;
+    }
+    const response = await axios.get(url, {
       headers,
     });
     console.log(response, "Response from axios");

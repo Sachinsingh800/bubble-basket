@@ -61,6 +61,7 @@ function ProductSectionSecond() {
       const response = await getAllProduct();
       // Show only the first three products
       setProductData(response.data);
+      console.log(response,"ye aa tafsgsdgv")
       setLoading(false);
     } catch (error) {
       console.error("Error getting product data:", error);
