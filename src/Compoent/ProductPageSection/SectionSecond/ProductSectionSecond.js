@@ -206,6 +206,7 @@ function ProductSectionSecond() {
             size={20}
             activeColor="#ffd700"
           />
+          <br/>
           <div className={style.input_box}>
             <input
               type="number"
@@ -215,7 +216,7 @@ function ProductSectionSecond() {
             <button onClick={handleAddToCart}>ADD TO CART →</button>
           </div>
           <br />
-          <p>♡ &nbsp;Add to wishlist </p>
+          {/* <p>♡ &nbsp;Add to wishlist </p> */}
           <p>
             <strong>SKU:</strong>
             {product?.sku}
@@ -247,13 +248,9 @@ function ProductSectionSecond() {
       <div className={style.product_des_box}>
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>INTRODUCTION</h5>
-          {/* <h5>|</h5> */}
           <h5 onClick={handleToggleOverview}>DETAILED OVERVIEW</h5>
-          {/* <h5>|</h5> */}
           <h5 onClick={handleToggleExprienceofTesting}>EXPRIENCE OF TESTING</h5>
-          {/* <h5>|</h5> */}
           <h5 onClick={handleToggleComparison}>COMPARISON</h5>
-          {/* <h5>|</h5> */}
           <h5 onClick={handleToggleReview}>
             REVIEWS ({reviews?.reviews?.length})
           </h5>
@@ -261,21 +258,12 @@ function ProductSectionSecond() {
         <div className={style.des_container}>
           {showOverview && (
             <div className={style.description_box}>
-              <p>
-                It has a great structure that comes from 78% Cabernet Sauvignon,
-                8% Merlot, 6% Petit Verdot, 6% Cabernet Franc, and 2% Malbec.
-                This vintage has a pure and intense ruby colour; the nose
-                reveals blackberries, blackcurrant, and plum, with secondary
-                notes of espresso, dark chocolate, and violets. Gaining the
-                dominance and extension of the favorable climate within the year
-                2019, the grape harvests in this wine style boasted balanced
-                acidity and impressive ripe tannins.
-              </p>
+              <p>{product?.productBlog?.detailedOverview}</p>
             </div>
           )}
           {showDescription && (
             <div className={style.description_box}>
-              <p>{renderHTML(product?.description)}</p>
+              <p>{product?.productBlog?.intro}</p>
               <h4>ADDITIONAL INFORMATION</h4>
               <p>
                 <strong>Measure Unit</strong>{" "}
@@ -288,30 +276,12 @@ function ProductSectionSecond() {
           )}
           {showExprienceofTesting && (
             <div className={style.description_box}>
-              <p>
-                Tasting the 2019 Opus One, one can only describe the wine as
-                having an opulent mouthfeel within a seamless fruit and oak
-                integration. Caramel and oak with a pleasant and complex
-                combination of fruit, particularly dark fruit flavors of
-                berries, and hints of mocha and spice before a long, smooth
-                finish. It has profound age worthy potential and will only add
-                to this already favorable set of characteristics with further
-                aging.
-              </p>
+              <p>{product?.productBlog?.experienceOfTesting}</p>
             </div>
           )}
           {showComparison && (
             <div className={style.description_box}>
-              <p>
-                In comparison to the preceding years’ vintages, the 2019 Opus
-                One offers the crafting of enhanced gravitas and sophistication,
-                further encased in immediate drinkability. They say 2018 was
-                just as good in its own regard, but it provided more tannins and
-                a slightly larger body to the wine. While the 2018 is certainly
-                quite barrel-driven and young and powerful, the 2019 is much
-                more elegant, nuanced, and delicate and should be enjoyable both
-                in its youth and with additional bottle age.
-              </p>
+              <p>{product?.productBlog?.comparison}</p>
             </div>
           )}
           {showReview && (
