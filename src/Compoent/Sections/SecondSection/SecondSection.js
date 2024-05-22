@@ -12,6 +12,9 @@ function SecondSection() {
   const [showTick, setShowTick] = useState(null);
   const [productData, setProductData] = useState([]);
 
+
+  console.log(productData,"data")
+
   useEffect(() => {
     handleAllCategory()
 }, []);
@@ -91,8 +94,7 @@ const handleAllCategory = async () => {
             </div>
             <div className={style.text_box}>
               <h5>{item?.categoryName}</h5>
-              {/* <p>{renderHTML(item.description)}</p> */}
-              <p>Lorem ipsum sita met , consectetur</p>
+              <p>{item.content}</p>
             </div>
           </div>
         ))}
