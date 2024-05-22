@@ -12,10 +12,10 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     width: 90%;
-
+}
+.description_box{
 
 }
-
 .img_box{
     display: flex;
     align-items: center;
@@ -79,7 +79,7 @@ justify-content: center;
     display: flex;
     border-bottom: 1px #F5E3E3 solid;
     padding: .3rem 1rem;
-    width: 50rem;
+    width: 60rem;
     justify-content: space-between;
 }
 .extraInfo_btn h5{
@@ -88,7 +88,7 @@ justify-content: center;
     font-weight: 600;
 }
 .des_container{
-    width: 50rem;
+    width: 60rem;
     height: max-content;
     display: flex;
     flex-direction: column;

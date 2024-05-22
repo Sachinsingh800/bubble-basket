@@ -22,7 +22,9 @@ function ProductSectionSecond() {
   const [data, setData] = useState([]);
   const [showDescription, setShowDescription] = useState(true);
   const [showReview, setShowReview] = useState(false);
-  const [showAddInfo, setShowAddInfo] = useState(false);
+  const [showOverview, setShowOverview] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [showExprienceofTesting, setShowExprienceofTesting] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams(); // Change variable name to match the parameter name in the route
   const [productData, setProductData] = useState([]);
@@ -62,7 +64,7 @@ function ProductSectionSecond() {
       const response = await getAllProduct();
       // Show only the first three products
       setProductData(response.data);
-      console.log(response,"ye aa tafsgsdgv")
+      console.log(response, "ye aa tafsgsdgv");
       setLoading(false);
     } catch (error) {
       console.error("Error getting product data:", error);
@@ -118,19 +120,40 @@ function ProductSectionSecond() {
   const handleToggleDescription = () => {
     setShowDescription(!showDescription);
     setShowReview(false);
-    setShowAddInfo(false);
+    setShowOverview(false);
+    setShowExprienceofTesting(false);
+    setShowComparison(false);
   };
 
   const handleToggleReview = () => {
     setShowReview(!showReview);
     setShowDescription(false);
-    setShowAddInfo(false);
+    setShowOverview(false);
+    setShowExprienceofTesting(false);
+    setShowComparison(false);
   };
 
-  const handleToggleAddInfo = () => {
-    setShowAddInfo(!showAddInfo);
+  const handleToggleOverview = () => {
+    setShowOverview(!showOverview);
     setShowDescription(false);
     setShowReview(false);
+    setShowExprienceofTesting(false);
+    setShowComparison(false);
+  };
+  const handleToggleExprienceofTesting = () => {
+    setShowExprienceofTesting(!showExprienceofTesting);
+    setShowDescription(false);
+    setShowReview(false);
+    setShowComparison(false);
+    setShowOverview(false);
+  };
+
+  const handleToggleComparison = () => {
+    setShowComparison(!showComparison);
+    setShowDescription(false);
+    setShowReview(false);
+    setShowExprienceofTesting(false);
+    setShowOverview(false);
   };
 
   const handleCreateReview = async (e) => {
@@ -223,15 +246,37 @@ function ProductSectionSecond() {
       </div>
       <div className={style.product_des_box}>
         <div className={style.extraInfo_btn}>
-          <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
-          <h5 onClick={handleToggleAddInfo}>ADDITIONAL INFORMATION</h5>
+          <h5 onClick={handleToggleDescription}>INTRODUCTION</h5>
+          {/* <h5>|</h5> */}
+          <h5 onClick={handleToggleOverview}>DETAILED OVERVIEW</h5>
+          {/* <h5>|</h5> */}
+          <h5 onClick={handleToggleExprienceofTesting}>EXPRIENCE OF TESTING</h5>
+          {/* <h5>|</h5> */}
+          <h5 onClick={handleToggleComparison}>COMPARISON</h5>
+          {/* <h5>|</h5> */}
           <h5 onClick={handleToggleReview}>
             REVIEWS ({reviews?.reviews?.length})
           </h5>
         </div>
         <div className={style.des_container}>
-          {showAddInfo && (
-            <div className={style.add_info_box}>
+          {showOverview && (
+            <div className={style.description_box}>
+              <p>
+                It has a great structure that comes from 78% Cabernet Sauvignon,
+                8% Merlot, 6% Petit Verdot, 6% Cabernet Franc, and 2% Malbec.
+                This vintage has a pure and intense ruby colour; the nose
+                reveals blackberries, blackcurrant, and plum, with secondary
+                notes of espresso, dark chocolate, and violets. Gaining the
+                dominance and extension of the favorable climate within the year
+                2019, the grape harvests in this wine style boasted balanced
+                acidity and impressive ripe tannins.
+              </p>
+            </div>
+          )}
+          {showDescription && (
+            <div className={style.description_box}>
+              <p>{renderHTML(product?.description)}</p>
+              <h4>ADDITIONAL INFORMATION</h4>
               <p>
                 <strong>Measure Unit</strong>{" "}
                 <span>{product?.measureUnit}</span>
@@ -241,7 +286,34 @@ function ProductSectionSecond() {
               </p>
             </div>
           )}
-          {showDescription && <p>{renderHTML(product?.description)}</p>}
+          {showExprienceofTesting && (
+            <div className={style.description_box}>
+              <p>
+                Tasting the 2019 Opus One, one can only describe the wine as
+                having an opulent mouthfeel within a seamless fruit and oak
+                integration. Caramel and oak with a pleasant and complex
+                combination of fruit, particularly dark fruit flavors of
+                berries, and hints of mocha and spice before a long, smooth
+                finish. It has profound age worthy potential and will only add
+                to this already favorable set of characteristics with further
+                aging.
+              </p>
+            </div>
+          )}
+          {showComparison && (
+            <div className={style.description_box}>
+              <p>
+                In comparison to the preceding years’ vintages, the 2019 Opus
+                One offers the crafting of enhanced gravitas and sophistication,
+                further encased in immediate drinkability. They say 2018 was
+                just as good in its own regard, but it provided more tannins and
+                a slightly larger body to the wine. While the 2018 is certainly
+                quite barrel-driven and young and powerful, the 2019 is much
+                more elegant, nuanced, and delicate and should be enjoyable both
+                in its youth and with additional bottle age.
+              </p>
+            </div>
+          )}
           {showReview && (
             <div>
               <h6>3 REVIEW FOR BUBBLE BASKET</h6>
@@ -335,9 +407,6 @@ function ProductSectionSecond() {
             </div>
           )}
         </div>
-      </div>
-      <div>
-        <ProductDescriptionBlog />
       </div>
       <div className={style.additional_box}>
         <ColumnPageSectionSecond />
