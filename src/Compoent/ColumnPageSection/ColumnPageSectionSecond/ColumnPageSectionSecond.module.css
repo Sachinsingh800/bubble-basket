@@ -8,143 +8,10 @@
   gap: 4rem;
   padding: 3rem 2rem;
 }
-.product_container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  width: 90%;
-}
-
-.img_box {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  height: 30rem;
-  border-right: 1px #7b0128 solid;
-}
-.img_box img {
-  height: 100%;
-}
-.des_box {
-  padding: 0rem 2rem;
-}
-.input_box {
-  display: flex;
-  gap: 0.5rem;
-}
-.input_box input {
-  width: 2.5rem;
-  border: 1px #7b0128 solid;
-  outline: none;
-}
-.input_box button {
-  display: flex;
-  align-items: center;
-  border: none;
-  border: 1px #7b0128 solid;
-  padding: 0.5rem 1rem;
-  font-size: small;
-  letter-spacing: 0.3cap;
-  background-color: white;
-}
-.input_box button:hover {
-  background-color: #7b0128;
-  color: white;
-}
-.icon_box {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.icon_box span {
-  border-radius: 50%;
-  background-color: rgb(0, 0, 0);
-  color: white;
-  padding: 0.2rem;
-  height: 1.5rem;
-  width: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.extraInfo_btn {
-  display: flex;
-  border-bottom: 1px #7b0128 solid;
-  padding: 0.3rem 1rem;
-  width: 50rem;
-  justify-content: space-between;
-}
-.extraInfo_btn h5 {
-  letter-spacing: 0.2cap;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.des_container {
-  width: 50rem;
-  height: max-content;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0rem;
-}
-.des_container strong {
-  color: rgb(71, 71, 71);
-}
-.add_info_box p {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 30%;
-}
-.user_review_container {
-  display: flex;
-  gap: 1rem;
-}
-.user_dp {
-  height: 4rem;
-  width: 6rem;
-}
-.user_dp img {
-  height: 100%;
-  width: 100%;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.form textarea {
-  height: 15rem;
-  padding: 0.5rem;
-  outline: none;
-  border: 1px #7b0128 solid;
-  resize: none;
-}
-.user_input_box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.user_input_box input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px #7b0128 solid;
-}
-.form button {
-  display: flex;
-  align-items: center;
-  border: none;
-  border: 1px #7b0128 solid;
-  padding: 0.5rem 1rem;
-  font-size: small;
-  letter-spacing: 0.3cap;
-  background-color: white;
-  width: max-content;
-}
-.form button:hover {
-  background-color: #7b0128;
-  color: white;
+.product_title{
+  height: 5rem!important;
+  text-align: center;
+  overflow: hidden;
 }
 .add_box_img {
   height: 12rem;
@@ -156,20 +23,17 @@
 .additional_box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: 3rem;
 }
 .inner_container {
   width: 13rem;
-  height: 22rem;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 2rem 1rem;
   border-right: 1px #7b0128 solid;
 }
-.product_title{
-  height: 2rem!important;
-}
+
 .inner_container span{
   text-align: center;
 }
@@ -181,7 +45,6 @@
 }
 .inner_container1 {
   width: 13rem;
-  height: 22rem;
   display: flex;
   align-items: center;
   flex-direction: column;

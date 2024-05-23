@@ -10,15 +10,14 @@ function ColumnPageSectionSecond() {
   const [error, setError] = useState(null);
   const { category } = useParams();
 
-  console.log(category,"category")
+  console.log(category, "category");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllProduct(category) ;
+        const response = await getAllProduct(category);
 
-          setProductData(response.data.slice(0, 8));
-
+        setProductData(response.data);
       } catch (error) {
         setError("An error occurred while fetching data.");
       } finally {
@@ -44,15 +43,17 @@ function ColumnPageSectionSecond() {
           {productData?.map((product, index) => (
             <div
               key={index}
-              className={index === 3 ? style.inner_container1 : style.inner_container}
+              className={
+                index % 4 === 3 ? style.inner_container1 : style.inner_container
+              }
               onClick={() => handleNavigate(product._id)}
             >
               {product?.offer && <span className={style.offer_box}>new</span>}
               <div className={style.add_box_img}>
                 <img src={product?.productImg[0]?.url} alt="product" />
               </div>
-              <span>{product?.category}</span>
-              <span className={style.product}>{product?.title}</span>
+              <p>{product?.category}</p>
+              <span className={style.product_title}>{product?.title}</span>
               <p>★★★★✰</p>
               <span>
                 <strong>${product?.price}</strong>
