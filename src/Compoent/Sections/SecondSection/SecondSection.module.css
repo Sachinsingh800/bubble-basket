@@ -54,6 +54,7 @@ a{
   align-items: center;
   gap: 1rem;
   padding: .8rem 1rem .5rem 1rem;
+  cursor: pointer;
 }
 .inner_container p{
   font-weight: 600;
