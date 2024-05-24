@@ -3,7 +3,7 @@ import style from "./SecondSection.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { updateCart } from "../../Recoil/Recoil";
 import { useRecoilState } from "recoil";
-import { AddtoCart, getAllCategory, getAllProduct } from "../../Apis/Apis";
+import { AddtoCart, getAllCategory, getAllProduct, getTop1Category } from "../../Apis/Apis";
 import axios from "axios";
 
 function SecondSection() {
@@ -11,12 +11,17 @@ function SecondSection() {
   const [loading, setLoading] = useState(false);
   const [showTick, setShowTick] = useState(null);
   const [productData, setProductData] = useState([]);
+  const [top1Category,setTop1Category] = useState([])
+  const [top2Category,setTop2Category] = useState([])
+  const [top3Category,setTop3Category] = useState([])
 
 
-  console.log(productData,"data")
+  console.log(top1Category
+    ,"data top")
 
   useEffect(() => {
     handleAllCategory()
+    handleParticularCategory()
 }, []);
 
 const handleAllCategory = async () => {
@@ -27,43 +32,24 @@ const handleAllCategory = async () => {
     console.error("Error in handleAllCategory function:", error);
   }
 };
-
-  const handleAddToCartInBeckend = async (productId) => {
-    try {
-      const response = await AddtoCart(productId);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleAddToCart = (item) => {
-    const loginStatus=JSON.parse(localStorage.getItem("isLoggedIn"))
-    if(loginStatus){
-      handleAddToCartInBeckend(item._id)
-    }
-    const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
-    const existingProductIndex = cartData.findIndex((product) => product._id === item._id);
-  
-    if (existingProductIndex !== -1) {
-      // If the product already exists in the cart, update its quantity
-      const updatedCartData = [...cartData];
-      updatedCartData[existingProductIndex].quantity += 1;
-      localStorage.setItem("cartData", JSON.stringify(updatedCartData));
-    } else {
-      // If the product doesn't exist in the cart, add it with default quantity as 1
-      const newItem = { ...item, quantity: 1 };
-      localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
-    }
-  
-    // Trigger UI update
-    setUpdate(update + 1);
-    setShowTick(item._id);
-  };
-
-  function renderHTML(htmlString) {
-    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+const handleParticularCategory = async () => {
+  try {
+    const response1 = await getTop1Category("top1");
+    const response2 = await getTop1Category("top2");
+    const response3 = await getTop1Category("top3");
+    console.log(response2,"and",response3)
+    setTop1Category(response1.data[0]);
+    setTop2Category(response2.data[0]);
+    setTop3Category(response3.data[0]);
+    
+  } catch (error) {
+    console.error("Error in handleAllCategory function:", error);
   }
+};
+
+
+
+
   
 
   return (
@@ -78,26 +64,70 @@ const handleAllCategory = async () => {
       </div>
       <div className={style.card_box}>
         {loading && <p>Loading...</p>}
-        {productData?.map((item) => (
-          <div key={item._id} className={style.inner_container}      onClick={() =>
-            (window.location.href = `/Product/${item?.categoryName}`)
+   
+          <div  className={style.inner_container}      onClick={() =>
+            (window.location.href = `/Product/${top1Category?.categoryName}`)
           }>
             <button
-              // onClick={() => handleAddToCart(item)}
+              // onClick={() => handleAddToCart(top1Category)}
               className={style.addBtn}
             >
-              {showTick === item._id ? "✓" : <AddIcon />}
+              {showTick === top1Category?._id ? "✓" : <AddIcon />}
             </button>
 
             <div className={style.img_box}>
-              <img src={item?.categoryImg?.url} alt={item?.title} />
+              <img src={top1Category?.categoryImg?.url} alt={top1Category?.title} />
             </div>
             <div className={style.text_box}>
-              <h5>{item?.categoryName}</h5>
-              <p>{item.content}</p>
+              <h5>{top1Category?.categoryName}</h5>
+              <p>{top1Category?.content}</p>
             </div>
           </div>
-        ))}
+
+
+
+          
+          <div  className={style.inner_container}      onClick={() =>
+            (window.location.href = `/Product/${top2Category?.categoryName}`)
+          }>
+            <button
+              // onClick={() => handleAddToCart(top2Category)}
+              className={style.addBtn}
+            >
+              {showTick === top2Category?._id ? "✓" : <AddIcon />}
+            </button>
+
+            <div className={style.img_box}>
+              <img src={top2Category?.categoryImg?.url} alt={top2Category?.title} />
+            </div>
+            <div className={style.text_box}>
+              <h5>{top2Category?.categoryName}</h5>
+              <p>{top2Category?.content}</p>
+            </div>
+          </div>
+
+
+
+
+          <div  className={style.inner_container}      onClick={() =>
+            (window.location.href = `/Product/${top3Category?.categoryName}`)
+          }>
+            <button
+              // onClick={() => handleAddToCart(top3Category)}
+              className={style.addBtn}
+            >
+              {showTick === top3Category?._id ? "✓" : <AddIcon />}
+            </button>
+
+            <div className={style.img_box}>
+              <img src={top3Category?.categoryImg?.url} alt={top3Category?.title} />
+            </div>
+            <div className={style.text_box}>
+              <h5>{top3Category?.categoryName}</h5>
+              <p>{top3Category?.content}</p>
+            </div>
+          </div>
+
       </div>
       <a href="/Product">
         <button className={style.viewAllbtn}>VIEW ALL  ⟶</button>
