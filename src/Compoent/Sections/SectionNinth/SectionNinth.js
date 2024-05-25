@@ -1,36 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
 import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
-import AccessAlarmsOutlinedIcon from "@mui/icons-material/AccessAlarmsOutlined";
+import EmailIcon from '@mui/icons-material/Email';
+import CakeIcon from '@mui/icons-material/Cake';
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import design1 from "../../Images/Leaf 1.png"
-import design2 from "../../Images/Leaf 2.png"
-import EmailIcon from '@mui/icons-material/Email';
-import CakeIcon from '@mui/icons-material/Cake';
+import design1 from "../../Images/Leaf 1.png";
+import design2 from "../../Images/Leaf 2.png";
 
 function SectionNinth() {
-  const [name, setName] = useState("NAME");
-  const [email, setEmail] = useState("EMAIL");
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [showPerson, setShowPerson] = useState(false);
-  const [showTime, setShowTime] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const [showDate, setShowDate] = useState(false);
 
-
-  const personRef = useRef(null);
-  const timeRef = useRef(null);
   const dateRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dateRef.current &&
-        !dateRef.current.contains(event.target) &&
-        showDate
-      ) {
+      if (dateRef.current && !dateRef.current.contains(event.target)) {
         setShowDate(false);
       }
     };
@@ -39,15 +28,7 @@ function SectionNinth() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ showDate]);
-
-  const handleToggle = () => {
-    setShowPerson(!showPerson);
-  };
-
-  const handleToggleTime = () => {
-    setShowTime(!showTime);
-  };
+  }, []);
 
   const handleToggleDate = () => {
     setShowDate(!showDate);
@@ -62,7 +43,7 @@ function SectionNinth() {
   const handleName = (e) => {
     setName(e.target.value);
   };
-  
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -86,44 +67,60 @@ function SectionNinth() {
           SUBSCRIBE
           <span />
         </p>
-        <h2>SIGN UP FOR OUR NEWS LETTER</h2>
+        <h2>SIGN UP FOR OUR NEWSLETTER</h2>
       </div>
 
       <form className={style.container} onSubmit={handleSubmit}>
-        <div className={style.option_container} >
-          <label >
+        <div className={style.option_container}>
+          <label>
             <PersonOutlinedIcon />
-            <input required type="text" value={name} onChange={(e)=>handleName(e)}/>
+            <input
+              required
+              type="text"
+              value={name}
+              placeholder="NAME"
+              onChange={handleName}
+            />
           </label>
         </div>
 
         <div className={style.option_container}>
-          <label  >
+          <label>
             <EmailIcon />
-            <input className={style.email} required type="email" value={email} onChange={(e)=>handleEmail(e)}/>
+            <input
+              className={style.email}
+              required
+              type="email"
+              value={email}
+              placeholder="EMAIL"
+              onChange={handleEmail}
+            />
           </label>
         </div>
 
         <div className={style.option_container} ref={dateRef}>
-          <label onClick={handleToggleDate} className={style.date_lable}>
+          <label onClick={handleToggleDate} className={style.date_label}>
             <CakeIcon />
-            {selectedDate.toLocaleDateString(undefined, {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {selectedDate
+              ? selectedDate.toLocaleDateString(undefined, {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })
+              : "Date Of Birth"}
           </label>
           {showDate && (
             <div className={style.date_box}>
               <Calendar
-                date={selectedDate}
+                date={selectedDate || new Date()}
                 onChange={handleSelect}
-                minDate={new Date()}
               />
             </div>
           )}
         </div>
-        <button className={style.summit_btn} type="submit">SUMMIT →</button>
+        <button className={style.submit_btn} type="submit">
+          SUBMIT →
+        </button>
       </form>
     </div>
   );

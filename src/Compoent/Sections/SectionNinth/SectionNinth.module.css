@@ -136,7 +136,7 @@ select {
 
 }
 
-.summit_btn{
+.submit_btn{
   display: flex;
   align-items: center;
   border: none;
@@ -146,7 +146,7 @@ select {
   background-color: #7b0128;
   color: white;
 }
-.summit_btn:hover {
+.submit_btn:hover {
   background-color: #7b0128;
   color: white;
 }
