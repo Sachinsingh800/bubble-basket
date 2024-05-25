@@ -29,9 +29,11 @@ function NavBar() {
         <SectionSeventh />
         <SectionEight />
         <ImageSlider />
+        <br/>
         <SectionNinth />
+
         <SectionTenth />
-        
+
         <Footer />
       </div>
     </div>

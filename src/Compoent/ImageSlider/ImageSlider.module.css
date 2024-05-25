@@ -13,7 +13,6 @@ a{
 }
 .carousel_box{
   width: 80%;
-  overflow: hidden;
 }
 
 .custom_button{
@@ -23,6 +22,8 @@ a{
   margin-left: -4.5rem;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
+  height: 1px;
 }
 .custom_button button{
   background-color: none;

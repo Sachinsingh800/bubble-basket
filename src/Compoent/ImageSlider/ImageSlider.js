@@ -25,7 +25,7 @@ function ImageSlider() {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
+      items: 1,
     },
   };
 
@@ -77,7 +77,7 @@ function ImageSlider() {
               <img src={image4} alt="slide 4" />
             </div>
           </a>
-          <a href={`brand/${"Denis Premier"}`}>
+          <a href={`/${"Denis Premier"}`}>
             <div className={style.img_box}>
               <img src={image4} alt="slide 5" />
             </div>
