@@ -31,6 +31,7 @@ function NavBar() {
         <ImageSlider />
         <SectionNinth />
         <SectionTenth />
+        
         <Footer />
       </div>
     </div>
