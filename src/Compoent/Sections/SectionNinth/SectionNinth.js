@@ -107,7 +107,7 @@ function SectionNinth() {
                   day: "numeric",
                   year: "numeric",
                 })
-              : "Date Of Birth"}
+              : <span className={style.date_lable}>Date Of Birth</span>}
           </label>
           {showDate && (
             <div className={style.date_box}>

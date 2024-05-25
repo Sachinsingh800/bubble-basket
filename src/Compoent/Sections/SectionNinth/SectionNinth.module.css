@@ -150,6 +150,9 @@ select {
   background-color: #7b0128;
   color: white;
 }
+.date_lable{
+  color: #7b7b7b;
+}
 
 
 @media screen and (max-width:784px) {
