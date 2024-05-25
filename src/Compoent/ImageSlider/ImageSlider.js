@@ -57,27 +57,27 @@ function ImageSlider() {
           customButtonGroup={<ButtonGroup />}
           responsive={responsive}
         >
-          <a href={`/${"Dom Perignon"}`}>
+          <a href={`brand/${"Dom Perignon"}`}>
             <div className={style.img_box}>
               <img src={image1} alt="slide 1" />
             </div>
           </a>
-          <a href={`/${"Caymus"}`}>
+          <a href={`brand/${"Caymus"}`}>
             <div className={style.img_box}>
               <img src={image2} alt="slide 2" />
             </div>
           </a>
-          <a href={`/${"Moet &amp; Chandon"}`}>
+          <a href={`brand/${"Moet &amp; Chandon"}`}>
             <div className={style.img_box}>
               <img src={image3} alt="slide 3" />
             </div>
           </a>
-          <a href={`/${"Veuve Clicquot"}`}>
+          <a href={`brand/${"Veuve Clicquot"}`}>
             <div className={style.img_box}>
               <img src={image4} alt="slide 4" />
             </div>
           </a>
-          <a href={`/${"Denis Premier"}`}>
+          <a href={`brand/${"Denis Premier"}`}>
             <div className={style.img_box}>
               <img src={image4} alt="slide 5" />
             </div>

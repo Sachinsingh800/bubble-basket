@@ -876,13 +876,46 @@ export const getAllProduct = async (category) => {
     };
     let url = `${BASE_URL}/admin/product/getAll`;
     if (category) {
-      url += `?category=${category}`;
+      url += `?category=${encodeURIComponent(category)}`;
     }
     const response = await axios.get(url, {
       headers,
     });
     console.log(response, "Response from axios");
 
+    // Directly return the data from axios response
+    return response.data;
+  } catch (error) {
+    console.error("Error in getAllCategory function:", error);
+  }
+};
+
+
+
+// getAllBrandProduct
+
+export const getAllBrandProduct = async (category) => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    let url = `${BASE_URL}/admin/product/getAll`;
+    if (category) {
+      url += `?brand=${encodeURIComponent(category)}`;
+    }
+    const response = await axios.get(url, {
+      headers,
+    });
     // Directly return the data from axios response
     return response.data;
   } catch (error) {

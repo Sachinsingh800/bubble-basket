@@ -8,7 +8,9 @@
   overflow: hidden;
   gap: 2rem;
 }
-
+a{
+  cursor: pointer;
+}
 .carousel_box{
   width: 80%;
   overflow: hidden;
@@ -37,6 +39,8 @@
 .img_box img{
   height: 100%;
   width: 100%;
+  cursor: pointer;
+
 }
 .icon {
   font-size: 3rem!important;
