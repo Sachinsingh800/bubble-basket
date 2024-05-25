@@ -6,11 +6,11 @@
 .menu_item {
     color: black;
     font-family: "Jost";
-    font-size: 10px;
+    font-size: 10px!important;
   }
   
   .menu_item:hover {
-    background-color: #F5E3E3;
+    background-color: #F5E3E3!important;
   }
 .input_container p{
     margin-top: 1rem;

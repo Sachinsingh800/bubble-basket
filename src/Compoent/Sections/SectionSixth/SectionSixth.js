@@ -25,7 +25,7 @@ const getAllCategory = async (e,title) => {
     },
     {
       id: 3,
-      title: "Independence DAY",
+      title: "INDEPENDENCE DAY",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
     },
   ];

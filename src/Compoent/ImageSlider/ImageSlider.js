@@ -57,47 +57,31 @@ function ImageSlider() {
           customButtonGroup={<ButtonGroup />}
           responsive={responsive}
         >
-          <div
-            className={style.img_box}
-            onClick={() =>
-              (window.location.href = `/Product/${"Dom Perignon"}`)
-            }
-          >
-            <img src={image1} alt="slide 1" />
-          </div>
-
-          <div
-            className={style.img_box}
-            onClick={() =>
-              (window.location.href = `/Product/${"Caymus Vineyards"}`)
-            }
-          >
-            <img src={image2} alt="slide 2" />
-          </div>
-          <div
-            className={style.img_box}
-            onClick={() =>
-              (window.location.href = `/Product/${"Moet & Chandon"}`)
-            }
-          >
-            <img src={image3} alt="slide 3" />
-          </div>
-          <div
-            className={style.img_box}
-            onClick={() =>
-              (window.location.href = `/Product/${"Veuve Clicquot"}`)
-            }
-          >
-            <img src={image4} alt="slide 4" />
-          </div>
-          <div
-            className={style.img_box}
-            onClick={() =>
-              (window.location.href = `/Product/${"Dom Perignon"}`)
-            }
-          >
-            <img src={image4} alt="slide 5" />
-          </div>
+          <a href={`/${"Dom Perignon"}`}>
+            <div className={style.img_box}>
+              <img src={image1} alt="slide 1" />
+            </div>
+          </a>
+          <a href={`/${"Caymus"}`}>
+            <div className={style.img_box}>
+              <img src={image2} alt="slide 2" />
+            </div>
+          </a>
+          <a href={`/${"Moet &amp; Chandon"}`}>
+            <div className={style.img_box}>
+              <img src={image3} alt="slide 3" />
+            </div>
+          </a>
+          <a href={`/${"Veuve Clicquot"}`}>
+            <div className={style.img_box}>
+              <img src={image4} alt="slide 4" />
+            </div>
+          </a>
+          <a href={`/${"Denis Premier"}`}>
+            <div className={style.img_box}>
+              <img src={image4} alt="slide 5" />
+            </div>
+          </a>
         </Carousel>
       </div>
     </div>
