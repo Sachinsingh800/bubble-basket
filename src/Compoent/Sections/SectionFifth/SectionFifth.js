@@ -10,23 +10,43 @@ import { getAllCategory } from "../../Apis/Apis";
 function SectionFifth() {
   const [category, setCategory] = useState("");
   const [categoryData, setCategoryData] = useState([]);
+  const [brand, setBrand] = useState("");
+  const [brandData, setBrandData] = useState([
+    { categoryName: "Caymus" },
+    { categoryName: "Opus One" },
+    { categoryName: "Penfolds Bin" },
+    { categoryName: "Silver Oak" },
+    { categoryName: "Bond Wine" },
+  ]);
+  const [luxury, setLuxury] = useState("");
+  const [luxuryData, setLuxuryData] = useState([
+    { categoryName: "Caymus" },
+    { categoryName: "Opus One" },
+    { categoryName: "Penfolds Bin" },
+    { categoryName: "Silver Oak" },
+    { categoryName: "Bond Wine" },
+  ]);
+  const [origin, setOrigin] = useState("");
+  const [originData, setOriginData] = useState([
+    { categoryName: "Caymus" },
+    { categoryName: "Opus One" },
+    { categoryName: "Penfolds Bin" },
+    { categoryName: "Silver Oak" },
+    { categoryName: "Bond Wine" },
+  ]);
 
   useEffect(() => {
-    handleAllCategory()
-}, []);
+    handleAllCategory();
+  }, []);
 
-const handleAllCategory = async () => {
-  try {
-    const response = await getAllCategory();
-    setCategoryData(response?.data)
-  } catch (error) {
-    console.error("Error in handleAllCategory function:", error);
-  }
-};
-  
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
+  const handleAllCategory = async () => {
+    try {
+      const response = await getAllCategory();
+      console.log(response, "response fifth section wala");
+      setCategoryData(response?.data);
+    } catch (error) {
+      console.error("Error in handleAllCategory function:", error);
+    }
   };
 
   return (
@@ -40,92 +60,96 @@ const handleAllCategory = async () => {
             <p>SHOP BY CATEGORY</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
                 value={category}
-                onChange={handleChange}
-                label="category"
-                 style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
+                onChange={(e) => setCategory(e.target.value)}
+                style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
                 {categoryData?.map((item, index) => (
-                  <MenuItem key={index} value={item?.categoryName}>
+                  <MenuItem
+                    key={index}
+                    value={item?.categoryName}
+                    className={style.menu_item}
+                  >
                     {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </div>
-
-          <h6>Usu ad illum petentium error feugait</h6>
+          <h6>
+            Savor the perfect pairing, curated by categories for every occasion.
+          </h6>
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
             <p>GIFT BY BRAND</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={category}
-                onChange={handleChange}
-                label="category"
-                 style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
-                  <MenuItem key={index} value={item?.categoryName}>
+                {brandData?.map((item, index) => (
+                  <MenuItem
+                    key={index}
+                    value={item?.categoryName}
+                    className={style.menu_item}
+                  >
                     {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </div>
-
-          <h6>Magna harum probatus ex eam mea</h6>
+          <h6>Celebrate with the finest selections from renowned brands.</h6>
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
             <p>SHOP BY LUXURY</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={category}
-                onChange={handleChange}
-                label="category"
-                style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
+                value={luxury}
+                onChange={(e) => setLuxury(e.target.value)}
+                style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
-                  <MenuItem key={index} value={item?.categoryName}>
+                {luxuryData?.map((item, index) => (
+                  <MenuItem
+                    key={index}
+                    value={item?.categoryName}
+                    className={style.menu_item}
+                  >
                     {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </div>
-
-          <h6>Ne possit suavitate pri sint erroribus</h6>
+          <h6>
+            Premium wines & champagne, crafted for the ultimate celebration.
+          </h6>
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
             <p>GIFT BY ORIGIN</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={category}
-                onChange={handleChange}
-                label="Category"
-                 style={{ color: "maroon", fontWeight: 700,fontFamily:"Jost" }}
+                value={origin}
+                onChange={(e) => setOrigin(e.target.value)}
+                style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
-                  <MenuItem key={index} value={item?.categoryName}>
+                {originData?.map((item, index) => (
+                  <MenuItem
+                    key={index}
+                    value={item?.categoryName}
+                    className={style.menu_item}
+                  >
                     {item?.categoryName}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </div>
-
-          <h6>Dicant habemus definitionem sed ei elit</h6>
+          <h6>Embody the rich heritage and craftsmanship by origins.</h6>
         </div>
       </div>
     </div>

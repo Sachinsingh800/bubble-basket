@@ -29,7 +29,7 @@ function ColumnPageSectionSecond() {
   }, [category]);
 
   const handleNavigate = (id) => {
-    window.location.href = `/ProductPage/${id}`;
+    window.location.href = `/Product/${id}`;
   };
 
   return (

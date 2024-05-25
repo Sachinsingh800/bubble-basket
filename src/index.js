@@ -39,8 +39,8 @@ root.render(
      <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<App />} />
-        <Route path={'/ProductPage/:id'} element={<ProductPage />} />
-        <Route path={'/Product/:category'} element={<ColumnPage />} />
+        <Route path={'Product/:id'} element={<ProductPage />} />
+        <Route path={'/:category'} element={<ColumnPage />} />
         <Route path={'/Product'} element={<ColumnPage />} />
         <Route path={'/CartPage'} element={<CartPage />} />
         <Route path={'/Blog'} element={<BlogPage />} />

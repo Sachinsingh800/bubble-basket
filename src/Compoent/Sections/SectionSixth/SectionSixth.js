@@ -15,17 +15,17 @@ const getAllCategory = async (e,title) => {
   const collectionData = [
     {
       id: 1,
-      title: "EASTER",
+      title: "PRIDE MONTH",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
     },
     {
       id: 2,
-      title: "MOTHER’S DAY",
+      title: "FATHER’S DAY",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
     },
     {
       id: 3,
-      title: "FATHER’S DAY",
+      title: "Independence DAY",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
     },
   ];

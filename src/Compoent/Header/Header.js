@@ -152,7 +152,7 @@ export default function Header(props) {
                         <p
                           className={style.option}
                           onClick={() =>
-                            (window.location.href = `/Product/${item?.categoryName}`)
+                            (window.location.href = `/${item?.categoryName}`)
                           }
                         >
                           {item?.categoryName}

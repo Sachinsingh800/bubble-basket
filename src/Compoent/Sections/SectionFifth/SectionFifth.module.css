@@ -3,6 +3,15 @@
     align-items: center;
     color: #7B0128;
 }
+.menu_item {
+    color: black;
+    font-family: "Jost";
+    font-size: 10px;
+  }
+  
+  .menu_item:hover {
+    background-color: #F5E3E3;
+  }
 .input_container p{
     margin-top: 1rem;
     font-weight: 700;
