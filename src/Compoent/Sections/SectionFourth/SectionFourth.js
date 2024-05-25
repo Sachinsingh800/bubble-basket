@@ -69,7 +69,7 @@ function SectionFourth() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/Product/${top4Category?.categoryName}`)
+            (window.location.href = `/${top4Category?.categoryName}`)
           }
         >
           <div className={style.img_box}>
@@ -87,7 +87,7 @@ function SectionFourth() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/Product/${top5Category?.categoryName}`)
+            (window.location.href = `/${top5Category?.categoryName}`)
           }
         >
           <div className={style.img_box}>

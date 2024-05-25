@@ -10,7 +10,6 @@ function ColumnPageSectionSecond() {
   const [error, setError] = useState(null);
   const { category } = useParams();
 
-  console.log(category, "category");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +51,6 @@ function ColumnPageSectionSecond() {
               <div className={style.add_box_img}>
                 <img src={product?.productImg[0]?.url} alt="product" />
               </div>
-              <p>{product?.category}</p>
               <span className={style.product_title}>{product?.title}</span>
               <p>★★★★✰</p>
               <span>

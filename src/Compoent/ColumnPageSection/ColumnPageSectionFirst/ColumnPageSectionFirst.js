@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import style from "./ColumnPageSectionFirst.module.css";
 import backgroundImage from "../../Images/bottle-wine-glasses-corkscrew-set-evening.jpg";
+import { useParams } from "react-router-dom";
+
 
 function ColumnPageSectionFirst() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const { category } = useParams();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +20,9 @@ function ColumnPageSectionFirst() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+
+
 
   return (
     <div className={style.main}>
@@ -30,7 +37,7 @@ function ColumnPageSectionFirst() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>ALL PRODUCTS</h2>
+          <h2>{category}</h2>
         </div>
       </div>
     </div>

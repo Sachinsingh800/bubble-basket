@@ -66,7 +66,7 @@ const handleParticularCategory = async () => {
         {loading && <p>Loading...</p>}
    
           <div  className={style.inner_container}      onClick={() =>
-            (window.location.href = `/Product/${top1Category?.categoryName}`)
+            (window.location.href = `/${top1Category?.categoryName}`)
           }>
             <button
               // onClick={() => handleAddToCart(top1Category)}
@@ -88,7 +88,7 @@ const handleParticularCategory = async () => {
 
           
           <div  className={style.inner_container}      onClick={() =>
-            (window.location.href = `/Product/${top2Category?.categoryName}`)
+            (window.location.href = `/${top2Category?.categoryName}`)
           }>
             <button
               // onClick={() => handleAddToCart(top2Category)}
@@ -110,7 +110,7 @@ const handleParticularCategory = async () => {
 
 
           <div  className={style.inner_container}      onClick={() =>
-            (window.location.href = `/Product/${top3Category?.categoryName}`)
+            (window.location.href = `/${top3Category?.categoryName}`)
           }>
             <button
               // onClick={() => handleAddToCart(top3Category)}
