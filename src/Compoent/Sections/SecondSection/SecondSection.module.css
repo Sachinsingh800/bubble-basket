@@ -233,7 +233,7 @@ a{
     display: flex;
     flex-direction: column;
     height: 35rem;
-    width: 28rem;
+    width: 24rem;
     border: 1px #7b0128 solid;
     align-items: center;
     gap: 1rem;
@@ -284,7 +284,7 @@ a{
   background-color: #7b0128;
   color: white;
   position: relative;
-  right: -12rem;
+  right: -10rem;
   top: -1.5rem;
   border: none;
   font-size: medium;

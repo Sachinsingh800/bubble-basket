@@ -145,6 +145,7 @@ select {
   letter-spacing: 0.5cap;
   background-color: #7b0128;
   color: white;
+
 }
 .submit_btn:hover {
   background-color: #7b0128;
@@ -183,5 +184,10 @@ select {
   }
   .option_box{
     width: 100%;
+  }
+  .submit_btn{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
   }
 }

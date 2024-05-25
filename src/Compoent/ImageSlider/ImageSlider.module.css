@@ -47,4 +47,16 @@ a{
   font-size: 3rem!important;
 }
 
+@media screen and (max-width:500px) {
+  .img_box{
+    height: 10rem;
+    width: 23rem;
+    padding: 1rem;
+    background-color: rgb(255, 218, 230);
+    cursor: pointer;
+  }
+  .carousel_box{
+    width: 80%;
+  }
+}
 
