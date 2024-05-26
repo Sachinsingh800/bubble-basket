@@ -16,13 +16,6 @@ function UpdatePasswordPageSection() {
   const [otpSent, setOtpSent] = useState(false);
 
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (!token) {
-     window.location.href="/login";
-    }
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPasswordData({ ...passwordData, [name]: value });
