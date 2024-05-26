@@ -51,10 +51,10 @@ function LoginPageSectionSecond() {
         },
         formData.rememberMe
       );
-
       if (response.status) {
         // If login is successful, save token to local storage
         // Example: history.push('/dashboard');
+
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {

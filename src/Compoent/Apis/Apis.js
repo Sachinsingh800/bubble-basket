@@ -791,7 +791,7 @@ export const loginUser = async (userData, rememberMe) => {
     if (status) {
       // If "Remember Me" is checked, save token to local storage
       document.cookie = `token=${response.data.token}; path=/`;
-
+      alert(message)
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
       getCheckout();

@@ -190,6 +190,7 @@ function UpdateAddressPageSection() {
       <div>
         <h1>All Addresses</h1>
         <br />
+        {allAddress.length === 0 && <p>There No address Added</p>}
         <div className={style.all_address}>
           {allAddress?.map((item) => (
             <div
