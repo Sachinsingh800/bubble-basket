@@ -494,11 +494,9 @@ export const addAddress = async (formData) => {
   }
 };
 
-// getAddress
+// getAllAddress
 
-export const getAddress = async () => {
-  // Function to retrieve token from cookies
-  // Function to retrieve token from cookies
+export const getAllAddress = async () => {
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -508,7 +506,6 @@ export const getAddress = async () => {
 
   // Retrieve token
   const token = getToken();
-
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
@@ -517,33 +514,15 @@ export const getAddress = async () => {
     const response = await axios.get(`${BASE_URL}/user/address/getAll`, {
       headers,
     });
+    console.log(response, "Response from axios");
 
-    const { status, message, data } = response.data;
-    if (status) {
-      localStorage.setItem("allAdress", JSON.stringify(data) || []);
-      localStorage.setItem("selectedAddress", JSON.stringify(data[0]));
-    }
-
-    // Handle response data as needed
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      // alert(errorMessage);
-      // Log the error message as a string
-      localStorage.setItem("allAdress", JSON.stringify([]));
-      // alert(errorMessage);
-      console.error("Axios Error:", errorMessage);
-      // window.location.href = "/Login";
-    } else {
-      // Network error (e.g., no internet connection)
-      // alert("Something went wrong");
-      console.error("Network Error:", error.message);
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
 
 // getAllCategory
 
@@ -678,7 +657,7 @@ export const updateAddress = async (addressData, addressId) => {
     );
 
     const { status, message, data } = response.data;
-
+    alert(message)
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {

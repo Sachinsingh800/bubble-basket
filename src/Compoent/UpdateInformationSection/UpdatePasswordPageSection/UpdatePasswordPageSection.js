@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import style from "./UpdatePasswordPageSection.module.css";
 import { forgetPassword, resendOtp, resetPassword } from "../../Apis/Apis";
 
@@ -13,6 +14,14 @@ function UpdatePasswordPageSection() {
   const [showPasswordContainer, setPasswordContainer] = useState(true);
   const [errors, setErrors] = useState({});
   const [otpSent, setOtpSent] = useState(false);
+
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (!token) {
+     window.location.href="/login";
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +79,7 @@ function UpdatePasswordPageSection() {
     try {
       const response = await forgetPassword(email);
       console.log(response, "forget password response");
-      if (!response.status) {
+      if (response.status) {
         setPasswordContainer(false);
         setOtpSent(true);
       } else {

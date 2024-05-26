@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./UpdateAddressPageSection.module.css";
-import { deleteAddress, getAddress, updateAddress } from "../../Apis/Apis";
+import { deleteAddress, getAllAddress, updateAddress } from "../../Apis/Apis";
+import Cookies from "js-cookie";
 
 function UpdateAddressPageSection() {
   const [addressData, setAddressData] = useState({
@@ -23,16 +24,25 @@ function UpdateAddressPageSection() {
   const [allAddress, setAllAddress] = useState([]);
   const [update, setUpdate] = useState(0);
   const [addressId, setAddressId] = useState(null);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const address = JSON.parse(localStorage.getItem("allAdress") || []);
-    setAllAddress(address);
-    if (address.length > 0) {
-      setAddressData(address[0]);
-      setAddressId(address[0]?._id);
-      localStorage.setItem("selectedAddress", JSON.stringify(address[0]));
+    const token = Cookies.get("token");
+    if (!token) {
+      window.location.href = "/login";
     }
-  }, [update]);
+    handleAllAddress();
+  }, []);
+
+  const handleAllAddress = async () => {
+    try {
+      const response = await getAllAddress();
+      console.log(response, "address all ");
+      setAllAddress(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDeleteAddress = async (id) => {
     try {
@@ -45,7 +55,8 @@ function UpdateAddressPageSection() {
 
   const handleUpdateAddress = async () => {
     try {
-      const response = await getAddress();
+      const response = await getAllAddress();
+      setAllAddress(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -56,10 +67,10 @@ function UpdateAddressPageSection() {
   const handleAddressSelect = (selectedAddress) => {
     setAddressData(selectedAddress);
     setAddressId(selectedAddress._id);
-  
+
     // Update localStorage with the selected address
     localStorage.setItem("selectedAddress", JSON.stringify(selectedAddress));
-  
+
     // Update allAddress state to mark the selected address as checked
     const updatedAllAddress = allAddress.map((item) => ({
       ...item,
@@ -67,15 +78,85 @@ function UpdateAddressPageSection() {
     }));
     setAllAddress(updatedAllAddress);
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAddressData({ ...addressData, [name]: value });
+    validateField(name, value);
+  };
+
+  const validateField = (name, value) => {
+    let errorMsg = "";
+    switch (name) {
+      case "firstName":
+      case "lastName":
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
+          errorMsg = "Only letters and spaces are allowed.";
+        }
+        break;
+      case "companyName":
+        if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+          errorMsg = "Only letters, numbers, and spaces are allowed.";
+        }
+        break;
+      case "country":
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
+          errorMsg = "Only letters and spaces are allowed.";
+        }
+        break;
+      case "streetAddress.houseNoAndStreetName":
+      case "streetAddress.apartment":
+        if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+          errorMsg = "Only letters, numbers, and spaces are allowed.";
+        }
+        break;
+      case "townCity":
+      case "stateCounty":
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
+          errorMsg = "Only letters and spaces are allowed.";
+        }
+        break;
+      case "postcodeZIP":
+        if (!/^\d{5,6}$/.test(value)) {
+          errorMsg = "Invalid postcode/ZIP format.";
+        }
+        break;
+      case "phone":
+        if (!/^\d{10}$/.test(value)) {
+          errorMsg = "Invalid phone number format.";
+        }
+        break;
+      case "email":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          errorMsg = "Invalid email format.";
+        }
+        break;
+      case "orderNotes":
+        if (!/^[a-zA-Z0-9\s]*$/.test(value)) {
+          errorMsg = "Only letters, numbers, and spaces are allowed.";
+        }
+        break;
+      default:
+        break;
+    }
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMsg }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    Object.keys(addressData).forEach((key) => {
+      const value = addressData[key];
+      validateField(key, value);
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).every((key) => !newErrors[key]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     try {
       const response = await updateAddress(addressData, addressId);
       handleUpdateAddress();
@@ -99,6 +180,7 @@ function UpdateAddressPageSection() {
         phone: "",
         email: "",
         orderNotes: "",
+        setAsDefault: false,
       });
     }
   };
@@ -165,6 +247,7 @@ function UpdateAddressPageSection() {
             value={addressData?.firstName}
             onChange={handleChange}
           />
+          {errors.firstName && <p className={style.error}>{errors.firstName}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="lastName">Last Name</label>
@@ -175,6 +258,7 @@ function UpdateAddressPageSection() {
             value={addressData?.lastName}
             onChange={handleChange}
           />
+          {errors.lastName && <p className={style.error}>{errors.lastName}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="companyName">Company Name</label>
@@ -185,6 +269,7 @@ function UpdateAddressPageSection() {
             value={addressData?.companyName}
             onChange={handleChange}
           />
+          {errors.companyName && <p className={style.error}>{errors.companyName}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="country">Country</label>
@@ -195,6 +280,7 @@ function UpdateAddressPageSection() {
             value={addressData?.country}
             onChange={handleChange}
           />
+          {errors.country && <p className={style.error}>{errors.country}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="streetAddress.houseNoAndStreetName">
@@ -207,6 +293,11 @@ function UpdateAddressPageSection() {
             value={addressData?.streetAddress?.houseNoAndStreetName}
             onChange={handleChange}
           />
+          {errors["streetAddress.houseNoAndStreetName"] && (
+            <p className={style.error}>
+              {errors["streetAddress.houseNoAndStreetName"]}
+            </p>
+          )}
         </div>
         <div className={style.input_box}>
           <label htmlFor="streetAddress.apartment">Apartment</label>
@@ -217,6 +308,9 @@ function UpdateAddressPageSection() {
             value={addressData?.streetAddress?.apartment}
             onChange={handleChange}
           />
+          {errors["streetAddress.apartment"] && (
+            <p className={style.error}>{errors["streetAddress.apartment"]}</p>
+          )}
         </div>
         <div className={style.input_box}>
           <label htmlFor="townCity">Town/City</label>
@@ -227,6 +321,7 @@ function UpdateAddressPageSection() {
             value={addressData?.townCity}
             onChange={handleChange}
           />
+          {errors.townCity && <p className={style.error}>{errors.townCity}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="stateCounty">State/County</label>
@@ -237,6 +332,7 @@ function UpdateAddressPageSection() {
             value={addressData?.stateCounty}
             onChange={handleChange}
           />
+          {errors.stateCounty && <p className={style.error}>{errors.stateCounty}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="postcodeZIP">Postcode/ZIP</label>
@@ -247,6 +343,7 @@ function UpdateAddressPageSection() {
             value={addressData?.postcodeZIP}
             onChange={handleChange}
           />
+          {errors.postcodeZIP && <p className={style.error}>{errors.postcodeZIP}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="phone">Phone</label>
@@ -257,6 +354,7 @@ function UpdateAddressPageSection() {
             value={addressData?.phone}
             onChange={handleChange}
           />
+          {errors.phone && <p className={style.error}>{errors.phone}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="email">Email</label>
@@ -267,6 +365,7 @@ function UpdateAddressPageSection() {
             value={addressData?.email}
             onChange={handleChange}
           />
+          {errors.email && <p className={style.error}>{errors.email}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="orderNotes">Order Notes</label>
@@ -277,6 +376,7 @@ function UpdateAddressPageSection() {
             value={addressData?.orderNotes}
             onChange={handleChange}
           />
+          {errors.orderNotes && <p className={style.error}>{errors.orderNotes}</p>}
         </div>
         <div className={style.input_box}>
           <label htmlFor="setAsDefault">Set as Default</label>

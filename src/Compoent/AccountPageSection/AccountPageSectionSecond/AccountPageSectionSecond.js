@@ -61,12 +61,6 @@ function AccountPageSectionSecond() {
             </div>
           </a>
         )}
-
-        <div onClick={() => handleLinkClick("account")}>
-          <AccountCircleIcon className={style.icon} />
-          <span>Edit your account information</span>
-        </div>
-
         <div onClick={() => handleLinkClick("password")}>
           <PasswordIcon className={style.icon} />
           <span> Change your password</span>

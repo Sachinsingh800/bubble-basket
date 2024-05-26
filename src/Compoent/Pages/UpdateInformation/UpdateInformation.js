@@ -36,7 +36,6 @@ export default function UpdateInformation() {
   return (
     <div className={style.Container}>
       <Header />
-      {category == "account" && <UpdateInformationSectionSecond />}
       {category == "password" && <UpdatePasswordPageSection />}
       {category == "address" && <UpdateAddressPageSection />}
 

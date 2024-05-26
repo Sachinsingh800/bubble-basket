@@ -3,7 +3,7 @@ import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../../Recoil/Recoil";
-import { addAddress, getAddress, getCheckout, orderPlace } from "../../Apis/Apis";
+import { addAddress,  getAllAddress, getCheckout, orderPlace } from "../../Apis/Apis";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
@@ -135,7 +135,7 @@ function CheckoutPageSectionSecond() {
 
   const handleUpdateAddress = async () => {
     try {
-      const response = await getAddress();
+      const response = await getAllAddress();
     } catch (error) {
       console.log(error);
     } finally {
