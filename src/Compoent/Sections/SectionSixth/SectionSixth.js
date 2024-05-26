@@ -10,7 +10,7 @@ function SectionSixth() {
 
 const getAllCategory = async (e,title) => {
   e.preventDefault()
-  window.location.href=`/Product/${title}`
+  window.location.href=`/${title}`
 };
   const collectionData = [
     {

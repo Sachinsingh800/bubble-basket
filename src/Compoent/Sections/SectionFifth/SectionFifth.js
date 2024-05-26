@@ -48,6 +48,9 @@ function SectionFifth() {
       console.error("Error in handleAllCategory function:", error);
     }
   };
+  const handleNavigate = (categoryName) => {
+    window.location.href = `/${categoryName}`;
+  };
 
   return (
     <div className={style.main}>
@@ -69,6 +72,7 @@ function SectionFifth() {
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
+                    onClick={() => handleNavigate(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -89,11 +93,12 @@ function SectionFifth() {
                 onChange={(e) => setBrand(e.target.value)}
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {brandData?.map((item, index) => (
+                {categoryData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
+                    onClick={() => handleNavigate(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -112,11 +117,12 @@ function SectionFifth() {
                 onChange={(e) => setLuxury(e.target.value)}
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {luxuryData?.map((item, index) => (
+                {categoryData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
+                    onClick={() => handleNavigate(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -137,11 +143,12 @@ function SectionFifth() {
                 onChange={(e) => setOrigin(e.target.value)}
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {originData?.map((item, index) => (
+                {categoryData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
+                    onClick={() => handleNavigate(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>

@@ -112,9 +112,10 @@ function ProductSectionSecond() {
       setUpdate(update + 1);
     }
   };
-
+  
   const handleQuantityChange = (e) => {
-    setQuantity(parseInt(e.target.value));
+    const value = Math.max(1, parseInt(e.target.value));
+    setQuantity(value);
   };
 
   const handleToggleDescription = () => {
@@ -216,7 +217,6 @@ function ProductSectionSecond() {
             <button onClick={handleAddToCart}>ADD TO CART →</button>
           </div>
           <br />
-          {/* <p>♡ &nbsp;Add to wishlist </p> */}
           <p>
             <strong>SKU:</strong>
             {product?.sku}

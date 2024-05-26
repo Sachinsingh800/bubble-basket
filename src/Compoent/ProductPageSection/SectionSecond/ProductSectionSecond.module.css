@@ -38,8 +38,8 @@
     gap: .5rem;
 }
 .input_box input{
-    width: 3rem;
-    border: 1px #F5E3E3 solid;
+    width: 4rem;
+    border: 1px #7B0128 solid;
     outline: none;
     padding:0rem .5rem ;
 }
@@ -47,7 +47,7 @@
     display:flex ;
     align-items: center;
     border: none;
-    border: 1px #F5E3E3 solid;
+    border: 1px #7B0128 solid;
     padding: .5rem 1rem;
     font-size: small;
     letter-spacing: .3cap;
