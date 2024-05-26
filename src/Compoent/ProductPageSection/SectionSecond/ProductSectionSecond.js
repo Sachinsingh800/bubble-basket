@@ -112,7 +112,7 @@ function ProductSectionSecond() {
       setUpdate(update + 1);
     }
   };
-  
+
   const handleQuantityChange = (e) => {
     const value = Math.max(1, parseInt(e.target.value));
     setQuantity(value);
@@ -247,10 +247,10 @@ function ProductSectionSecond() {
       </div>
       <div className={style.product_des_box}>
         <div className={style.extraInfo_btn}>
-          <h5 onClick={handleToggleDescription}>INTRODUCTION</h5>
-          <h5 onClick={handleToggleOverview}>DETAILED OVERVIEW</h5>
-          <h5 onClick={handleToggleExprienceofTesting}>EXPRIENCE OF TESTING</h5>
-          <h5 onClick={handleToggleComparison}>COMPARISON</h5>
+          <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
+          <h5 onClick={handleToggleOverview}>ADDITIONAL INFORMATION</h5>
+          {/* <h5 onClick={handleToggleExprienceofTesting}>EXPRIENCE OF TESTING</h5>
+          <h5 onClick={handleToggleComparison}>COMPARISON</h5> */}
           <h5 onClick={handleToggleReview}>
             REVIEWS ({reviews?.reviews?.length})
           </h5>
@@ -264,14 +264,14 @@ function ProductSectionSecond() {
           {showDescription && (
             <div className={style.description_box}>
               <p>{product?.productBlog?.intro}</p>
-              <h4>ADDITIONAL INFORMATION</h4>
+              {/* <h4>ADDITIONAL INFORMATION</h4>
               <p>
                 <strong>Measure Unit</strong>{" "}
                 <span>{product?.measureUnit}</span>
               </p>
               <p>
                 <strong>DIMENSIONS</strong> {product?.dimension}
-              </p>
+              </p> */}
             </div>
           )}
           {showExprienceofTesting && (
