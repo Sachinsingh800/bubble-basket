@@ -50,10 +50,6 @@ export default function Header(props) {
     setCartItem(cartItem);
     handleAllCategory();
     handleAllProduct();
-
-   
-
-
   }, [update]);
 
   const [showOptions, setShowOptions] = React.useState({
@@ -97,7 +93,7 @@ export default function Header(props) {
   const handleAllCategory = async () => {
     try {
       const response = await getAllCategory();
-      setCategory(response.data)
+      setCategory(response.data);
     } catch (error) {
       console.error("Error in handleAllCategory function:", error);
     }
@@ -106,7 +102,7 @@ export default function Header(props) {
   const handleAllProduct = async () => {
     try {
       const response = await getAllProduct();
-      setProduct(response.data)
+      setProduct(response.data);
     } catch (error) {
       console.error("Error in handleAllCategory function:", error);
     }
@@ -122,6 +118,18 @@ export default function Header(props) {
     document.addEventListener("click", handleClickOutsideSearch);
     return () => {
       document.removeEventListener("click", handleClickOutsideSearch);
+    };
+  }, []);
+
+  // Handle scroll to set showSearch to false
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowSearch(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -148,7 +156,7 @@ export default function Header(props) {
                     }}
                   >
                     {category?.map((item) => (
-                      <div className={style.category_box}>
+                      <div className={style.category_box} key={item?.categoryName}>
                         <p
                           className={style.option}
                           onClick={() =>
@@ -177,9 +185,11 @@ export default function Header(props) {
                 </li>
               </ul>
               <div className={style.middle_section}>
-                <div className={style.img_box}>
-                  <img src={logo} alt="logo" />
-                </div>
+                <a href="/">
+                  <div className={style.img_box}>
+                    <img src={logo} alt="logo" />
+                  </div>
+                </a>
               </div>
               <div className={style.right_section}>
                 <div className={style.search_box}>
@@ -207,6 +217,7 @@ export default function Header(props) {
                         })
                         ?.map((item) => (
                           <li
+                            key={item?._id}
                             onClick={() =>
                               (window.location.href = `/Product/${item?._id}`)
                             }

@@ -890,6 +890,35 @@ export const getAllProduct = async (category) => {
   }
 };
 
+// getAllOrdersHistory
+
+export const getAllOrdersHistory = async () => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(`${BASE_URL}/user/order/orderHistory`, {
+      headers,
+    });
+    console.log(response, "Response from axios");
+
+    // Directly return the data from axios response
+    return response.data;
+  } catch (error) {
+    console.error("Error in getAllCategory function:", error);
+  }
+};
+
 
 
 // getAllBrandProduct
