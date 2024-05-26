@@ -8,18 +8,6 @@ import { getAllOrders, getAllOrdersHistory } from "../../Apis/Apis";
 
 function OrderHistoryPage() {
 
-  useEffect(()=>{
-    handleAllOrders()
-  },[])
-
-  const handleAllOrders= async()=>{
-   try{
-  const response = await getAllOrdersHistory()
-  console.log(response,"response ")
-   }catch(error){
-
-   }
-    }
   return (
     <div>
       <Header />
