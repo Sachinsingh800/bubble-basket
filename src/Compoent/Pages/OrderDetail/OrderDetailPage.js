@@ -4,11 +4,13 @@ import OderDetailSectionFirst from "../../OderDetailSection/OderDetailSectionFir
 import OderDetailSectionSecond from "../../OderDetailSection/OderDetailSectionSecond/OderDetailSectionSecond";
 import Footer from "../../Sections/Footer/Footer";
 import Header from "../../Header/Header";
+import Chatbot from "../../ChatBot/ChatBot";
 
 function OrderDetailPage() {
   return (
     <div>
       <Header/>
+      <Chatbot />
       <div className={style.Container}>
         <OderDetailSectionFirst />
         <OderDetailSectionSecond />

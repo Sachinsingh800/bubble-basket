@@ -33,6 +33,7 @@ function ColumnPageSectionSecond() {
 
   return (
     <div className={style.main}>
+
       {loading ? (
         <div>Loading...</div>
       ) : error ? (

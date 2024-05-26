@@ -6,11 +6,13 @@ import PendingAndRefundSectionSecond from "../../PendingAndRefundSection/Pending
 import Footer from "../../Sections/Footer/Footer";
 import Header from "../../Header/Header";
 import style from "./PendingAndRefundPage.module.css"
+import Chatbot from "../../ChatBot/ChatBot";
 
 function PendingAndRefundPage() {
   return (
     <div>
       <Header />
+      <Chatbot/>
       <div className={style.Container}>
         <PendingAndRefundSectionFirst />
         <PendingAndRefundSectionSecond />

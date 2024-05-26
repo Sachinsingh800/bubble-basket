@@ -4,11 +4,13 @@ import RegisterPageSectionSecond from "../../RegisterPageSection/RegisterPageSec
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./RegisterPage.module.css"
+import Chatbot from "../../ChatBot/ChatBot";
 
 function RegisterPage() {
   return (
     <div>
       <Header />
+      <Chatbot />
       <div className={style.Container}>
         <RegisterPageSectionSecond />
         <Footer />

@@ -4,11 +4,13 @@ import BlogFullPageFirstSection from "../../BlogFullPageSection/BlogFullPageFirs
 import BlogFullPageSectionSecond from "../../BlogFullPageSection/BlogFullPageSectionSecond/BlogFullPageSectionSecond";
 import style from "./BlogFullPage.module.css";
 import Header from "../../Header/Header";
+import Chatbot from "../../ChatBot/ChatBot";
 
 function BlogFullPage() {
   return (
     <div>
       <Header />
+      <Chatbot />
       <div className={style.Container}>
         <BlogFullPageFirstSection />
         <BlogFullPageSectionSecond />
