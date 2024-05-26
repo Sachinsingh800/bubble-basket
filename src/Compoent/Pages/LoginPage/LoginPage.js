@@ -10,7 +10,6 @@ function LoginPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <LoginPageSectionFirst />
         <LoginPageSectionSecond />
         <Footer />
       </div>

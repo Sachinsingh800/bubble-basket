@@ -9,11 +9,11 @@ import { AddtoCart } from "../../Apis/Apis";
 
 function AccountPageSectionSecond() {
   const handleLinkClick = (category) => {
-    localStorage.setItem("category", category);
-    window.location.href = "/UpdateInformation";
+    window.location.href = `/UpdateInformation/${category}`;
 
   };
 
+  
 
   const handleProductAddToCartInServer= async (productId) => {
     try {

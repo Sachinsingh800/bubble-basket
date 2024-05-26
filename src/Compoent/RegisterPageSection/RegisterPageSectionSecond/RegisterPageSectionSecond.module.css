@@ -6,6 +6,9 @@
     align-items: center;
     padding: 2rem 0rem;
 }
+.error{
+    color: #7b0128;
+}
 .form{
     display: flex;
     flex-direction: column;

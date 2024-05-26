@@ -10,7 +10,6 @@ function RegisterPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <RegisterPageSectionFirst />
         <RegisterPageSectionSecond />
         <Footer />
       </div>

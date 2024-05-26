@@ -33,14 +33,6 @@ function LoginPageSectionSecond() {
     setFormData({ ...formData, [name]: val });
   };
 
-  const handleCheckoutOrder = async () => {
-    try {
-      const response = await getCheckout();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
@@ -78,13 +70,7 @@ function LoginPageSectionSecond() {
       // handleCheckoutOrder()
     }
   };
-  const handleLostPassword = () => {
-    localStorage.setItem(JSON.stringify("category","password"))
-    window.location.href = "/UpdateInformation";
-  };
-  const handleResgister = () => {
-    window.location.href = "/RegisterPage";
-  };
+
 
   return (
     <div className={style.main}>
@@ -124,8 +110,8 @@ function LoginPageSectionSecond() {
           <label htmlFor="rememberMe">Remember me</label>
         </div>
         <button type="submit">LOGIN →</button>
-        <p onClick={handleLostPassword}>Lost your password?</p>
-        <p onClick={handleResgister}>Register</p>
+        <a href={`/UpdateInformation/password`}><p >Lost your password?</p></a>
+         <a href="/RegisterPage">   <p >Register</p></a>
       </form>
     </div>
   );

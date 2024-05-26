@@ -53,35 +53,28 @@ export const verifyEmail = async (userData) => {
     }
   }
 };
+
+
 // resendOtp
 
 export const resendOtp = async (email) => {
+
   try {
-    const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email);
-    const { status, message, data, token } = response.data;
-    if (status) {
-      // window.location.href = "/Login";
-    }
+    const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email)
+    console.log(response, "Response from axios");
+
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      alert(errorMessage);
-      // Log the error message as a string
-      localStorage.removeItem("cartData");
-    } else {
-      // Network error (e.g., no internet connection)
-      alert("Something went wrong");
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
+
 
 //forgetPassword
 
 export const forgetPassword = async (email) => {
-  // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -91,7 +84,6 @@ export const forgetPassword = async (email) => {
 
   // Retrieve token
   const token = getToken();
-
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
@@ -105,26 +97,16 @@ export const forgetPassword = async (email) => {
       { headers }
     );
 
-    const { status, message, data } = response.data;
-    // console.log(response);
+    console.log(response, "Response from axios");
 
-    // Handle response data as needed
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      alert(errorMessage);
-      // Log the error message as a string
-      console.error("Axios Error:", errorMessage);
-    } else {
-      // Network error (e.g., no internet connection)
-      // alert("Something went wrong");
-      console.error("Network Error:", error.message);
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
+
 
 //resetPassword
 
@@ -591,6 +573,7 @@ export const getAllCategory = async () => {
     console.error("Error in getAllCategory function:", error);
   }
 };
+
 // getAllCategory
 
 export const getTop1Category = async (cate) => {

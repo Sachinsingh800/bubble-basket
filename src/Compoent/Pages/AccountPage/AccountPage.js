@@ -10,7 +10,6 @@ function AccountPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <AccountPageSectionFirst />
         <AccountPageSectionSecond />
         <Footer />
       </div>

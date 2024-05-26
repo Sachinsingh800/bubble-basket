@@ -60,7 +60,7 @@ root.render(
         <Route path={'/AccountPage'} element={<AccountPage />} />
         <Route path={'/OrderHistory'} element={<OrderHistoryPage />} />
         <Route path={'/OrderDetail/:id'} element={<OrderDetailPage />} />
-        <Route path={'/UpdateInformation'} element={<UpdateInformation />} />
+        <Route path={'/UpdateInformation/:category'} element={<UpdateInformation />} />
         <Route path={'/*'} element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

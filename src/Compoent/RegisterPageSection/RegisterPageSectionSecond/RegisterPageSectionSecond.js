@@ -16,7 +16,7 @@ function RegisterPageSectionSecond() {
     rememberMe: false,
   });
   const [otp, setOtp] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [errors, setErrors] = useState({});
   const [showVerification, setShowVerification] = useState(false);
   const [data, setData] = useState([]);
   const [totalprice, setTotalPrice] = useState(null);
@@ -34,7 +34,29 @@ function RegisterPageSectionSecond() {
     }
   }, []);
 
+  const validate = () => {
+    const errors = {};
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum 8 characters, at least one letter and one number
 
+    if (!formData.firstName || !nameRegex.test(formData.firstName)) {
+      errors.firstName = "Please enter a valid first name";
+    }
+    if (!formData.lastName || !nameRegex.test(formData.lastName)) {
+      errors.lastName = "Please enter a valid last name";
+    }
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    if (!formData.password || !passwordRegex.test(formData.password)) {
+      errors.password = "Password must be at least 8 characters long and contain at least one letter and one number";
+    }
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
+    return errors;
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -44,21 +66,28 @@ function RegisterPageSectionSecond() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setPasswordError("Passwords do not match");
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
-    setPasswordError(""); // Clear any previous password error
+    setErrors({});
     try {
       const response = await RegisterUser(formData);
       if (response.status) {
         alert(response.message);
-        setShowVerification(true)
+        setShowVerification(true);
+        scrollToTop()
       }
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
+
+
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
   const handleVerification = async () => {
     try {
@@ -78,6 +107,9 @@ function RegisterPageSectionSecond() {
       };
       const response = await verifyEmail(userData);
       // Handle response as needed
+
+      console.log(response,"ye checl")
+
     } catch (error) {
       console.error("Error verifying user:", error);
     }
@@ -89,7 +121,7 @@ function RegisterPageSectionSecond() {
         email: formData.email,
       };
       const response = await resendOtp(email);
-      // Handle response as needed
+      alert(response.message)
     } catch (error) {
       console.error("Error verifying user:", error);
     }
@@ -102,8 +134,8 @@ function RegisterPageSectionSecond() {
           <div className={style.input_box}>
             <h4>VERIFY YOUR EMAIL</h4>
             <input
-              type="number"
-              placeholder="otp"
+              type="text"
+              placeholder="OTP"
               onChange={(e) => setOtp(e.target.value)}
             />
             <button onClick={handleVerification}>VERIFY EMAIL →</button>
@@ -123,6 +155,7 @@ function RegisterPageSectionSecond() {
               onChange={handleChange}
               required
             />
+            {errors.firstName && <p className={style.error}>{errors.firstName}</p>}
           </div>
           <div className={style.input_box}>
             <label htmlFor="lastName">Last Name *</label>
@@ -134,6 +167,7 @@ function RegisterPageSectionSecond() {
               onChange={handleChange}
               required
             />
+            {errors.lastName && <p className={style.error}>{errors.lastName}</p>}
           </div>
           <div className={style.input_box}>
             <label htmlFor="email">Email *</label>
@@ -145,6 +179,7 @@ function RegisterPageSectionSecond() {
               onChange={handleChange}
               required
             />
+            {errors.email && <p className={style.error}>{errors.email}</p>}
           </div>
           <div className={style.input_box}>
             <label htmlFor="telephone">Telephone *</label>
@@ -171,6 +206,7 @@ function RegisterPageSectionSecond() {
               onChange={handleChange}
               required
             />
+            {errors.password && <p className={style.error}>{errors.password}</p>}
           </div>
           <div className={style.input_box}>
             <label htmlFor="confirmPassword">Confirm Password *</label>
@@ -182,8 +218,8 @@ function RegisterPageSectionSecond() {
               onChange={handleChange}
               required
             />
+            {errors.confirmPassword && <p className={style.error}>{errors.confirmPassword}</p>}
           </div>
-          {passwordError && <p className={style.error}>{passwordError}</p>}
           <button type="submit">REGISTER →</button>
           <p>
             Already have an account? <a href="/Login">Login</a>

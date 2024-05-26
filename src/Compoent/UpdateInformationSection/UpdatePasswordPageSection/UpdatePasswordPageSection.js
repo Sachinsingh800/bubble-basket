@@ -5,8 +5,8 @@ import { forgetPassword, resendOtp, resetPassword } from "../../Apis/Apis";
 function UpdatePasswordPageSection() {
   const [passwordData, setPasswordData] = useState({
     newPassword: "",
-     otp: "",
-     email:""
+    otp: "",
+    email: "",
   });
 
   const [email, setEmail] = useState("");
@@ -21,27 +21,23 @@ function UpdatePasswordPageSection() {
     e.preventDefault();
     try {
       const response = await resetPassword(passwordData);
+      console.log(response, "reset passkahfkjahs");
     } catch (error) {
       console.log("error");
-    } finally {
-          // Clear the form fields
-    // setPasswordData({
-    //   newPassword: "",
-    //   otp: "",
-    //   email:""
-    // });
     }
-     
-
   };
 
   const handleForgetPassword = async () => {
     try {
       const response = await forgetPassword(email);
+      console.log(response, "forget passkahfkjahs");
+      if (response.status) {
+        alert(response?.message);
+        setPasswordContainer(false);
+      }
     } catch (error) {
       console.log("error");
-    } finally {
-      setPasswordContainer(false)
+      alert("user not found");
     }
   };
 
@@ -49,6 +45,7 @@ function UpdatePasswordPageSection() {
     try {
       const response = await forgetPassword(email);
       // Handle response as needed
+      console.log(response, "forget  Redendasjjh worsda ");
     } catch (error) {
       console.error("Error verifying user:", error);
     }
@@ -56,7 +53,7 @@ function UpdatePasswordPageSection() {
 
   return (
     <div className={style.main}>
-        <h2>Your Password</h2>
+      <h2>Your Password</h2>
       {showPasswordContainer ? (
         <div className={style.form}>
           <div className={style.input_box}>
