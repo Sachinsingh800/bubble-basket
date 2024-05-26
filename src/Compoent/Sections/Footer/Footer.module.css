@@ -9,6 +9,7 @@
 }
 .submit_btn{
   letter-spacing: .5cap;
+  width: 8rem!important;
 }
 .img_box {
   height: 20rem;
@@ -98,12 +99,12 @@
   padding: 0.5rem;
 }
 .input_box input {
-  width: 20rem;
+  width: 10rem;
   background-color: none;
   background: none;
-  border: none;
+  border: none!important;
   color: white;
-  outline: none;
+  outline: none!important;
 }
 .input_box button {
   border: none;
@@ -112,6 +113,7 @@
   background-color: transparent;
   display: flex;
   align-items: center;
+  width: 14rem!important;
 }
 .desc_box {
   text-align: center;

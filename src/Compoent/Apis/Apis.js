@@ -881,6 +881,35 @@ export const getAllOrdersHistory = async () => {
   }
 };
 
+//sendSubscribtion
+
+export const sendSubscribtion = async (email) => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(`${BASE_URL}/user/subscribe/subscribeForNewsletter`,email, {
+      headers,
+    });
+    console.log(response, "user eamail wala");
+
+    // Directly return the data from axios response
+    return response.data;
+  } catch (error) {
+    console.error("Error in getAllCategory function:", error);
+  }
+};
+
 
 
 // getAllBrandProduct
