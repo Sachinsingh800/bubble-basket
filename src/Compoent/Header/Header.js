@@ -91,7 +91,7 @@ export default function Header(props) {
   };
 
   const handleToggleSearch = () => {
-    setShowSearch(!showSearch);
+    setShowSearch(true);
   };
 
   const handleAllCategory = async () => {
@@ -208,7 +208,7 @@ export default function Header(props) {
                         ?.map((item) => (
                           <li
                             onClick={() =>
-                              (window.location.href = `/Product/${item?.category}`)
+                              (window.location.href = `/Product/${item?._id}`)
                             }
                           >
                             <div className={style.search_img_box}>
