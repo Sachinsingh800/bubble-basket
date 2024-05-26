@@ -11,16 +11,16 @@ import SectionEight from "../Sections/SectionEight/SectionEight";
 import SectionNinth from "../Sections/SectionNinth/SectionNinth";
 import SectionTenth from "../Sections/SectionTenth/SectionTenth";
 import Footer from "../Sections/Footer/Footer";
-import style from "./NavBar.module.css";
+import style from "./Home.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import ChatBot from "../ChatBot/ChatBot";
 
-function NavBar() {
+function Home() {
 
   return (
     <div>
       <Header />
-      {/* <ChatBot /> */}
+      <ChatBot />
       <div className={style.Container}>
         <FirstSection />
         <SecondSection />
@@ -42,4 +42,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Home;

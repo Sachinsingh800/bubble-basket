@@ -1,32 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import styles from './App.module.css'; // Import module-level CSS
-import HideAppBar from './Compoent/NavBar/NavBar';
+import React, { useEffect, useState } from "react";
+import styles from "./App.module.css"; // Import module-level CSS
+import HideAppBar from "./Compoent/Home/Home";
 import productImage from "./Compoent/Images/dom perignon lady gaga rose.png";
 import { nanoid } from "nanoid";
-import AcceptCookies from './Compoent/AcceptCookies/AcceptCookies';
-import NavBar from './Compoent/NavBar/NavBar';
+import AcceptCookies from "./Compoent/AcceptCookies/AcceptCookies";
+import NavBar from "./Compoent/Home/Home";
+import Home from "./Compoent/Home/Home";
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
 
+  useEffect(() => {
+    // Function to retrieve token from cookies
+    function getToken() {
+      return document.cookie.replace(
+        /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      );
+    }
 
-  useEffect(()=>{
-      // Function to retrieve token from cookies
-  function getToken() {
-    return document.cookie.replace(
-      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    );
-  }
-
-  // Retrieve token
-  const token = getToken();
-  if(!token){
-    localStorage.setItem("isLoggedIn",false)
-  }
-
-  },[])
-
+    // Retrieve token
+    const token = getToken();
+    if (!token) {
+      localStorage.setItem("isLoggedIn", false);
+    }
+  }, []);
 
   const handleClose = () => {
     setShowPopup(false);
@@ -37,17 +35,28 @@ function App() {
   };
 
   return (
-    <div className={styles.App}> {/* Use module-level CSS class */}
-      <NavBar />
+    <div className={styles.App}>
+      {" "}
+      {/* Use module-level CSS class */}
+      <Home />
       <AcceptCookies />
       {showPopup && (
-        <div className={styles.popup}> {/* Use module-level CSS class */}
-          <div className={styles.popup_content}> {/* Use module-level CSS class */}
+        <div className={styles.popup}>
+          {" "}
+          {/* Use module-level CSS class */}
+          <div className={styles.popup_content}>
+            {" "}
+            {/* Use module-level CSS class */}
             <h2>Age Verification</h2>
             <p>ARE YOU OVER 18?</p>
             <p>By entering this site you agree to our Privacy Policy</p>
-            <p>This website requires you to be 18 years of age or older to access it. Please verify your age to view the content.</p>
-            <div className={styles.button_container}> {/* Use module-level CSS class */}
+            <p>
+              This website requires you to be 18 years of age or older to access
+              it. Please verify your age to view the content.
+            </p>
+            <div className={styles.button_container}>
+              {" "}
+              {/* Use module-level CSS class */}
               <button onClick={handleClose}>Yes, I am</button>
               <button onClick={handleNo}>No, I am not</button>
             </div>
