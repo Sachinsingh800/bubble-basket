@@ -20,7 +20,7 @@ function NavBar() {
   return (
     <div>
       <Header />
-      <ChatBot />
+      {/* <ChatBot /> */}
       <div className={style.Container}>
         <FirstSection />
         <SecondSection />
