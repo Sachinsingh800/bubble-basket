@@ -5,24 +5,19 @@ const BASE_URL = "https://wine-rnlq.onrender.com";
 // Register
 
 export const RegisterUser = async (userData) => {
-  function getToken() {
-    return document.cookie.replace(
-      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    );
-  }
 
   try {
     const response = await axios.post(
       `${BASE_URL}/user/auth/register`,
       userData
     );
-    console.log(response, "Response from axios");
+    console.log(response, "Register");
 
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
     console.error("Error in getAllCategory function:", error);
+    alert("user already register")
   }
 };
 
@@ -35,9 +30,12 @@ export const verifyEmail = async (userData) => {
       userData
     );
     const { status, message, data, token } = response.data;
-    if (status) {
-      window.location.href = "/Login";
+    if(status){
+      document.cookie = `token=${response.data.token}; path=/`;
+      localStorage.setItem("isLoggedIn", "true");
+      getCheckout();
     }
+
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -54,13 +52,11 @@ export const verifyEmail = async (userData) => {
   }
 };
 
-
 // resendOtp
 
 export const resendOtp = async (email) => {
-
   try {
-    const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email)
+    const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email);
     console.log(response, "Response from axios");
 
     // Directly return the data from axios response
@@ -69,8 +65,6 @@ export const resendOtp = async (email) => {
     console.error("Error in getAllCategory function:", error);
   }
 };
-
-
 
 //forgetPassword
 
@@ -106,8 +100,6 @@ export const forgetPassword = async (email) => {
   }
 };
 
-
-
 //resetPassword
 
 export const resetPassword = async (passwordData) => {
@@ -135,8 +127,11 @@ export const resetPassword = async (passwordData) => {
 
     const { status, message, data } = response.data;
     // console.log(response);
-
+    alert(message);
     // Handle response data as needed
+    if(status){
+      window.location.href="/Login"
+    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -523,7 +518,6 @@ export const getAllAddress = async () => {
   }
 };
 
-
 // getAllCategory
 
 export const getAllCategory = async () => {
@@ -570,9 +564,12 @@ export const getTop1Category = async (cate) => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.get(`${BASE_URL}/admin/category/getAll?catTypeUp=${cate}`, {
-      headers,
-    });
+    const response = await axios.get(
+      `${BASE_URL}/admin/category/getAll?catTypeUp=${cate}`,
+      {
+        headers,
+      }
+    );
     console.log(response, "Response from axios");
 
     // Directly return the data from axios response
@@ -657,7 +654,7 @@ export const updateAddress = async (addressData, addressId) => {
     );
 
     const { status, message, data } = response.data;
-    alert(message)
+    alert(message);
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -791,7 +788,7 @@ export const loginUser = async (userData, rememberMe) => {
     if (status) {
       // If "Remember Me" is checked, save token to local storage
       document.cookie = `token=${response.data.token}; path=/`;
-      alert(message)
+      alert(message);
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
       getCheckout();
@@ -898,9 +895,13 @@ export const sendSubscribtion = async (email) => {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
     };
-    const response = await axios.post(`${BASE_URL}/user/subscribe/subscribeForNewsletter`,email, {
-      headers,
-    });
+    const response = await axios.post(
+      `${BASE_URL}/user/subscribe/subscribeForNewsletter`,
+      email,
+      {
+        headers,
+      }
+    );
     console.log(response, "user eamail wala");
 
     // Directly return the data from axios response
@@ -909,8 +910,6 @@ export const sendSubscribtion = async (email) => {
     console.error("Error in getAllCategory function:", error);
   }
 };
-
-
 
 // getAllBrandProduct
 
@@ -969,7 +968,10 @@ export const getCheckout = async (promoCode) => {
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
     if (status) {
-      localStorage.setItem("cartData", JSON.stringify(response?.data?.data?.productsData) || []);
+      localStorage.setItem(
+        "cartData",
+        JSON.stringify(response?.data?.data?.productsData) || []
+      );
       localStorage.setItem(
         "checkout",
         JSON.stringify(response?.data?.data) || []
@@ -979,7 +981,6 @@ export const getCheckout = async (promoCode) => {
       if (checkoutStatus) {
         window.location.href = "/CheckoutPage";
       } else {
-     
       }
       const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }
