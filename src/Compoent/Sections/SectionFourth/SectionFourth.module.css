@@ -285,7 +285,7 @@
         
         }
         .img_box{
-            height: 300px!important;
+            height: 200px!important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -293,7 +293,7 @@
         
         }
         .img_box img{
-            height: 300px!important;
+            height: 200px!important;
         }
         .optionsBox{
             position: absolute;

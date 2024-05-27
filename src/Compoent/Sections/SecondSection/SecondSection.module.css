@@ -182,7 +182,7 @@ a {
   }
 
   .img_box {
-    height: 300px!important;
+    height: 200px!important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,21 +190,20 @@ a {
   }
 
   .img_box img {
-    height: 300px!important;
+    height: 200px!important;
   }
   .add_btn_box {
     height: 3rem!important;
   }
   .add_btn_box button {
-    border-radius: 50%;
-    height: 24px!important;
+    border-radius: 50%!important;
+    height: 27px!important;
     width: 24px!important;    
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #7b0128;
     color: white;
-    top: 0rem;
     border: none;
     font-size: medium;
   

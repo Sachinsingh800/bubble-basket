@@ -82,17 +82,16 @@
     font-size: 1rem;
   }
   .main {
-    height: 60rem;
+    height: 40rem;
   }
   .background img {
     height:100rem;
-    width: 100rem;
   }
   .background {
     height: 200%;
     width: 200%;
     filter: brightness(40%);
-    margin-top: -115rem;
+    margin-top: -140rem;
     background-size: cover;
   }
   .content {

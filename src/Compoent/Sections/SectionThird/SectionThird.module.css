@@ -103,7 +103,7 @@
     font-size: 8px;
   }
   .main {
-    height: 60rem;
+    height: 40rem;
     width: 100%;
   }
   .btn{
@@ -111,14 +111,16 @@
   }
   .background img {
     height:100rem;
-    width: 100rem;
+    width: 120rem;
   }
   .background {
-    height: 200%;
-    width: 200%;
+    height: 190%;
+    width: 100%;
     filter: brightness(40%);
-    margin-top: -32rem;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .content {
     display: flex;
@@ -127,7 +129,7 @@
     gap: 1rem;
     z-index: 999 !important;
     position: absolute;
-    margin-top: 130rem;
+    margin-top: 150rem;
   }
   .description_box h2 {
     font-size: 2rem;
