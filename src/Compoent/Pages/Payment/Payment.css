@@ -1,0 +1,17 @@
+
+  
+  #card-container {
+    margin-bottom: 1rem;
+  }
+  
+  #card-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #card-button:disabled {
+    cursor: not-allowed;
+  }

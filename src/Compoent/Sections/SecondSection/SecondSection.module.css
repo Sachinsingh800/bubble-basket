@@ -161,7 +161,7 @@ a {
   .inner_container {
     display: flex;
     flex-direction: column;
-    height: 38rem!important;
+    height: max-content!important;
     width: 24rem !important;
     border: 1px #7b0128 solid;
     align-items: center;
@@ -182,7 +182,7 @@ a {
   }
 
   .img_box {
-    height: 240px!important;
+    height: 300px!important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,13 +190,23 @@ a {
   }
 
   .img_box img {
-    height: 240px !important;
+    height: 300px!important;
   }
   .add_btn_box {
     height: 3rem!important;
   }
   .add_btn_box button {
-    height: 1.8rem!important;
-    width: 1.8rem!important;
+    border-radius: 50%;
+    height: 24px!important;
+    width: 24px!important;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7b0128;
+    color: white;
+    top: 0rem;
+    border: none;
+    font-size: medium;
+  
   }
 }

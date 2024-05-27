@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import browserInfo from "@smartbear/browser-info";
-
+import "./Payment.css";
 
 browserInfo.detect();
 
@@ -55,6 +55,7 @@ function Payment() {
   const [applePay, setApplePay] = useState(undefined);
   const [googlePay, setGooglePay] = useState(undefined);
   const [isSubmitting, setSubmitting] = useState(false);
+  const [loadingCard, setLoadingCard] = useState(true); // Loading state for card component
   const [validFields, setValidFields] = useState({
     cardNumber: false,
     cvv: false,
@@ -162,7 +163,7 @@ function Payment() {
 
   const attachCard = (card) => {
     const cardObject = card || squareCard;
-    cardObject.attach("#card-container");
+    cardObject.attach("#card-container").then(() => setLoadingCard(false)); // Set loading state to false once card is attached
     cardObject.addEventListener("submit", () =>
       handlePaymentMethodSubmission(cardObject)
     );
@@ -235,6 +236,7 @@ function Payment() {
             fontSize: "0.9rem",
             marginBottom: 16,
             borderRadius: 3,
+            cursor: "pointer",
           }}
         >
           <span>Buy with Apple Pay</span>
@@ -254,16 +256,22 @@ function Payment() {
             alignItems: "center",
           }}
         >
-          <div id="card-container"></div>
-          <button
-            id="card-button"
-            type="button"
-            style={cardButtonStyles}
-            disabled={!isCardFieldsValid || isSubmitting}
-            onClick={() => handlePaymentMethodSubmission(squareCard)}
-          >
-            Pay {paymentRequestMock.total.amount}
-          </button>
+          {loadingCard ? (
+            <div className="loader">Loading...</div> // Show loader while card is loading
+          ) : (
+            <>
+              <div id="card-container"></div>
+              <button
+                id="card-button"
+                type="button"
+                style={cardButtonStyles}
+                disabled={!isCardFieldsValid || isSubmitting}
+                onClick={() => handlePaymentMethodSubmission(squareCard)}
+              >
+                {isSubmitting ? "Processing..." : `Pay ${paymentRequestMock.total.amount}`}
+              </button>
+            </>
+          )}
         </div>
       </form>
       <div id="payment-status-container"></div>
