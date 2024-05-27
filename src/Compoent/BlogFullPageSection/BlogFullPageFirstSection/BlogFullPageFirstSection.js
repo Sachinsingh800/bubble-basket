@@ -63,7 +63,7 @@ const [loading,SetIsloading] = useState(false)
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>{selectedBlog?.blogTitle}</h2>
+          <h2>{selectedBlog?.authorName}</h2>
         </div>
       </div>
     </div>
