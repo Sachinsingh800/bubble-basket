@@ -182,7 +182,7 @@ a {
   }
 
   .img_box {
-    height: 24rem!important;
+    height: 240px!important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,7 +190,7 @@ a {
   }
 
   .img_box img {
-    height: 24rem!important;
+    height: 240px !important;
   }
   .add_btn_box {
     height: 3rem!important;

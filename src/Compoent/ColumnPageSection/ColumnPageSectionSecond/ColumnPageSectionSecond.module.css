@@ -84,7 +84,7 @@
     border: 1px #7b0128 solid;
   }
   .add_box_img {
-    height: max-content;
+    height: 240px!important;
   }
   .offer_box {
     position: absolute;
@@ -103,7 +103,7 @@
   .add_box_img {
   }
   .add_box_img img {
-    height: 24rem!important;
+    height: 240px!important;
   }
   .product_title {
     font-size: 1.4rem;
