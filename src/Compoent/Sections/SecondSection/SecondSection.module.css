@@ -182,7 +182,7 @@ a {
   }
 
   .img_box {
-    height: 250px!important;
+    height: 300px!important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,14 +190,14 @@ a {
   }
 
   .img_box img {
-    height: 250px!important;
+    height: 300px!important;
   }
   .add_btn_box {
     height: 3rem!important;
   }
   .add_btn_box button {
     border-radius: 50%!important;
-    height: 27px!important;
+    height: 25px!important;
     width: 24px!important;    
     display: flex;
     align-items: center;
