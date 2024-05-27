@@ -32,6 +32,7 @@ import OrderHistoryPage from './Compoent/Pages/OrderHistoryPage/OrderHistoryPage
 import OrderDetailPage from './Compoent/Pages/OrderDetail/OrderDetailPage';
 import UpdateInformation from './Compoent/Pages/UpdateInformation/UpdateInformation';
 import BrandPage from './Compoent/Pages/BrandPage/BrandPage';
+import Payment from './Compoent/Pages/Payment/Payment';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -62,6 +63,7 @@ root.render(
         <Route path={'/OrderDetail/:id'} element={<OrderDetailPage />} />
         <Route path={'/UpdateInformation/:category'} element={<UpdateInformation />} />
         <Route path={'/*'} element={<ErrorPage />} />
+        <Route path={'/Payment'} element={<Payment />} />
       </Routes>
     </BrowserRouter>
     </RecoilRoot>
