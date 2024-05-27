@@ -12,7 +12,6 @@ function PendingAndRefundPage() {
   return (
     <div>
       <Header />
-      <Chatbot/>
       <div className={style.Container}>
         <PendingAndRefundSectionFirst />
         <PendingAndRefundSectionSecond />

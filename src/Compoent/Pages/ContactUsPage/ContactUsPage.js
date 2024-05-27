@@ -10,7 +10,6 @@ function ContactUsPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <ContactUsPageSectionFirst />
         <ContactUsPageSectionSecond />

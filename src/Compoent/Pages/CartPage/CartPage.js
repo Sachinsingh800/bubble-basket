@@ -10,7 +10,6 @@ function CartPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <CartPageSectionFirst />
         <CartPageSectionSecond />

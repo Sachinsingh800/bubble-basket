@@ -10,7 +10,6 @@ function ColumnPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <ColumnPageSectionFirst />
         <ColumnPageSectionSecond />

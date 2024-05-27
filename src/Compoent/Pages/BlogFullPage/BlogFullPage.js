@@ -10,7 +10,6 @@ function BlogFullPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <BlogFullPageFirstSection />
         <BlogFullPageSectionSecond />

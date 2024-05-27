@@ -10,7 +10,6 @@ function RegisterPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <RegisterPageSectionSecond />
         <Footer />

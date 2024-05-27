@@ -11,7 +11,6 @@ function AboutUsPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <AboutUsSectionFirst />
         <AboutUsSectionSecond />

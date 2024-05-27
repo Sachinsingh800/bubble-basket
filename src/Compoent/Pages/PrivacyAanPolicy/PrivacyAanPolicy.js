@@ -10,7 +10,6 @@ function PrivacyAanPolicy() {
   return (
     <div>
       <Header />
-      <Chatbot/>
       <div className={style.Container}>
         <PrivacyAndPolicySectionFirst />
         <PrivacyAndPolicySectionSecond />

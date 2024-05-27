@@ -10,7 +10,6 @@ function LoginPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <LoginPageSectionSecond />
         <Footer />

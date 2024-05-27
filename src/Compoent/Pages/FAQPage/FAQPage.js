@@ -11,7 +11,6 @@ function FAQPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <FAQSectionFirst />
         <FAQSectionSecond />

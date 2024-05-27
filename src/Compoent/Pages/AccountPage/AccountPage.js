@@ -10,7 +10,6 @@ function AccountPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <AccountPageSectionSecond />
         <Footer />

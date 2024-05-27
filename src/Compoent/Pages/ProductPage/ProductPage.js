@@ -10,7 +10,6 @@ function ProductPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <ProductSectionFirst />
         <ProductSectionSecond />

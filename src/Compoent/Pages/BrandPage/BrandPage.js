@@ -10,7 +10,6 @@ function BrandPage() {
   return (
     <div>
       <Header />
-      <Chatbot />
       <div className={style.Container}>
         <BrandSectionFirst />
         <BrandSectionSecond />

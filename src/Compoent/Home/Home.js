@@ -20,7 +20,6 @@ function Home() {
   return (
     <div>
       <Header />
-      <ChatBot />
       <div className={style.Container}>
         <FirstSection />
         <SecondSection />

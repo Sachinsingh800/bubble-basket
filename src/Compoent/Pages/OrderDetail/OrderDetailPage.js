@@ -10,7 +10,6 @@ function OrderDetailPage() {
   return (
     <div>
       <Header/>
-      <Chatbot />
       <div className={style.Container}>
         <OderDetailSectionFirst />
         <OderDetailSectionSecond />
