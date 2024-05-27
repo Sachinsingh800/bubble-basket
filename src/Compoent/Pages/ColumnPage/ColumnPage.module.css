@@ -170,7 +170,7 @@
   }
 
 }
-@media screen and (max-width:784px) {
+@media (max-width:784px) {
   .dawer{
     display: none;
   }
