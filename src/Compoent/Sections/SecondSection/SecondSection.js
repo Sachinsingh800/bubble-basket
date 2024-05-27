@@ -68,12 +68,11 @@ function SecondSection() {
             (window.location.href = `/${top1Category?.categoryName}`)
           }
         >
-          <button
-            // onClick={() => handleAddToCart(top1Category)}
-            className={style.addBtn}
-          >
-            {showTick === top1Category?._id ? "✓" : <AddIcon />}
-          </button>
+          <div className={style.add_btn_box}>
+            <button className={style.addBtn}>
+              {showTick === top1Category?._id ? "✓" : <AddIcon />}
+            </button>
+          </div>
 
           <div className={style.img_box}>
             <img
@@ -93,12 +92,13 @@ function SecondSection() {
             (window.location.href = `/${top2Category?.categoryName}`)
           }
         >
-          <button
-            // onClick={() => handleAddToCart(top2Category)}
-            className={style.addBtn}
-          >
-            {showTick === top2Category?._id ? "✓" : <AddIcon />}
-          </button>
+          <div className={style.add_btn_box}>
+            <button
+              className={style.addBtn}
+            >
+              {showTick === top2Category?._id ? "✓" : <AddIcon />}
+            </button>
+          </div>
 
           <div className={style.img_box}>
             <img
@@ -118,12 +118,13 @@ function SecondSection() {
             (window.location.href = `/${top3Category?.categoryName}`)
           }
         >
-          <button
-            // onClick={() => handleAddToCart(top3Category)}
-            className={style.addBtn}
-          >
-            {showTick === top3Category?._id ? "✓" : <AddIcon />}
-          </button>
+          <div className={style.add_btn_box}>
+            <button
+              className={style.addBtn}
+            >
+              {showTick === top3Category?._id ? "✓" : <AddIcon />}
+            </button>
+          </div>
 
           <div className={style.img_box}>
             <img
