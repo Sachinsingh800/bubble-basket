@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import browserInfo from "@smartbear/browser-info";
-import "./Payment.css";
+import React, { useState, useEffect } from "react"
+import browserInfo from "@smartbear/browser-info"
 
-browserInfo.detect();
+import "./Payment.css"
 
-const APPLICATION_ID = "sandbox-sq0idb-lhuzqiKR6VIBNoMFKNfjMw";
-const LOCATION_ID = "LH5VB12MS3774";
-const isSafari = browserInfo.name === "Safari";
+browserInfo.detect()
 
+const APPLICATION_ID = "sandbox-sq0idb-lhuzqiKR6VIBNoMFKNfjMw"
+const LOCATION_ID = "L40SZMBGKK61T"
+const isSafari = browserInfo.name === "Safari"
 const paymentRequestMock = {
   countryCode: "US",
   currencyCode: "USD",
@@ -34,175 +33,205 @@ const paymentRequestMock = {
     { amount: "9.99", id: "XP", label: "Express" },
   ],
   total: { amount: "5.79", label: "Total", pending: false },
-};
+}
 
-async function tokenizePaymentMethod(paymentMethod) {
-  const tokenResult = await paymentMethod.tokenize();
+// This function tokenizes a payment method.
+// The ‘error’ thrown from this async function denotes a failed tokenization,
+// which is due to buyer error (such as an expired card).
+export async function tokenizePaymentMethod(paymentMethod) {
+  const tokenResult = await paymentMethod.tokenize()
+  // A list of token statuses can be found here:
+  // https://developer.squareup.com/reference/sdks/web/payments/enums/TokenStatus
   if (tokenResult.status === "OK") {
-    return tokenResult.token;
+    return tokenResult.token
   }
-  let errorMessage = `Tokenization failed-status: ${tokenResult.status}`;
+  let errorMessage = `Tokenization failed-status: ${tokenResult.status}`
   if (tokenResult.errors) {
-    errorMessage += ` and errors: ${JSON.stringify(tokenResult.errors)}`;
+    errorMessage += ` and errors: ${JSON.stringify(tokenResult.errors)}`
   }
-  throw new Error(errorMessage);
+  throw new Error(errorMessage)
 }
 
 function Payment() {
-  const [loaded, setLoaded] = useState(false);
-  const [squarePayments, setSquarePayments] = useState(undefined);
-  const [squareCard, setSquareCard] = useState(undefined);
-  const [applePay, setApplePay] = useState(undefined);
-  const [googlePay, setGooglePay] = useState(undefined);
-  const [isSubmitting, setSubmitting] = useState(false);
-  const [loadingCard, setLoadingCard] = useState(true); // Loading state for card component
+  const [loaded, setLoaded] = useState(false)
+  const [squarePayments, setSquarePayments] = useState(undefined)
+  const [squareCard, setSquareCard] = useState(undefined)
+  const [applePay, setApplePay] = useState(undefined)
+  const [googlePay, setGooglePay] = useState(undefined)
+  const [isSubmitting, setSubmitting] = useState(false)
   const [validFields, setValidFields] = useState({
     cardNumber: false,
     cvv: false,
     expirationDate: false,
     postalCode: false,
-  });
-  const isCardFieldsValid = Object.values(validFields).every((v) => v);
+  })
+  const isCardFieldsValid = Object.values(validFields).every((v) => v)
 
+  // Add Square script to the page
   useEffect(() => {
-    const existingScript = document.getElementById("webPayment");
-    if (existingScript) setLoaded(true);
+    const existingScript = document.getElementById("webPayment")
+    if (existingScript) setLoaded(true)
     else {
-      const script = document.createElement("script");
-      script.src = "https://sandbox.web.squarecdn.com/v1/square.js";
-      script.id = "webPayment";
-      document.body.appendChild(script);
+      const script = document.createElement("script")
+      script.src = "https://sandbox.web.squarecdn.com/v1/square.js"
+      script.id = "webPayment"
+      document.body.appendChild(script)
       script.onload = () => {
-        setLoaded(true);
-      };
+        setLoaded(true)
+      }
     }
-  }, []);
+  }, [])
 
+  // Instantiate Square payments and store the object in state
   useEffect(() => {
     if (loaded && !squarePayments) {
       if (!window?.Square) {
-        console.error("Square.js failed to load properly");
-        return;
+        console.error("Square.js failed to load properly")
+        return
       }
-      setSquarePayments(window.Square?.payments(APPLICATION_ID, LOCATION_ID));
+      setSquarePayments(window.Square?.payments(APPLICATION_ID, LOCATION_ID))
     }
-  }, [loaded, squarePayments]);
+  }, [loaded, squarePayments])
 
+  // Handle the form submission
   const handlePaymentMethodSubmission = async (paymentMethod) => {
-    const isCard = paymentMethod?.element?.id === "card-container";
-    if (isCard && !isCardFieldsValid) return;
+    const isCard = paymentMethod?.element?.id === "card-container"
+    if (isCard && !isCardFieldsValid) return
     if (!isSubmitting) {
-      if (isCard) setSubmitting(true);
+      // Disable the submit button as we await tokenization and make a
+      // payment request
+      if (isCard) setSubmitting(true)
       try {
-        const token = await tokenizePaymentMethod(paymentMethod);
-        await axios.post("https://paymentgateway-0x97.onrender.com/process-payment", {
-          token,
-          amount: paymentRequestMock.total.amount,
-        });
-        console.log("TOKEN", token);
-        alert("Payment successful!");
+        const token = await tokenizePaymentMethod(paymentMethod)
+        // Create your own addPayment function to communicate with your API
+        // await addPayment(token)
+        console.log("TOKEN", token)
       } catch (error) {
-        console.error("FAILURE", error);
-        alert("Payment failed!");
+        console.error("FAILURE", error)
       } finally {
-        isCard && setSubmitting(false);
+        isCard && setSubmitting(false)
       }
     }
-  };
+  }
 
+  // Set each card field validity on various events
   const handleCardEvents = ({ detail }) => {
     if (detail) {
-      const { currentState: { isCompletelyValid } = {}, field } = detail;
+      const { currentState: { isCompletelyValid } = {}, field } = detail
       if (field) {
         setValidFields((prevState) => ({
           ...prevState,
           [field]: isCompletelyValid,
-        }));
+        }))
       }
     }
-  };
+  }
 
   const initializeApplePay = async () => {
-    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock);
-    const aPay = await squarePayments.applePay(paymentRequest);
-    setApplePay(aPay);
-  };
+    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock)
+    const aPay = await squarePayments.applePay(paymentRequest)
+    setApplePay(aPay)
+    // Note: Apple pay does not need to be "attached"
+  }
 
   const attachGooglePay = (gPay) => {
-    const googlePayObject = gPay || googlePay;
+    const googlePayObject = gPay || googlePay
     googlePayObject.attach("#google-pay", {
       buttonColor: "white",
       buttonSizeMode: "fill",
       buttonType: "long",
-    });
-  };
+    })
+  }
 
   const initializeGooglePay = async () => {
-    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock);
+    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock)
 
+    // We *MUST* return a PaymentRequestUpdate from shipping contact/option
+    // event listeners below
+    // https://developer.squareup.com/reference/sdks/web/payments/objects/PaymentRequestUpdate
     const paymentRequestUpdate = {
+      // error: "There was an error of some kind",
+      // shippingErrors: {
+      //   addressLines: "Error with the Address Lines",
+      //   city: "Error with the City",
+      //   country: "Error with the Country",
+      //   postalCode: "Error with the Postal Code",
+      //   state: "Error with the state",
+      // },
       lineItems: paymentRequestMock.lineItems,
-      shippingOptions: paymentRequestMock.shippingOptions,
+      shippingOption: paymentRequestMock.shippingOptions,
       total: paymentRequestMock.total,
-    };
+    }
 
+    // Listener for shipping address changes
     paymentRequest.addEventListener("shippingcontactchanged", (contact) => {
-      console.log({ contact });
-      return paymentRequestUpdate;
-    });
+      console.log({ contact })
 
+      return paymentRequestUpdate
+    })
+    // Listener for shipping option changes
     paymentRequest.addEventListener("shippingoptionchanged", (option) => {
-      console.log({ option });
-      return paymentRequestUpdate;
-    });
+      console.log({ option })
 
-    const gPay = await squarePayments.googlePay(paymentRequest);
-    setGooglePay(gPay);
-    attachGooglePay(gPay);
-  };
+      return paymentRequestUpdate
+    })
 
+    const gPay = await squarePayments.googlePay(paymentRequest)
+    setGooglePay(gPay)
+    attachGooglePay(gPay)
+  }
+
+  // Attach the Square card to our container and setup event listeners
   const attachCard = (card) => {
-    const cardObject = card || squareCard;
-    cardObject.attach("#card-container").then(() => setLoadingCard(false)); // Set loading state to false once card is attached
+    // We pass in the card object during initialization, but re-use it from
+    // state for normal re-renders
+    const cardObject = card || squareCard
+    cardObject.attach("#card-container")
+    // Listeners: https://developer.squareup.com/reference/sdks/web/payments/objects/Card#Card.addEventListener
     cardObject.addEventListener("submit", () =>
       handlePaymentMethodSubmission(cardObject)
-    );
-    cardObject.addEventListener("focusClassAdded", handleCardEvents);
-    cardObject.addEventListener("focusClassRemoved", handleCardEvents);
-    cardObject.addEventListener("errorClassAdded", handleCardEvents);
-    cardObject.addEventListener("errorClassRemoved", handleCardEvents);
-    cardObject.addEventListener("cardBrandChanged", handleCardEvents);
-    cardObject.addEventListener("postalCodeChanged", handleCardEvents);
-  };
+    )
+    cardObject.addEventListener("focusClassAdded", handleCardEvents)
+    cardObject.addEventListener("focusClassRemoved", handleCardEvents)
+    cardObject.addEventListener("errorClassAdded", handleCardEvents)
+    cardObject.addEventListener("errorClassRemoved", handleCardEvents)
+    cardObject.addEventListener("cardBrandChanged", handleCardEvents)
+    cardObject.addEventListener("postalCodeChanged", handleCardEvents)
+  }
 
   const initializeSquareCard = async () => {
-    const card = await squarePayments.card();
-    setSquareCard(card);
-    attachCard(card);
-  };
+    const card = await squarePayments.card()
+    setSquareCard(card)
+    attachCard(card)
+  }
 
+  // Handle Square payment methods initialization and re-attachment
   useEffect(() => {
     if (squarePayments) {
-      if (!squareCard) initializeSquareCard();
-      if (!applePay && isSafari) initializeApplePay();
-      if (!googlePay) initializeGooglePay();
-      else attachGooglePay();
-    } else {
+      if (!squareCard) initializeSquareCard()
+      if (!applePay && isSafari) initializeApplePay()
+      if (!googlePay) initializeGooglePay()
+      else attachGooglePay()
+    }
+    // Otherwise, we destroy the objects and reset state
+    else {
       if (squareCard) {
-        squareCard.destroy();
-        setSquareCard(undefined);
+        squareCard.destroy()
+        setSquareCard(undefined)
       }
       if (applePay) {
-        applePay.destroy();
-        setApplePay(undefined);
+        applePay.destroy()
+        setApplePay(undefined)
       }
       if (googlePay) {
-        googlePay.destroy();
-        setGooglePay(undefined);
+        googlePay.destroy()
+        setGooglePay(undefined)
       }
     }
-  }, [squarePayments]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [squarePayments])
 
+  // Some quick button styles
   let cardButtonStyles = {
     backgroundColor: "#ddd",
     color: "white",
@@ -212,16 +241,28 @@ function Payment() {
     marginBottom: 16,
     borderRadius: 8,
     borderWidth: 0,
-  };
+  }
   if (isCardFieldsValid) {
     cardButtonStyles = {
       ...cardButtonStyles,
       backgroundColor: "black",
-    };
+    }
   }
 
   return (
-    <div className="App">
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "2rem",
+      }}
+    >
+      {/* Apple Pay will not work with the demo Square IDs used in this file,
+      but it will if you have a valid square account with Apple Pay configured
+      correctly. If so, change the IDs to your sandbox and try it out */}
       {isSafari && (
         <div
           id="apple-pay"
@@ -236,7 +277,6 @@ function Payment() {
             fontSize: "0.9rem",
             marginBottom: 16,
             borderRadius: 3,
-            cursor: "pointer",
           }}
         >
           <span>Buy with Apple Pay</span>
@@ -256,27 +296,21 @@ function Payment() {
             alignItems: "center",
           }}
         >
-          {loadingCard ? (
-            <div className="loader">Loading...</div> // Show loader while card is loading
-          ) : (
-            <>
-              <div id="card-container"></div>
-              <button
-                id="card-button"
-                type="button"
-                style={cardButtonStyles}
-                disabled={!isCardFieldsValid || isSubmitting}
-                onClick={() => handlePaymentMethodSubmission(squareCard)}
-              >
-                {isSubmitting ? "Processing..." : `Pay ${paymentRequestMock.total.amount}`}
-              </button>
-            </>
-          )}
+          <div id="card-container"></div>
+          <button
+            id="card-button"
+            type="button"
+            style={cardButtonStyles}
+            disabled={!isCardFieldsValid || isSubmitting}
+            onClick={() => handlePaymentMethodSubmission(squareCard)}
+          >
+            Pay {paymentRequestMock.total.amount}
+          </button>
         </div>
       </form>
       <div id="payment-status-container"></div>
     </div>
-  );
+  )
 }
 
-export default Payment;
+export default Payment
