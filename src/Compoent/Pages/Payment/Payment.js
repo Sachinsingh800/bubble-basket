@@ -87,6 +87,21 @@ function Payment() {
     }
   }, [loaded, squarePayments])
 
+  const orderData = {
+    nonce:"",
+    promoCode: "",
+    paymentMethod: {
+      online: true, 
+    },
+     paymentInfo : {
+      id: "123456",
+      status: "successful",
+  }
+  };
+
+
+
+
   const handlePaymentMethodSubmission = async (paymentMethod) => {
     const isCard = paymentMethod?.element?.id === "card-container"
     if (isCard && !isCardFieldsValid) return
@@ -94,11 +109,14 @@ function Payment() {
       if (isCard) setSubmitting(true)
       try {
         const token = await tokenizePaymentMethod(paymentMethod)
+        console.log(token,"token")
         await axios.post(
-          "https://paymentgateway-0x97.onrender.com/process-payment",
+          `https://wine-rnlq.onrender.com/user/order/create/6655b89c4455f0c7acd87601`,
           {
             nonce:token,
-            amount: paymentRequestMock.total.amount,
+            paymentMethod: {
+              online: true, 
+            },
           }
         )
         console.log("TOKEN", token)
