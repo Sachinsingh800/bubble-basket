@@ -72,6 +72,7 @@ export default function Header(props) {
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
+        alert("Your Bulk Order Form is Downloaded")
       })
       .catch((error) => {
         console.error("Error downloading the Excel file:", error);

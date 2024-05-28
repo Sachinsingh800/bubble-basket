@@ -33,6 +33,7 @@
 .des_box{
      padding:0rem 2rem;
 }
+
 .input_box{
     display: flex;
     gap: .5rem;
@@ -217,7 +218,39 @@ justify-content: center;
 }
 
 
-@media screen and (max-width: 784px) {
+.extra_div_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+/* src/components/GiftCardMessage.module.css */
+.giftCardMessage {
+    width: 100%;
+  }
+  
+  .giftCardLabel {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .giftCardTextarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #7B0128;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+  }
+  
+
+@media  (max-width: 784px) {
+    .extra_div_container{
+        display: grid;
+        grid-template-columns: 1fr ;
+        gap: 1rem;
+    }
     .product_container{
         display: grid;
         grid-template-columns: 1fr ;
@@ -271,5 +304,6 @@ justify-content: center;
     .icon{
         font-size: 8px!important;
     }
+
 
 }

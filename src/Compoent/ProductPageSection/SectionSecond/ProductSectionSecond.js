@@ -90,6 +90,7 @@ function ProductSectionSecond() {
   };
 
   const handleAddToCart = () => {
+    setMessage("");
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
     if (loginStatus) {
       handleAddToCartInBeckend();
@@ -105,6 +106,7 @@ function ProductSectionSecond() {
       updatedCartData[existingProductIndex].quantity += quantity;
       localStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
+
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
@@ -190,6 +192,13 @@ function ProductSectionSecond() {
     return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
   }
 
+  const [message, setMessage] = useState('');
+
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+    localStorage.setItem("message",JSON.stringify(event.target.value))
+  };
+
   return (
     <div className={style.main}>
       <div className={style.product_container}>
@@ -198,6 +207,7 @@ function ProductSectionSecond() {
           <img src={product?.productImg[0]?.url} alt={product?.title} />
         </div>
         <div className={style.des_box}>
+        
           <h3>{product?.title}</h3>
           <h4>${product?.price}</h4>
           <p>{renderHTML(product?.description)}</p>
@@ -208,7 +218,12 @@ function ProductSectionSecond() {
             activeColor="#ffd700"
           />
           <br/>
-          <div className={style.input_box}>
+          
+
+
+          <div className={style.extra_div_container}>
+                    <div>
+                    <div className={style.input_box}>
             <input
               type="number"
               value={quantity}
@@ -243,6 +258,23 @@ function ProductSectionSecond() {
               <TwitterIcon className={style.icon} />
             </span>
           </p>
+                    </div>
+         
+                    <div className={style.giftCardMessage}>
+      <label htmlFor="message" className={style.giftCardLabel}>Message On Gift Card</label>
+      <textarea
+        id="message"
+        className={style.giftCardTextarea}
+        placeholder="Message on Gift Card"
+        value={message}
+        onChange={handleChange}
+      />
+    </div>
+          </div>
+     
+
+
+   
         </div>
       </div>
       <div className={style.product_des_box}>
