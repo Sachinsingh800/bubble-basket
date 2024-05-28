@@ -97,7 +97,7 @@ function Payment() {
         await axios.post(
           "https://paymentgateway-0x97.onrender.com/process-payment",
           {
-            token,
+            nonce:token,
             amount: paymentRequestMock.total.amount,
           }
         )
