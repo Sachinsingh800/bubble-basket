@@ -97,10 +97,15 @@ function Payment() {
       if (isCard) setSubmitting(true)
       try {
         const token = await tokenizePaymentMethod(paymentMethod)
+        const newtoken = typeof(token)
+        console.log(newtoken)
         await axios.post(
-          "https://paymentgateway-0x97.onrender.com/process-payment",
+          `https://wine-rnlq.onrender.com/user/order/create`,
           {
             nonce:token,
+            paymentMethod:{
+              "online":true
+            },
           }
         )
         console.log("TOKEN", token)
