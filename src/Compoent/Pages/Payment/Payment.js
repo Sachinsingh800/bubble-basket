@@ -101,7 +101,6 @@ function Payment() {
           "https://paymentgateway-0x97.onrender.com/process-payment",
           {
             nonce:token,
-            amount: paymentRequestMock.total.amount,
           }
         )
         console.log("TOKEN", token)
