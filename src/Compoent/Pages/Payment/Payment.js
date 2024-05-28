@@ -110,6 +110,10 @@ function Payment() {
       try {
         const token = await tokenizePaymentMethod(paymentMethod)
         console.log(token,"token")
+        const headers = {
+          "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjUzN2E1NTZmYWZjNTZlMDE0ZjA2NjQiLCJlbWFpbCI6InNhY2hpbnNpbmdoZ25jQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE2ODkzNjgyfQ.MPxOquogtTYCWLAcODyW-lFUjEzBKokaDyMwTjiOHSk", // Pass the token in the header
+          "Content-Type": "application/json", // Set content type to JSON
+        };
         await axios.post(
           `https://wine-rnlq.onrender.com/user/order/create/6655b89c4455f0c7acd87601`,
           {
@@ -117,7 +121,10 @@ function Payment() {
             paymentMethod: {
               online: true, 
             },
+            
           }
+          ,
+          {headers}
         )
         console.log("TOKEN", token)
         alert("Payment successful!")
