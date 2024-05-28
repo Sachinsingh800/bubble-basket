@@ -6,7 +6,7 @@ import browserInfo from "@smartbear/browser-info"
 browserInfo.detect()
 
 const APPLICATION_ID = "sandbox-sq0idb-lhuzqiKR6VIBNoMFKNfjMw"
-const LOCATION_ID = "LH5VB12MS3774"
+const LOCATION_ID = "L40SZMBGKK61T"
 const isSafari = browserInfo.name === "Safari"
 
 const paymentRequestMock = {
