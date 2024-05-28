@@ -85,13 +85,13 @@
     height: 40rem;
   }
   .background img {
-    height:50rem;
+    height:40rem;
   }
   .background {
     height: 200%;
-    width: 200%;
+    width: 110%;
     filter: brightness(40%);
-    margin-top: -140rem;
+    margin-top: -150rem;
     background-size: cover;
   }
   .content {
