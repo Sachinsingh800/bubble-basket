@@ -33,7 +33,7 @@ const paymentRequestMock = {
     { amount: "0.00", id: "FREE", label: "Free" },
     { amount: "9.99", id: "XP", label: "Express" },
   ],
-  total: { amount: "5.79", label: "Total", pending: false },
+  total: { amount: "0.01", label: "Total", pending: false },
 }
 
 async function tokenizePaymentMethod(paymentMethod) {
