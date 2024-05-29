@@ -79,7 +79,7 @@ function ProductSectionSecond() {
 
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
-  console.log(product);
+
 
   const handleAddToCartInBeckend = async () => {
     try {
@@ -106,7 +106,6 @@ function ProductSectionSecond() {
       updatedCartData[existingProductIndex].quantity += quantity;
       localStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
-
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
@@ -192,11 +191,11 @@ function ProductSectionSecond() {
     return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
   }
 
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
     setMessage(event.target.value);
-    localStorage.setItem("message",JSON.stringify(event.target.value))
+    localStorage.setItem("message", JSON.stringify(event.target.value));
   };
 
   return (
@@ -207,74 +206,68 @@ function ProductSectionSecond() {
           <img src={product?.productImg[0]?.url} alt={product?.title} />
         </div>
         <div className={style.des_box}>
-        
           <h3>{product?.title}</h3>
           <h4>${product?.price}</h4>
-          <p>{renderHTML(product?.description)}</p>
           <ReactStars
             count={5}
             value={Math.ceil(reviews?.reviews?.averageRating)}
             size={20}
             activeColor="#ffd700"
           />
-          <br/>
-          
-
+          <br />
 
           <div className={style.extra_div_container}>
-                    <div>
-                    <div className={style.input_box}>
-            <input
-              type="number"
-              value={quantity}
-              onChange={handleQuantityChange}
-            />
-            <button onClick={handleAddToCart}>ADD TO CART →</button>
-          </div>
-          <br />
-          <p>
-            <strong>SKU:</strong>
-            {product?.sku}
-          </p>
-          <p>
-            <strong>CATEGORY : </strong> {product?.category}
-          </p>
-          <p>
-            <strong>TAGS : </strong>
-            {product?.tag}
-          </p>
-          <p className={style.icon_box}>
-            <strong>SHARE :</strong>
-            <span>
-              <FacebookRoundedIcon className={style.icon} />
-            </span>
-            <span>
-              <InstagramIcon className={style.icon} />
-            </span>
-            <span>
-              <LinkedInIcon className={style.icon} />
-            </span>
-            <span>
-              <TwitterIcon className={style.icon} />
-            </span>
-          </p>
-                    </div>
-         
-                    <div className={style.giftCardMessage}>
-      <label htmlFor="message" className={style.giftCardLabel}>Message On Gift Card</label>
-      <textarea
-        id="message"
-        className={style.giftCardTextarea}
-        placeholder="Message on Gift Card"
-        value={message}
-        onChange={handleChange}
-      />
-    </div>
-          </div>
-     
+            <div>
+              <div className={style.input_box}>
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                />
+                <button onClick={handleAddToCart}>ADD TO CART →</button>
+              </div>
+              <br />
+              <p>
+                <strong>SKU:</strong>
+                {product?.sku}
+              </p>
+              <p>
+                <strong>CATEGORY : </strong> {product?.category}
+              </p>
+              <p>
+                <strong>TAGS : </strong>
+                {product?.tag}
+              </p>
+              <p className={style.icon_box}>
+                <strong>SHARE :</strong>
+                <span>
+                  <FacebookRoundedIcon className={style.icon} />
+                </span>
+                <span>
+                  <InstagramIcon className={style.icon} />
+                </span>
+                <span>
+                  <LinkedInIcon className={style.icon} />
+                </span>
+                <span>
+                  <TwitterIcon className={style.icon} />
+                </span>
+              </p>
+            </div>
 
-
-   
+            <div className={style.giftCardMessage}>
+              <label htmlFor="message" className={style.giftCardLabel}>
+                Message On Gift Card
+              </label>
+              <textarea
+                id="message"
+                className={style.giftCardTextarea}
+                placeholder="Message on Gift Card"
+                value={message}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className={style.product_des_box}>
@@ -411,7 +404,7 @@ function ProductSectionSecond() {
         </div>
       </div>
       <div className={style.additional_box}>
-        <ColumnPageSectionSecond />
+        <ColumnPageSectionSecond  brand={product?.brand}/>
       </div>
     </div>
   );

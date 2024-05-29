@@ -4,19 +4,27 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getAllProduct } from "../../Apis/Apis";
 
-function ColumnPageSectionSecond() {
+function ColumnPageSectionSecond({ brand }) {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { category } = useParams();
 
+  console.log(brand, " getting brand here ");
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await getAllProduct(category);
+        let data = response?.data;
 
-        setProductData(response.data);
+        // Filter data by brand if brand prop is provided
+        if (brand) {
+          data = data?.filter((product) => product?.brand === brand);
+        }
+
+        setProductData(data);
       } catch (error) {
         setError("An error occurred while fetching data.");
       } finally {
@@ -25,7 +33,7 @@ function ColumnPageSectionSecond() {
     };
 
     fetchData();
-  }, [category]);
+  }, [category, brand]);
 
   const handleNavigate = (id) => {
     window.location.href = `/Product/${id}`;
@@ -33,7 +41,6 @@ function ColumnPageSectionSecond() {
 
   return (
     <div className={style.main}>
-
       {loading ? (
         <div>Loading...</div>
       ) : error ? (

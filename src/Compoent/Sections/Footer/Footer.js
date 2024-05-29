@@ -42,36 +42,48 @@ alert(response.message)
           <span className={style.no_code}>2 0 2 . 4 5 9 . 8 4 8 9</span>
         </div>
         <div className={style.icon_container}>
+        <a target="_blank"  href="https://www.facebook.com/LuxuryBubbleBasket">
           <span className={style.icon}>
             <div>
               <FacebookRoundedIcon className={style.instagramIcon} />
             </div>
           </span>
+          </a>
+          <a target="_blank"  href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg">
           <span className={style.icon}>
             <div>
               <YouTubeIcon className={style.instagramIcon} />
             </div>
           </span>
-          <span className={style.icon}>
+          </a>
+         <a target="_blank"  href="https://www.instagram.com/luxurybubblebasket/">
+         <span className={style.icon}>
             <div>
               <InstagramIcon className={style.instagramIcon} />
             </div>
           </span>
+          </a> 
+          <a target="_blank"  href="https://www.linkedin.com/company/luxurybubblebasket/">
           <span className={style.icon}>
             <div>
               <LinkedInIcon className={style.instagramIcon} />
             </div>
           </span>
+          </a>
+          <a target="_blank"  href="https://x.com/LuxuryBubbleBsk">
           <span className={style.icon}>
             <div>
               <TwitterIcon className={style.instagramIcon} />
             </div>
           </span>
+          </a>
+          <a target="_blank"  href="https://in.pinterest.com/luxurybubblebasket/">
           <span className={style.icon}>
             <div>
               <PinterestIcon className={style.instagramIcon} />
             </div>
           </span>
+          </a>
         </div>
       </div>
       <div className={style.img_box}>
