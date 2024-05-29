@@ -1,39 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import browserInfo from "@smartbear/browser-info";
+import { getCheckout } from "../../Apis/Apis";
 
 browserInfo.detect();
 
 const APPLICATION_ID = "sandbox-sq0idb-lhuzqiKR6VIBNoMFKNfjMw";
 const LOCATION_ID = "L40SZMBGKK61T";
 const isSafari = browserInfo.name === "Safari";
-
-const paymentRequestMock = {
-  countryCode: "US",
-  currencyCode: "USD",
-  lineItems: [
-    { amount: "1.23", label: "Cat", pending: false },
-    { amount: "4.56", label: "Dog", pending: false },
-  ],
-  requestBillingContact: true,
-  requestShippingContact: true,
-  shippingContact: {
-    addressLines: ["1 Test St", ""],
-    city: "San Francisco",
-    countryCode: "US",
-    email: "test@squareup.com",
-    familyName: "First Name",
-    givenName: "Last Name",
-    phone: "+12345678910",
-    postalCode: "11111",
-    state: "CA",
-  },
-  shippingOptions: [
-    { amount: "0.00", id: "FREE", label: "Free" },
-    { amount: "9.99", id: "XP", label: "Express" },
-  ],
-  total: { amount: "5.79", label: "Total", pending: false },
-};
 
 async function tokenizePaymentMethod(paymentMethod) {
   const tokenResult = await paymentMethod.tokenize();
@@ -54,6 +28,7 @@ function Payment() {
   const [applePay, setApplePay] = useState(undefined);
   const [googlePay, setGooglePay] = useState(undefined);
   const [isSubmitting, setSubmitting] = useState(false);
+  const [payableAmount, setPayableAmount] = useState("");
   const [validFields, setValidFields] = useState({
     cardNumber: false,
     cvv: false,
@@ -61,11 +36,14 @@ function Payment() {
     postalCode: false,
   });
   const isCardFieldsValid = Object.values(validFields).every((v) => v);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    handleGetCheckoutData();
     const existingScript = document.getElementById("webPayment");
-    if (existingScript) setLoaded(true);
-    else {
+    if (existingScript) {
+      setLoaded(true);
+    } else {
       const script = document.createElement("script");
       script.src = "https://sandbox.web.squarecdn.com/v1/square.js";
       script.id = "webPayment";
@@ -75,6 +53,15 @@ function Payment() {
       };
     }
   }, []);
+
+  const handleGetCheckoutData = async () => {
+    try {
+      const response = await getCheckout();
+      setPayableAmount(response?.data?.totalPrice);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (loaded && !squarePayments) {
@@ -87,32 +74,40 @@ function Payment() {
   }, [loaded, squarePayments]);
 
   const handlePaymentMethodSubmission = async (paymentMethod) => {
+    const getToken = () =>
+      document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+
+    const token = getToken();
+    const address = JSON.parse(localStorage.getItem("address")) || {};
+    const selectedAddress =
+      JSON.parse(localStorage.getItem("selectedAddress")) || {};
+    const ad_id = JSON.parse(localStorage.getItem("ad_id")) || false;
+    const id = ad_id ? selectedAddress?._id : address?._id;
+
     const headers = {
-      "x-auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjUzN2E1NTZmYWZjNTZlMDE0ZjA2NjQiLCJlbWFpbCI6InNhY2hpbnNpbmdoZ25jQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE2ODkzNjgyfQ.MPxOquogtTYCWLAcODyW-lFUjEzBKokaDyMwTjiOHSk", // Pass the token in the header
-      "Content-Type": "application/json", // Set content type to JSON
+      "x-auth-token": token,
+      "Content-Type": "application/json",
     };
+
     const isCard = paymentMethod?.element?.id === "card-container";
     if (isCard && !isCardFieldsValid) return;
     if (!isSubmitting) {
       if (isCard) setSubmitting(true);
       try {
         const token = await tokenizePaymentMethod(paymentMethod);
-        const newtoken = typeof token;
-        console.log(newtoken);
         await axios.post(
-          `https://wine-rnlq.onrender.com/user/order/create/6655b89c4455f0c7acd87601`,
+          `https://wine-rnlq.onrender.com/user/order/create/${id}`,
           {
             nonce: token,
             paymentMethod: {
               online: true,
             },
           },
-          {headers}
+          { headers }
         );
-        console.log("TOKEN", token);
         alert("Payment successful!");
       } catch (error) {
-        console.error("FAILURE", error);
+        console.error("Payment failed:", error);
         alert("Payment failed!");
       } finally {
         isCard && setSubmitting(false);
@@ -133,7 +128,11 @@ function Payment() {
   };
 
   const initializeApplePay = async () => {
-    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock);
+    const paymentRequest = squarePayments.paymentRequest({
+      countryCode: "US",
+      currencyCode: "USD",
+      total: { amount: payableAmount, label: "Total" },
+    });
     const aPay = await squarePayments.applePay(paymentRequest);
     setApplePay(aPay);
   };
@@ -148,22 +147,10 @@ function Payment() {
   };
 
   const initializeGooglePay = async () => {
-    const paymentRequest = squarePayments.paymentRequest(paymentRequestMock);
-
-    const paymentRequestUpdate = {
-      lineItems: paymentRequestMock.lineItems,
-      shippingOptions: paymentRequestMock.shippingOptions,
-      total: paymentRequestMock.total,
-    };
-
-    paymentRequest.addEventListener("shippingcontactchanged", (contact) => {
-      console.log({ contact });
-      return paymentRequestUpdate;
-    });
-
-    paymentRequest.addEventListener("shippingoptionchanged", (option) => {
-      console.log({ option });
-      return paymentRequestUpdate;
+    const paymentRequest = squarePayments.paymentRequest({
+      countryCode: "US",
+      currencyCode: "USD",
+      total: { amount: payableAmount, label: "Total" },
     });
 
     const gPay = await squarePayments.googlePay(paymentRequest);
@@ -183,6 +170,7 @@ function Payment() {
     cardObject.addEventListener("errorClassRemoved", handleCardEvents);
     cardObject.addEventListener("cardBrandChanged", handleCardEvents);
     cardObject.addEventListener("postalCodeChanged", handleCardEvents);
+    setLoading(false);
   };
 
   const initializeSquareCard = async () => {
@@ -232,55 +220,61 @@ function Payment() {
 
   return (
     <div className="App">
-      {isSafari && (
-        <div
-          id="apple-pay"
-          onClick={() => handlePaymentMethodSubmission(applePay)}
-          style={{
-            backgroundColor: "white",
-            padding: 11,
-            borderColor: "#bbb",
-            borderWidth: 1,
-            boxShadow: "0px 2px 4px #00000033",
-            fontFamily: "sans-serif",
-            fontSize: "0.9rem",
-            marginBottom: 16,
-            borderRadius: 3,
-            cursor: "pointer",
-          }}
-        >
-          <span>Buy with Apple Pay</span>
-        </div>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {isSafari && (
+            <div
+              id="apple-pay"
+              onClick={() => handlePaymentMethodSubmission(applePay)}
+              style={{
+                backgroundColor: "white",
+                padding: 11,
+                borderColor: "#bbb",
+                borderWidth: 1,
+                boxShadow: "0px 2px 4px #00000033",
+                fontFamily: "sans-serif",
+                fontSize: "0.9rem",
+                marginBottom: 16,
+                borderRadius: 3,
+                cursor: "pointer",
+              }}
+            >
+              <span>Buy with Apple Pay</span>
+            </div>
+          )}
+          <div style={{ marginBottom: 24 }}>
+            <div
+              id="google-pay"
+              onClick={() => handlePaymentMethodSubmission(googlePay)}
+            />
+          </div>
+          <form id="payment-form">
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div id="card-container"></div>
+              <button
+                id="card-button"
+                type="button"
+                style={cardButtonStyles}
+                disabled={!isCardFieldsValid || isSubmitting}
+                onClick={() => handlePaymentMethodSubmission(squareCard)}
+              >
+                {isSubmitting
+                  ? "Processing..."
+                  : `Pay $${payableAmount}`}
+              </button>
+            </div>
+          </form>
+          <div id="payment-status-container"></div>
+        </>
       )}
-      <div style={{ marginBottom: 24 }}>
-        <div
-          id="google-pay"
-          onClick={() => handlePaymentMethodSubmission(googlePay)}
-        />
-      </div>
-      <form id="payment-form">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div id="card-container"></div>
-          <button
-            id="card-button"
-            type="button"
-            style={cardButtonStyles}
-            disabled={!isCardFieldsValid || isSubmitting}
-            onClick={() => handlePaymentMethodSubmission(squareCard)}
-          >
-            {isSubmitting
-              ? "Processing..."
-              : `Pay ${paymentRequestMock.total.amount}`}
-          </button>
-        </div>
-      </form>
-      <div id="payment-status-container"></div>
     </div>
   );
 }

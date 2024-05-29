@@ -187,7 +187,8 @@ function CartPageSectionSecond() {
                       <img src={item?.productImg[0]?.url} alt={item?.title} />
                     </div>
                   )}
-                  {loginStatus ? item?.Product_category : item?.title}
+                  
+                  {loginStatus ? item?.Product_title : item?.title}
                 </div>
                 {loginStatus ? (
                   <div className={style.para}>$ {item?.Product_price}</div>
@@ -251,7 +252,7 @@ function CartPageSectionSecond() {
                       <div key={index} className={style.order_item}>
                         <div className={style.product_item}>
                           <span>
-                            {item?.Product_category} x{" "}
+                            {item?.Product_title} x{" "}
                             <strong>{item?.Product_quantity}</strong>
                           </span>
                           <span className={style.calculate_}>

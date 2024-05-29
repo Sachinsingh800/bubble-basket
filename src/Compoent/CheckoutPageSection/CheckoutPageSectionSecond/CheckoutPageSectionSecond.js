@@ -3,13 +3,19 @@ import style from "./CheckoutPageSectionSecond.module.css";
 import { nanoid } from "nanoid";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../../Recoil/Recoil";
-import { addAddress,  getAllAddress, getCheckout, orderPlace } from "../../Apis/Apis";
+import {
+  addAddress,
+  getAllAddress,
+  getCheckout,
+  orderPlace,
+} from "../../Apis/Apis";
 
 function CheckoutPageSectionSecond() {
   const [showCouponField, setShowCouponField] = useState(true);
   const [update, setUpdate] = useRecoilState(updateCart);
   const [couponError, setCouponError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [onlinepayment, setOnlinePayment] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,13 +33,15 @@ function CheckoutPageSectionSecond() {
     orderNotes: "",
     setAsDefault: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
   localStorage.setItem("checkoutStatus", JSON.stringify(false));
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
-  const selectedDataAddress = JSON.parse(localStorage.getItem("selectedAddress") || false)
-    useEffect(() => {
+  const selectedDataAddress = JSON.parse(
+    localStorage.getItem("selectedAddress") || false
+  );
+  useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
   }, []);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,54 +51,58 @@ function CheckoutPageSectionSecond() {
     }));
   };
 
-  const handleOrder = async (e) => {
-    e.preventDefault();
-    try {
-      const orderData = {
-        promoCode: "",
-        paymentMethod: {
-          cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: formData?.paymentMethod === "online", // Set payment method based on selection
-        },
-      };
+  const validateForm = () => {
+    // Regular expressions for validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const zipRegex = /^\d{5}$/;
+    const phoneRegex = /^\d{10}$/;
 
-      if (formData?.paymentMethod === "online") {
-        orderData.paymentInfo = {
-          id: "123456",
-          status: "successful",
-        };
+    // Check if any field is empty
+    for (const key in formData) {
+      if (formData[key] === "") {
+        alert(`Please fill in ${key}`);
+        return false;
       }
-
-      // Send order data to server
-      const response = await orderPlace(orderData);
-    } catch (error) {
-      // Handle unexpected errors
-      console.error("An error occurred during form submission:", error);
-      // Display an error message to the user
-      // alert("An unexpected error occurred. Please try again later.");
     }
+
+    // Validate email
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+
+    // Validate ZIP code
+    if (!zipRegex.test(formData.postcodeZIP)) {
+      alert("Please enter a valid ZIP code");
+      return false;
+    }
+
+    // Validate phone number
+    if (!phoneRegex.test(formData.phone)) {
+      alert("Please enter a valid phone number");
+      return false;
+    }
+
+    return true;
   };
-  const afterAddresshandleOrder = async () => {
+
+  const handleOrder = async () => {
+    if (!validateForm()) return;
 
     try {
       const orderData = {
         promoCode: "",
         paymentMethod: {
           cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: formData?.paymentMethod === "online", // Set payment method based on selection
+          online: onlinepayment, // Set payment method based on selection
         },
       };
-
-      if (formData?.paymentMethod === "online") {
-        orderData.paymentInfo = {
-          id: "123456",
-          status: "successful",
-        };
-      }
-
       // Send order data to server
+      setIsLoading(true);
       const response = await orderPlace(orderData);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       // Handle unexpected errors
       console.error("An error occurred during form submission:", error);
       // Display an error message to the user
@@ -100,17 +112,25 @@ function CheckoutPageSectionSecond() {
 
   const handleSubmitAddress = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     try {
+      setIsLoading(true);
       const response = await addAddress(formData);
-      console.log("Response from addAddress:", response.data); // Log the entire response object
+      setIsLoading(false);
+      console.log("Response from addAddress:", response);
+      if (response.status) {
+        if (onlinepayment) {
+          window.location.href = "/Payment";
+        } else {
+          handleOrder();
+        }
+      }
     } catch (error) {
+      setIsLoading(false);
       // Handle unexpected errors
       console.error("An error occurred during form submission:", error);
       // Display an error message to the user
-      // alert("An unexpected error occurred. Please try again later.");
-      return;
-    } finally {
-      afterAddresshandleOrder()
     }
   };
 
@@ -144,7 +164,7 @@ function CheckoutPageSectionSecond() {
   };
 
   useEffect(() => {
-    handleUpdateAddress()
+    handleUpdateAddress();
     if (isChecked) {
       const selectedAddress = JSON.parse(
         localStorage.getItem("selectedAddress")
@@ -175,9 +195,13 @@ function CheckoutPageSectionSecond() {
     }
   }, [isChecked]);
 
+  const handleOnlinePayment = () => {
+    setOnlinePayment(true);
+  };
+
   return (
     <div className={style.main}>
-      <form  className={style.form}>
+      <form className={style.form}>
         <div className={style.coupon_box}>
           <span>Have a coupon? </span>
           <span onClick={handleShowCouponField}>
@@ -216,17 +240,17 @@ function CheckoutPageSectionSecond() {
         <div className={style.user_detail_container}>
           <div className={style.billing_details}>
             <h4>BILLING DETAILS</h4>
-            {selectedDataAddress  &&
-                       <div className={style.add_select}>
-                       <label>Default Address</label>
-                       <input
-                         type="radio"
-                         checked={isChecked}
-                         onChange={handleSelectAddress}
-                       />
-                     </div>
-            }
- 
+            {selectedDataAddress && (
+              <div className={style.add_select}>
+                <label>Default Address</label>
+                <input
+                  type="radio"
+                  checked={isChecked}
+                  onChange={handleSelectAddress}
+                />
+              </div>
+            )}
+
             <div className={style.form_group}>
               <label htmlFor="firstName">First name *</label>
               <input
@@ -403,28 +427,20 @@ function CheckoutPageSectionSecond() {
                     {item?.Product_category} x{" "}
                     <strong>{item?.Product_quantity}</strong>
                   </span>
-                  <span className={style.calculate_}>
-                    ${item?.productTotal}
-                  </span>
+                  <span className={style.calculate_}>${item?.productTotal}</span>
                 </div>
               </div>
             ))}
             <div className={style.order_item}>
               <div className={style.product_item}>
                 <span>SUBTOTAL</span>
-                <span className={style.calculate_}>
-                  ${cartData?.allProductTotal}
-                </span>
+                <span className={style.calculate_}>${cartData?.allProductTotal}</span>
               </div>
             </div>
             <div className={style.order_item}>
               <div className={style.product_item}>
-                <span>
-                  Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
-                </span>
-                <span className={style.calculate_}>
-                  ${cartData?.totalShipping}
-                </span>
+                <span>Delivery Fee Per Item $20(Delivery May take 2 to 4 days):</span>
+                <span className={style.calculate_}>${cartData?.totalShipping}</span>
               </div>
             </div>
             <div className={style.order_item}>
@@ -436,12 +452,8 @@ function CheckoutPageSectionSecond() {
             {cartData?.promoDiscount && (
               <div className={style.order_item}>
                 <div className={style.product_item}>
-                  <span>
-                    Coupon Discount({cartData?.couponDiscountPercent}%):
-                  </span>
-                  <span className={style.calculate_}>
-                    ${cartData?.promoDiscount}
-                  </span>
+                  <span>Coupon Discount({cartData?.couponDiscountPercent}%):</span>
+                  <span className={style.calculate_}>${cartData?.promoDiscount}</span>
                 </div>
               </div>
             )}
@@ -486,19 +498,25 @@ function CheckoutPageSectionSecond() {
             <input
               type="radio"
               name="paymentMethod"
-              value="online"
-              checked={formData.paymentMethod === "online"}
-              onChange={handleChange}
+              onChange={handleOnlinePayment}
             />
             Online Payment
           </label>
         </div>
         <br />
-        {isChecked ?  <button onClick={handleOrder }>PLACE ORDER →</button> :  <button onClick={handleSubmitAddress}>PLACE ORDER →</button> }
-
+        {isChecked ? (
+          <button onClick={handleOrder} disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'PLACE ORDER →'}
+          </button>
+        ) : (
+          <button onClick={handleSubmitAddress} disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'PLACE ORDER →'}
+          </button>
+        )}
       </form>
     </div>
   );
 }
 
 export default CheckoutPageSectionSecond;
+

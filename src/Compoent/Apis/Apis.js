@@ -442,9 +442,8 @@ export const getAllReview = async (id) => {
 
 // addAddress
 
+
 export const addAddress = async (formData) => {
-  // Function to retrieve token from cookies
-  // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -454,7 +453,6 @@ export const addAddress = async (formData) => {
 
   // Retrieve token
   const token = getToken();
-
   try {
     const headers = {
       "x-auth-token": token, // Pass the token in the header
@@ -465,29 +463,16 @@ export const addAddress = async (formData) => {
       formData,
       { headers }
     );
-
+    console.log(response, "Response from axios");
     const { status, message, data } = response.data;
     localStorage.setItem("address", JSON.stringify(data));
-
-    // Handle response data as needed
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      // alert(errorMessage);
-      // Log the error message as a string
-      alert(errorMessage);
-      console.error("Axios Error:", errorMessage);
-      // window.location.href = "/Login";
-    } else {
-      // Network error (e.g., no internet connection)
-      // alert("Something went wrong");
-      console.error("Network Error:", error.message);
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
 
 // getAllAddress
 
@@ -547,7 +532,7 @@ export const getAllCategory = async () => {
   }
 };
 
-// getAllCategory
+// getTop1Category
 
 export const getTop1Category = async (cate) => {
   function getToken() {
@@ -942,8 +927,13 @@ export const getAllBrandProduct = async (category) => {
   }
 };
 
+
+
+
+
+//getCheckout 
+
 export const getCheckout = async (promoCode) => {
-  // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -951,10 +941,9 @@ export const getCheckout = async (promoCode) => {
     );
   }
 
+  // Retrieve token
+  const token = getToken();
   try {
-    // Retrieve token
-    const token = getToken();
-
     const headers = {
       "x-auth-token": token, // Pass the token in the header
       "Content-Type": "application/json", // Set content type to JSON
@@ -967,6 +956,7 @@ export const getCheckout = async (promoCode) => {
 
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
+    console.log(response, "Response from axios");
     if (status) {
       localStorage.setItem(
         "cartData",
@@ -982,18 +972,15 @@ export const getCheckout = async (promoCode) => {
         window.location.href = "/CheckoutPage";
       } else {
       }
-      const login = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
     }
+    // Directly return the data from axios response
+    return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const { response } = error;
-      const errorMessage = response.data.message;
-      // alert(errorMessage);
-    } else {
-      console.error("Network Error:", error.message);
-    }
+    console.error("Error in getAllCategory function:", error);
   }
 };
+
+
 
 // getAllBlog
 
