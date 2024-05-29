@@ -289,14 +289,6 @@ function ProductSectionSecond() {
           {showDescription && (
             <div className={style.description_box}>
               <p>{product?.productBlog?.intro}</p>
-              {/* <h4>ADDITIONAL INFORMATION</h4>
-              <p>
-                <strong>Measure Unit</strong>{" "}
-                <span>{product?.measureUnit}</span>
-              </p>
-              <p>
-                <strong>DIMENSIONS</strong> {product?.dimension}
-              </p> */}
             </div>
           )}
           {showExprienceofTesting && (
