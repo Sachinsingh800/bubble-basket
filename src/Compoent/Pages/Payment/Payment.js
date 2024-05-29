@@ -143,6 +143,7 @@ function Payment() {
         if(response.status){
           alert("Payment successful!");
           localStorage.setItem("orderData", JSON.stringify(response.data));
+          localStorage.removeItem("cartData");
           window.location.href = "/ThankYouPage";
         }
       } catch (error) {
