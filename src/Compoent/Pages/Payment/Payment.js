@@ -117,8 +117,7 @@ function Payment() {
     }
 
     const token = getToken();
-    const ad_id = JSON.parse(localStorage.getItem("ad_id")) || false;
-    const id = ad_id ? address?._id : address?._id;
+    const id =  address?._id;
     const headers = {
       "x-auth-token": token,
       "Content-Type": "application/json",
@@ -131,7 +130,7 @@ function Payment() {
       if (isCard) setSubmitting(true);
       try {
         const token = await tokenizePaymentMethod(paymentMethod);
-        await axios.post(
+      const response=  await axios.post(
           `https://wine-rnlq.onrender.com/user/order/create/${id}`,
           {
             nonce: token,
@@ -141,8 +140,11 @@ function Payment() {
           },
           { headers }
         );
-        console.log("TOKEN", token);
-        alert("Payment successful!");
+        if(response.status){
+          alert("Payment successful!");
+          localStorage.setItem("orderData", JSON.stringify(response.data));
+          window.location.href = "/ThankYouPage";
+        }
       } catch (error) {
         console.error("FAILURE", error);
         alert("Payment failed!");

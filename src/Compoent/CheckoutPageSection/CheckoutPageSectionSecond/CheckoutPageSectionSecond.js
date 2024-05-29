@@ -37,7 +37,7 @@ function CheckoutPageSectionSecond() {
   localStorage.setItem("checkoutStatus", JSON.stringify(false));
   const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(
-    localStorage.getItem("selectedAddress") || false
+    localStorage.getItem("address") || false
   );
   useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
@@ -167,7 +167,7 @@ function CheckoutPageSectionSecond() {
     handleUpdateAddress();
     if (isChecked) {
       const selectedAddress = JSON.parse(
-        localStorage.getItem("selectedAddress")
+        localStorage.getItem("address")
       );
       setFormData(selectedAddress);
       localStorage.setItem("ad_id", JSON.stringify(true));

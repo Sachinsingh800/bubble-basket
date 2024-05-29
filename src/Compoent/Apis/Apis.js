@@ -673,11 +673,7 @@ export const orderPlace = async (orderData) => {
   // Retrieve token
   const token = getToken();
   const address = JSON.parse(localStorage.getItem("address")) || {};
-  const selectedAddress =
-    JSON.parse(localStorage.getItem("selectedAddress")) || {};
-  const ad_id = JSON.parse(localStorage.getItem("ad_id")) || false;
-
-  const id = ad_id ? selectedAddress?._id : address?._id;
+  const id =address?._id;
 
   try {
     const headers = {

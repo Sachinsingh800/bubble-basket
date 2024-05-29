@@ -69,7 +69,7 @@ function UpdateAddressPageSection() {
     setAddressId(selectedAddress._id);
 
     // Update localStorage with the selected address
-    localStorage.setItem("selectedAddress", JSON.stringify(selectedAddress));
+    localStorage.setItem("address", JSON.stringify(selectedAddress));
 
     // Update allAddress state to mark the selected address as checked
     const updatedAllAddress = allAddress.map((item) => ({
