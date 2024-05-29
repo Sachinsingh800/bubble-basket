@@ -10,8 +10,7 @@
 }
 
 .background {
-  height: 100rem;
-  width: 100rem;
+  height: 70rem;
   filter: brightness(40%);
   margin-top: -50rem;
   z-index: 99;
@@ -89,7 +88,7 @@
   }
   .background {
     height: 200%;
-    width: 110%;
+    width: 140%;
     filter: brightness(40%);
     margin-top: -150rem;
     background-size: cover;

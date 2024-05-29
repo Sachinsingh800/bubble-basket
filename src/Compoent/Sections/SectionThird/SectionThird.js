@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
 import textfile from "../../Images/text.png";
-import backgroundImage from "../../Images/banner-wine-festival-glass-wine-distillery-old-wooden-table-with-bunches.jpg";
+import backgroundImage from "../../Images/1500X1000 - 1.jpg";
 
 function SectionThird() {
   const [scrollPosition, setScrollPosition] = useState(0);

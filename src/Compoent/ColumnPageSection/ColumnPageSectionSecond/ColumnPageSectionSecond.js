@@ -24,9 +24,8 @@ function ColumnPageSectionSecond({ singleProductData }) {
 
           // If only one product is returned, further filter by price
           if (data?.length === 1) {
-            const product = data[0];
             data = response?.data?.filter(
-              (item) => item?.price === product?.price
+              (item) => item?.price === singleProductData[0]?.price
             );
           }
         }
