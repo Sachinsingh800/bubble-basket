@@ -16,6 +16,7 @@ function CheckoutPageSectionSecond() {
   const [couponError, setCouponError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [onlinepayment, setOnlinePayment] = useState(false);
+  console.log(onlinepayment,"ye kya raadas",isChecked)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -94,7 +95,7 @@ function CheckoutPageSectionSecond() {
         promoCode: "",
         paymentMethod: {
           cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: onlinepayment, // Set payment method based on selection
+          online: false, // Set payment method based on selection
         },
       };
       // Send order data to server
@@ -116,16 +117,26 @@ function CheckoutPageSectionSecond() {
 
     try {
       setIsLoading(true);
-      const response = await addAddress(formData);
-      setIsLoading(false);
-      console.log("Response from addAddress:", response);
-      if (response.status) {
+      if(isChecked){
         if (onlinepayment) {
           window.location.href = "/Payment";
-        } else {
+        } else{
           handleOrder();
         }
+      }else{
+        const response = await addAddress(formData);
+        setIsLoading(false);
+        console.log("Response from addAddress:", response);
+        if (response.status) {
+          if (onlinepayment) {
+            window.location.href = "/Payment";
+          } else {
+            handleOrder();
+          }
+        }
       }
+
+  
     } catch (error) {
       setIsLoading(false);
       // Handle unexpected errors
@@ -504,15 +515,9 @@ function CheckoutPageSectionSecond() {
           </label>
         </div>
         <br />
-        {isChecked ? (
-          <button onClick={handleOrder} disabled={isLoading}>
+        <button onClick={handleSubmitAddress} disabled={isLoading}>
             {isLoading ? 'Loading...' : 'PLACE ORDER →'}
           </button>
-        ) : (
-          <button onClick={handleSubmitAddress} disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'PLACE ORDER →'}
-          </button>
-        )}
       </form>
     </div>
   );
