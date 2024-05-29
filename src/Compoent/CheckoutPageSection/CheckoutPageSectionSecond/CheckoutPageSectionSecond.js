@@ -94,7 +94,6 @@ function CheckoutPageSectionSecond() {
         promoCode: "",
         paymentMethod: {
           cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: onlinepayment, // Set payment method based on selection
         },
       };
       // Send order data to server
@@ -119,8 +118,8 @@ function CheckoutPageSectionSecond() {
       const response = await addAddress(formData);
       setIsLoading(false);
       console.log("Response from addAddress:", response);
-      if (response.status) {
-        if (onlinepayment) {
+      if (response.status || isChecked) {
+        if (onlinepayment ) {
           window.location.href = "/Payment";
         } else {
           handleOrder();
@@ -170,7 +169,6 @@ function CheckoutPageSectionSecond() {
         localStorage.getItem("address")
       );
       setFormData(selectedAddress);
-      localStorage.setItem("ad_id", JSON.stringify(true));
     } else {
       // Handle the case when the default address is unchecked
       // For example, you may want to clear the form data
