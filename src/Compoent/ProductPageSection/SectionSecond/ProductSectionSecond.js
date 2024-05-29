@@ -404,7 +404,7 @@ function ProductSectionSecond() {
         </div>
       </div>
       <div className={style.additional_box}>
-        <ColumnPageSectionSecond  brand={product?.brand}/>
+        <ColumnPageSectionSecond  singleProductData={product}/>
       </div>
     </div>
   );

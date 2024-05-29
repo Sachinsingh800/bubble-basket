@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import style from "./ColumnPageSectionSecond.module.css";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getAllProduct } from "../../Apis/Apis";
 
-function ColumnPageSectionSecond({ brand }) {
+function ColumnPageSectionSecond({ singleProductData }) {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { category } = useParams();
-
-  console.log(brand, " getting brand here ");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +16,19 @@ function ColumnPageSectionSecond({ brand }) {
         const response = await getAllProduct(category);
         let data = response?.data;
 
-        // Filter data by brand if brand prop is provided
-        if (brand) {
-          data = data?.filter((product) => product?.brand === brand);
+        // Filter data by brand if brand is provided
+        if (singleProductData?.brand) {
+          data = data?.filter(
+            (product) => product?.brand === singleProductData?.brand
+          );
+
+          // If only one product is returned, further filter by price
+          if (data?.length === 1) {
+            const product = data[0];
+            data = response?.data?.filter(
+              (item) => item?.price === product?.price
+            );
+          }
         }
 
         setProductData(data);
@@ -33,7 +40,7 @@ function ColumnPageSectionSecond({ brand }) {
     };
 
     fetchData();
-  }, [category, brand]);
+  }, [category, singleProductData]);
 
   const handleNavigate = (id) => {
     window.location.href = `/Product/${id}`;
