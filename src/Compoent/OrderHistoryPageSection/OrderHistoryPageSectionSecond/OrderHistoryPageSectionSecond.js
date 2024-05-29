@@ -34,20 +34,22 @@ function OrderHistoryPageSectionSecond() {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr key={order._id}>
-              <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+            <tr key={order?._id}>
+              <td>{new Date(order?.orderDate).toLocaleDateString()}</td>
               <td>
                 <div className={style.img_box}>
                   <img
-                    src={order.productImg.url}
+                    src={order?.items[0]?.ProductImg} // Assuming the first item represents the order image
                     alt="Product"
                   />
                 </div>
               </td>
-              <td>${order.totalPrice}</td>
-              <td>{order.totalItems}</td>
-              <td>${order.totalPrice}</td>
-              <td><a href={`/OrderDetail/${order._id}`}>view</a></td>
+              <td>${order?.totalPrice.toFixed(2)}</td>
+              <td>{order?.totalItems}</td>
+              <td>${order?.totalPrice.toFixed(2)}</td>
+              <td>
+                <a href={`/OrderDetail/${order?._id}`}>view</a>
+              </td>
             </tr>
           ))}
         </tbody>

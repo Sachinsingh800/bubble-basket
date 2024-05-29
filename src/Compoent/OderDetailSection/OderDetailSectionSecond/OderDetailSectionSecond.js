@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import style from "./OderDetailSectionSecond.module.css";
 import { useParams } from "react-router-dom";
+import style from "./OderDetailSectionSecond.module.css";
 import { getAllOrdersHistory } from "../../Apis/Apis";
 
 function OderDetailSectionSecond() {
   const { id } = useParams();
-  const [orderData, setOrders] = useState([]);
+  const [orderData, setOrderData] = useState(null);
 
   useEffect(() => {
     handleAllOrders();
@@ -14,58 +14,65 @@ function OderDetailSectionSecond() {
   const handleAllOrders = async () => {
     try {
       const response = await getAllOrdersHistory();
-      setOrders(response.data);
+      const selectedOrder = response.data.find((item) => item._id === id);
+      setOrderData(selectedOrder);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   };
 
-  const selectedOrder = orderData.find((item) => item._id === id);
-  
-  if (!selectedOrder) {
+  if (!orderData) {
     return <div className={style.main}>Loading...</div>;
   }
 
+  function renderHTML(htmlString) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  }
   return (
     <div className={style.main}>
       <h2>Order Detail</h2>
       <div className={style.billing_info_box}>
         <div className={style.order_info}>
           <h3>Order Information</h3>
-          <p><strong>Order ID:</strong> {selectedOrder.orderId}</p>
-          <p><strong>Order Date:</strong> {new Date(selectedOrder.orderDate).toLocaleDateString()}</p>
-          <p><strong>Customer Name:</strong> {selectedOrder.shippingInfo.firstName} {selectedOrder.shippingInfo.lastName}</p>
-          <p><strong>Email:</strong> {selectedOrder.shippingInfo.email}</p>
-          <p><strong>Phone:</strong> {selectedOrder.shippingInfo.phone}</p>
-          <p><strong>Payment Method:</strong> {selectedOrder.paymentMethod.cod ? 'Cash on Delivery' : 'Online Payment'}</p>
+          <p><strong>Order ID:</strong> {orderData?.orderId}</p>
+          <p><strong>Order Date:</strong> {new Date(orderData?.orderDate).toLocaleDateString()}</p>
+          <p><strong>Customer Name:</strong> {orderData?.shippingInfo?.firstName} {orderData?.shippingInfo?.lastName}</p>
+          <p><strong>Email:</strong> {orderData?.shippingInfo?.email}</p>
+          <p><strong>Phone:</strong> {orderData?.shippingInfo?.phone}</p>
+          <p><strong>Payment Method:</strong> {orderData?.paymentMethod?.cod ? 'Cash on Delivery' : 'Online Payment'}</p>
         </div>
         <div className={style.billing_info}>
           <h3>Billing Information</h3>
-          <p><strong>Street Address:</strong> {selectedOrder.shippingInfo.streetAddress.houseNoAndStreetName}</p>
-          <p><strong>Apartment:</strong> {selectedOrder.shippingInfo.streetAddress.apartment}</p>
-          <p><strong>City:</strong> {selectedOrder.shippingInfo.townCity}</p>
-          <p><strong>State/County:</strong> {selectedOrder.shippingInfo.stateCounty}</p>
-          <p><strong>Postcode:</strong> {selectedOrder.shippingInfo.postcodeZIP}</p>
-          <p><strong>Country:</strong> {selectedOrder.shippingInfo.country}</p>
+          <p><strong>Street Address:</strong> {orderData?.shippingInfo?.streetAddress?.houseNoAndStreetName}</p>
+          <p><strong>Apartment:</strong> {orderData?.shippingInfo?.streetAddress?.apartment}</p>
+          <p><strong>City:</strong> {orderData?.shippingInfo?.townCity}</p>
+          <p><strong>State/County:</strong> {orderData?.shippingInfo?.stateCounty}</p>
+          <p><strong>Postcode:</strong> {orderData?.shippingInfo?.postcodeZIP}</p>
+          <p><strong>Country:</strong> {orderData?.shippingInfo?.country}</p>
         </div>
       </div>
 
       <h3>Product Information</h3>
-      <div className={style.product_info}>
-        <div className={style.product_item}>
-          <div className={style.img_box}>
-            <img src={selectedOrder.productImg.url} alt="Product" />
-          </div>
-          <div className={style.details}>
-            <p><strong>Price:</strong> ${selectedOrder.totalPrice}</p>
-            <p><strong>Total Items:</strong> {selectedOrder.totalItems}</p>
+      {orderData.items.map((item) => (
+        <div key={item?._id} className={style.product_info}>
+          <div className={style.product_item}>
+            <div className={style.img_box}>
+              <img src={item?.ProductImg} alt="Product" />
+            </div>
+            <div className={style.details}>
+              <p><strong>Product Title:</strong> {item?.Product_title}</p>
+              <p><strong>Description:</strong> {renderHTML(item?.Product_description)}</p>
+              <p><strong>Category:</strong> {item?.Product_category}</p>
+              <p><strong>Price:</strong> ${item?.Product_price}</p>
+              <p><strong>Quantity:</strong> {item?.Product_quantity}</p>
+              <p><strong>Total Price:</strong> ${item?.Product_totalPrice}</p>
+            </div>
           </div>
         </div>
-      </div>
-      
+      ))}
       <h3>Additional Notes</h3>
       <div className={style.additional_notes}>
-        <p>{selectedOrder.shippingInfo.orderNotes || 'No additional notes provided.'}</p>
+        <p>{orderData?.shippingInfo?.orderNotes || 'No additional notes provided.'}</p>
       </div>
     </div>
   );
