@@ -12,21 +12,24 @@ function ColumnPageSectionSecond({ singleProductData }) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+
       try {
         const response = await getAllProduct(category);
         let data = response?.data;
 
         // Filter data by brand if brand is provided
         if (singleProductData?.brand) {
-          data = data?.filter(
+          const brandFilteredData = data?.filter(
             (product) => product?.brand === singleProductData?.brand
           );
 
-          // If only one product is returned, further filter by price
-          if (data?.length === 1) {
-            data = response?.data?.filter(
-              (item) => item?.price === singleProductData[0]?.price
+          // If only one product is found, filter by price from all products
+          if (brandFilteredData?.length === 1) {
+            data = data?.filter(
+              (product) =>product?.price  === singleProductData?.price
             );
+          } else {
+            data = brandFilteredData;
           }
         }
 

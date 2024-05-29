@@ -209,7 +209,7 @@ height: 12rem;
     justify-content: center;
     font-family: "Allura", cursive;
 }
-.icon{
+.instagramIcon{
     font-size: .8rem!important;
     display: flex;
 flex-direction: column;
@@ -301,7 +301,7 @@ justify-content: center;
       margin: 1rem;
       border: 1px #7B0128 solid;
     }
-    .icon{
+    .instagramIcon{
         font-size: 8px!important;
     }
 

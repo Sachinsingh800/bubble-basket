@@ -17,6 +17,8 @@ import ReactStars from "react-rating-stars-component";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
 import ProductDescriptionBlog from "../../ProductDescriptionBlog/ProductDescriptionBlog";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -120,7 +122,7 @@ function ProductSectionSecond() {
   };
 
   const handleToggleDescription = () => {
-    setShowDescription(!showDescription);
+    setShowDescription(true);
     setShowReview(false);
     setShowOverview(false);
     setShowExprienceofTesting(false);
@@ -128,7 +130,7 @@ function ProductSectionSecond() {
   };
 
   const handleToggleReview = () => {
-    setShowReview(!showReview);
+    setShowReview(true);
     setShowDescription(false);
     setShowOverview(false);
     setShowExprienceofTesting(false);
@@ -136,14 +138,14 @@ function ProductSectionSecond() {
   };
 
   const handleToggleOverview = () => {
-    setShowOverview(!showOverview);
+    setShowOverview(true);
     setShowDescription(false);
     setShowReview(false);
     setShowExprienceofTesting(false);
     setShowComparison(false);
   };
   const handleToggleExprienceofTesting = () => {
-    setShowExprienceofTesting(!showExprienceofTesting);
+    setShowExprienceofTesting(true);
     setShowDescription(false);
     setShowReview(false);
     setShowComparison(false);
@@ -151,7 +153,7 @@ function ProductSectionSecond() {
   };
 
   const handleToggleComparison = () => {
-    setShowComparison(!showComparison);
+    setShowComparison(true);
     setShowDescription(false);
     setShowReview(false);
     setShowExprienceofTesting(false);
@@ -240,18 +242,48 @@ function ProductSectionSecond() {
               </p>
               <p className={style.icon_box}>
                 <strong>SHARE :</strong>
-                <span>
-                  <FacebookRoundedIcon className={style.icon} />
-                </span>
-                <span>
-                  <InstagramIcon className={style.icon} />
-                </span>
-                <span>
-                  <LinkedInIcon className={style.icon} />
-                </span>
-                <span>
-                  <TwitterIcon className={style.icon} />
-                </span>
+                <a target="_blank"  href="https://www.facebook.com/LuxuryBubbleBasket">
+          <span className={style.icon}>
+            <div>
+              <FacebookRoundedIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a>
+          <a target="_blank"  href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg">
+          <span className={style.icon}>
+            <div>
+              <YouTubeIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a>
+         <a target="_blank"  href="https://www.instagram.com/luxurybubblebasket/">
+         <span className={style.icon}>
+            <div>
+              <InstagramIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a> 
+          <a target="_blank"  href="https://www.linkedin.com/company/luxurybubblebasket/">
+          <span className={style.icon}>
+            <div>
+              <LinkedInIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a>
+          <a target="_blank"  href="https://x.com/LuxuryBubbleBsk">
+          <span className={style.icon}>
+            <div>
+              <TwitterIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a>
+          <a target="_blank"  href="https://in.pinterest.com/luxurybubblebasket/">
+          <span className={style.icon}>
+            <div>
+              <PinterestIcon className={style.instagramIcon} />
+            </div>
+          </span>
+          </a>
               </p>
             </div>
 
