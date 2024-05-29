@@ -43,7 +43,8 @@ function Payment() {
     const handlegetCheckoutData = async () => {
       try {
         const response = await getCheckout();
-        setCheckoutData(response?.data?.data || {});
+        setCheckoutData(response?.data || {});
+        console.log(response?.data,"checl out data")
       } catch (error) {
         console.log(error);
       }
