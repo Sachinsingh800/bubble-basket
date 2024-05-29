@@ -224,7 +224,7 @@ function Payment() {
         <div>Loading...</div>
       ) : (
         <>
-          {isSafari && (
+          {isSafari && applePay && (
             <div
               id="apple-pay"
               onClick={() => handlePaymentMethodSubmission(applePay)}
