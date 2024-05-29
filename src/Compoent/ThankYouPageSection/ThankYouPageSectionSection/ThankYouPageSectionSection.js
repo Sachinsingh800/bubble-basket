@@ -2,8 +2,12 @@ import React from "react";
 import style from "./ThankYouPageSectionSection.module.css";
 
 function ThankYouPageSectionSection() {
-  const orderDetail = JSON.parse(localStorage.getItem("orderData"));
+  // Get the order data from local storage
+  const checkPayment = JSON.parse(localStorage.getItem("orderData"));
+  // Check if payment method is online or cash on delivery and set order detail accordingly
+  const orderDetail = checkPayment?.status ? checkPayment.data : checkPayment ;
 
+  // Function to handle returning to home and clearing local storage
   const handleReturnHome = () => {
     localStorage.removeItem("orderData");
     localStorage.removeItem("address");
@@ -28,11 +32,9 @@ function ThankYouPageSectionSection() {
         </div>
         <div>
           <strong>PAYMENT METHOD:</strong>{" "}
-          {orderDetail.paymentMethod.cod
-            ? "Cash on Delivery"
-            : "Online Payment"}
+          {orderDetail.paymentMethod ? "Online Payment" : "Cash on Delivery"}
         </div>
-        <p>Pay with cash upon delivery.</p>
+        {orderDetail.paymentMethod && <p>Pay with cash upon delivery.</p>}
       </div>
       <br />
       <br />
@@ -46,7 +48,7 @@ function ThankYouPageSectionSection() {
             </div>
           </div>
 
-          {orderDetail.items.map((item, index) => (
+          {orderDetail.items && orderDetail.items.map((item, index) => (
             <div key={index} className={style.order_item}>
               <div className={style.product_item}>
                 <span>
