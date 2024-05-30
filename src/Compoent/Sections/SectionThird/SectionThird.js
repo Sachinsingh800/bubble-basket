@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
 import textfile from "../../Images/text.png";
-import backgroundImage from "../../Images/Background - 1500X1000.png";
+import backgroundImage from "../../Images/Background - 1600X897.png";
 import backgroundImageMob from "../../Images/mobile banner.png";
+import leaf1 from "../../Images/third banner leaf-1.png"
+import leaf2 from "../../Images/third banner leaf-2.png"
+import leaf1mob from "../../Images/third banner mob Leaf - 1.png"
 
 function SectionThird() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -21,6 +24,15 @@ function SectionThird() {
 
   return (
     <div className={style.main}>
+      <div className={style.leaf1mob}>
+        <img src={leaf1mob} alt="leaf1" />
+      </div>
+      <div className={style.leaf1}>
+        <img src={leaf1} alt="leaf1" />
+      </div>
+      <div className={style.leaf2}>
+        <img src={leaf2} alt="leaf1" />
+      </div>
       <div
         className={style.background}
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here

@@ -73,12 +73,10 @@
   width: 30rem;
 }
 .background {
-  height: 70rem;
   filter: brightness(70%);
-  margin-top: -15rem;
+  margin-top: -26rem;
 }
 .background img {
-  height: 100%;
   width: 100%;
 }
 
@@ -117,7 +115,56 @@
 .bgImagemob{
   display: none;
 }
+.leaf1{
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  height: 15rem;
+}
+.leaf1 img{
+  height: 100%;
+  width: 100%;
+}
+.leaf2{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  height: 10rem;
+}
+.leaf2 img{
+  height: 100%;
+  width: 100%;
+}
+.leaf1mob{
+  display: none;
+}
 @media screen and (max-width: 500px) {
+  .leaf1{
+    display: none;
+  }
+  .leaf1mob{
+    display: unset;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    height: 20rem;
+    width: 20rem;
+    overflow: hidden;
+  }
+  .leaf1mob img{
+    height: 100%;
+    width: 100%;
+    transform: rotate(-30deg);
+    margin-top: -4rem;
+    margin-left: 3rem;
+  }
+
+  .leaf2{
+    display: none;
+  }
   .bgImage{
     display: none;
   }
