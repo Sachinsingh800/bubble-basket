@@ -435,7 +435,7 @@ function CheckoutPageSectionSecond() {
               <div key={index} className={style.order_item}>
                 <div className={style.product_item}>
                   <span>
-                    {item?.Product_category} x{" "}
+                    {item?.Product_title} x{" "}
                     <strong>{item?.Product_quantity}</strong>
                   </span>
                   <span className={style.calculate_}>${item?.productTotal}</span>
