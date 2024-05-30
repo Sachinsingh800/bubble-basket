@@ -23,10 +23,11 @@
     justify-content: center;
     height: 30rem;
     border-right: 1px  #7B0128 solid;
+    overflow: hidden;
 
 }
 .img_box img{
-    height: 100%;
+    height: 30rem;
 
 
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import style from "./ProductSectionSecond.module.css";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -19,6 +19,9 @@ import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSe
 import ProductDescriptionBlog from "../../ProductDescriptionBlog/ProductDescriptionBlog";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import Zoom from "react-medium-image-zoom";
+import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
+import "react-medium-image-zoom/dist/styles.css";
 
 function ProductSectionSecond() {
   const [data, setData] = useState([]);
@@ -39,6 +42,11 @@ function ProductSectionSecond() {
   const [updateReview, setUpdateReview] = useState(0);
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false)
+
+  const handleZoomChange = useCallback(shouldZoom => {
+    setIsZoomed(shouldZoom)
+  }, [])
 
   useEffect(() => {
     handleProductData();
@@ -81,7 +89,6 @@ function ProductSectionSecond() {
 
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
-
 
   const handleAddToCartInBeckend = async () => {
     try {
@@ -205,7 +212,9 @@ function ProductSectionSecond() {
       <div className={style.product_container}>
         {loading && <p>Loading..</p>}
         <div className={style.img_box}>
-          <img src={product?.productImg[0]?.url} alt={product?.title} />
+        <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
+            <img src={product?.productImg[0]?.url} alt={product?.title}   />
+          </ControlledZoom>
         </div>
         <div className={style.des_box}>
           <h3>{product?.title}</h3>
@@ -242,48 +251,63 @@ function ProductSectionSecond() {
               </p>
               <p className={style.icon_box}>
                 <strong>SHARE :</strong>
-                <a target="_blank"  href="https://www.facebook.com/LuxuryBubbleBasket">
-          <span className={style.icon}>
-            <div>
-              <FacebookRoundedIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a>
-          <a target="_blank"  href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg">
-          <span className={style.icon}>
-            <div>
-              <YouTubeIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a>
-         <a target="_blank"  href="https://www.instagram.com/luxurybubblebasket/">
-         <span className={style.icon}>
-            <div>
-              <InstagramIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a> 
-          <a target="_blank"  href="https://www.linkedin.com/company/luxurybubblebasket/">
-          <span className={style.icon}>
-            <div>
-              <LinkedInIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a>
-          <a target="_blank"  href="https://x.com/LuxuryBubbleBsk">
-          <span className={style.icon}>
-            <div>
-              <TwitterIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a>
-          <a target="_blank"  href="https://in.pinterest.com/luxurybubblebasket/">
-          <span className={style.icon}>
-            <div>
-              <PinterestIcon className={style.instagramIcon} />
-            </div>
-          </span>
-          </a>
+                <a
+                  target="_blank"
+                  href="https://www.facebook.com/LuxuryBubbleBasket"
+                >
+                  <span className={style.icon}>
+                    <div>
+                      <FacebookRoundedIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg"
+                >
+                  <span className={style.icon}>
+                    <div>
+                      <YouTubeIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/luxurybubblebasket/"
+                >
+                  <span className={style.icon}>
+                    <div>
+                      <InstagramIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/company/luxurybubblebasket/"
+                >
+                  <span className={style.icon}>
+                    <div>
+                      <LinkedInIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
+                <a target="_blank" href="https://x.com/LuxuryBubbleBsk">
+                  <span className={style.icon}>
+                    <div>
+                      <TwitterIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://in.pinterest.com/luxurybubblebasket/"
+                >
+                  <span className={style.icon}>
+                    <div>
+                      <PinterestIcon className={style.instagramIcon} />
+                    </div>
+                  </span>
+                </a>
               </p>
             </div>
 
@@ -428,7 +452,7 @@ function ProductSectionSecond() {
         </div>
       </div>
       <div className={style.additional_box}>
-        <ColumnPageSectionSecond  singleProductData={product}/>
+        <ColumnPageSectionSecond singleProductData={product} />
       </div>
     </div>
   );
