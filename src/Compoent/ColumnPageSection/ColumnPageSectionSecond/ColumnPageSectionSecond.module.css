@@ -82,14 +82,15 @@
     gap: 1rem;
   }
   .inner_container,  .inner_container1 {
-    height: 45rem!important;
+    height: 47rem!important;
     width: 28rem;
     display: flex;
-    align-items: center;
+    align-items: center!important;
+    justify-content: center;
     flex-direction: column;
-    padding: 2rem 1rem;
     border: 1px #7b0128 solid;
     overflow:hidden ;
+    padding: 0rem!important;
   }
 
   .offer_box {
@@ -110,13 +111,15 @@
   }
   .add_box_img {
     height: 320px!important;
-    width: 100%;
+    width: max-content;
+
   }
   .add_box_img img {
     height: 320px!important;
-    width: 100%;
+    width: max-content;
   }
   .product_title {
     font-size: 1.4rem;
+    width: 90%;
   }
 }
