@@ -191,13 +191,16 @@
     margin-top: -80rem;
   }
   .content {
+  display: none;
+  }
+  .contentmob{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
     z-index: 999 !important;
     position: absolute;
-    margin-top: 150rem;
+    margin-top: 6rem;
   }
   .description_box h2 {
     font-size: 2rem;

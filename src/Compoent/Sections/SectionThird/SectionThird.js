@@ -55,6 +55,21 @@ function SectionThird() {
           <button className={style.btn}>Explore Now</button>
         </a>
       </div>
+      
+      <div
+        className={style.contentmob}
+      >
+        <div className={style.description_box}>
+          <div className={style.heading_box}>
+            <h2>Luxury Gift Baskets</h2>
+            <p>For Reathors</p>
+          </div>
+        </div>
+        <br />
+        <a href="/Product">
+          <button className={style.btn}>Explore Now</button>
+        </a>
+      </div>
     </div>
   );
 }
