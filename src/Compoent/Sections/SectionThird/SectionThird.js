@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
 import textfile from "../../Images/text.png";
-import backgroundImage from "../../Images/1500X1000 - 1.jpg";
+import backgroundImage from "../../Images/Background - 1500X1000.png";
 
 function SectionThird() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -32,17 +32,18 @@ function SectionThird() {
       >
         <div className={style.description_box}>
         <div className={style.heading_box}>
+ 
+        <h2>Luxury Gift Baskets</h2>
         <p>
           <span />
-          Best Gift For You
+         For Reathors
           <span />
         </p>
-        <h2>ELEGANT & UNIQUE</h2>
       </div>
         </div>
         <br/>
         <a href="/Product">
-          <button className={style.btn}>DISCOVER →</button>
+          <button className={style.btn}>Explore Now</button>
         </a>
       </div>
     </div>

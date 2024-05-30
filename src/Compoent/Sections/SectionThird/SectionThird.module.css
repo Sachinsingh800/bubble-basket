@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'BrittanySignature';
+  src: url('../../Fonts/BrittanySignature.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FELIXTI';
+  src: url('../../Fonts/FELIXTI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Metropolis-Bold';
+  src: url('../../Fonts/Metropolis-Bold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .main {
   height: 35rem;
   width: 100%;
@@ -27,10 +45,10 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: 'BrittanySignature';
   color: #ffffff;
-  font-size: 2rem;
-  font-weight: 100!important;
+  font-size: 4rem;
+  font-weight: 100 !important;
 }
 .heading_box p hr {
   width: 3rem;
@@ -39,10 +57,9 @@
   border: 1px white solid;
 }
 .heading_box h2 {
-  font-family: "Jost", sans-serif;
-  letter-spacing: 0.5cap;
-  /* margin-top: -.5rem; */
-
+  font-family: 'FELIXTI';
+  letter-spacing: 0.3cap;
+  text-transform: uppercase;
 }
 .description_box {
   color: white;
@@ -59,7 +76,6 @@
   height: 70rem;
   filter: brightness(40%);
   margin-top: -15rem;
-
 }
 .background img {
   height: 100%;
@@ -78,6 +94,8 @@
   font-size: large;
   background-color: white;
   color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-family: 'Metropolis-Bold';
 }
 .btn:hover {
   background-color: rgb(226, 224, 224);
@@ -94,7 +112,7 @@
   gap: 1rem;
   z-index: 999 !important;
   position: absolute;
-  margin-top:65rem;
+  margin-top: 65rem;
 }
 
 @media screen and (max-width: 500px) {
@@ -104,18 +122,18 @@
   .main {
     height: 40rem;
   }
-  .btn{
+  .btn {
     font-size: 1rem;
   }
   .background img {
-    height:40rem;
+    height: 40rem;
   }
   .background {
     height: 200%;
     width: 140%;
     filter: brightness(40%);
     background-size: cover;
-   margin-top: -40rem;
+    margin-top: -40rem;
   }
   .content {
     display: flex;
