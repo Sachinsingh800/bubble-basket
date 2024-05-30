@@ -140,7 +140,13 @@
 .leaf1mob{
   display: none;
 }
+.contentmob{
+  display: none;
+}
 @media screen and (max-width: 500px) {
+  .contentmob{
+    display: unset;
+  }
   .leaf1{
     display: none;
   }
