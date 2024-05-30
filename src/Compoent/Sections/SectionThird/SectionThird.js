@@ -31,17 +31,12 @@ function SectionThird() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-        <div className={style.heading_box}>
- 
-        <h2>Luxury Gift Baskets</h2>
-        <p>
-          <span />
-         For Reathors
-          <span />
-        </p>
-      </div>
+          <div className={style.heading_box}>
+            <h2>Luxury Gift Baskets</h2>
+            <p>For Reathors</p>
+          </div>
         </div>
-        <br/>
+        <br />
         <a href="/Product">
           <button className={style.btn}>Explore Now</button>
         </a>
