@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
 import textfile from "../../Images/text.png";
 import backgroundImage from "../../Images/Background - 1500X1000.png";
+import backgroundImageMob from "../../Images/mobile banner.png";
 
 function SectionThird() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -25,6 +26,7 @@ function SectionThird() {
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={backgroundImage} alt="bg" className={style.bgImage} />
+        <img src={backgroundImageMob} alt="bg" className={style.bgImagemob} />
       </div>
       <div
         className={style.content}

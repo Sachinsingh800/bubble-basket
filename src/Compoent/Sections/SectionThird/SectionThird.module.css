@@ -114,26 +114,34 @@
   position: absolute;
   margin-top: 65rem;
 }
-
+.bgImagemob{
+  display: none;
+}
 @media screen and (max-width: 500px) {
+  .bgImage{
+    display: none;
+  }
+  .bgImagemob{
+    display: unset;
+  }
   html {
     font-size: 8px;
   }
   .main {
     height: 40rem;
+   width: 100%;
   }
   .btn {
     font-size: 1rem;
   }
   .background img {
-    height: 40rem;
+    width: 100%;
   }
   .background {
-    height: 190%;
-    width: 120%;
+    height: 120%;
     filter: brightness(70%);
     background-size: cover;
-    margin-top: -40rem;
+    margin-top: -80rem;
   }
   .content {
     display: flex;
