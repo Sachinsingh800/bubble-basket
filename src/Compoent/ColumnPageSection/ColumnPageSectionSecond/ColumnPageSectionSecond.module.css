@@ -111,12 +111,9 @@
   }
   .add_box_img {
     height: 320px!important;
-    width: max-content;
-
   }
   .add_box_img img {
     height: 320px!important;
-    width: max-content;
   }
   .product_title {
     font-size: 1.4rem;
