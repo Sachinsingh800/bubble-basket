@@ -129,9 +129,9 @@
     height: 40rem;
   }
   .background {
-    height: 200%;
-    width: 140%;
-    filter: brightness(40%);
+    height: 190%;
+    width: 120%;
+    filter: brightness(70%);
     background-size: cover;
     margin-top: -40rem;
   }
