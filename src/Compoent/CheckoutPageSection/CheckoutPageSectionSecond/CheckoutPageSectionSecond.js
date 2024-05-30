@@ -15,8 +15,10 @@ function CheckoutPageSectionSecond() {
   const [update, setUpdate] = useRecoilState(updateCart);
   const [couponError, setCouponError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+
   const [onlinepayment, setOnlinePayment] = useState(false);
-  console.log(onlinepayment,"ye kya raadas",isChecked)
+  console.log(onlinepayment, "ye kya raadas", isChecked);
+  const orderNotes = JSON.parse(localStorage.getItem("message"));
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -58,10 +60,24 @@ function CheckoutPageSectionSecond() {
     const zipRegex = /^\d{5}$/;
     const phoneRegex = /^\d{10}$/;
 
-    // Check if any field is empty
-    for (const key in formData) {
-      if (formData[key] === "") {
-        alert(`Please fill in ${key}`);
+    // Check if any required field is empty
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "country",
+      "streetAddress.houseNoAndStreetName",
+      "townCity",
+      "postcodeZIP",
+      "phone",
+      "email",
+    ];
+
+    for (const field of requiredFields) {
+      const fieldValue = field
+        .split(".")
+        .reduce((obj, key) => obj[key], formData);
+      if (fieldValue === "") {
+        alert(`Please fill in ${field}`);
         return false;
       }
     }
@@ -117,13 +133,13 @@ function CheckoutPageSectionSecond() {
 
     try {
       setIsLoading(true);
-      if(isChecked){
+      if (isChecked) {
         if (onlinepayment) {
           window.location.href = "/Payment";
-        } else{
+        } else {
           handleOrder();
         }
-      }else{
+      } else {
         const response = await addAddress(formData);
         setIsLoading(false);
         console.log("Response from addAddress:", response);
@@ -135,8 +151,6 @@ function CheckoutPageSectionSecond() {
           }
         }
       }
-
-  
     } catch (error) {
       setIsLoading(false);
       // Handle unexpected errors
@@ -177,11 +191,8 @@ function CheckoutPageSectionSecond() {
   useEffect(() => {
     handleUpdateAddress();
     if (isChecked) {
-      const selectedAddress = JSON.parse(
-        localStorage.getItem("address")
-      );
+      const selectedAddress = JSON.parse(localStorage.getItem("address"));
       setFormData(selectedAddress);
-
     } else {
       // Handle the case when the default address is unchecked
       // For example, you may want to clear the form data
@@ -363,7 +374,7 @@ function CheckoutPageSectionSecond() {
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="stateCounty">County (optional)</label>
+              <label htmlFor="stateCounty">County</label>
               <input
                 type="text"
                 id="stateCounty"
@@ -413,8 +424,14 @@ function CheckoutPageSectionSecond() {
               <textarea
                 id="orderNotes"
                 name="orderNotes"
-                value={formData?.orderNotes}
-                onChange={handleChange}
+                value={formData?.orderNotes || orderNotes}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    orderNotes: value,
+                  }));
+                }}
                 placeholder="Notes about your order, e.g. special notes for delivery."
               />
             </div>
@@ -438,20 +455,28 @@ function CheckoutPageSectionSecond() {
                     {item?.Product_title} x{" "}
                     <strong>{item?.Product_quantity}</strong>
                   </span>
-                  <span className={style.calculate_}>${item?.productTotal}</span>
+                  <span className={style.calculate_}>
+                    ${item?.productTotal}
+                  </span>
                 </div>
               </div>
             ))}
             <div className={style.order_item}>
               <div className={style.product_item}>
                 <span>SUBTOTAL</span>
-                <span className={style.calculate_}>${cartData?.allProductTotal}</span>
+                <span className={style.calculate_}>
+                  ${cartData?.allProductTotal}
+                </span>
               </div>
             </div>
             <div className={style.order_item}>
               <div className={style.product_item}>
-                <span>Delivery Fee Per Item $20(Delivery May take 2 to 4 days):</span>
-                <span className={style.calculate_}>${cartData?.totalShipping}</span>
+                <span>
+                  Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
+                </span>
+                <span className={style.calculate_}>
+                  ${cartData?.totalShipping}
+                </span>
               </div>
             </div>
             <div className={style.order_item}>
@@ -463,8 +488,12 @@ function CheckoutPageSectionSecond() {
             {cartData?.promoDiscount && (
               <div className={style.order_item}>
                 <div className={style.product_item}>
-                  <span>Coupon Discount({cartData?.couponDiscountPercent}%):</span>
-                  <span className={style.calculate_}>${cartData?.promoDiscount}</span>
+                  <span>
+                    Coupon Discount({cartData?.couponDiscountPercent}%):
+                  </span>
+                  <span className={style.calculate_}>
+                    ${cartData?.promoDiscount}
+                  </span>
                 </div>
               </div>
             )}
@@ -516,12 +545,11 @@ function CheckoutPageSectionSecond() {
         </div>
         <br />
         <button onClick={handleSubmitAddress} disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'PLACE ORDER →'}
-          </button>
+          {isLoading ? "Loading..." : "PLACE ORDER →"}
+        </button>
       </form>
     </div>
   );
 }
 
 export default CheckoutPageSectionSecond;
-
