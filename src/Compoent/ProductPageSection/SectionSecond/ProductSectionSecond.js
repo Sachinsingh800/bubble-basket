@@ -87,6 +87,30 @@ function ProductSectionSecond() {
   // Filter the product based on the productId from URL
   const product = productData.find((item) => item._id.toString() === id);
 
+  // Function to store product in session storage
+const storeProductInSession = (product) => {
+  if (!product) return;
+
+  // Get the existing products from session storage
+  let storedProducts = JSON.parse(sessionStorage.getItem("storedProducts")) || [];
+
+  // Check if the product is already stored
+  const existingProductIndex = storedProducts.findIndex((item) => item._id === product._id);
+
+  // If the product is not already stored, add it
+  if (existingProductIndex === -1) {
+    storedProducts.push(product);
+    sessionStorage.setItem("storedProducts", JSON.stringify(storedProducts));
+  }
+};
+
+// Call this function when the user opens the page
+useEffect(() => {
+  const product = productData.find((item) => item._id.toString() === id);
+  storeProductInSession(product);
+}, [productData, id]);
+
+
   const handleAddToCartInBeckend = async () => {
     try {
       const response = await AddtoCart(id,quantity);
