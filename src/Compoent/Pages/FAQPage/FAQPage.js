@@ -4,7 +4,7 @@ import Footer from "../../Sections/Footer/Footer";
 import FAQSectionFirst from "../../FAQSection/FAQSectionFirst/FAQSectionFirst";
 import FAQSectionSecond from "../../FAQSection/FAQSectionSecond/FAQSectionSecond";
 import style from "./FAQPage.module.css"
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 
 function FAQPage() {

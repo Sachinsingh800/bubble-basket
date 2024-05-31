@@ -4,7 +4,7 @@ import LoginPageSectionSecond from "../../LoginPageSection/LoginPageSectionSecon
 import style from "./LoginPage.module.css";
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 function LoginPage() {
   return (

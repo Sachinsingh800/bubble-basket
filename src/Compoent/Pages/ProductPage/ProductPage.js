@@ -4,7 +4,7 @@ import ProductSectionFirst from "../../ProductPageSection/SectionFirst/ProductSe
 import ProductSectionSecond from "../../ProductPageSection/SectionSecond/ProductSectionSecond";
 import Header from "../../Header/Header";
 import style from "./ProductPage.module.css"
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 function ProductPage() {
   return (

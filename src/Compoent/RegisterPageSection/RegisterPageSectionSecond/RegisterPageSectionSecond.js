@@ -19,7 +19,6 @@ function RegisterPageSectionSecond() {
   const [errors, setErrors] = useState({});
   const [showVerification, setShowVerification] = useState(false);
   const [data, setData] = useState([]);
-  const [totalprice, setTotalPrice] = useState(null);
 
   useEffect(() => {
     const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
@@ -27,10 +26,8 @@ function RegisterPageSectionSecond() {
       setFormData(rememberMeData);
     }
     const cartData = JSON.parse(localStorage.getItem("cartData") || "[]");
-    const priceData = JSON.parse(localStorage.getItem("totalPrice") || "null");
     if (cartData) {
       setData(cartData);
-      setTotalPrice(priceData);
     }
   }, []);
 
@@ -97,13 +94,11 @@ function RegisterPageSectionSecond() {
         email: formData?.email,
         password: formData?.password,
         telephone: formData?.telephone,
-        otp: otp,
+        otp:otp,
         items: data.map((item) => ({
           productId: item?._id,
           quantity: item?.quantity,
         })),
-        totalPrice: totalprice ? totalprice : null,
-        totalItems: data?.length,
       };
       const response = await verifyEmail(userData);
       // Handle response as needed

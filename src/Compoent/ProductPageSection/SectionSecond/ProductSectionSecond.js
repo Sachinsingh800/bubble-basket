@@ -43,7 +43,6 @@ function ProductSectionSecond() {
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false)
-
   const handleZoomChange = useCallback(shouldZoom => {
     setIsZoomed(shouldZoom)
   }, [])
@@ -64,7 +63,6 @@ function ProductSectionSecond() {
     try {
       const response = await getAllReview(id);
     } catch (error) {
-      console.log("errror");
     }
   };
 
@@ -74,7 +72,6 @@ function ProductSectionSecond() {
       const response = await getAllProduct();
       // Show only the first three products
       setProductData(response.data);
-      console.log(response, "ye aa tafsgsdgv");
       setLoading(false);
     } catch (error) {
       console.error("Error getting product data:", error);
@@ -92,7 +89,7 @@ function ProductSectionSecond() {
 
   const handleAddToCartInBeckend = async () => {
     try {
-      const response = await AddtoCart(id);
+      const response = await AddtoCart(id,quantity);
     } catch (error) {
       console.log(error);
     }

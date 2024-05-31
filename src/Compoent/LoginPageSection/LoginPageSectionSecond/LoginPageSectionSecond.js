@@ -46,8 +46,6 @@ function LoginPageSectionSecond() {
             productId: item._id,
             quantity: item.quantity,
           })),
-          totalPrice: totalprice,
-          totalItems: data.length,
         },
         formData.rememberMe
       );

@@ -4,7 +4,7 @@ import style from "./ColumnPage.module.css";
 import ColumnPageSectionFirst from "../../ColumnPageSection/ColumnPageSectionFirst/ColumnPageSectionFirst";
 import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
 import Footer from "../../Sections/Footer/Footer";
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 function ColumnPage() {
   return (

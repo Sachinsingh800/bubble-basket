@@ -5,7 +5,7 @@ import AboutUsSectionSecond from "../../AboutUsSection/AboutUsSectionSecond/Abou
 import AboutUsSectionThird from "../../AboutUsSection/AboutUsSectionThird/AboutUsSectionThird";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./AboutUsPage.module.css";
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 function AboutUsPage() {
   return (

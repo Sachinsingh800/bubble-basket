@@ -11,8 +11,6 @@ export const RegisterUser = async (userData) => {
       `${BASE_URL}/user/auth/register`,
       userData
     );
-    console.log(response, "Register");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -57,7 +55,6 @@ export const verifyEmail = async (userData) => {
 export const resendOtp = async (email) => {
   try {
     const response = await axios.post(`${BASE_URL}/user/auth/resendOtp`, email);
-    console.log(response, "Response from axios");
 
     // Directly return the data from axios response
     return response.data;
@@ -90,9 +87,6 @@ export const forgetPassword = async (email) => {
       },
       { headers }
     );
-
-    console.log(response, "Response from axios");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -126,7 +120,6 @@ export const resetPassword = async (passwordData) => {
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
     alert(message);
     // Handle response data as needed
     if(status){
@@ -151,7 +144,7 @@ export const resetPassword = async (passwordData) => {
 
 //Add to Cart
 
-export const AddtoCart = async (productId) => {
+export const AddtoCart = async (productId,quantity) => {
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -171,13 +164,17 @@ export const AddtoCart = async (productId) => {
     const response = await axios.put(
       `${BASE_URL}/user/cart/addProduct`,
       {
-        productId: productId,
+        items: [
+          {
+            productId: productId,
+            quantity:quantity
+          },
+      ]
       },
       { headers }
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
 
     // Handle response data as needed
   } catch (error) {
@@ -228,8 +225,6 @@ export const removeFromCart = async (id) => {
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
-
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -277,8 +272,6 @@ export const updateItemQuantity = async (id, quantity) => {
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
-
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -328,8 +321,6 @@ export const updateFromCart = async (id, quantity) => {
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
-
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -375,8 +366,6 @@ export const createReview = async (id, reviewData) => {
     );
 
     const { status, message, data } = response.data;
-    // console.log(response);
-
     // Handle response data as needed
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -463,7 +452,6 @@ export const addAddress = async (formData) => {
       formData,
       { headers }
     );
-    console.log(response, "Response from axios");
     const { status, message, data } = response.data;
     localStorage.setItem("address", JSON.stringify(data));
     // Directly return the data from axios response
@@ -494,7 +482,6 @@ export const getAllAddress = async () => {
     const response = await axios.get(`${BASE_URL}/user/address/getAll`, {
       headers,
     });
-    console.log(response, "Response from axios");
 
     // Directly return the data from axios response
     return response.data;
@@ -523,8 +510,6 @@ export const getAllCategory = async () => {
     const response = await axios.get(`${BASE_URL}/admin/category/getAll`, {
       headers,
     });
-    console.log(response, "Response from axios");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -555,8 +540,6 @@ export const getTop1Category = async (cate) => {
         headers,
       }
     );
-    console.log(response, "Response from axios");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -732,7 +715,6 @@ export const getOrderHistory = async () => {
     });
 
     const { status, message, data } = response.data;
-    console.log(response);
 
     // Handle response data as needed
   } catch (error) {
@@ -765,7 +747,6 @@ export const loginUser = async (userData, rememberMe) => {
       totalItems: userData.totalItems,
     });
     const { status, message, data, token } = response.data;
-    console.log(response.data.token);
     if (status) {
       // If "Remember Me" is checked, save token to local storage
       document.cookie = `token=${response.data.token}; path=/`;
@@ -821,7 +802,6 @@ export const getAllProduct = async (category) => {
     const response = await axios.get(url, {
       headers,
     });
-    console.log(response, "Response from axios");
 
     // Directly return the data from axios response
     return response.data;
@@ -850,8 +830,6 @@ export const getAllOrdersHistory = async () => {
     const response = await axios.get(`${BASE_URL}/user/order/orderHistory`, {
       headers,
     });
-    console.log(response, "Response from axios");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -883,8 +861,6 @@ export const sendSubscribtion = async (email) => {
         headers,
       }
     );
-    console.log(response, "user eamail wala");
-
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
@@ -952,7 +928,6 @@ export const getCheckout = async (promoCode) => {
 
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
-    console.log(response, "Response from axios");
     if (status) {
       localStorage.setItem(
         "cartData",

@@ -4,7 +4,7 @@ import PrivacyAndPolicySectionSecond from "../../PrivacyAndPolicySection/Privacy
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./PrivacyAanPolicy.module.css"
-import Chatbot from "../../ChatBot/ChatBot";
+
 
 function PrivacyAanPolicy() {
   return (

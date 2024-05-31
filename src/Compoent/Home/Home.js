@@ -13,7 +13,7 @@ import SectionTenth from "../Sections/SectionTenth/SectionTenth";
 import Footer from "../Sections/Footer/Footer";
 import style from "./Home.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
-import ChatBot from "../ChatBot/ChatBot";
+
 
 function Home() {
 

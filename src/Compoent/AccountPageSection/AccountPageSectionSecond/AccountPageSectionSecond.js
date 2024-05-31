@@ -13,16 +13,6 @@ function AccountPageSectionSecond() {
 
   };
 
-  
-
-  const handleProductAddToCartInServer= async (productId) => {
-    try {
-      const response = await AddtoCart(productId);
-          console.log(response,"cart data")
-    } catch (error) {
-      console.error("Error getting product data:", error);
-    }
-  };
 
   const handleLogout = () => {
     // Remove data from local storage
