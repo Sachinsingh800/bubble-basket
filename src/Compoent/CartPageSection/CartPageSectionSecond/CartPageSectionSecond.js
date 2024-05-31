@@ -107,9 +107,9 @@ function CartPageSectionSecond() {
       setData(updatedData);
       localStorage.setItem("cartData", JSON.stringify(updatedData));
       setLoading(false);
-      setUpdate(update + 1);
       calculateTotalPrice(updatedData);
       handleCheckoutOrder();
+      setUpdate(update  + 5);
     }
   };
 
@@ -139,7 +139,7 @@ function CartPageSectionSecond() {
 
   return (
     <div className={style.main}>
-      {loading && <div>Loading...</div>}
+      {loading && <p key="">Loading...</p>}
       {!loading && (
         <>
           {data?.length > 0 && (
@@ -160,7 +160,7 @@ function CartPageSectionSecond() {
             </div>
           ) : (
             data?.map((item, index) => (
-              <div key={item._id} className={style.container}>
+              <div key={item?.Product_id || index} className={style.container}>
                 <div className={style.first_box}>
                   {loginStatus ? (
                     <span
@@ -249,7 +249,7 @@ function CartPageSectionSecond() {
                     </div>
 
                     {cartData?.productsData?.map((item, index) => (
-                      <div key={index} className={style.order_item}>
+                      <div key={item.Product_id || index} className={style.order_item}>
                         <div className={style.product_item}>
                           <span>
                             {item?.Product_title} x{" "}

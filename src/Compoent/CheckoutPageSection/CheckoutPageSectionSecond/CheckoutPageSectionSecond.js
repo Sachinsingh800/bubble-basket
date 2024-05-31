@@ -17,8 +17,7 @@ function CheckoutPageSectionSecond() {
   const [isChecked, setIsChecked] = useState(false);
 
   const [onlinepayment, setOnlinePayment] = useState(false);
-  console.log(onlinepayment, "ye kya raadas", isChecked);
-  const orderNotes = JSON.parse(localStorage.getItem("message"));
+  const orderNotes = JSON.parse(localStorage.getItem("message")) || "";
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

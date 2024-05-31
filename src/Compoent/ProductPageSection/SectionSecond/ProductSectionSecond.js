@@ -156,14 +156,6 @@ function ProductSectionSecond() {
     setShowOverview(false);
   };
 
-  const handleToggleComparison = () => {
-    setShowComparison(true);
-    setShowDescription(false);
-    setShowReview(false);
-    setShowExprienceofTesting(false);
-    setShowOverview(false);
-  };
-
   const handleCreateReview = async (e) => {
     e.preventDefault();
     const reviewData = {
@@ -193,10 +185,6 @@ function ProductSectionSecond() {
   const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
-  function renderHTML(htmlString) {
-    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
-  }
-
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
@@ -327,8 +315,6 @@ function ProductSectionSecond() {
         <div className={style.extraInfo_btn}>
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleOverview}>ADDITIONAL INFORMATION</h5>
-          {/* <h5 onClick={handleToggleExprienceofTesting}>EXPRIENCE OF TESTING</h5>
-          <h5 onClick={handleToggleComparison}>COMPARISON</h5> */}
           <h5 onClick={handleToggleReview}>
             REVIEWS ({reviews?.reviews?.length})
           </h5>
