@@ -20,10 +20,13 @@ import ProductDescriptionBlog from "../../ProductDescriptionBlog/ProductDescript
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import Zoom from "react-medium-image-zoom";
-import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
+import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import RecentlyView from "../../RecentlyView/RecentlyView";
 
 function ProductSectionSecond() {
+  const storedProducts =
+    JSON.parse(sessionStorage.getItem("storedProducts")) || [];
   const [data, setData] = useState([]);
   const [showDescription, setShowDescription] = useState(true);
   const [showReview, setShowReview] = useState(false);
@@ -42,10 +45,11 @@ function ProductSectionSecond() {
   const [updateReview, setUpdateReview] = useState(0);
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
-  const [isZoomed, setIsZoomed] = useState(false)
-  const handleZoomChange = useCallback(shouldZoom => {
-    setIsZoomed(shouldZoom)
-  }, [])
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleZoomChange = useCallback((shouldZoom) => {
+    setIsZoomed(shouldZoom);
+  }, []);
 
   useEffect(() => {
     handleProductData();
@@ -62,8 +66,7 @@ function ProductSectionSecond() {
   const handleGetAllReview = async () => {
     try {
       const response = await getAllReview(id);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleProductData = async () => {
@@ -88,32 +91,34 @@ function ProductSectionSecond() {
   const product = productData.find((item) => item._id.toString() === id);
 
   // Function to store product in session storage
-const storeProductInSession = (product) => {
-  if (!product) return;
+  const storeProductInSession = (product) => {
+    if (!product) return;
 
-  // Get the existing products from session storage
-  let storedProducts = JSON.parse(sessionStorage.getItem("storedProducts")) || [];
+    // Get the existing products from session storage
+    let storedProducts =
+      JSON.parse(sessionStorage.getItem("storedProducts")) || [];
 
-  // Check if the product is already stored
-  const existingProductIndex = storedProducts.findIndex((item) => item._id === product._id);
+    // Check if the product is already stored
+    const existingProductIndex = storedProducts.findIndex(
+      (item) => item._id === product._id
+    );
 
-  // If the product is not already stored, add it
-  if (existingProductIndex === -1) {
-    storedProducts.push(product);
-    sessionStorage.setItem("storedProducts", JSON.stringify(storedProducts));
-  }
-};
+    // If the product is not already stored, add it
+    if (existingProductIndex === -1) {
+      storedProducts.push(product);
+      sessionStorage.setItem("storedProducts", JSON.stringify(storedProducts));
+    }
+  };
 
-// Call this function when the user opens the page
-useEffect(() => {
-  const product = productData.find((item) => item._id.toString() === id);
-  storeProductInSession(product);
-}, [productData, id]);
-
+  // Call this function when the user opens the page
+  useEffect(() => {
+    const product = productData.find((item) => item._id.toString() === id);
+    storeProductInSession(product);
+  }, [productData, id]);
 
   const handleAddToCartInBeckend = async () => {
     try {
-      const response = await AddtoCart(id,quantity);
+      const response = await AddtoCart(id, quantity);
     } catch (error) {
       console.log(error);
     }
@@ -221,8 +226,8 @@ useEffect(() => {
       <div className={style.product_container}>
         {loading && <p>Loading..</p>}
         <div className={style.img_box}>
-        <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
-            <img src={product?.productImg[0]?.url} alt={product?.title}   />
+          <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
+            <img src={product?.productImg[0]?.url} alt={product?.title} />
           </ControlledZoom>
         </div>
         <div className={style.des_box}>
@@ -458,6 +463,12 @@ useEffect(() => {
           )}
         </div>
       </div>
+      {storedProducts && (
+        <div className={style.additional_box}>
+        <h4> Recently View</h4> 
+          <RecentlyView />
+        </div>
+      )}
       <div className={style.additional_box}>
         <ColumnPageSectionSecond singleProductData={product} />
       </div>
