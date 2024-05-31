@@ -223,8 +223,8 @@ function ProductSectionSecond() {
 
   return (
     <div className={style.main}>
-      <div className={style.product_container}>
         {loading && <p>Loading..</p>}
+      <div className={style.product_container}>
         <div className={style.img_box}>
           <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
             <img src={product?.productImg[0]?.url} alt={product?.title} />
