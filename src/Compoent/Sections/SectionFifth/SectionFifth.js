@@ -42,7 +42,6 @@ function SectionFifth() {
   const handleAllCategory = async () => {
     try {
       const response = await getAllCategory();
-      console.log(response, "response fifth section wala");
       setCategoryData(response?.data);
     } catch (error) {
       console.error("Error in handleAllCategory function:", error);

@@ -103,8 +103,6 @@ function RegisterPageSectionSecond() {
       const response = await verifyEmail(userData);
       // Handle response as needed
 
-      console.log(response,"ye checl")
-
     } catch (error) {
       console.error("Error verifying user:", error);
     }

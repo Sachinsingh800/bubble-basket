@@ -20,7 +20,7 @@ function SecondSection() {
   const [top2Category, setTop2Category] = useState([]);
   const [top3Category, setTop3Category] = useState([]);
 
-  console.log(top1Category, "data top");
+
 
   useEffect(() => {
     handleAllCategory();
@@ -40,7 +40,6 @@ function SecondSection() {
       const response1 = await getTop1Category("top1");
       const response2 = await getTop1Category("top2");
       const response3 = await getTop1Category("top3");
-      console.log(response2, "and", response3);
       setTop1Category(response1.data[0]);
       setTop2Category(response2.data[0]);
       setTop3Category(response3.data[0]);

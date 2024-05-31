@@ -36,7 +36,6 @@ function SectionNinth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", { name, email, selectedDate });
     // You can add your form submission logic here
   };
 

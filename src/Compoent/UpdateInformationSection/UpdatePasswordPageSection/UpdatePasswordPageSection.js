@@ -58,7 +58,6 @@ function UpdatePasswordPageSection() {
     }
     try {
       const response = await resetPassword(passwordData);
-      console.log(response, "reset password response");
     } catch (error) {
       console.log("error", error);
     }
@@ -71,7 +70,6 @@ function UpdatePasswordPageSection() {
     }
     try {
       const response = await forgetPassword(email);
-      console.log(response, "forget password response");
       if (response.status) {
         setPasswordContainer(false);
         setOtpSent(true);

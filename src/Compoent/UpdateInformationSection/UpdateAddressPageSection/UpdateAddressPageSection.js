@@ -37,7 +37,6 @@ function UpdateAddressPageSection() {
   const handleAllAddress = async () => {
     try {
       const response = await getAllAddress();
-      console.log(response, "address all ");
       setAllAddress(response.data);
     } catch (error) {
       console.log(error);
@@ -160,7 +159,6 @@ function UpdateAddressPageSection() {
     try {
       const response = await updateAddress(addressData, addressId);
       handleUpdateAddress();
-      console.log("Address updated successfully:", response);
     } catch (error) {
       console.log("Error updating address:", error);
     } finally {

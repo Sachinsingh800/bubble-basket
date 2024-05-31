@@ -26,7 +26,6 @@ function UpdateInformationSectionSecond() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission, such as updating user data on the backend
-    console.log(userData);
   };
 
   return (

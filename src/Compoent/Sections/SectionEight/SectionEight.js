@@ -19,7 +19,6 @@ function SectionEight() {
     SetIsloading(true);
     try {
       const response = await getAllBlog();
-      console.log(response.data, "response");
       setAllBlog(response.data);
     } catch (error) {
       console.error("Error getting products:", error.message);
