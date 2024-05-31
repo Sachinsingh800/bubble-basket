@@ -74,8 +74,15 @@
     justify-content: center;
     font-family: "Allura", cursive;
   }
-  
+  .view_all_button{
+    border: 1px #7b0128 solid;
+    background: transparent;
+    color: #7b0128;
+  }
   @media (max-width: 500px) {
+    .view_all_button{
+        margin-top: 1rem;
+    }
     .additional_box {
       display: grid;
       grid-template-columns: 1fr ;
@@ -121,9 +128,4 @@
       font-size: 1.4rem;
       width: 90%;
     }
-  }
-  .view_all_button{
-    border: 1px #7b0128 solid;
-    background: transparent;
-    color: #7b0128;
   }
