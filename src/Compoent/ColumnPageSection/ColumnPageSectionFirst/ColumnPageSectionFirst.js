@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import style from "./ColumnPageSectionFirst.module.css";
-import backgroundImage from "../../Images/bottle-wine-glasses-corkscrew-set-evening.jpg";
+import textfile from "../../Images/text.png";
+import backgroundImage from "../../Images/Background - 1600X897.png";
+import backgroundImageMob from "../../Images/mobile banner.png";
+import leaf1 from "../../Images/third banner leaf-1.png"
+import leaf2 from "../../Images/third banner leaf-2.png"
+import leaf1mob from "../../Images/third banner mob Leaf - 1.png"
 import { useParams } from "react-router-dom";
-
 
 function ColumnPageSectionFirst() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { category } = useParams();
-
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -21,9 +23,6 @@ function ColumnPageSectionFirst() {
     };
   }, []);
 
-
-
-
   return (
     <div className={style.main}>
       <div
@@ -31,10 +30,19 @@ function ColumnPageSectionFirst() {
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={backgroundImage} alt="bg" className={style.bgImage} />
+        <img src={backgroundImageMob} alt="bg" className={style.bgImagemob} />
       </div>
       <div
         className={style.content}
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
+      >
+        <div className={style.description_box}>
+          <h2>{category}</h2>
+        </div>
+      </div>
+      
+      <div
+        className={style.contentmob}
       >
         <div className={style.description_box}>
           <h2>{category}</h2>
