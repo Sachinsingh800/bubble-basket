@@ -463,7 +463,7 @@ function ProductSectionSecond() {
           )}
         </div>
       </div>
-      {storedProducts && (
+      {storedProducts.length > 0 && (
         <div className={style.additional_box}>
         <h4> Recently View</h4> 
           <RecentlyView />

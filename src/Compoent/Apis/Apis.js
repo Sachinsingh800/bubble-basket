@@ -673,7 +673,7 @@ export const orderPlace = async (orderData) => {
     if (status) {
       alert("Order placed successfully");
       localStorage.setItem("orderData", JSON.stringify(data));
-      localStorage.removeItem("cartData");
+      sessionStorage.removeItem("cartData");
       window.location.href = "/ThankYouPage";
     }
     // Handle response data as needed
