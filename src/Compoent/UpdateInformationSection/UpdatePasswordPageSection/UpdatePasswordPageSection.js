@@ -80,7 +80,6 @@ function UpdatePasswordPageSection() {
       }
     } catch (error) {
       console.log("error", error);
-      alert("User not found");
     }
   };
 
