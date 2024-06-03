@@ -71,7 +71,7 @@ function ImageSlider() {
             <div className={style.img_box}>
               <img src={image3} alt="slide 3" />
             </div>
-          </a
+          </a>
         </Carousel>
       </div>
     </div>
