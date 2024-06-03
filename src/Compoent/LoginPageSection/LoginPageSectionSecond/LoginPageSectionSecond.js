@@ -12,7 +12,7 @@ function LoginPageSectionSecond() {
   });
 
   const [data, setData] = useState([]);
-  const [totalprice, setTotalprice] = useState(null);
+
 
   useEffect(() => {
     const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
@@ -22,7 +22,6 @@ function LoginPageSectionSecond() {
     const cartData = JSON.parse(sessionStorage.getItem("cartData"));
     if (cartData) {
       setData(cartData);
-      setTotalprice(priceData);
     }
   }, []);
 
