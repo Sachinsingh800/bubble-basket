@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./ColumnPageSectionFirst.module.css";
-import backgroundImage from "../../Images/Background - 1600X897.png";
+import backgroundImage from "../../Images/column page1.jpg";
 import backgroundImageMob from "../../Images/mobile banner.png";
 import { useParams } from "react-router-dom";
 
