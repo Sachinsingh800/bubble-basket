@@ -744,8 +744,6 @@ export const loginUser = async (userData, rememberMe) => {
       email: userData.email,
       password: userData.password,
       items: userData.items,
-      totalPrice: userData.totalPrice,
-      totalItems: userData.totalItems,
     });
     const { status, message, data, token } = response.data;
     if (status) {
@@ -762,20 +760,6 @@ export const loginUser = async (userData, rememberMe) => {
       return { status, message, data, token };
     }
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Axios error (HTTP error)
-      const { response } = error;
-      // Set the error message
-      const errorMessage = response.data.message;
-      // alert(errorMessage);
-      // Log the error message as a string
-      alert(errorMessage);
-      console.error("Axios Error:", errorMessage);
-    } else {
-      // Network error (e.g., no internet connection)
-      // alert("Something went wrong");
-      console.error("Network Error:", error.message);
-    }
   }
 };
 

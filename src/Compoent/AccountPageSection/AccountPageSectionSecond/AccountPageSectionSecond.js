@@ -16,8 +16,8 @@ function AccountPageSectionSecond() {
 
   const handleLogout = () => {
     // Remove data from local storage
-    localStorage.clear();
-    
+    sessionStorage.clear();
+    sessionStorage.removeItem("cartData");
     // Remove token from cookies
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
