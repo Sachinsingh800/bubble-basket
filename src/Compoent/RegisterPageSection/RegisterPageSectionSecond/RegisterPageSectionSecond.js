@@ -95,10 +95,10 @@ function RegisterPageSectionSecond() {
         password: formData?.password,
         telephone: formData?.telephone,
         otp:otp,
-        items: data.map((item) => ({
+        items:data.length > 0 ?   data.map((item) => ({
           productId: item?._id,
           quantity: item?.quantity,
-        })),
+        })) : [],
       };
       const response = await verifyEmail(userData);
       // Handle response as needed
