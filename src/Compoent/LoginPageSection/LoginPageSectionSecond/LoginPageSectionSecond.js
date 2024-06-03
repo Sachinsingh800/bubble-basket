@@ -40,10 +40,10 @@ function LoginPageSectionSecond() {
         {
           email: formData.usernameOrEmail,
           password: formData.password,
-          items: data.map((item) => ({
+          items: data.length >0 ? data.map((item) => ({
             productId: item._id,
             quantity: item.quantity,
-          })),
+          })) : [],
         },
         formData.rememberMe
       );
