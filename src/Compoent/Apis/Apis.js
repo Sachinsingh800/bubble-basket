@@ -29,6 +29,7 @@ export const verifyEmail = async (userData) => {
     );
     const { status, message, data, token } = response.data;
     if(status){
+      alert("register successfully")
       document.cookie = `token=${response.data.token}; path=/`;
       localStorage.setItem("isLoggedIn", "true");
       getCheckout();
