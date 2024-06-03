@@ -3,16 +3,15 @@ import style from "./ThankYouPageSectionSection.module.css";
 
 function ThankYouPageSectionSection() {
   // Get the order data from local storage
-  const checkPayment = JSON.parse(localStorage.getItem("orderData"));
+  const checkPayment = JSON.parse(sessionStorage.getItem("orderData"));
   // Check if payment method is online or cash on delivery and set order detail accordingly
   const orderDetail = checkPayment?.status ? checkPayment.data : checkPayment ;
 
   // Function to handle returning to home and clearing local storage
   const handleReturnHome = () => {
-    localStorage.removeItem("orderData");
-    localStorage.removeItem("address");
-    localStorage.removeItem("checkout");
-    localStorage.removeItem("totalPrice");
+    sessionStorage.removeItem("orderData");
+    sessionStorage.removeItem("address");
+    sessionStorage.removeItem("checkout");
   };
 
   return (

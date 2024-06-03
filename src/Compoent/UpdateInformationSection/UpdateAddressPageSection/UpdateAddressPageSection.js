@@ -38,6 +38,7 @@ function UpdateAddressPageSection() {
     try {
       const response = await getAllAddress();
       setAllAddress(response.data);
+      sessionStorage.setItem("address", JSON.stringify(response.data[0]));
     } catch (error) {
       console.log(error);
     }
@@ -56,6 +57,7 @@ function UpdateAddressPageSection() {
     try {
       const response = await getAllAddress();
       setAllAddress(response.data);
+
     } catch (error) {
       console.log(error);
     } finally {
@@ -68,7 +70,7 @@ function UpdateAddressPageSection() {
     setAddressId(selectedAddress._id);
 
     // Update localStorage with the selected address
-    localStorage.setItem("address", JSON.stringify(selectedAddress));
+    sessionStorage.setItem("address", JSON.stringify(selectedAddress));
 
     // Update allAddress state to mark the selected address as checked
     const updatedAllAddress = allAddress.map((item) => ({

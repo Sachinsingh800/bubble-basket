@@ -39,7 +39,7 @@ function CheckoutPageSectionSecond() {
   localStorage.setItem("checkoutStatus", JSON.stringify(false));
   const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(
-    localStorage.getItem("address") || false
+    sessionStorage.getItem("address") || false
   );
   useEffect(() => {
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
@@ -190,7 +190,7 @@ function CheckoutPageSectionSecond() {
   useEffect(() => {
     handleUpdateAddress();
     if (isChecked) {
-      const selectedAddress = JSON.parse(localStorage.getItem("address"));
+      const selectedAddress = JSON.parse(sessionStorage.getItem("address"));
       setFormData(selectedAddress);
     } else {
       // Handle the case when the default address is unchecked

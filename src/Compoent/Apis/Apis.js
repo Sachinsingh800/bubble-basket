@@ -655,7 +655,7 @@ export const orderPlace = async (orderData) => {
 
   // Retrieve token
   const token = getToken();
-  const address = JSON.parse(localStorage.getItem("address")) || {};
+  const address = JSON.parse(sessionStorage.getItem("address")) || {};
   const id =address?._id;
 
   try {
@@ -672,7 +672,7 @@ export const orderPlace = async (orderData) => {
     const { status, message, data } = response.data;
     if (status) {
       alert("Order placed successfully");
-      localStorage.setItem("orderData", JSON.stringify(data));
+      sessionStorage.setItem("orderData", JSON.stringify(data));
       sessionStorage.removeItem("cartData");
       window.location.href = "/ThankYouPage";
     }

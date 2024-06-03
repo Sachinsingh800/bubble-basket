@@ -44,14 +44,13 @@ function Payment() {
       try {
         const response = await getCheckout();
         setCheckoutData(response?.data || {});
-        console.log(response?.data,"checl out data")
       } catch (error) {
         console.log(error);
       }
     };
 
     handlegetCheckoutData();
-    setAddress(JSON.parse(localStorage.getItem("address")) || {});
+    setAddress(JSON.parse(sessionStorage.getItem("address")) || {});
 
     const existingScript = document.getElementById("webPayment");
     if (existingScript) {
@@ -142,7 +141,7 @@ function Payment() {
         );
         if(response.status){
           alert("Payment successful!");
-          localStorage.setItem("orderData", JSON.stringify(response.data));
+          sessionStorage.setItem("orderData", JSON.stringify(response.data));
           sessionStorage.removeItem("cartData");
           window.location.href = "/ThankYouPage";
         }
