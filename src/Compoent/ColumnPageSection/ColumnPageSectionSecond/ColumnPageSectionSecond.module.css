@@ -75,14 +75,14 @@
   font-family: "Allura", cursive;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .additional_box {
     display: grid;
     grid-template-columns: 1fr ;
     gap: 1rem;
   }
   .inner_container,  .inner_container1 {
-    height: 47rem!important;
+    height: max-content!important;
     width: 28rem;
     display: flex;
     align-items: center!important;
@@ -111,11 +111,11 @@
   }
   .add_box_img {
     height: 320px!important;
-    width: 230px;
+    width: 230px!important;
   }
   .add_box_img img {
     height: 320px!important;
-    width: 230px;
+    width: 230px!important;
   }
   .product_title {
     font-size: 1.4rem;
