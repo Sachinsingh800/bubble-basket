@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionSeventh.module.css";
-import backgroundImage from "../../Images/medium-shot-smiley-man-drinking-wine.jpg";
+import backgroundImage from "../../Images/desktop 2.jpg";
+import backgroundImageMob from "../../Images/2.jpg";
 import bulkOrderForm from "../../BulkOrderForm/bulkOrderForm.xlsx";
 
 function SectionSeventh() {
@@ -45,6 +46,7 @@ function SectionSeventh() {
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
         <img src={backgroundImage} alt="bg" className={style.bgImage} />
+        <img src={backgroundImageMob} alt="bg" className={style.bgImagemob} />
       </div>
       <div
         className={style.content}
