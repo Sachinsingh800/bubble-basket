@@ -121,6 +121,7 @@ function RegisterPageSectionSecond() {
     }
   };
 
+
   return (
     <div className={style.main}>
       {showVerification ? (
@@ -130,6 +131,7 @@ function RegisterPageSectionSecond() {
             <input
               type="text"
               placeholder="OTP"
+              maxLength={6}
               onChange={(e) => setOtp(e.target.value)}
             />
             <button onClick={handleVerification}>VERIFY EMAIL →</button>
