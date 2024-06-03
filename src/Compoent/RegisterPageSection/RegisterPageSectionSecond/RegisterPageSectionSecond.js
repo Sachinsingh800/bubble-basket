@@ -25,7 +25,7 @@ function RegisterPageSectionSecond() {
     if (rememberMeData) {
       setFormData(rememberMeData);
     }
-    const cartData = JSON.parse(localStorage.getItem("cartData") || "[]");
+    const cartData = JSON.parse(sessionStorage.getItem("cartData") || "[]");
     if (cartData) {
       setData(cartData);
     }

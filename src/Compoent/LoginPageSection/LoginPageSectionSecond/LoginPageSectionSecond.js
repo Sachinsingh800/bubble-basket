@@ -19,8 +19,7 @@ function LoginPageSectionSecond() {
     if (rememberMeData) {
       setFormData(rememberMeData);
     }
-    const cartData = JSON.parse(localStorage.getItem("cartData"));
-    const priceData = JSON.parse(localStorage.getItem("totalPrice"));
+    const cartData = JSON.parse(sessionStorage.getItem("cartData"));
     if (cartData) {
       setData(cartData);
       setTotalprice(priceData);
