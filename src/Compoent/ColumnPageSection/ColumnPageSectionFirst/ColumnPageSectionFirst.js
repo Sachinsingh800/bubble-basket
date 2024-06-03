@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./ColumnPageSectionFirst.module.css";
 import backgroundImage from "../../Images/column page1.jpg";
-import backgroundImageMob from "../../Images/mobile banner.png";
+import backgroundImageMob from "../../Images/column page mob1.jpg";
 import { useParams } from "react-router-dom";
 
 function ColumnPageSectionFirst() {
