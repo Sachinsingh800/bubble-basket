@@ -82,7 +82,7 @@
     gap: 1rem;
   }
   .inner_container,  .inner_container1 {
-    height: max-content!important;
+    height: 48rem!important;
     width: 28rem;
     display: flex;
     align-items: center!important;
