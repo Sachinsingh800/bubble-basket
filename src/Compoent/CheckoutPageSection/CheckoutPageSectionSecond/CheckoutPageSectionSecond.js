@@ -37,7 +37,7 @@ function CheckoutPageSectionSecond() {
   });
   const [isLoading, setIsLoading] = useState(false);
   localStorage.setItem("checkoutStatus", JSON.stringify(false));
-  const cartData = JSON.parse(localStorage.getItem("checkout")) || [];
+  const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(
     localStorage.getItem("address") || false
   );

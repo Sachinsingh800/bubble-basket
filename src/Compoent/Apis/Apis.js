@@ -929,11 +929,11 @@ export const getCheckout = async (promoCode) => {
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
     if (status) {
-      localStorage.setItem(
+      sessionStorage.setItem(
         "cartData",
         JSON.stringify(response?.data?.data?.productsData) || []
       );
-      localStorage.setItem(
+      sessionStorage.setItem(
         "checkout",
         JSON.stringify(response?.data?.data) || []
       );

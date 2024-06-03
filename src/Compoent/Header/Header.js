@@ -46,7 +46,7 @@ export default function Header(props) {
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(sessionStorage.getItem("cartData"));
-    const cartItem = cartDatafromlocal?.length;
+    const cartItem = cartDatafromlocal?.length ? cartDatafromlocal?.length : 0;
     setCartItem(cartItem);
     handleAllCategory();
     handleAllProduct();
