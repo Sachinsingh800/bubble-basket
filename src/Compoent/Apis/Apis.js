@@ -453,7 +453,7 @@ export const addAddress = async (formData) => {
       { headers }
     );
     const { status, message, data } = response.data;
-    localStorage.setItem("address", JSON.stringify(data));
+    sessionStorage.setItem("address", JSON.stringify(data));
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
