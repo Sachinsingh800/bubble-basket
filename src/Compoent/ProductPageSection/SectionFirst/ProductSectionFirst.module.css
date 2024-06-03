@@ -57,9 +57,12 @@
 .background {
   filter: brightness(70%);
   margin-top: 0rem;
+  width: 100%;
+  height: 100%;
 }
 .background img {
-  width: 100%;
+  width:  100%;
+  height: 100%;
 }
 
 .btn {
@@ -120,11 +123,13 @@
   .btn {
     font-size: 1rem;
   }
-  .background img {
-    width: 100%;
-  }
+
+.background img {
+  height: 100%;
+}
+
   .background {
-    height: 120%;
+    height: 100%;
     filter: brightness(70%);
     background-size: cover;
     margin-top: 0rem;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./ProductSectionFirst.module.css";
 import backgroundImage from "../../Images/single product page1.jpg";
-import backgroundImageMob from "../../Images/mobile banner.png";
+import backgroundImageMob from "../../Images/single product page mob 1.jpg";
 import { useParams } from "react-router-dom";
 import { getAllProduct } from "../../Apis/Apis";
 
