@@ -37,7 +37,7 @@ function RegisterPageSectionSecond() {
     const errors = {};
     const nameRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])[A-Za-z\d]{6,}$/; // Minimum 6 characters, at least one letter
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#!$%^&*()_+={}\[\]:;"'<>,.?/\\|`~\-]{6,}$/; // Minimum 6 characters, at least one letter and one number, and allows symbols
 
     if (!formData.firstName || !nameRegex.test(formData.firstName)) {
       errors.firstName = "Please enter a valid first name";
@@ -49,7 +49,7 @@ function RegisterPageSectionSecond() {
       errors.email = "Please enter a valid email address";
     }
     if (!formData.password || !passwordRegex.test(formData.password)) {
-      errors.password = "Password must be at least 6 characters long and contain at least one letter";
+      errors.password = "Password must be at least 6 characters long and contain at least one letter and one number";
     }
     if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = "Passwords do not match";

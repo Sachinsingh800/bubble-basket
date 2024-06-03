@@ -27,7 +27,7 @@ function UpdatePasswordPageSection() {
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#!$%^&*()_+={}\[\]:;"'<>,.?/\\|`~\-]{6,}$/; // Minimum 6 characters, at least one letter and one number, and allows symbols
     return passwordRegex.test(password);
   };
 
