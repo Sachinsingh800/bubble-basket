@@ -19,6 +19,8 @@ function RegisterPageSectionSecond() {
   const [errors, setErrors] = useState({});
   const [showVerification, setShowVerification] = useState(false);
   const [data, setData] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
@@ -35,7 +37,7 @@ function RegisterPageSectionSecond() {
     const errors = {};
     const nameRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum 8 characters, at least one letter and one number
+    const passwordRegex = /^(?=.*[A-Za-z])[A-Za-z\d]{6,}$/; // Minimum 6 characters, at least one letter
 
     if (!formData.firstName || !nameRegex.test(formData.firstName)) {
       errors.firstName = "Please enter a valid first name";
@@ -47,7 +49,7 @@ function RegisterPageSectionSecond() {
       errors.email = "Please enter a valid email address";
     }
     if (!formData.password || !passwordRegex.test(formData.password)) {
-      errors.password = "Password must be at least 8 characters long and contain at least one letter and one number";
+      errors.password = "Password must be at least 6 characters long and contain at least one letter";
     }
     if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = "Passwords do not match";
@@ -81,10 +83,9 @@ function RegisterPageSectionSecond() {
     }
   };
 
-
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleVerification = async () => {
     try {
@@ -94,8 +95,8 @@ function RegisterPageSectionSecond() {
         email: formData?.email,
         password: formData?.password,
         telephone: formData?.telephone,
-        otp:otp,
-        items:data.length > 0 ?   data.map((item) => ({
+        otp: otp,
+        items: data.length > 0 ? data.map((item) => ({
           productId: item?._id,
           quantity: item?.quantity,
         })) : [],
@@ -191,26 +192,42 @@ function RegisterPageSectionSecond() {
           </div>
           <div className={style.input_box}>
             <label htmlFor="password">Password *</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            <div className={style.password_input}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             {errors.password && <p className={style.error}>{errors.password}</p>}
           </div>
           <div className={style.input_box}>
             <label htmlFor="confirmPassword">Confirm Password *</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
+            <div className={style.password_input}>
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             {errors.confirmPassword && <p className={style.error}>{errors.confirmPassword}</p>}
           </div>
           <button type="submit">REGISTER →</button>
