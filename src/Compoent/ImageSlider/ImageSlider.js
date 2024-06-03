@@ -72,6 +72,11 @@ function ImageSlider() {
               <img src={image3} alt="slide 3" />
             </div>
           </a>
+          <a href={`brand/${"Veuve Clicquot"}`}>
+            <div className={style.img_box}>
+              <img src={image4} alt="slide 4" />
+            </div>
+          </a>
         </Carousel>
       </div>
     </div>
