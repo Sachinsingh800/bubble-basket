@@ -14,7 +14,7 @@ function UpdatePasswordPageSection() {
   const [showPasswordContainer, setPasswordContainer] = useState(true);
   const [errors, setErrors] = useState({});
   const [otpSent, setOtpSent] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +42,7 @@ function UpdatePasswordPageSection() {
       newErrors.email = "Invalid email format";
     }
     if (!validatePassword(passwordData.newPassword)) {
-      newErrors.newPassword = "Password must be at least 8 characters long and contain at least one letter and one number";
+      newErrors.newPassword = "Password must be at least 6 characters long and contain at least one letter and one number";
     }
     if (!validateOtp(passwordData.otp)) {
       newErrors.otp = "OTP must be a 6-digit number";
@@ -70,7 +70,9 @@ function UpdatePasswordPageSection() {
     }
     try {
       const response = await forgetPassword(email);
+      console.log(response.message, "response")
       if (response.status) {
+        alert(response.message)
         setPasswordContainer(false);
         setOtpSent(true);
       } else {
@@ -113,14 +115,22 @@ function UpdatePasswordPageSection() {
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.input_box}>
             <label htmlFor="newPassword">New Password</label>
-            <input
-              type="password"
-              id="newPassword"
-              name="newPassword"
-              value={passwordData.newPassword}
-              onChange={handleChange}
-              required
-            />
+            <div className={style.password_input}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="newPassword"
+                name="newPassword"
+                value={passwordData.newPassword}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             {errors.newPassword && <p className={style.error}>{errors.newPassword}</p>}
           </div>
           <div className={style.input_box}>
