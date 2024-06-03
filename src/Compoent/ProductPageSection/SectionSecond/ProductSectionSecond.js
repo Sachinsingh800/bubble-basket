@@ -83,7 +83,7 @@ function ProductSectionSecond() {
   };
 
   useEffect(() => {
-    const cartdata = JSON.parse(localStorage.getItem("cartData")) || [];
+    const cartdata = JSON.parse(sessionStorage.getItem("cartData")) || [];
     setData(cartdata);
   }, [update]);
 
@@ -130,7 +130,7 @@ function ProductSectionSecond() {
     if (loginStatus) {
       handleAddToCartInBeckend();
     }
-    const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+    const cartData = JSON.parse(sessionStorage.getItem("cartData")) || [];
     const existingProductIndex = cartData.findIndex(
       (item) => item._id === product._id
     );
@@ -139,12 +139,12 @@ function ProductSectionSecond() {
       // If the product already exists in the cart, update its quantity
       const updatedCartData = [...cartData];
       updatedCartData[existingProductIndex].quantity += quantity;
-      localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+      sessionStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
-      localStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
+      sessionStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
       setUpdate(update + 1);
     }
   };

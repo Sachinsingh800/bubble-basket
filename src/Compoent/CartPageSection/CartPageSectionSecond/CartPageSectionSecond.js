@@ -20,7 +20,7 @@ function CartPageSectionSecond() {
   const [productQuantity, setProductQuantity] = useState(0);
 
   useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    const cartData = JSON.parse(sessionStorage.getItem("cartData"));
     if (cartData) {
       setData(cartData);
       calculateTotalPrice(cartData);
@@ -34,7 +34,7 @@ function CartPageSectionSecond() {
     const updatedData = [...data];
     updatedData[index] = { ...updatedData[index], quantity: quantity };
     setData(updatedData);
-    localStorage.setItem("cartData", JSON.stringify(updatedData));
+    sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
     calculateTotalPrice(updatedData);
   };
@@ -43,7 +43,7 @@ function CartPageSectionSecond() {
     const updatedData = [...data];
     updatedData.splice(index, 1);
     setData(updatedData);
-    localStorage.setItem("cartData", JSON.stringify(updatedData));
+    sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
     calculateTotalPrice(updatedData);
   };
@@ -105,7 +105,7 @@ function CartPageSectionSecond() {
     } finally {
       const updatedData = data.filter((item) => item._id !== id);
       setData(updatedData);
-      localStorage.setItem("cartData", JSON.stringify(updatedData));
+      sessionStorage.setItem("cartData", JSON.stringify(updatedData));
       setLoading(false);
       calculateTotalPrice(updatedData);
       handleCheckoutOrder();
@@ -127,7 +127,7 @@ function CartPageSectionSecond() {
 
   const handleFilterCheckoutData = (e) => {
     e.preventDefault();
-    localStorage.setItem("cartData", JSON.stringify(data));
+    sessionStorage.setItem("cartData", JSON.stringify(data));
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     setUpdate(update + 1);
     if (loginStatus) {

@@ -45,7 +45,7 @@ export default function Header(props) {
   const [showSearch, setShowSearch] = React.useState(false);
 
   React.useEffect(() => {
-    const cartDatafromlocal = JSON.parse(localStorage.getItem("cartData"));
+    const cartDatafromlocal = JSON.parse(sessionStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length;
     setCartItem(cartItem);
     handleAllCategory();
