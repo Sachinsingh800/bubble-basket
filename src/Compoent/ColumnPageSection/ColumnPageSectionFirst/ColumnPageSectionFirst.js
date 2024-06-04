@@ -5,7 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 
 function ColumnPageSectionFirst() {
   const { category } = useParams();
-  console.log(category, "breadcrumbs");
+
 
   const displayCategory = category || "GIFT BASKETS";
 

@@ -17,7 +17,7 @@
   font-style: normal;
 }
 .main {
-  height: 16rem;
+  height: 8rem;
   background-color: #7b0128;
   width: 100%;
   color: white;
@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow: hidden;
 }
 .breadcrumbs{
   display: flex;
@@ -38,4 +39,9 @@
 }
 .breadcrumbItem{
   font-family: 'Metropolis-Bold';
+}
+@media (max-width:784px){
+  .main {
+    margin-top: 7rem;
+  }
 }
