@@ -22,10 +22,19 @@
   flex-direction: column;
   gap: 1rem;
   justify-content: flex-start;
+  width: 100%;
 }
 .list_option li{
 text-decoration: none;
 cursor: pointer;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+.list_option li:hover{
+  background-color: rgb(238, 238, 238);
 }
 .left_section {
 	padding: 0;
