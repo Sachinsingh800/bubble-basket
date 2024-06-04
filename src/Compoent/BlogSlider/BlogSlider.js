@@ -74,9 +74,9 @@ function BlogSlider() {
             responsive={responsive}
           >
             {allBlog.map((item) => (
-              <a key={item.id} href={`brand/${item.name}`}>
+              <a key={item.id} href={`/Blog/${item?._id}`}>
                 <div className={style.imgBox}>
-                  <img src={item?.blogImage?.url || ""} alt={item.name} />
+                  <img src={item?.blogImage?.url || ""} alt={item.title} />
                 </div>
               </a>
             ))}

@@ -75,7 +75,7 @@
       position: absolute;
       width: 90%;
       margin-top: -12rem !important;
-      margin-left: 0rem !important;
+      margin-left: 1rem !important;
       display: flex;
       justify-content: space-between;
       z-index: 1;
