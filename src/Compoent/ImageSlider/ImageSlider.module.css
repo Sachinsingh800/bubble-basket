@@ -22,7 +22,7 @@ a{
   margin-left: -4.5rem;
   display: flex;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 9;
   height: 1px;
 }
 .custom_button button{
@@ -71,7 +71,7 @@ a{
     margin-left: -4.5rem!important;
     display: flex;
     justify-content: space-between;
-    z-index: 1;
+    z-index: 9;
     height: 1px;
     color: black!important;
   }
