@@ -44,6 +44,8 @@ export default function Header(props) {
   const [search, setSearch] = React.useState("");
   const [showSearch, setShowSearch] = React.useState(false);
 
+  console.log(category, "category");
+
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(sessionStorage.getItem("cartData"));
     const cartItem = cartDatafromlocal?.length ? cartDatafromlocal?.length : 0;
@@ -72,7 +74,7 @@ export default function Header(props) {
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
-        alert("Your Bulk Order Form is Downloaded")
+        alert("Your Bulk Order Form is Downloaded");
       })
       .catch((error) => {
         console.error("Error downloading the Excel file:", error);
@@ -156,18 +158,12 @@ export default function Header(props) {
                       visibility: showOptions[1] ? "visible" : "hidden",
                     }}
                   >
-                    {category?.map((item) => (
-                      <div className={style.category_box} key={item?.categoryName}>
-                        <p
-                          className={style.option}
-                          onClick={() =>
-                            (window.location.href = `/${item?.categoryName}`)
-                          }
-                        >
-                          {item?.categoryName}
-                        </p>
-                      </div>
-                    ))}
+                    <ul className={style.list_option}>
+                      <li>{category[0]?.categoryName}</li>
+                      <li> {category[1]?.categoryName}</li>
+                      <li> {category[10]?.categoryName}</li>
+                      <li> {category[2]?.categoryName}</li>
+                    </ul>
                   </div>
                 </li>
                 <li
