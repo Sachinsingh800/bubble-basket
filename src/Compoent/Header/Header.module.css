@@ -300,8 +300,12 @@ text-align: center;
   height: 100%;
   width: 100%;
 }
+.search_box_mob{
+  display: none!important;
+}
 
 @media screen and (max-width:1130px) {
+
   .left_section{
     display: none;
   }
@@ -309,10 +313,11 @@ text-align: center;
     display: flex;
     justify-content: space-between;
   }
-
 }
 @media screen and (max-width:784px) {
-
+  .search_box_mob{
+    display: unset!important;
+  }
   .dawer{
     display: none;
   }
@@ -376,23 +381,27 @@ text-align: center;
   
   }
 
-  .price_box{
+  .price_box_mob{
     display: flex;
     flex-direction: column;
     text-align: left;
     width: 100%;
+    color: black;
   }
-  .price_box:hover{
+  .price_box_mob:hover{
     background-color: #f5f5f5;
   }
-  .price_box span,h6{
+  .price_box_mob span,h6{
     width: 100%;
     padding: 0rem 1rem;
+    color: black;
   }
 }
 
 @media screen and (max-width:473px) {
-
+  .search_box_mob{
+    display: unset!important;
+  }
   .dawer{
     display: none;
   }
@@ -456,18 +465,21 @@ text-align: center;
   
   }
 
-  .price_box{
+
+  .price_box_mob{
     display: flex;
     flex-direction: column;
     text-align: left;
     width: 100%;
+    color: black;
   }
-  .price_box:hover{
+  .price_box_mob:hover{
     background-color: #f5f5f5;
   }
-  .price_box span,h6{
+  .price_box_mob span,h6{
     width: 100%;
     padding: 0rem 1rem;
+    color: black;
   }
 }
 

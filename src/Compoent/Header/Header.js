@@ -306,7 +306,7 @@ export default function Header(props) {
                             </div>
                             <div className={style.price_box_mob}>
                               <h6>{item?.title}</h6>
-                              <span>${item?.price}</span>
+                              <span className={style.price_tag}>${item?.price}</span>
                             </div>
                           </li>
                         ))}
