@@ -425,7 +425,7 @@ text-align: center;
     margin-left: -.2rem;
   }
   .search_box_mob input{
-    width: 100%;
+    width: 320px;
     padding: 1rem;
     border: none;
     outline: none;
