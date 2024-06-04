@@ -158,22 +158,36 @@ export default function Header(props) {
                       visibility: showOptions[1] ? "visible" : "hidden",
                     }}
                   >
-            <ul className={style.list_option}>
-  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
-    {category[0]?.categoryName}
-  </li>
-  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
-    {category[1]?.categoryName}
-  </li>
-  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
-    {category[10]?.categoryName}
-  </li>
-  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
-    {category[2]?.categoryName}
-  </li>
-  
-</ul>
-
+                    <ul className={style.list_option}>
+                      <li
+                        onClick={() =>
+                          (window.location.href = `/${category[0]?.categoryName}`)
+                        }
+                      >
+                        {category[0]?.categoryName}
+                      </li>
+                      <li
+                        onClick={() =>
+                          (window.location.href = `/${category[0]?.categoryName}`)
+                        }
+                      >
+                        {category[1]?.categoryName}
+                      </li>
+                      <li
+                        onClick={() =>
+                          (window.location.href = `/${category[0]?.categoryName}`)
+                        }
+                      >
+                        {category[10]?.categoryName}
+                      </li>
+                      <li
+                        onClick={() =>
+                          (window.location.href = `/${category[0]?.categoryName}`)
+                        }
+                      >
+                        {category[2]?.categoryName}
+                      </li>
+                    </ul>
                   </div>
                 </li>
                 <li
@@ -262,6 +276,44 @@ export default function Header(props) {
                 </div>
               </div>
             </div>
+            <div className={style.search_box_mob}>
+                  <input
+                    type="text"
+                    className={style.input_search_mob}
+                    placeholder="Type to Search..."
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  {search.length > 0 && (
+                    <ul className={style.option_box_mob}>
+                      {product
+                        ?.filter((elem) => {
+                          return elem?.title
+                            ?.toLowerCase()
+                            .includes(search?.toLowerCase());
+                        })
+                        ?.map((item) => (
+                          <li
+                            key={item?._id}
+                            onClick={() =>
+                              (window.location.href = `/Product/${item?._id}`)
+                            }
+                          >
+                            <div className={style.search_img_box}>
+                              <img
+                                src={item?.productImg[0]?.url}
+                                alt={item?.title}
+                              />
+                            </div>
+                            <div className={style.price_box_mob}>
+                              <h6>{item?.title}</h6>
+                              <span>${item?.price}</span>
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+                </div>
+            
           </Toolbar>
         </AppBar>
       </HideOnScroll>
