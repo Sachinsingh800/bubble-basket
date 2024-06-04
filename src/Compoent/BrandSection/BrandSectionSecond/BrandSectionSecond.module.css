@@ -1,5 +1,5 @@
 .main {
-
+  height: max-content;
   width: 100%;
   border: 1px #7b0128 solid;
   display: flex;
@@ -7,33 +7,46 @@
   flex-direction: column;
   gap: 4rem;
   padding: 3rem 2rem;
+
 }
 .product_title{
-  height: 5rem!important;
+  height: 4.8rem!important;
   text-align: center;
   overflow: hidden;
 }
 .add_box_img {
-  height: 320px!important;
-  width: 230px;
+  height: 12rem;
+
 }
 .add_box_img img {
-  height: 320px!important;
-  width: 230px;
+  height: 100%;
+  width: 100%;
+
 }
 .additional_box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3rem;
+
 }
 .inner_container {
-  height: 47rem!important;
   width: 13rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2rem 1rem;
+  justify-content: flex-start;
+  padding: 2rem 3rem 2rem 0rem;
   border-right: 1px #7b0128 solid;
+  cursor: pointer;
+
+}
+.inner_container1 {
+  width: 13rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 3rem 2rem 0rem;
+  border-left: none;
   cursor: pointer;
 }
 
@@ -46,16 +59,7 @@
 .inner_container1 p {
   color: #7b0128;
 }
-.inner_container1 {
-  height: 47rem!important;
-  width: 13rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 2rem 1rem;
-  border-left: none;
-  cursor: pointer;
-}
+
 .offer_box {
   position: absolute;
   border-radius: 50%;
