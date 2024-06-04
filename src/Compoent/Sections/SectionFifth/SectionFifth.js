@@ -18,10 +18,9 @@ function SectionFifth() {
   const [brand, setBrand] = useState("");
   const [brandData, setBrandData] = useState([
     { categoryName: "Caymus" },
-    { categoryName: "Opus One" },
-    { categoryName: "Penfolds Bin" },
-    { categoryName: "Silver Oak" },
-    { categoryName: "Bond Wine" },
+    { categoryName: "Dom Perignon" },
+    { categoryName: "Moet &amp; Chandon" },
+    { categoryName: "Veuve Clicquot" },
   ]);
   const [luxury, setLuxury] = useState("");
   const [luxuryData, setLuxuryData] = useState([
@@ -30,15 +29,24 @@ function SectionFifth() {
   ]);
   const [origin, setOrigin] = useState("");
   const [originData, setOriginData] = useState([
-    { categoryName: "Caymus" },
-    { categoryName: "Opus One" },
-    { categoryName: "Penfolds Bin" },
-    { categoryName: "Silver Oak" },
-    { categoryName: "Bond Wine" },
+    { categoryName: "FATHER'S DAY GIFTS" },
+    { categoryName: "ANNIVERSARY GIFTS" },
+    { categoryName: "BIRTHDAY GIFTS" },
+    { categoryName: "HOUSE WARMING GIFTS" },
+    { categoryName: "WEDDING GIFTS" },
+    { categoryName: "CONGRATULATIONS GIFTS" },
+    { categoryName: "GET WELL SOON GIFTS" },
+    { categoryName: "THANK YOU GIFTS" },
+    { categoryName: "HOLIDAYS GFTS" },
+    { categoryName: "CHRISTMAS  GIFTS" },
+    { categoryName: "NEW YEAR GIFTS" },
   ]);
 
   const handleNavigate = (categoryName) => {
     window.location.href = `/${categoryName}`;
+  };
+  const handleNavigateBrand = (categoryName) => {
+    window.location.href = `brand/${categoryName}`;
   };
 
   return (
@@ -95,7 +103,7 @@ function SectionFifth() {
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
-                    onClick={() => handleNavigate(item?.categoryName)}
+                    onClick={() => handleNavigateBrand(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>
