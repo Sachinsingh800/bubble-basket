@@ -1,175 +1,21 @@
 .main {
-  height: 35rem;
+  height: 16rem;
+  background-color: #7b0128;
   width: 100%;
+  color: white;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-.heading_box p span {
-  width: 3rem;
-  border: none;
-  border-bottom: 1px solid #ffffff; /* Solid border with desired color */
-  height: 2px;
-}
-.heading_box {
-  text-align: center;
-  display: flex;
   flex-direction: column;
-  align-items: center;
 }
-.heading_box img {
-  width: 16rem;
-}
-.heading_box p {
+.breadcrumbs{
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'BrittanySignature';
-  color: #ffffff;
-  font-size: 4rem;
-  font-weight: 100 !important;
-}
-.heading_box p hr {
-  width: 3rem;
-  color: #ffffff;
-  font-weight: 700;
-  border: 1px white solid;
-}
-.heading_box h2 {
-  font-family: 'FELIXTI';
-  letter-spacing: 0.3cap;
-  text-transform: uppercase;
-}
-.description_box {
-  color: white;
-  text-align: center;
-}
-.description_box h2 {
-  font-size: 3rem;
-}
-
-.description_box img {
-  width: 30rem;
-}
-.background {
-  filter: brightness(70%);
-  margin-top: 0rem;
-  width: 100%;
-  height: 100%;
-}
-.background img {
-  width:  100%;
-  height: 100%;
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  border: none;
-  padding: 0.5rem 2rem;
-  font-size: small;
-  letter-spacing: 0.5cap;
-  /* color: white; */
-  /* border: 1px white solid; */
-  font-size: large;
-  background-color: white;
-  color: rgb(0, 0, 0);
-  text-transform: uppercase;
-  font-family: 'Metropolis-Bold';
-}
-.btn:hover {
-  background-color: rgb(226, 224, 224);
-  color: rgb(0, 0, 0);
-}
-.Parallax::-webkit-scrollbar {
-  display: none;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  list-style: none;
   gap: 1rem;
-  z-index: 999 !important;
-  position: absolute;
-  margin-top: 0rem;
 }
-.bgImagemob{
-  display: none;
+.url{
+  color: white!important;
 }
-.contentmob{
-  display: none;
-}
-@media screen and (max-width: 500px) {
-  .contentmob{
-    display: unset;
-  }
-  .bgImage{
-    display: none;
-  }
-  .bgImagemob{
-    display: unset;
-  }
-  html {
-    font-size: 8px;
-  }
-  .main {
-    height: 40rem;
-   width: 100%;
-  }
-  .btn {
-    font-size: 1rem;
-  }
-
-.background img {
-  width:  100%;
-  height: 100%;
-}
-
-  .background {
-    width: 100%;
-    height: 100%;
-    filter: brightness(70%);
-    background-size: cover;
-    margin-top: 0rem;
-  }
-  .content {
-  display: none;
-  }
-  .contentmob{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    z-index: 999 !important;
-    position: absolute;
-    margin-top: 0rem;
-  }
-  .description_box h2 {
-    font-size: 2rem;
-  }
-  .heading_box p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'BrittanySignature';
-    color: #ffffff;
-    font-size: 3rem;
-    font-weight: 100 !important;
-  }
-  .heading_box p hr {
-    width: 3rem;
-    color: #ffffff;
-    font-weight: 700;
-    border: 1px white solid;
-  }
-  .heading_box h2 {
-    font-size: 2rem;
-    font-family: 'FELIXTI';
-    letter-spacing: 0.3cap;
-    text-transform: uppercase;
-  }
+.breadcrumbItem{
+  font-family: "Jost", sans-serif;
 }
