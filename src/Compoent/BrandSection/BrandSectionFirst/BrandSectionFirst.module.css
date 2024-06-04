@@ -1,95 +1,47 @@
+@font-face {
+  font-family: 'BrittanySignature';
+  src: url('../../Fonts/BrittanySignature.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FELIXTI';
+  src: url('../../Fonts/FELIXTI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Metropolis-Bold';
+  src: url('../../Fonts/Metropolis-Bold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .main {
-  height: 33rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  height: 8rem;
+  background-color: #7b0128;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+.breadcrumbs{
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  align-items: center;
+  font-family: 'FELIXTI';
+}
+.url{
+  color: white!important;
+}
+.breadcrumbItem{
+  font-family: 'Metropolis-Bold';
+}
+@media (max-width:784px){
+  .main {
+    margin-top: 7rem;
   }
-  .description_box {
-    color: white;
-    text-align: center;
-  }
-  .description_box h2 {
-    font-size: 3rem;
-    letter-spacing: .5cap;
-  }
-  
-  .description_box img {
-    height: 100rem;
-  }
-  .background {
-    height: 100%;
-    width: 100%;
-    filter: brightness(40%);
-  }
-  .background img {
-    height: 100%;
-    width: 100%;
-  }
-  
-  .btn {
-    display: flex;
-    align-items: center;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: small;
-    letter-spacing: 0.3cap;
-    color: white;
-    border: 1px white solid;
-    font-size: large;
-    background-color: transparent;
-  }
-  .btn:hover {
-    background-color: white;
-    color: rgb(0, 0, 0);
-  }
-  .Parallax::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    z-index: 999 !important;
-    position: absolute;
-    margin-top: 5rem;
-  }
-  
-  @media screen and (max-width: 500px) {
-    html {
-      font-size: 8px;
-    }
-    .main {
-      height: 33rem;
-    }
-    .background img {
-      height: 100rem;
-      width: 100rem;
-    }
-    .background {
-      height: 100%;
-      width: 100%;
-      filter: brightness(40%);
-      margin-top: 5rem;
-    
-    }
-  
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      z-index: 999 !important;
-      position: absolute;
-      margin-top: 5rem;
-    }
-    .description_box h2 {
-      font-size: 2rem;
-    }
-  }
-  
-    
+}
