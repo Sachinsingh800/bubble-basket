@@ -158,12 +158,22 @@ export default function Header(props) {
                       visibility: showOptions[1] ? "visible" : "hidden",
                     }}
                   >
-                    <ul className={style.list_option}>
-                      <li>{category[0]?.categoryName}</li>
-                      <li> {category[1]?.categoryName}</li>
-                      <li> {category[10]?.categoryName}</li>
-                      <li> {category[2]?.categoryName}</li>
-                    </ul>
+            <ul className={style.list_option}>
+  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
+    {category[0]?.categoryName}
+  </li>
+  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
+    {category[1]?.categoryName}
+  </li>
+  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
+    {category[10]?.categoryName}
+  </li>
+  <li onClick={() => window.location.href = `/${category[0]?.categoryName}`}>
+    {category[2]?.categoryName}
+  </li>
+  
+</ul>
+
                   </div>
                 </li>
                 <li

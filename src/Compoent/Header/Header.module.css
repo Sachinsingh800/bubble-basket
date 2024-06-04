@@ -24,7 +24,8 @@
   justify-content: flex-start;
 }
 .list_option li{
-
+text-decoration: none;
+cursor: pointer;
 }
 .left_section {
 	padding: 0;
