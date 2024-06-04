@@ -37,6 +37,8 @@ function SectionNinth() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can add your form submission logic here
+    console.log(name, email,selectedDate)
+    alert("Thank you for subscribing ! ")
   };
 
   const handleName = (e) => {

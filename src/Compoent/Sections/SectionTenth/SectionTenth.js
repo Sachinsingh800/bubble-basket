@@ -5,7 +5,7 @@ function SectionTenth() {
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
-        <h2> Luxury Bubble Basket !</h2>
+        <h2>Luxury Bubble Basket !</h2>
       </div>
       <p>
         Welcome to luxury bubble baskets, where luxury meets exceptional taste.
