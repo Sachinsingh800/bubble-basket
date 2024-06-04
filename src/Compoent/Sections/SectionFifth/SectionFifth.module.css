@@ -94,4 +94,14 @@
         text-align: left;
         padding: 0rem 0rem; 
     }
+    .menu_item {
+        color: black;
+        font-family: "Jost";
+        font-size: 10px!important;
+        text-transform: uppercase;
+      }
+      
+      .menu_item:hover {
+        background-color: #F5E3E3!important;
+      }
 }
