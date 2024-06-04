@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./SectionFifth.module.css";
 import drum from "../../Images/drum.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import axios from "axios";
-import { getAllCategory } from "../../Apis/Apis";
 
 function SectionFifth() {
   const [category, setCategory] = useState("");
-  const [categoryData, setCategoryData] = useState([]);
+  const [categoryData, setCategoryData] = useState([
+    { categoryName: "WINE" },
+    { categoryName: "CHAMPAGNE" },
+    { categoryName: "CHOCOLATE" },
+    { categoryName: "SPA" },
+    { categoryName: "HAND PAINTED" },
+    { categoryName: "PERSONALISED" },
+  ]);
   const [brand, setBrand] = useState("");
   const [brandData, setBrandData] = useState([
     { categoryName: "Caymus" },
@@ -20,11 +25,8 @@ function SectionFifth() {
   ]);
   const [luxury, setLuxury] = useState("");
   const [luxuryData, setLuxuryData] = useState([
-    { categoryName: "Caymus" },
-    { categoryName: "Opus One" },
-    { categoryName: "Penfolds Bin" },
-    { categoryName: "Silver Oak" },
-    { categoryName: "Bond Wine" },
+    { categoryName: "TIFFANY WINE" },
+    { categoryName: "TIFFANY CHAMPAGNE" },
   ]);
   const [origin, setOrigin] = useState("");
   const [originData, setOriginData] = useState([
@@ -35,18 +37,6 @@ function SectionFifth() {
     { categoryName: "Bond Wine" },
   ]);
 
-  useEffect(() => {
-    handleAllCategory();
-  }, []);
-
-  const handleAllCategory = async () => {
-    try {
-      const response = await getAllCategory();
-      setCategoryData(response?.data);
-    } catch (error) {
-      console.error("Error in handleAllCategory function:", error);
-    }
-  };
   const handleNavigate = (categoryName) => {
     window.location.href = `/${categoryName}`;
   };
@@ -64,8 +54,12 @@ function SectionFifth() {
               <Select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
+                <MenuItem value="" disabled>
+                  Select Category
+                </MenuItem>
                 {categoryData?.map((item, index) => (
                   <MenuItem
                     key={index}
@@ -90,9 +84,13 @@ function SectionFifth() {
               <Select
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
+                displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
+                <MenuItem value="" disabled>
+                  Select Brand
+                </MenuItem>
+                {brandData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
@@ -114,9 +112,13 @@ function SectionFifth() {
               <Select
                 value={luxury}
                 onChange={(e) => setLuxury(e.target.value)}
+                displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
+                <MenuItem value="" disabled>
+                  Select Luxury
+                </MenuItem>
+                {luxuryData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
@@ -135,14 +137,18 @@ function SectionFifth() {
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
-            <p>GIFT BY ORIGIN</p>
+            <p>GIFT BY OCCASION</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
+                displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
-                {categoryData?.map((item, index) => (
+                <MenuItem value="" disabled>
+                  Select Occasion
+                </MenuItem>
+                {originData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
