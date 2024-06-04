@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'BrittanySignature';
+  src: url('../../Fonts/BrittanySignature.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FELIXTI';
+  src: url('../../Fonts/FELIXTI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Metropolis-Bold';
+  src: url('../../Fonts/Metropolis-Bold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .main {
   height: 16rem;
   background-color: #7b0128;
@@ -12,10 +30,12 @@
   display: flex;
   list-style: none;
   gap: 1rem;
+  align-items: center;
+  font-family: 'FELIXTI';
 }
 .url{
   color: white!important;
 }
 .breadcrumbItem{
-  font-family: "Jost", sans-serif;
+  font-family: 'Metropolis-Bold';
 }

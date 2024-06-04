@@ -7,13 +7,14 @@ function ColumnPageSectionFirst() {
   const { category } = useParams();
   console.log(category, "breadcrumbs");
 
+  const displayCategory = category || "GIFT BASKETS";
+
   // Function to generate breadcrumb list items
   const generateBreadcrumbs = () => {
-    const categories = category.split("/");
     const breadcrumbs = [
       { title: <HomeIcon />, url: "/" }, // Assuming your home route is "/"
-      { title: `/    ${categories[0]} GIFT BASKETS`, url: `/${categories[0]}` },
-      { title: `/    ${category}`,  url:""}, // Dynamic URL based on category
+      { title: `/ GIFT BASKETS`, url: `/Product` },
+      { title:category ? `/ ${displayCategory}` :  ``, url: "" }, // Dynamic URL based on category
     ];
 
     return breadcrumbs.map((crumb, index) => (
@@ -31,7 +32,7 @@ function ColumnPageSectionFirst() {
 
   return (
     <div className={styles.main}>
-      <h1>{category}</h1>
+      <h1>{displayCategory}</h1>
       <ul className={styles.breadcrumbs}>{generateBreadcrumbs()}</ul>
     </div>
   );
