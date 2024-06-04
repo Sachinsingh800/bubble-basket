@@ -144,7 +144,7 @@ export default function Header(props) {
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar style={{ backgroundColor: "white", boxShadow: "none" }}>
-          <Toolbar>
+          <Toolbar className={style.tool_bar_main}>
             <div className={style.tool_bar}>
               <ul className={style.left_section}>
                 <li

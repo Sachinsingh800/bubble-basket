@@ -305,7 +305,10 @@ text-align: center;
 }
 
 @media screen and (max-width:1130px) {
-
+  .tool_bar_main{
+    display: flex;
+    flex-direction: column;
+  }
   .left_section{
     display: none;
   }
@@ -325,7 +328,7 @@ text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 0rem!important;
-    height: 10rem;
+    height: 5.5rem;
   }
   .Container{
     padding: 1.5rem;
@@ -334,11 +337,8 @@ text-align: center;
     display: none!important;
   }
   .search_box_mob{
-    position: absolute;
-    margin-top: 10rem;
-    width: 98%;
+    width: 100%;
     background-color: white;
-    margin-left: -1.5rem;
   }
   .search_box_mob input{
     width: 100%;
@@ -349,7 +349,7 @@ text-align: center;
   }
   .option_box_mob{
     height: 20rem;
-    width: 100%;
+    width: 90%;
     position: absolute;
     background-color: white;
     display: flex;
@@ -410,7 +410,7 @@ text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 0rem!important;
-    height: 10rem;
+    height: 5.5rem;
   }
   .Container{
     padding: 1.5rem;
@@ -419,11 +419,8 @@ text-align: center;
     display: none!important;
   }
   .search_box_mob{
-    position: absolute;
-    margin-top: 10rem;
-    width: 95%;
+    width: 100%;
     background-color: white;
-    margin-left: -.2rem;
   }
   .search_box_mob input{
     width: 320px;
@@ -434,7 +431,7 @@ text-align: center;
   }
   .option_box_mob{
     height: 20rem;
-    width: 100%;
+    width: 90%;
     position: absolute;
     background-color: white;
     display: flex;
