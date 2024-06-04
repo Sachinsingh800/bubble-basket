@@ -15,12 +15,15 @@ function SectionFifth() {
     { categoryName: "HAND PAINTED" },
     { categoryName: "PERSONALISED" },
   ]);
-  const [brand, setBrand] = useState("");
-  const [brandData, setBrandData] = useState([
-    { categoryName: "Caymus" },
-    { categoryName: "Dom Perignon" },
-    { categoryName: "Moet &amp; Chandon" },
-    { categoryName: "Veuve Clicquot" },
+  const [occasion, setOccasion] = useState("");
+  const [occasionData, setOccasionData] = useState([
+    { categoryName: "FATHER'S DAY GIFTS" },
+    { categoryName: "ANNIVERSARY GIFTS" },
+    { categoryName: "BIRTHDAY GIFTS" },
+    { categoryName: "HOUSE WARMING GIFTS" },
+    { categoryName: "WEDDING GIFTS" },
+    { categoryName: "CONGRATULATIONS GIFTS" },
+
   ]);
   const [luxury, setLuxury] = useState("");
   const [luxuryData, setLuxuryData] = useState([
@@ -29,17 +32,10 @@ function SectionFifth() {
   ]);
   const [origin, setOrigin] = useState("");
   const [originData, setOriginData] = useState([
-    { categoryName: "FATHER'S DAY GIFTS" },
-    { categoryName: "ANNIVERSARY GIFTS" },
-    { categoryName: "BIRTHDAY GIFTS" },
-    { categoryName: "HOUSE WARMING GIFTS" },
-    { categoryName: "WEDDING GIFTS" },
-    { categoryName: "CONGRATULATIONS GIFTS" },
-    { categoryName: "GET WELL SOON GIFTS" },
-    { categoryName: "THANK YOU GIFTS" },
-    { categoryName: "HOLIDAYS GFTS" },
-    { categoryName: "CHRISTMAS  GIFTS" },
-    { categoryName: "NEW YEAR GIFTS" },
+    { categoryName: "AUSTRALIAN WINE GIFTS" },
+    { categoryName: "FRENCH WINE  GIFTS" },
+    { categoryName: "ITALIAN WINE GIFTS" },
+    { categoryName: "NAPA VALLEY GIFTS" },
   ]);
 
   const handleNavigate = (categoryName) => {
@@ -87,23 +83,23 @@ function SectionFifth() {
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
-            <p>GIFT BY BRAND</p>
+            <p>GIFT BY OCCASION</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
                 displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
                 <MenuItem value="" disabled>
-                  Select Brand
+                  Select Occasion
                 </MenuItem>
-                {brandData?.map((item, index) => (
+                {occasionData?.map((item, index) => (
                   <MenuItem
                     key={index}
                     value={item?.categoryName}
                     className={style.menu_item}
-                    onClick={() => handleNavigateBrand(item?.categoryName)}
+                    onClick={() => handleNavigate(item?.categoryName)}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -111,7 +107,7 @@ function SectionFifth() {
               </Select>
             </FormControl>
           </div>
-          <h6>Celebrate with the finest selections from renowned brands.</h6>
+          <h6>Embody the rich heritage and craftsmanship by origins.</h6>
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
@@ -145,7 +141,7 @@ function SectionFifth() {
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
-            <p>GIFT BY OCCASION</p>
+            <p>GIFT BY ORIGIN</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
                 value={origin}
@@ -154,7 +150,7 @@ function SectionFifth() {
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
               >
                 <MenuItem value="" disabled>
-                  Select Occasion
+                  Select Origin
                 </MenuItem>
                 {originData?.map((item, index) => (
                   <MenuItem
