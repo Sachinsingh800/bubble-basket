@@ -44,6 +44,7 @@
     border: 1px #7B0128 solid;
     outline: none;
     padding:0rem .5rem ;
+    font-size: 16px!important;
 }
 .input_box button{
     display:flex ;

@@ -345,6 +345,7 @@ text-align: center;
     padding: 1rem;
     border: none;
     outline: none;
+    font-size: 16px!important;
   }
   .option_box_mob{
     height: 20rem;
@@ -429,6 +430,7 @@ text-align: center;
     padding: 1rem;
     border: none;
     outline: none;
+    font-size: 16px!important;
   }
   .option_box_mob{
     height: 20rem;
