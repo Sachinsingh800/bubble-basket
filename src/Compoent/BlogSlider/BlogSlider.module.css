@@ -1,0 +1,85 @@
+.mainContainer {
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    gap: 2rem;
+  }
+  
+  a {
+    cursor: pointer;
+  }
+  
+  .carouselBox {
+    width: 80%;
+  }
+  
+  .customButton {
+    position: absolute;
+    width: 90%;
+    margin-top: -13rem;
+    margin-left: -4.5rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    height: 1px;
+  }
+  
+  .customButton button {
+    background: none;
+    border: none;
+  }
+  
+  .imgBox {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .imgBox img {
+    width: 32rem;
+    height: 24rem;
+    cursor: pointer;
+    margin:1rem;
+  }
+  
+  .icon {
+    font-size: 3rem !important;
+    color: rgb(0, 0, 0) !important;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .imgBox {
+        width: 100%;
+        cursor: pointer;
+      }
+      
+      .imgBox img {
+        width: 100%;
+        height: 24rem;
+        cursor: pointer;
+        margin:0rem;
+      }
+    
+    .carouselBox {
+      width: 100%;
+    }
+    
+    .icon {
+      font-size: 3rem !important;
+      color: rgb(0, 0, 0) !important;
+    }
+    
+    .customButton {
+      position: absolute;
+      width: 90%;
+      margin-top: -12rem !important;
+      margin-left: 0rem !important;
+      display: flex;
+      justify-content: space-between;
+      z-index: 1;
+      height: 1px;
+    }
+  }
+  

@@ -12,7 +12,7 @@
   width: 8rem!important;
 }
 .img_box {
-  height: 20rem;
+  height: 12rem;
   overflow: hidden;
 }
 .nav_bar a {
@@ -149,7 +149,6 @@
     gap: 1rem;
     align-items: center;
     font-size: medium;
-    font-family: "Jost", sans-serif;
   }
   .instagramIcon {
     font-size: 10px !important;
@@ -161,5 +160,28 @@
   }
   .opt{
     border-right: none;
+  }
+  .input_box {
+    border: 1px rgb(255, 255, 255) solid;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0rem;
+  }
+  .input_box input {
+    width: 200px!important;
+    background-color: none;
+    background: none;
+    border: none!important;
+    color: white;
+    outline: none!important;
+  }
+  .input_box button {
+    border: none;
+    background-color: none;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    width: 10rem!important;
   }
 }

@@ -13,6 +13,7 @@ import SectionTenth from "../Sections/SectionTenth/SectionTenth";
 import Footer from "../Sections/Footer/Footer";
 import style from "./Home.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import BlogSlider from "../BlogSlider/BlogSlider";
 
 
 function Home() {
@@ -28,7 +29,8 @@ function Home() {
         <SectionFifth />
         <SectionSixth />
         <SectionSeventh />
-        <SectionEight />
+        {/* <SectionEight /> */}
+        <BlogSlider />
         <ImageSlider />
         <br/>
         <SectionNinth />
