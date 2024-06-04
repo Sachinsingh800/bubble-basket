@@ -29,6 +29,7 @@ a{
   background-color: none;
   background: none;
   border: none;
+  color: black!important;
 }
 .img_box{
   height: 8rem;
@@ -72,6 +73,7 @@ a{
     justify-content: space-between;
     z-index: 1;
     height: 1px;
+    color: black!important;
   }
 }
 
