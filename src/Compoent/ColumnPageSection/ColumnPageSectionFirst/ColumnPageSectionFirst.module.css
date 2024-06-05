@@ -27,6 +27,9 @@
   flex-direction: column;
   overflow: hidden;
 }
+.main h2{
+  text-align: center;
+}
 .breadcrumbs{
   display: flex;
   list-style: none;

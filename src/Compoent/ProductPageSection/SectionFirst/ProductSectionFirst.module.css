@@ -27,6 +27,9 @@
   flex-direction: column;
   overflow: hidden;
 }
+.main h2{
+  text-align: center;
+}
 .breadcrumbs{
   display: flex;
   list-style: none;
@@ -43,5 +46,8 @@
 @media (max-width:784px){
   .main {
     margin-top: 7rem;
+  }
+  .main h2{
+    text-align: center;
   }
 }

@@ -7,21 +7,26 @@ import { getAllBlog } from "../Apis/Apis";
 
 function BlogSlider() {
   const [allBlog, setAllBlog] = useState([]);
-  const [loading, SetIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     handleAllBlog();
   }, []);
 
   const handleAllBlog = async () => {
-    SetIsLoading(true);
+    setLoading(true);
     try {
       const response = await getAllBlog();
-      setAllBlog(response.data);
+      if (response && response.data) {
+        setAllBlog(response.data);
+      } else {
+        setAllBlog([]); // Ensure allBlog is always an array
+      }
     } catch (error) {
       console.error("Error getting blogs:", error.message);
+      setAllBlog([]); // Handle error by setting allBlog to an empty array
     } finally {
-      SetIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -74,9 +79,9 @@ function BlogSlider() {
             responsive={responsive}
           >
             {allBlog.map((item) => (
-              <a key={item.id} href={`/Blog/${item?._id}`}>
+              <a key={item?._id} href={`/Blog/${item?._id}`}>
                 <div className={style.imgBox}>
-                  <img src={item?.blogImage?.url || ""} alt={item.title} />
+                  <img src={item?.blogImage?.url || ""} alt={item?.title} />
                 </div>
               </a>
             ))}
