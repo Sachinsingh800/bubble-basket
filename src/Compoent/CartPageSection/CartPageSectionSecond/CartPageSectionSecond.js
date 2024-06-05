@@ -46,7 +46,7 @@ function CartPageSectionSecond() {
     setData(updatedData);
     sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
-    setupdatesideCart(updatesideCart + 1)
+    setupdatesideCart(updatesideCart + 7)
     calculateTotalPrice(updatedData);
   };
 
@@ -112,6 +112,7 @@ function CartPageSectionSecond() {
       calculateTotalPrice(updatedData);
       handleCheckoutOrder();
       setUpdate(update  + 5);
+      setupdatesideCart(updatesideCart + 7)
     }
   };
 

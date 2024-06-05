@@ -35,7 +35,6 @@ export default function AnchorTemporaryDrawer() {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
       handleCheckoutOrder()
-
     } else {
       window.location.href = "/Login";
     }
