@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://wine-rnlq.onrender.com";
+const BASE_URL = "https://www.luxurybubblebasket.com";
 
 // Register
 
