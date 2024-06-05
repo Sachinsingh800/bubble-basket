@@ -6,7 +6,7 @@ import {
   removeFromCart,
   updateItemQuantity,
 } from "../../Apis/Apis";
-import { updateCart } from "../../Recoil/Recoil";
+import { addItemCart, updateCart } from "../../Recoil/Recoil";
 
 function CartPageSectionSecond() {
   const [data, setData] = useState([]);
