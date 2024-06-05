@@ -18,6 +18,7 @@ function CartPageSectionSecond() {
   const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
   const [productId, setProductId] = useState(null);
   const [productQuantity, setProductQuantity] = useState(0);
+  const [updatesideCart, setupdatesideCart] = useRecoilState(addItemCart);
 
   useEffect(() => {
     const cartData = JSON.parse(sessionStorage.getItem("cartData"));
@@ -45,6 +46,7 @@ function CartPageSectionSecond() {
     setData(updatedData);
     sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
+    setupdatesideCart(updatesideCart + 1)
     calculateTotalPrice(updatedData);
   };
 
