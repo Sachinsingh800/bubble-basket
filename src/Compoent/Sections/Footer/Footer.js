@@ -16,20 +16,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import { sendSubscribtion } from "../../Apis/Apis";
 
 function Footer() {
-  const [useremail,setEmail] = useState("")
 
-  const handleSendSubscribtion=async(e)=>{
-    e.preventDefault()
- try{
-  const email={
-    email:useremail
-  }
-const response = await sendSubscribtion(email)
-alert(response.message)
- }catch(error){
-
- }
-  }
   return (
     <div className={style.main}>
       <div className={style.header}>
@@ -115,10 +102,6 @@ alert(response.message)
         </a>
       </div>
       <br />
-      <div className={style.input_box}>
-        <input required type="email" value={useremail} onChange={(e)=>setEmail(e.target.value)} placeholder="Y O U R  M A I L" />
-        <button className={style.submit_btn} onClick={(e)=>handleSendSubscribtion(e)}>SUBMIT →</button>
-      </div>
       <div className={style.paymet_conatainer}>
         <div className={style.payment_img_box}>
           <img src={logo1} alt="visa" />

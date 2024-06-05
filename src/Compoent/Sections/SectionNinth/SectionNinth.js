@@ -8,13 +8,14 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import design1 from "../../Images/Leaf 1.png";
 import design2 from "../../Images/Leaf 2.png";
+import { sendSubscribtion } from "../../Apis/Apis";
 
 function SectionNinth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [showDate, setShowDate] = useState(false);
-
+  // name,email,dateOfBirth
   const dateRef = useRef(null);
 
   useEffect(() => {
@@ -34,12 +35,20 @@ function SectionNinth() {
     setShowDate(!showDate);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add your form submission logic here
-    console.log(name, email,selectedDate)
-    alert("Thank you for subscribing ! ")
-  };
+  const handleSubmit=async(e)=>{
+    e.preventDefault()
+ try{
+  const data={
+    name:name,
+    email:email,
+    dateOfBirth:selectedDate
+  }
+const response = await sendSubscribtion(data)
+alert(response.message)
+ }catch(error){
+
+ }
+  }
 
   const handleName = (e) => {
     setName(e.target.value);

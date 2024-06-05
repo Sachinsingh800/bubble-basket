@@ -838,7 +838,7 @@ export const getAllOrdersHistory = async () => {
 
 //sendSubscribtion
 
-export const sendSubscribtion = async (email) => {
+export const sendSubscribtion = async (data) => {
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -855,7 +855,7 @@ export const sendSubscribtion = async (email) => {
     };
     const response = await axios.post(
       `${BASE_URL}/user/subscribe/subscribeForNewsletter`,
-      email,
+      data,
       {
         headers,
       }
