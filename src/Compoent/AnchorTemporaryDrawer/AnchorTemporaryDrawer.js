@@ -34,7 +34,8 @@ export default function AnchorTemporaryDrawer() {
   const handleNavigate = () => {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
-      window.location.href = "/CheckoutPage";
+      handleCheckoutOrder()
+
     } else {
       window.location.href = "/Login";
     }
