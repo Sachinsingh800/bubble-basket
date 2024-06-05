@@ -9,7 +9,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useRecoilState } from "recoil";
 import { addItemCart } from "../Recoil/Recoil";
 import style from "./AnchorTemporaryDrawer.module.css";
@@ -21,8 +20,7 @@ export default function AnchorTemporaryDrawer() {
     right: false,
   });
   const [cartItems, setCartItems] = React.useState([]);
-  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
-  
+  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || "false");
 
   React.useEffect(() => {
     const storedCartItems =
@@ -33,9 +31,10 @@ export default function AnchorTemporaryDrawer() {
     }
   }, [update]);
 
-  const handleNaviagte = () => {
+  const handleNavigate = () => {
+    localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
-      handleCheckoutOrder();
+      window.location.href = "/CheckoutPage";
     } else {
       window.location.href = "/Login";
     }
@@ -45,7 +44,7 @@ export default function AnchorTemporaryDrawer() {
     try {
       await getCheckout();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setUpdate(update + 1);
     }
@@ -67,29 +66,36 @@ export default function AnchorTemporaryDrawer() {
         width: 250,
       }}
       role="presentation"
+      onClick={toggleDrawer("right", false)}
+      onKeyDown={toggleDrawer("right", false)}
     >
       <List>
         {cartItems.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                  <img
-                    src={item?.productImg[0]?.url ? item?.productImg[0]?.url : item?.Product_image }
-                    alt={item?.title}
-                    style={{ width: "50px", height: "50px" }}
-                  />
-              </ListItemIcon>
-                <ListItemText
-                  primary={item?.title ? item?.title : item?.Product_title}
-                  secondary={`$${item?.price ? item?.price :item?.productTotal}`}
+                <img
+                  src={item?.productImg?.[0]?.url ? item.productImg[0].url : item.Product_image}
+                  alt={item?.title ? item.title : item.Product_title}
+                  style={{ width: "50px", height: "50px" }}
                 />
+              </ListItemIcon>
+              <ListItemText
+                primary={item?.title ? item.title : item.Product_title}
+                secondary={`$${item?.price ? item.price : item.productTotal}`}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
-        <Button style={{backgroundColor:"#7b0128",color:"white"}} onClick={handleNaviagte} variant="contained" color="primary">
+        <Button
+          style={{ backgroundColor: "#7b0128", color: "white" }}
+          onClick={handleNavigate}
+          variant="contained"
+          color="primary"
+        >
           Checkout
         </Button>
       </Box>
