@@ -6,7 +6,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import style from "./HumBurger.module.css";
 import menuicon from "../Images/menu.png";
 
-
 export default function HumBurger() {
   const [state, setState] = React.useState({
     right: false,
@@ -30,15 +29,18 @@ export default function HumBurger() {
       role="presentation"
     >
       <List>
-          <p>Home</p>
-          <p>Bulk Order</p>
-          <p>Track Order</p>
+        <div className={style.list}>
+        <p>Home</p>
+        <p>Bulk Order</p>
+        <p>Track Order</p>
+        </div>
+
       </List>
     </Box>
   );
 
   return (
-    <div>
+    <div className={style.main}>
       <Box
         className={style.btn}
         onClick={toggleDrawer("right", true)}
@@ -50,9 +52,9 @@ export default function HumBurger() {
           color: "black",
         }}
       >
-                <div className={style.icon_box4}>
-                  <img src={menuicon} alt="menu" />
-                </div>
+        <div className={style.icon_box4}>
+          <img src={menuicon} alt="menu" />
+        </div>
       </Box>
       <Drawer
         anchor="right"
