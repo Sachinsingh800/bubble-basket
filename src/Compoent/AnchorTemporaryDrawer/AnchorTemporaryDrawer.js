@@ -103,7 +103,7 @@ export default function AnchorTemporaryDrawer() {
       </List>
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
-        <Button onClick={handleNaviagte} variant="contained" color="primary">
+        <Button style={{backgroundColor:"#7b0128",color:"white"}} onClick={handleNaviagte} variant="contained" color="primary">
           Checkout
         </Button>
       </Box>
