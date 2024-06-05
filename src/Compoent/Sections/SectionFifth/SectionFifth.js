@@ -23,6 +23,11 @@ function SectionFifth() {
     { categoryName: "HOUSE WARMING GIFTS" },
     { categoryName: "WEDDING GIFTS" },
     { categoryName: "CONGRATULATIONS GIFTS" },
+    { categoryName: "GET WELL SOON GIFTS" },
+    { categoryName: "THANK YOU GIFTS" },
+    { categoryName: "HOLIDAYS GFTS" },
+    { categoryName: "CHRISTMAS  GIFTS" },
+    { categoryName: "NEW YEAR GIFTS" },
 
   ]);
   const [luxury, setLuxury] = useState("");
@@ -83,7 +88,7 @@ function SectionFifth() {
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
-            <p>GIFT BY OCCASION</p>
+            <p>SHOP BY OCCASION</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
                 value={occasion}
@@ -141,7 +146,7 @@ function SectionFifth() {
         </div>
         <div className={style.container}>
           <div className={style.input_container}>
-            <p>GIFT BY ORIGIN</p>
+            <p>SHOP BY ORIGIN</p>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
               <Select
                 value={origin}

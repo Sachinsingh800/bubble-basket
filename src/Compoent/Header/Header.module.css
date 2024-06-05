@@ -400,6 +400,7 @@ text-align: center;
 }
 
 @media screen and (max-width:473px) {
+  
   .search_box_mob{
     display: unset!important;
   }

@@ -19,7 +19,7 @@ import BlogSlider from "../BlogSlider/BlogSlider";
 function Home() {
 
   return (
-    <div>
+    <div >
       <Header />
       <div className={style.Container}>
         <FirstSection />
