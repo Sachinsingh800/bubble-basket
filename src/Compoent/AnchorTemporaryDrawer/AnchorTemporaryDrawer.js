@@ -117,20 +117,6 @@ export default function AnchorTemporaryDrawer() {
         onClick={toggleDrawer("right", true)}
         sx={{
           position: "fixed",
-          top: 150,
-          right: state.right ? 260 : 0,
-          zIndex: 999,
-          backgroundColor: "white",
-          color: "black",
-        }}
-      >
-        <LocalMallIcon />
-      </Box>
-      <Box
-        className={style.btn}
-        onClick={toggleDrawer("right", true)}
-        sx={{
-          position: "fixed",
           top: 200,
           right: state.right ? 260 : 0,
           zIndex: 999,
