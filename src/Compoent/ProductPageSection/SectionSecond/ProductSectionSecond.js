@@ -47,6 +47,7 @@ function ProductSectionSecond() {
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  
 
   const handleZoomChange = useCallback((shouldZoom) => {
     setIsZoomed(shouldZoom);
@@ -143,14 +144,13 @@ function ProductSectionSecond() {
       updatedCartData[existingProductIndex].quantity += quantity;
       sessionStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
-      setAddToCart(true)
+      setAddToCart(addToCart +1)
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
       sessionStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
       setUpdate(update + 1);
-      setAddToCart(true)
-
+      setAddToCart(addToCart +1)
     }
   };
 

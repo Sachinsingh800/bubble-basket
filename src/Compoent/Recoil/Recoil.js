@@ -8,5 +8,5 @@ export const updateCart = atom({
 });
 export const addItemCart = atom({
   key: "addItemCart", // unique ID (with respect to other atoms/selectors)
-  default: false
+  default: 0
 });
