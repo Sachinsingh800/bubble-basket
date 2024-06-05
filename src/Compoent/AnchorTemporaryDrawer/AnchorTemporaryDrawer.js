@@ -20,23 +20,24 @@ export default function AnchorTemporaryDrawer() {
     right: false,
   });
   const [cartItems, setCartItems] = React.useState([]);
+  const [prevCartLength, setPrevCartLength] = React.useState(0);
   const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || "false");
 
   React.useEffect(() => {
-    const storedCartItems =
-      JSON.parse(sessionStorage.getItem("cartData")) || [];
+    const storedCartItems = JSON.parse(sessionStorage.getItem("cartData")) || [];
     setCartItems(storedCartItems);
-    if (storedCartItems.length > cartItems.length) {
+
+    // Open the drawer only if the length of cartItems has increased
+    if (storedCartItems.length > prevCartLength) {
       setState({ right: true });
-    } else {
-      setState({ right: false });
     }
+    setPrevCartLength(storedCartItems.length);
   }, [update]);
 
   const handleNavigate = () => {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
-      handleCheckoutOrder()
+      handleCheckoutOrder();
     } else {
       window.location.href = "/Login";
     }
@@ -53,10 +54,7 @@ export default function AnchorTemporaryDrawer() {
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     setState({ ...state, [anchor]: open });
@@ -64,9 +62,7 @@ export default function AnchorTemporaryDrawer() {
 
   const list = (
     <Box
-      sx={{
-        width: 250,
-      }}
+      sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer("right", false)}
       onKeyDown={toggleDrawer("right", false)}
@@ -120,11 +116,7 @@ export default function AnchorTemporaryDrawer() {
       >
         <ShoppingCartIcon />
       </Box>
-      <Drawer
-        anchor="right"
-        open={state.right}
-        onClose={toggleDrawer("right", false)}
-      >
+      <Drawer anchor="right" open={state.right} onClose={toggleDrawer("right", false)}>
         {list}
       </Drawer>
     </div>
