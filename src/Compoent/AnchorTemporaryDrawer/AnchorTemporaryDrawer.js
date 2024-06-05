@@ -26,8 +26,10 @@ export default function AnchorTemporaryDrawer() {
     const storedCartItems =
       JSON.parse(sessionStorage.getItem("cartData")) || [];
     setCartItems(storedCartItems);
-    if (update) {
+    if (storedCartItems.length > cartItems.length) {
       setState({ right: true });
+    } else {
+      setState({ right: false });
     }
   }, [update]);
 
