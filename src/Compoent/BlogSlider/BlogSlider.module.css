@@ -26,6 +26,7 @@
     z-index: 9;
     height: 1px;
     color: black!important;
+
   }
   
   .customButton button {
@@ -65,6 +66,15 @@
     
   }
   @media screen and (max-width: 500px) {
+    .customButton button {
+      background-color: aliceblue;
+      border: none;
+      opacity: 0.7;
+      height: max-content;
+      color: black!important;
+      z-index: 9999;
+      border-radius: 5px;
+    }
     .imgBox {
         width: 100%;
         cursor: pointer;
