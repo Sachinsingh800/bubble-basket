@@ -13,6 +13,10 @@
 .list {
   padding: 2rem;
 }
+.list a{
+    color: black;
+    cursor: pointer;
+}
 
 .list p{
     font-size: 2rem!important;

@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import style from "./HumBurger.module.css";
 import menuicon from "../Images/menu.png";
 import CloseIcon from "@mui/icons-material/Close";
+import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
 
 export default function HumBurger() {
   const [state, setState] = React.useState({
@@ -22,6 +23,27 @@ export default function HumBurger() {
     setState({ ...state, [anchor]: open });
   };
 
+  const downloadExcel = () => {
+    // Path to the Excel file in your project folder
+    const excelFilePath = bulkOrderForm;
+
+    fetch(excelFilePath)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "Luxury_Bubble_Basket.xlsx");
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        alert("Your Bulk Order Form is Downloaded");
+      })
+      .catch((error) => {
+        console.error("Error downloading the Excel file:", error);
+      });
+  };
+
   const list = (
     <Box
       sx={{
@@ -30,15 +52,21 @@ export default function HumBurger() {
       role="presentation"
     >
       <List>
-      <button className={style.closebtn} onClick={toggleDrawer("right", false)}>
+        <button
+          className={style.closebtn}
+          onClick={toggleDrawer("right", false)}
+        >
           <CloseIcon />
         </button>
         <div className={style.list}>
-        <p>Home</p>
-        <p>Bulk Order</p>
-        <p>Track Order</p>
+          <a href="/">
+            <p>Home</p>
+          </a>
+          <p onClick={downloadExcel}>Bulk Order</p>
+          <a href="/OrderHistory">
+            <p>Track Order</p>
+          </a>
         </div>
-
       </List>
     </Box>
   );
