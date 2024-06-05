@@ -58,7 +58,7 @@ function AccountPageSectionSecond() {
 
         <div onClick={() => handleLinkClick("address")}>
           <AddHomeIcon className={style.icon} />
-          <span> Modify your address book entries</span>
+          <span> Modify your address book</span>
         </div>
       </div>
     </div>

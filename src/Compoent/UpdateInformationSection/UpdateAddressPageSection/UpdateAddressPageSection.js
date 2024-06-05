@@ -379,18 +379,6 @@ function UpdateAddressPageSection() {
           />
           {errors.orderNotes && <p className={style.error}>{errors.orderNotes}</p>}
         </div>
-        <div className={style.input_box}>
-          <label htmlFor="setAsDefault">Set as Default</label>
-          <input
-            type="checkbox"
-            id="setAsDefault"
-            name="setAsDefault"
-            checked={addressData?.setAsDefault}
-            onChange={(e) =>
-              setAddressData({ ...addressData, setAsDefault: e.target.checked })
-            }
-          />
-        </div>
         <button type="submit">Update Address →</button>
       </form>
     </div>
