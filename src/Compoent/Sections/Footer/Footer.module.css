@@ -13,6 +13,7 @@
 }
 .img_box {
   height: 12rem;
+  width: 25rem;
   overflow: hidden;
 }
 .nav_bar a {

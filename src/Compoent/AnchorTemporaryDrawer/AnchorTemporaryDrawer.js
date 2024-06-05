@@ -8,25 +8,27 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import bagicon  from '../Images/bag.png'
-import cart from "../Images/cart.png"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import style  from "./AnchorTemporaryDrawer.module.css"
+import { useRecoilState } from 'recoil';
+import { addItemCart} from '../Recoil/Recoil';
+import style from './AnchorTemporaryDrawer.module.css';
 
 export default function AnchorTemporaryDrawer() {
+  const [update, setUpdate] = useRecoilState(addItemCart);
   const [state, setState] = React.useState({
     right: false,
   });
+  const [cartItems, setCartItems] = React.useState([]);
+
+  React.useEffect(() => {
+    const storedCartItems = JSON.parse(sessionStorage.getItem('cartData')) || [];
+    setCartItems(storedCartItems);
+    setState({ right: true });
+  }, [update]);
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -41,40 +43,53 @@ export default function AnchorTemporaryDrawer() {
       role="presentation"
     >
       <List>
-        {['content'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {cartItems.map((item, index) => (
+          <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <img src={item?.productImg[0]?.url} alt={item?.title} style={{ width: '50px', height: '50px' }} />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item?.title} secondary={`$${item?.price}`} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {[].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <Box sx={{ textAlign: 'center', padding: '10px' }}>
+        <Button variant="contained" color="primary">Checkout</Button>
+      </Box>
     </Box>
   );
 
   return (
     <div>
-      <Box className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:150, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black", }}>
+      <Box
+        className={style.btn}
+        onClick={toggleDrawer('right', true)}
+        sx={{
+          position: 'fixed',
+          top: 150,
+          right: state.right ? 260 : 0,
+          zIndex: 999,
+          backgroundColor: 'white',
+          color: 'black',
+        }}
+      >
         <LocalMallIcon />
       </Box>
-      <Box className={style.btn} onClick={toggleDrawer('right', true)} sx={{ position: 'fixed', top:200, right: state.right ? 260 : 0, zIndex: 999 ,backgroundColor:"white",color:"black" }}>
-         <ShoppingCartIcon/>
+      <Box
+        className={style.btn}
+        onClick={toggleDrawer('right', true)}
+        sx={{
+          position: 'fixed',
+          top: 200,
+          right: state.right ? 260 : 0,
+          zIndex: 999,
+          backgroundColor: 'white',
+          color: 'black',
+        }}
+      >
+        <ShoppingCartIcon />
       </Box>
       <Drawer
         anchor="right"

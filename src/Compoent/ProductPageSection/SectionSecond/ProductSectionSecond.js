@@ -12,7 +12,7 @@ import {
   getAllProduct,
   getAllReview,
 } from "../../Apis/Apis";
-import { updateCart } from "../../Recoil/Recoil";
+import { addItemCart, updateCart } from "../../Recoil/Recoil";
 import ReactStars from "react-rating-stars-component";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ColumnPageSectionSecond from "../../ColumnPageSection/ColumnPageSectionSecond/ColumnPageSectionSecond";
@@ -38,6 +38,7 @@ function ProductSectionSecond() {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
+  const [addToCart, setAddToCart] = useRecoilState(addItemCart);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [reviewText, setReviewText] = useState("");
@@ -124,7 +125,8 @@ function ProductSectionSecond() {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+  e.preventDefault()
     setMessage("");
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
     if (loginStatus) {
@@ -141,11 +143,14 @@ function ProductSectionSecond() {
       updatedCartData[existingProductIndex].quantity += quantity;
       sessionStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
+      setAddToCart(true)
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
       sessionStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
       setUpdate(update + 1);
+      setAddToCart(true)
+
     }
   };
 
@@ -249,7 +254,7 @@ function ProductSectionSecond() {
                   value={quantity}
                   onChange={handleQuantityChange}
                 />
-                <button onClick={handleAddToCart}>ADD TO CART →</button>
+                <button onClick={(e)=>handleAddToCart(e)}>ADD TO CART →</button>
               </div>
               <br />
               <p>
