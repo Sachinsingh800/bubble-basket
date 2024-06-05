@@ -17,3 +17,9 @@
 .list p{
     font-size: 2rem!important;
 }
+
+.closebtn{
+     position: absolute;
+     right: 3%;
+     border: none;
+}

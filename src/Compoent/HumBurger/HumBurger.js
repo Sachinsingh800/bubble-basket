@@ -5,6 +5,7 @@ import List from "@mui/material/List";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import style from "./HumBurger.module.css";
 import menuicon from "../Images/menu.png";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function HumBurger() {
   const [state, setState] = React.useState({
@@ -29,6 +30,9 @@ export default function HumBurger() {
       role="presentation"
     >
       <List>
+      <button className={style.closebtn} onClick={toggleDrawer("right", false)}>
+          <CloseIcon />
+        </button>
         <div className={style.list}>
         <p>Home</p>
         <p>Bulk Order</p>
