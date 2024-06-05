@@ -24,7 +24,7 @@ export default function HumBurger() {
   const list = (
     <Box
       sx={{
-        width: 250,
+        width: 300,
       }}
       role="presentation"
     >
