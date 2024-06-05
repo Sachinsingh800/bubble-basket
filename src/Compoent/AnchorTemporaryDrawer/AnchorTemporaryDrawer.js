@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import { addItemCart } from "../Recoil/Recoil";
 import style from "./AnchorTemporaryDrawer.module.css";
 import { getCheckout } from "../Apis/Apis";
+import { useMediaQuery, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 export default function AnchorTemporaryDrawer() {
   const [update, setUpdate] = useRecoilState(addItemCart);
@@ -20,22 +21,27 @@ export default function AnchorTemporaryDrawer() {
     right: false,
   });
   const [cartItems, setCartItems] = React.useState([]);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || "false");
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   React.useEffect(() => {
     const storedCartItems =
       JSON.parse(sessionStorage.getItem("cartData")) || [];
     setCartItems(storedCartItems);
     if (update) {
-      setState({ right: true });
+      if (isMobile) {
+        setMobileOpen(true);
+      } else {
+        setState({ right: true });
+      }
     }
-  }, [update]);
+  }, [update, isMobile]);
 
   const handleNavigate = () => {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
       handleCheckoutOrder()
-
     } else {
       window.location.href = "/Login";
     }
@@ -103,6 +109,47 @@ export default function AnchorTemporaryDrawer() {
     </Box>
   );
 
+  const mobileList = (
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        bgcolor: 'background.paper',
+      }}
+    >
+      <List>
+        {cartItems.map((item, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <img
+                  src={item?.productImg?.[0]?.url ? item.productImg[0].url : item.Product_image}
+                  alt={item?.title ? item.title : item.Product_title}
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary={item?.title ? item.title : item.Product_title}
+                secondary={`$${item?.price ? item.price : item.productTotal}`}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <Box sx={{ textAlign: "center", padding: "10px" }}>
+        <Button
+          style={{ backgroundColor: "#7b0128", color: "white" }}
+          onClick={handleNavigate}
+          variant="contained"
+          color="primary"
+        >
+          Checkout
+        </Button>
+      </Box>
+    </Box>
+  );
+
   return (
     <div>
       <Box
@@ -126,6 +173,20 @@ export default function AnchorTemporaryDrawer() {
       >
         {list}
       </Drawer>
+      <Dialog
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+      >
+        <DialogTitle>Cart Items</DialogTitle>
+        <DialogContent>
+          {mobileList}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setMobileOpen(false)} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
