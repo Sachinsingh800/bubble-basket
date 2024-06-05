@@ -10,7 +10,6 @@ function CheckoutPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <CheckoutPageSectionFirst />
         <CheckoutPageSectionSecond />
         <Footer />
       </div>

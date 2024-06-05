@@ -41,7 +41,7 @@ function SectionNinth() {
   const data={
     name:name,
     email:email,
-    dateOfBirth:selectedDate
+    dob:selectedDate
   }
 const response = await sendSubscribtion(data)
 alert(response.message)

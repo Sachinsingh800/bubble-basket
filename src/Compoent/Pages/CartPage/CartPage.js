@@ -11,7 +11,6 @@ function CartPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <CartPageSectionFirst />
         <CartPageSectionSecond />
         <Footer />
       </div>
