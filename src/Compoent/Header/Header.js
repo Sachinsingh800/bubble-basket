@@ -17,6 +17,7 @@ import { cartData, updateCart } from "../Recoil/Recoil";
 import axios from "axios";
 import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
 import { getAllCategory, getAllProduct } from "../Apis/Apis";
+import HumBurger from "../HumBurger/HumBurger";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -271,49 +272,48 @@ export default function Header(props) {
                   </div>
                 </a>
 
-                <div className={style.icon_box4}>
-                  <img src={menuicon} alt="menu" />
-                </div>
+                <HumBurger />
               </div>
             </div>
             <div className={style.search_box_mob}>
-                  <input
-                    type="text"
-                    className={style.input_search_mob}
-                    placeholder="Type to Search..."
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                  {search.length > 0 && (
-                    <ul className={style.option_box_mob}>
-                      {product
-                        ?.filter((elem) => {
-                          return elem?.title
-                            ?.toLowerCase()
-                            .includes(search?.toLowerCase());
-                        })
-                        ?.map((item) => (
-                          <li
-                            key={item?._id}
-                            onClick={() =>
-                              (window.location.href = `/Product/${item?._id}`)
-                            }
-                          >
-                            <div className={style.search_img_box}>
-                              <img
-                                src={item?.productImg[0]?.url}
-                                alt={item?.title}
-                              />
-                            </div>
-                            <div className={style.price_box_mob}>
-                              <h6>{item?.title}</h6>
-                              <span className={style.price_tag}>${item?.price}</span>
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
-                  )}
-                </div>
-            
+              <input
+                type="text"
+                className={style.input_search_mob}
+                placeholder="Type to Search..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {search.length > 0 && (
+                <ul className={style.option_box_mob}>
+                  {product
+                    ?.filter((elem) => {
+                      return elem?.title
+                        ?.toLowerCase()
+                        .includes(search?.toLowerCase());
+                    })
+                    ?.map((item) => (
+                      <li
+                        key={item?._id}
+                        onClick={() =>
+                          (window.location.href = `/Product/${item?._id}`)
+                        }
+                      >
+                        <div className={style.search_img_box}>
+                          <img
+                            src={item?.productImg[0]?.url}
+                            alt={item?.title}
+                          />
+                        </div>
+                        <div className={style.price_box_mob}>
+                          <h6>{item?.title}</h6>
+                          <span className={style.price_tag}>
+                            ${item?.price}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                </ul>
+              )}
+            </div>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
