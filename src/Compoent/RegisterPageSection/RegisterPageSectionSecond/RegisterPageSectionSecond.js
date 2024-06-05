@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import style from "./RegisterPageSectionSecond.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css"; // Import the CSS for the PhoneInput component
-import axios from "axios";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { RegisterUser, resendOtp, verifyEmail } from "../../Apis/Apis";
 
 function RegisterPageSectionSecond() {
@@ -121,7 +123,6 @@ function RegisterPageSectionSecond() {
     }
   };
 
-
   return (
     <div className={style.main}>
       {showVerification ? (
@@ -203,12 +204,13 @@ function RegisterPageSectionSecond() {
                 onChange={handleChange}
                 required
               />
-              <button
-                type="button"
+              <IconButton
                 onClick={() => setShowPassword((prev) => !prev)}
+                edge="end"
+                size="small"
               >
-                {showPassword ? "Hide" : "Show"}
-              </button>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
             </div>
             {errors.password && <p className={style.error}>{errors.password}</p>}
           </div>
@@ -223,12 +225,13 @@ function RegisterPageSectionSecond() {
                 onChange={handleChange}
                 required
               />
-              <button
-                type="button"
+              <IconButton
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
+                edge="end"
+                size="small"
               >
-                {showConfirmPassword ? "Hide" : "Show"}
-              </button>
+                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
             </div>
             {errors.confirmPassword && <p className={style.error}>{errors.confirmPassword}</p>}
           </div>

@@ -83,3 +83,29 @@ margin-top: .3rem;
     color: white;
   }
   
+  .main {
+    /* Add your styles */
+  }
+  
+  .form {
+    /* Add your styles */
+  }
+  
+  .input_box {
+    margin-bottom: 20px;
+  }
+  
+  .password_input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .phone_box {
+    width: 100%;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
