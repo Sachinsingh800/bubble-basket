@@ -28,7 +28,6 @@ function SectionFifth() {
     { categoryName: "HOLIDAYS GFTS" },
     { categoryName: "CHRISTMAS  GIFTS" },
     { categoryName: "NEW YEAR GIFTS" },
-
   ]);
   const [luxury, setLuxury] = useState("");
   const [luxuryData, setLuxuryData] = useState([
@@ -40,14 +39,38 @@ function SectionFifth() {
     { categoryName: "AUSTRALIAN WINE GIFTS" },
     { categoryName: "FRENCH WINE  GIFTS" },
     { categoryName: "ITALIAN WINE GIFTS" },
-    { categoryName: "NAPA VALLEY GIFTS" },
+    { categoryName: "NAPA VALLEY GIFTS" },
   ]);
 
   const handleNavigate = (categoryName) => {
     window.location.href = `/${categoryName}`;
   };
-  const handleNavigateBrand = (categoryName) => {
-    window.location.href = `brand/${categoryName}`;
+
+  const menuProps2 = {
+    PaperProps: {
+      style: {
+        maxHeight: 200,
+        minHeight: 100,
+      },
+    },
+  };
+
+
+  const menuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: 200,
+        minHeight: 100,
+      },
+    },
+    anchorOrigin: {
+      vertical: "top",
+      horizontal: "left",
+    },
+    transformOrigin: {
+      vertical: "bottom",
+      horizontal: "left",
+    },
   };
 
   return (
@@ -65,6 +88,7 @@ function SectionFifth() {
                 onChange={(e) => setCategory(e.target.value)}
                 displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
+                MenuProps={menuProps2}
               >
                 <MenuItem value="" disabled>
                   Select Category
@@ -75,6 +99,7 @@ function SectionFifth() {
                     value={item?.categoryName}
                     className={style.menu_item}
                     onClick={() => handleNavigate(item?.categoryName)}
+                    style={{ minHeight: 40 }}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -95,6 +120,7 @@ function SectionFifth() {
                 onChange={(e) => setOccasion(e.target.value)}
                 displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
+                MenuProps={menuProps2}
               >
                 <MenuItem value="" disabled>
                   Select Occasion
@@ -105,6 +131,7 @@ function SectionFifth() {
                     value={item?.categoryName}
                     className={style.menu_item}
                     onClick={() => handleNavigate(item?.categoryName)}
+                    style={{ minHeight: 40 }}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -123,6 +150,7 @@ function SectionFifth() {
                 onChange={(e) => setLuxury(e.target.value)}
                 displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
+                MenuProps={menuProps}
               >
                 <MenuItem value="" disabled>
                   Select Luxury
@@ -133,6 +161,7 @@ function SectionFifth() {
                     value={item?.categoryName}
                     className={style.menu_item}
                     onClick={() => handleNavigate(item?.categoryName)}
+                    style={{ minHeight: 40 }}
                   >
                     {item?.categoryName}
                   </MenuItem>
@@ -153,6 +182,7 @@ function SectionFifth() {
                 onChange={(e) => setOrigin(e.target.value)}
                 displayEmpty
                 style={{ color: "maroon", fontWeight: 700, fontFamily: "Jost" }}
+                MenuProps={menuProps}
               >
                 <MenuItem value="" disabled>
                   Select Origin
@@ -163,6 +193,7 @@ function SectionFifth() {
                     value={item?.categoryName}
                     className={style.menu_item}
                     onClick={() => handleNavigate(item?.categoryName)}
+                    style={{ minHeight: 40 }}
                   >
                     {item?.categoryName}
                   </MenuItem>
