@@ -113,4 +113,10 @@
     width: 100%;
     gap: 1rem;
   }
+  .all_address {
+    display: grid;
+    grid-template-columns: 1fr ;
+    width: max-content;
+    gap: 2rem;
+  }
 }
