@@ -22,6 +22,7 @@ export default function AnchorTemporaryDrawer() {
   });
   const [cartItems, setCartItems] = React.useState([]);
   const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
+  
 
   React.useEffect(() => {
     const storedCartItems =
@@ -72,31 +73,16 @@ export default function AnchorTemporaryDrawer() {
           <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {loginStatus ? (
                   <img
-                    src={item?.Product_image}
+                    src={item?.productImg[0]?.url ? item?.productImg[0]?.url : item?.Product_image }
                     alt={item?.title}
                     style={{ width: "50px", height: "50px" }}
                   />
-                ) : (
-                  <img
-                    src={item?.productImg[0]?.url}
-                    alt={item?.title}
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                )}
               </ListItemIcon>
-              {loginStatus ? (
                 <ListItemText
-                  primary={item?.Product_title}
-                  secondary={`$${item?.productTotal}`}
+                  primary={item?.title ? item?.title : item?.Product_title}
+                  secondary={`$${item?.price ? item?.price :item?.productTotal}`}
                 />
-              ) : (
-                <ListItemText
-                  primary={item?.title}
-                  secondary={`$${item?.price}`}
-                />
-              )}
             </ListItemButton>
           </ListItem>
         ))}
