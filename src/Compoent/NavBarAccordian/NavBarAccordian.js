@@ -113,11 +113,11 @@ export default function NavBarAccordian() {
           <a href="/">
             <p>HOME</p>
           </a>
-          <p onClick={downloadExcel}>BULK ORDER</p>
+        <a><p onClick={downloadExcel}>BULK ORDER</p></a>  
           <a href="/OrderHistory">
             <p>TRACK ORDER</p>
           </a>
-          <a href="/ContactUs"></a> <p>CONTACT</p>
+          <a href="/ContactUs"><p>CONTACT</p></a> 
         </div>
       </div>
     </div>
