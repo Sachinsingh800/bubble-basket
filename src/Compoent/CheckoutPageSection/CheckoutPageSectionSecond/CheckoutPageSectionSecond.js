@@ -42,6 +42,9 @@ function CheckoutPageSectionSecond() {
     sessionStorage.getItem("address") || false
   );
   useEffect(() => {
+    if(cartData.productsData.length === 0){
+          window.location.href = "/cart";
+    }
     localStorage.setItem("checkoutStatus", JSON.stringify(false));
   }, []);
 

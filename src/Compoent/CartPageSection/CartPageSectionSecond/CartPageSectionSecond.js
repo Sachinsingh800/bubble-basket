@@ -112,7 +112,6 @@ function CartPageSectionSecond() {
       calculateTotalPrice(updatedData);
       handleCheckoutOrder();
       setUpdate(update + 5);
-      setupdatesideCart(updatesideCart + 7);
     }
   };
 

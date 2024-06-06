@@ -13,7 +13,13 @@ import { useRecoilState } from "recoil";
 import { addItemCart } from "../Recoil/Recoil";
 import style from "./AnchorTemporaryDrawer.module.css";
 import { getCheckout } from "../Apis/Apis";
-import { useMediaQuery, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import {
+  useMediaQuery,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 
 export default function AnchorTemporaryDrawer() {
   const [update, setUpdate] = useRecoilState(addItemCart);
@@ -23,7 +29,7 @@ export default function AnchorTemporaryDrawer() {
   const [cartItems, setCartItems] = React.useState([]);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || "false");
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   React.useEffect(() => {
     const storedCartItems =
@@ -41,14 +47,14 @@ export default function AnchorTemporaryDrawer() {
   const handleNavigate = () => {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (loginStatus) {
-      handleCheckoutOrder()
+      handleCheckoutOrder();
     } else {
       window.location.href = "/Login";
     }
   };
 
   const handleNavigateCart = () => {
-      window.location.href = "/Cart";
+    window.location.href = "/Cart";
   };
 
   const handleCheckoutOrder = async () => {
@@ -81,12 +87,17 @@ export default function AnchorTemporaryDrawer() {
       onKeyDown={toggleDrawer("right", false)}
     >
       <List>
+
         {cartItems.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <img
-                  src={item?.productImg?.[0]?.url ? item.productImg[0].url : item.Product_image}
+                  src={
+                    item?.productImg?.[0]?.url
+                      ? item.productImg[0].url
+                      : item.Product_image
+                  }
                   alt={item?.title ? item.title : item.Product_title}
                   style={{ width: "50px", height: "50px" }}
                 />
@@ -100,33 +111,46 @@ export default function AnchorTemporaryDrawer() {
         ))}
       </List>
       <Divider />
-      <Box sx={{ textAlign: "center", padding: "10px" }}>
-        <Button
-            style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
-          onClick={handleNavigate}
-          variant="contained"
-          color="primary"
-        >
-          Checkout
-        </Button>
-        <Button
-    style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
-          onClick={handleNavigateCart}
-          variant="contained"
-          color="primary"
-        >
-          View Cart
-        </Button>
-      </Box>
+      {cartItems.length === 0 ? <p className={style.cartinfo}>Cart is Empty</p> : 
+          <Box sx={{ textAlign: "center", padding: "10px" }}>
+          <Button
+            style={{
+              backgroundColor: "#7b0128",
+              color: "white",
+              fontSize: 10,
+              margin: "5px",
+            }}
+            onClick={handleNavigate}
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+          <Button
+            style={{
+              backgroundColor: "#7b0128",
+              color: "white",
+              fontSize: 10,
+              margin: "5px",
+            }}
+            onClick={handleNavigateCart}
+            variant="contained"
+            color="primary"
+          >
+            View Cart
+          </Button>
+        </Box>
+      }
+  
     </Box>
   );
 
   const mobileList = (
     <Box
       sx={{
-        width: '100%',
+        width: "100%",
         maxWidth: 360,
-        bgcolor: 'background.paper',
+        bgcolor: "background.paper",
       }}
     >
       <List>
@@ -135,7 +159,11 @@ export default function AnchorTemporaryDrawer() {
             <ListItemButton>
               <ListItemIcon>
                 <img
-                  src={item?.productImg?.[0]?.url ? item.productImg[0].url : item.Product_image}
+                  src={
+                    item?.productImg?.[0]?.url
+                      ? item.productImg[0].url
+                      : item.Product_image
+                  }
                   alt={item?.title ? item.title : item.Product_title}
                   style={{ width: "50px", height: "50px" }}
                 />
@@ -151,7 +179,12 @@ export default function AnchorTemporaryDrawer() {
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
         <Button
-           style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
+          style={{
+            backgroundColor: "#7b0128",
+            color: "white",
+            fontSize: 10,
+            margin: "5px",
+          }}
           onClick={handleNavigate}
           variant="contained"
           color="primary"
@@ -159,7 +192,12 @@ export default function AnchorTemporaryDrawer() {
           Checkout
         </Button>
         <Button
-            style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
+          style={{
+            backgroundColor: "#7b0128",
+            color: "white",
+            fontSize: 10,
+            margin: "5px",
+          }}
           onClick={handleNavigateCart}
           variant="contained"
           color="primary"
@@ -193,14 +231,9 @@ export default function AnchorTemporaryDrawer() {
       >
         {list}
       </Drawer>
-      <Dialog
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-      >
+      <Dialog open={mobileOpen} onClose={() => setMobileOpen(false)}>
         <DialogTitle>Cart Items</DialogTitle>
-        <DialogContent>
-          {mobileList}
-        </DialogContent>
+        <DialogContent>{mobileList}</DialogContent>
         <DialogActions>
           <Button onClick={() => setMobileOpen(false)} color="primary">
             Close
