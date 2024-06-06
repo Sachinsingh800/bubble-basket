@@ -37,7 +37,7 @@ export default function NavBarAccordian() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          VINTAGE
+          <strong> VINTAGE</strong>
         </AccordionSummary>
         <AccordionDetails>
           <div className={styles.main}>
@@ -60,7 +60,7 @@ export default function NavBarAccordian() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          CAYMUS
+          <strong>CAYMUS</strong>
         </AccordionSummary>
         <AccordionDetails>
           <div className={styles.main}>
@@ -83,7 +83,7 @@ export default function NavBarAccordian() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          VEUVE CLICQUOT
+          <strong>VEUVE CLICQUOT</strong>
         </AccordionSummary>
         <AccordionDetails>
           <div className={styles.main}>
@@ -113,11 +113,15 @@ export default function NavBarAccordian() {
           <a href="/">
             <p>HOME</p>
           </a>
-        <a><p onClick={downloadExcel}>BULK ORDER</p></a>  
+          <a>
+            <p onClick={downloadExcel}>BULK ORDER</p>
+          </a>
           <a href="/OrderHistory">
             <p>TRACK ORDER</p>
           </a>
-          <a href="/ContactUs"><p>CONTACT</p></a> 
+          <a href="/ContactUs">
+            <p>CONTACT</p>
+          </a>
         </div>
       </div>
     </div>
