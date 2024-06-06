@@ -46,7 +46,7 @@ function CartPageSectionSecond() {
     setData(updatedData);
     sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
-    setupdatesideCart(updatesideCart + 7)
+    setupdatesideCart(updatesideCart + 7);
     calculateTotalPrice(updatedData);
   };
 
@@ -111,8 +111,8 @@ function CartPageSectionSecond() {
       setLoading(false);
       calculateTotalPrice(updatedData);
       handleCheckoutOrder();
-      setUpdate(update  + 5);
-      setupdatesideCart(updatesideCart + 7)
+      setUpdate(update + 5);
+      setupdatesideCart(updatesideCart + 7);
     }
   };
 
@@ -145,14 +145,7 @@ function CartPageSectionSecond() {
       {loading && <p key="">Loading...</p>}
       {!loading && (
         <>
-          {data?.length > 0 && (
-            <div className={style.header}>
-              <p className={style.product}>PRODUCT</p>
-              <p className={style.product}>PRICE</p>
-              <p className={style.product}>QUANTITY</p>
-              <p className={style.product}>SUBTOTAL</p>
-            </div>
-          )}
+     
 
           {data?.length === 0 ? (
             <div className={style.empty_cart}>
@@ -162,64 +155,72 @@ function CartPageSectionSecond() {
               </a>
             </div>
           ) : (
-            data?.map((item, index) => (
-              <div key={item?.Product_id || index} className={style.container}>
-                <div className={style.first_box}>
-                  {loginStatus ? (
-                    <span
-                      className={style.del_button}
-                      onClick={() => removeItemFromtheCart(item?.Product_id)}
-                    >
-                      x
-                    </span>
-                  ) : (
-                    <span
-                      className={style.del_button}
-                      onClick={() => handleRemoveProduct(index)}
-                    >
-                      x
-                    </span>
-                  )}
-
-                  {loginStatus ? (
-                    <div className={style.img_box}>
-                      <img src={item?.Product_image} alt={item?.title} />
-                    </div>
-                  ) : (
-                    <div className={style.img_box}>
-                      <img src={item?.productImg[0]?.url} alt={item?.title} />
-                    </div>
-                  )}
-                  
-                  {loginStatus ? item?.Product_title : item?.title}
-                </div>
-                {loginStatus ? (
-                  <div className={style.para}>$ {item?.Product_price}</div>
-                ) : (
-                  <div className={style.para}>$ {item?.price}</div>
-                )}
-
-                <div onMouseEnter={() => setProductId(item?.Product_id)}>
-                  <input
-                    className={style.quantity_box}
-                    value={item?.quantity ? item?.quantity : item?.Product_quantity}
-                    type="number"
-                    min="1"
-                    onChange={(e) =>
-                      handleQuantityChange(index, parseInt(e.target.value))
-                    }
-                  />
-                </div>
-
-                {loginStatus ? (
-                  <div className={style.para}>$ {item?.productTotal}</div>
-                ) : (
-                  <div className={style.para}>
-                    $ {(item?.price * item?.quantity).toFixed(2)}
-                  </div>
-                )}
-              </div>
-            ))
+            <div className={style.cartTable}>
+                    <table >
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((item, index) => (
+                  <tr key={item?.Product_id || index} className={style.container}>
+                    <td className={style.first_box}>
+                      <span
+                        className={style.del_button}
+                        onClick={() =>
+                          removeItemFromtheCart(
+                            item?.Product_id ? item?.Product_id : index
+                          )
+                        }
+                      >
+                        x
+                      </span>
+                      <div className={style.img_box}>
+                        <img
+                          src={
+                            item?.Product_image
+                              ? item?.Product_image
+                              : item?.productImg[0]?.url
+                          }
+                          alt={
+                            item?.Product_title ? item?.Product_title : item?.title
+                          }
+                        />
+                      </div>
+                      {item?.Product_title ? item?.Product_title : item?.title}
+                    </td>
+                    <td className={style.para}>
+                      $ {item?.Product_price ? item?.Product_price : item?.price}
+                    </td>
+                    <td onMouseEnter={() => setProductId(item?.Product_id)}>
+                      <input
+                        className={style.quantity_box}
+                        value={
+                          item?.quantity ? item?.quantity : item?.Product_quantity
+                        }
+                        type="number"
+                        min="1"
+                        onChange={(e) =>
+                          handleQuantityChange(index, parseInt(e.target.value))
+                        }
+                      />
+                    </td>
+                    <td className={style.para}>
+                      ${" "}
+                      {item?.productTotal
+                        ? item?.productTotal
+                        : (item?.price * item?.quantity).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+      
           )}
 
           {data?.length > 0 && (
@@ -252,7 +253,10 @@ function CartPageSectionSecond() {
                     </div>
 
                     {cartData?.productsData?.map((item, index) => (
-                      <div key={item.Product_id || index} className={style.order_item}>
+                      <div
+                        key={item.Product_id || index}
+                        className={style.order_item}
+                      >
                         <div className={style.product_item}>
                           <span>
                             {item?.Product_title} x{" "}
@@ -275,7 +279,8 @@ function CartPageSectionSecond() {
                     <div className={style.order_item}>
                       <div className={style.product_item}>
                         <span>
-                          Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
+                          Delivery Fee Per Item $20(Delivery May take 2 to 4
+                          days):
                         </span>
                         <span className={style.calculate_}>
                           ${cartData?.totalShipping}
@@ -323,7 +328,9 @@ function CartPageSectionSecond() {
                   </div>
                   <div className={style.cart_box}>
                     <div className={style.first_box}>TOTAL</div>
-                    <div className={style.total_price}>$ {calculateTotal()}</div>
+                    <div className={style.total_price}>
+                      $ {calculateTotal()}
+                    </div>
                   </div>
                 </div>
               )}

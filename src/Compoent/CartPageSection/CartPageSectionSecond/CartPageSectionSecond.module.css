@@ -40,12 +40,7 @@
   height: 100%;
   width: 100%;
 }
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  place-items: center;
-  border-top: 1px #7b0128 solid;
-}
+
 .cart_box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -53,26 +48,12 @@
   border-bottom: 1px #7b0128 solid;
   padding: 1rem 0rem;
 }
-.para {
-  display: grid;
-  place-items: center;
-  place-content: center;
-  letter-spacing: .1cap;
-}
 
-.product {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 20rem!important;
-}
 .first_box {
   display: flex;
   align-items: center;
   gap: 1rem;
   letter-spacing: .1cap;
-  width: 20rem!important;
 }
 .quantity_box {
   width: 3.5rem;
@@ -80,7 +61,6 @@
   outline: none;
   border: 1px #7b0128 solid;
   color: #7b0128;
-
 }
 .del_button {
   width: 2rem;
@@ -164,20 +144,12 @@
   letter-spacing: .1cap;
 }
 @media screen and (max-width:500px) {
-  .first_box {
-    display: flex;
-    align-items: center;
+  .cartTable{
+    overflow-y: scroll;
     width: 100%;
-    gap: 1rem;
-    width: 15rem;
-    letter-spacing: .1cap;
   }
-  .product {
-    width: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  .cartTable table{
+    width: max-content;
   }
   .buttons_box button {
     background-color: none;
@@ -205,6 +177,7 @@
   padding: 0rem 1rem;
   align-items: center;
   border-bottom: 1px #7b0128 solid;
+
 }
 .product_item {
   display: flex;
