@@ -1,11 +1,39 @@
-.img_box{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 30rem;
-    border-right: none;
+.img_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 30rem;
+  border-right: none;
 }
-.img{
-    height: 30rem;
+.img {
+  height: 30rem;
+}
+.button_box {
+  position: fixed;
+  top: 0;
+  right: 2%;
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button_box {
+  display: flex;
+  justify-content: center;
+}
+
+.button_box button {
+  padding: 8px 16px;
+  border: none;
+  background-color: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+.icons{
+  font-size: 2rem!important;
 }
