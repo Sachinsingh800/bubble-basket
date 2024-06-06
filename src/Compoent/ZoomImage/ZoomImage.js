@@ -10,7 +10,7 @@ const modalStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  overflow: 'auto',
+  overflow: 'hidden',
   border: 'none',
 };
 
