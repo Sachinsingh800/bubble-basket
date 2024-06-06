@@ -56,6 +56,29 @@ export default function NavBarAccordian() {
           </div>
         </AccordionDetails>
       </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2-content"
+          id="panel2-header"
+        >
+          VEUVE CLICQUOT
+        </AccordionSummary>
+        <AccordionDetails>
+          <div className={styles.main}>
+            <a href={`brand/${"Caymus"}`}>
+              <div className={styles.img_product_box}>
+                <img
+                  src="https://res.cloudinary.com/dnolz4gzn/image/upload/v1716541096/wineProducts/kyahcm1smm2ijcxsa5qk.png"
+                  alt="Veuve Clicquot"
+                />
+              </div>
+            </a>
+
+            <p>HARMONY REVEALED</p>
+          </div>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }
