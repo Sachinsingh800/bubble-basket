@@ -1,0 +1,11 @@
+.img_box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 30rem;
+    border-right: none;
+}
+.img{
+    height: 30rem;
+}

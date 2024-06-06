@@ -23,6 +23,7 @@ import Zoom from "react-medium-image-zoom";
 import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import RecentlyView from "../../RecentlyView/RecentlyView";
+import ZoomImage from "../../ZoomImage/ZoomImage";
 
 function ProductSectionSecond() {
   const storedProducts =
@@ -231,9 +232,7 @@ function ProductSectionSecond() {
         {loading && <p>Loading..</p>}
       <div className={style.product_container}>
         <div className={style.img_box}>
-          <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
-            <img src={product?.productImg[0]?.url} alt={product?.title} />
-          </ControlledZoom>
+          <ZoomImage productImage={product?.productImg[0]?.url}  producttitle={product?.title} />
         </div>
         <div className={style.des_box}>
           <h3>{product?.title}</h3>
