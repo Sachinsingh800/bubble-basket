@@ -79,6 +79,17 @@ export default function NavBarAccordian() {
           </div>
         </AccordionDetails>
       </Accordion>
+      <div className={styles.container}>
+         <div className={styles.img_box_container}>
+            <img src="https://res.cloudinary.com/dnolz4gzn/image/upload/v1716971516/wineProducts/zkii68ttk3w01in25szs.png" alt="" />
+         </div>
+         <div className={styles.lists}>
+           <p>HOME</p>
+           <p>BULK ORDER</p>
+           <p>TRACK ORDER</p>
+           <p>CONTACT</p>
+         </div>
+      </div>
     </div>
   );
 }
