@@ -450,7 +450,7 @@ text-align: center;
   }
   .option_box_mob{
     height: 20rem;
-    width: 90%;
+    width: 91.5%;
     position: absolute;
     background-color: white;
     display: flex;
@@ -500,7 +500,7 @@ text-align: center;
     color: black;
   }
   .search_img_box_mob{
-    height: 5rem;
+    height: 6rem;
   }
   .search_img_box_mob img{
     height: 100%;
