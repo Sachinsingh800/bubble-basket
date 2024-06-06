@@ -6,6 +6,9 @@
     align-items: center;
     padding: 2rem 0rem;
 }
+.password_container{
+    display: flex;
+}
 .form{
     display: flex;
     flex-direction: column;
@@ -71,4 +74,17 @@ margin-top: .3rem;
     background-color: #7b0128;
     color: white;
   }
-  
+  .input_box_{
+    outline: none!important;
+    border: none!important;
+}
+  @media (max-width:500px){
+    .icon{
+        padding: 1.4rem!important;
+        border: none!important;
+    }
+    .input_box_{
+        outline: none!important;
+        border: none!important;
+    }
+  }

@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import style from "./LoginPageSectionSecond.module.css";
 import { getCheckout, loginUser } from "../../Apis/Apis";
 import axios from "axios";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function LoginPageSectionSecond() {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     usernameOrEmail: "",
     password: "",
@@ -12,7 +16,6 @@ function LoginPageSectionSecond() {
   });
 
   const [data, setData] = useState([]);
-
 
   useEffect(() => {
     const rememberMeData = JSON.parse(localStorage.getItem("rememberMeData"));
@@ -40,17 +43,18 @@ function LoginPageSectionSecond() {
         {
           email: formData.usernameOrEmail,
           password: formData.password,
-          items: data.length >0 ? data.map((item) => ({
-            productId: item._id,
-            quantity: item.quantity,
-          })) : [],
+          items: data.length > 0
+            ? data.map((item) => ({
+                productId: item._id,
+                quantity: item.quantity,
+              }))
+            : [],
         },
         formData.rememberMe
       );
       if (response.status) {
         // If login is successful, save token to local storage
         // Example: history.push('/dashboard');
-
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -67,6 +71,9 @@ function LoginPageSectionSecond() {
     }
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className={style.main}>
@@ -85,14 +92,22 @@ function LoginPageSectionSecond() {
         </div>
         <div className={style.input_box}>
           <label htmlFor="password">Password *</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className={style.password_container}>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <IconButton
+              onClick={handleClickShowPassword}
+              className={style.visibility_icon}
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </div>
         </div>
         <div className={style.checkbox}>
           <input
@@ -106,8 +121,12 @@ function LoginPageSectionSecond() {
           <label htmlFor="rememberMe">Remember me</label>
         </div>
         <button type="submit">LOGIN →</button>
-        <a href={`/UpdateInformation/password`}><p >Lost your password?</p></a>
-         <a href="/RegisterPage">   <p >Register</p></a>
+        <a href={`/UpdateInformation/password`}>
+          <p>Lost your password?</p>
+        </a>
+        <a href="/RegisterPage">
+          <p>Register</p>
+        </a>
       </form>
     </div>
   );
