@@ -89,7 +89,7 @@ function Footer() {
         <a href="/PrivacyAanPolicy">
           <div className={style.opt}>ORDERS </div>
         </a>
-        <a href="/ContactUsPage">
+        <a href="/ContactUs">
           <div className={style.opt}>CONTACT</div>
         </a>
         <a href="/AboutUsPage">

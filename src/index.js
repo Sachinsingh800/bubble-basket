@@ -48,7 +48,7 @@ root.render(
         <Route path={'/CartPage'} element={<CartPage />} />
         <Route path={'/Blog'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
-        <Route path={'/ContactUsPage'} element={<ContactUsPage />} />
+        <Route path={'/ContactUs'} element={<ContactUsPage />} />
         <Route path={'/CheckoutPage'} element={<CheckoutPage />} />
         <Route path={'/Login'} element={<LoginPage />} />
         <Route path={'/AboutUsPage'} element={<AboutUsPage />} />

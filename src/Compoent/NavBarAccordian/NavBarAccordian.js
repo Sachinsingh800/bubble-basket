@@ -6,8 +6,29 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import styles from "./NavBarAccordian.module.css";
+import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
 
 export default function NavBarAccordian() {
+  const downloadExcel = () => {
+    // Path to the Excel file in your project folder
+    const excelFilePath = bulkOrderForm;
+
+    fetch(excelFilePath)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "Luxury_Bubble_Basket.xlsx");
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        alert("Your Bulk Order Form is Downloaded");
+      })
+      .catch((error) => {
+        console.error("Error downloading the Excel file:", error);
+      });
+  };
   return (
     <div>
       <Accordion>
@@ -80,15 +101,24 @@ export default function NavBarAccordian() {
         </AccordionDetails>
       </Accordion>
       <div className={styles.container}>
-         <div className={styles.img_box_container}>
-            <img src="https://res.cloudinary.com/dnolz4gzn/image/upload/v1716971516/wineProducts/zkii68ttk3w01in25szs.png" alt="" />
-         </div>
-         <div className={styles.lists}>
-           <p>HOME</p>
-           <p>BULK ORDER</p>
-           <p>TRACK ORDER</p>
-           <p>CONTACT</p>
-         </div>
+        <a href="/HAND%20PAINTED">
+          <div className={styles.img_box_container}>
+            <img
+              src="https://res.cloudinary.com/dnolz4gzn/image/upload/v1716971516/wineProducts/zkii68ttk3w01in25szs.png"
+              alt=""
+            />
+          </div>
+        </a>
+        <div className={styles.lists}>
+          <a href="/">
+            <p>HOME</p>
+          </a>
+          <p onClick={downloadExcel}>BULK ORDER</p>
+          <a href="/OrderHistory">
+            <p>TRACK ORDER</p>
+          </a>
+          <a href="/ContactUs"></a> <p>CONTACT</p>
+        </div>
       </div>
     </div>
   );
