@@ -488,16 +488,6 @@ function CheckoutPageSectionSecond() {
             </div>
             <div className={style.order_item}>
               <div className={style.product_item}>
-                <span>
-                  Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
-                </span>
-                <span className={style.calculate_}>
-                  ${cartData?.totalShipping}
-                </span>
-              </div>
-            </div>
-            <div className={style.order_item}>
-              <div className={style.product_item}>
                 <span>Tax ({cartData?.taxPercent}%):</span>
                 <span className={style.calculate_}>${cartData?.totalTax}</span>
               </div>
