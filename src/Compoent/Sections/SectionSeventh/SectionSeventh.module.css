@@ -11,7 +11,7 @@
 
 .background {
   filter: brightness(70%);
-  margin-top: -45rem;
+  margin-top: -85rem;
 }
 .background img {
   width: 100%;
@@ -23,7 +23,9 @@
   align-items: center;
   gap: 1rem;
   z-index: 999 !important;
-  margin-left: -40rem;
+  margin-left: -35rem;
+  margin-top: 6rem;
+  position: absolute;
 }
 
 .description_box {
