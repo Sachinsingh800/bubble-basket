@@ -146,26 +146,6 @@
 .cartTable table thead  tr th{
   color: #7b0128;
 }
-@media screen and (max-width:500px) {
-  .cartTable{
-    overflow-y: scroll;
-    width: 100%;
-  }
-  .cartTable table{
-    width: max-content;
-  }
-  .buttons_box button {
-    background-color: none;
-    background: transparent;
-    padding: 0rem .5rem;
-    border: 1px #7b0128 solid;
-    font-family: "Jost", sans-serif;
-    letter-spacing: .1cap;
-  }
-  .updatebtn{
-    width: 12rem;
-  }
-}
 .header {
   display: flex;
   justify-content: space-between;
@@ -188,4 +168,49 @@
   padding: 1rem 0rem;
   align-items: center;
   width: 80%;
+}
+@media screen and (max-width:500px) {
+  .cartTable{
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .cartTable table{
+    width: max-content;
+  }
+  .buttons_box button {
+    background-color: none;
+    background: transparent;
+    padding: 0rem .5rem;
+    border: 1px #7b0128 solid;
+    font-family: "Jost", sans-serif;
+    letter-spacing: .1cap;
+  }
+  .updatebtn{
+    width: 12rem;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    width: 1000%;
+  }
+  .order_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px #7b0128 solid;
+  }
+  .product_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .subtotal_box{
+    display: flex;
+    align-items: flex-end!important;
+    justify-content: flex-end!important;
+    padding-left: 0rem;
+   }
 }
