@@ -373,6 +373,7 @@ text-align: center;
     flex-direction: column;
     overflow-y: scroll;
     padding: .5rem;
+
   }
   .option_box_mob::-webkit-scrollbar-track
   {
@@ -393,10 +394,10 @@ text-align: center;
   
   .option_box_mob li{
     display: flex;
+    align-items: center;
     list-style: none;
     padding: .3rem;
     cursor: pointer;
-  
   }
 
   .price_box_mob{
@@ -497,6 +498,12 @@ text-align: center;
     width: 100%;
     padding: 0rem 1rem;
     color: black;
+  }
+  .search_img_box_mob{
+    height: 5rem;
+  }
+  .search_img_box_mob img{
+    height: 100%;
   }
 }
 

@@ -299,7 +299,7 @@ export default function Header(props) {
                           (window.location.href = `/Product/${item?._id}`)
                         }
                       >
-                        <div className={style.search_img_box}>
+                        <div className={style.search_img_box_mob}>
                           <img
                             src={item?.productImg[0]?.url}
                             alt={item?.title}
