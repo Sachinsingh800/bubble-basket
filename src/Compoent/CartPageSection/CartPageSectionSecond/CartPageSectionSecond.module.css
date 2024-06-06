@@ -33,7 +33,7 @@
   width: max-content;
 }
 .img_box {
-  height: 4rem;
+  height: 5rem;
   width: 4rem;
 }
 .img_box img {
@@ -169,7 +169,21 @@
   align-items: center;
   width: 80%;
 }
+.product_title_{
+  width: 20rem;
+}
 @media screen and (max-width:500px) {
+  .product_title_{
+    width: 20rem;
+  }
+  .img_box {
+    height: 80px;
+    width: 50px;
+  }
+  .img_box img {
+    height: 100%;
+    width: 100%;
+  }
   .cartTable{
     overflow-y: scroll;
     width: 100%;

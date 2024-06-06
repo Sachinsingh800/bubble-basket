@@ -191,7 +191,7 @@ function CartPageSectionSecond() {
                           }
                         />
                       </div>
-                      {item?.Product_title ? item?.Product_title : item?.title}
+                    <p className={style.product_title_}>   {item?.Product_title ? item?.Product_title : item?.title}</p> 
                     </td>
                     <td className={style.para}>
                       $ {item?.Product_price ? item?.Product_price : item?.price}
