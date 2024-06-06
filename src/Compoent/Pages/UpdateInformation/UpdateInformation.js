@@ -28,6 +28,7 @@ import UpdateAddressPageSection from "../../UpdateInformationSection/UpdateAddre
 import { getAddress, updateAddress } from "../../Apis/Apis";
 import { useParams } from "react-router-dom";
 import Header from "../../Header/Header";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 export default function UpdateInformation() {
   const { category } = useParams();
@@ -36,6 +37,7 @@ export default function UpdateInformation() {
   return (
     <div className={style.Container}>
       <Header />
+      <BreadCrumsHeader urlname={category} />
       {category == "password" && <UpdatePasswordPageSection />}
       {category == "address" && <UpdateAddressPageSection />}
 
