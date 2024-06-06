@@ -12,7 +12,7 @@ function OrderHistoryPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <OrderHistoryPageSectionFirst />
+        {/* <OrderHistoryPageSectionFirst /> */}
         <OrderHistoryPageSectionSecond />
         <Footer />
       </div>

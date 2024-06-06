@@ -11,7 +11,7 @@ function ContactUsPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <ContactUsPageSectionFirst />
+        {/* <ContactUsPageSectionFirst /> */}
         <ContactUsPageSectionSecond />
         <Footer />
       </div>

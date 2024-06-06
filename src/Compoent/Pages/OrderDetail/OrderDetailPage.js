@@ -11,7 +11,7 @@ function OrderDetailPage() {
     <div>
       <Header/>
       <div className={style.Container}>
-        <OderDetailSectionFirst />
+        {/* <OderDetailSectionFirst /> */}
         <OderDetailSectionSecond />
         <Footer />
       </div>

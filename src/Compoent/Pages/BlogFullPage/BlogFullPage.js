@@ -11,7 +11,7 @@ function BlogFullPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <BlogFullPageFirstSection />
+        {/* <BlogFullPageFirstSection /> */}
         <BlogFullPageSectionSecond />
         <Footer />
       </div>

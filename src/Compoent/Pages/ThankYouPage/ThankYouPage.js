@@ -12,7 +12,7 @@ function ThankYouPage() {
     <div>
       <Header/>
       <div className={style.Container}>
-        <ThankYouPageSectionFirst />
+        {/* <ThankYouPageSectionFirst /> */}
         <ThankYouPageSectionSection />
         <Footer />
       </div>

@@ -10,7 +10,7 @@ function PendingAndRefundPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <PendingAndRefundSectionFirst />
+        {/* <PendingAndRefundSectionFirst /> */}
         <PendingAndRefundSectionSecond />
         <Footer />
       </div>

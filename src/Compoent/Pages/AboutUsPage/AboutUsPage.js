@@ -12,7 +12,7 @@ function AboutUsPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <AboutUsSectionFirst />
+        {/* <AboutUsSectionFirst /> */}
         <AboutUsSectionSecond />
         <AboutUsSectionThird />
         <Footer />

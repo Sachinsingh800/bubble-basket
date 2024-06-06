@@ -12,7 +12,7 @@ function FAQPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        <FAQSectionFirst />
+        {/* <FAQSectionFirst /> */}
         <FAQSectionSecond />
         <Footer />
       </div>

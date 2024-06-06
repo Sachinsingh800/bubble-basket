@@ -11,7 +11,7 @@ function PrivacyAanPolicy() {
     <div>
       <Header />
       <div className={style.Container}>
-        <PrivacyAndPolicySectionFirst />
+        {/* <PrivacyAndPolicySectionFirst /> */}
         <PrivacyAndPolicySectionSecond />
         <Footer />
       </div>

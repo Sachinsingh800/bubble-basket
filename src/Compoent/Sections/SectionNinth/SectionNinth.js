@@ -46,7 +46,7 @@ function SectionNinth() {
 const response = await sendSubscribtion(data)
 alert(response.message)
  }catch(error){
-
+alert("already register")
  }
   }
 

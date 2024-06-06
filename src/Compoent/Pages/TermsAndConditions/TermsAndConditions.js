@@ -10,7 +10,7 @@ function TermsAndConditions() {
     <div>
       <Header />
       <div className={style.Container}>
-        <TermAndConditionSectionFirst />
+        {/* <TermAndConditionSectionFirst /> */}
         <TermAndConditionSectionSecond />
         <Footer />
       </div>
