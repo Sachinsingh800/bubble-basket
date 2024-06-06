@@ -5,6 +5,7 @@ import style from "./OrderHistoryPage.module.css";
 import Footer from "../../Sections/Footer/Footer";
 import Header from "../../Header/Header";
 import { getAllOrders, getAllOrdersHistory } from "../../Apis/Apis";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 function OrderHistoryPage() {
 
@@ -13,6 +14,7 @@ function OrderHistoryPage() {
       <Header />
       <div className={style.Container}>
         {/* <OrderHistoryPageSectionFirst /> */}
+        <BreadCrumsHeader urlname={"Order History"} />
         <OrderHistoryPageSectionSecond />
         <Footer />
       </div>

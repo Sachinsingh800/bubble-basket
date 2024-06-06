@@ -4,6 +4,7 @@ import RegisterPageSectionSecond from "../../RegisterPageSection/RegisterPageSec
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./RegisterPage.module.css"
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 
 function RegisterPage() {
@@ -11,6 +12,7 @@ function RegisterPage() {
     <div>
       <Header />
       <div className={style.Container}>
+      <BreadCrumsHeader urlname={"Register"} />
         <RegisterPageSectionSecond />
         <Footer />
       </div>

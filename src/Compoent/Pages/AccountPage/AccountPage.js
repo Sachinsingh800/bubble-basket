@@ -4,6 +4,7 @@ import AccountPageSectionFirst from "../../AccountPageSection/AccountPageSection
 import AccountPageSectionSecond from "../../AccountPageSection/AccountPageSectionSecond/AccountPageSectionSecond";
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 
 function AccountPage() {
@@ -11,6 +12,7 @@ function AccountPage() {
     <div>
       <Header />
       <div className={style.Container}>
+      <BreadCrumsHeader urlname={"Account"} />
         <AccountPageSectionSecond />
         <Footer />
       </div>

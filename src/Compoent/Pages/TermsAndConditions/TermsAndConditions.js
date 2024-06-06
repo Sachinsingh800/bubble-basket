@@ -4,6 +4,7 @@ import TermAndConditionSectionSecond from "../../TermAndConditionSection/TermAnd
 import Header from "../../Header/Header";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./TermsAndConditions.module.css"
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 function TermsAndConditions() {
   return (
@@ -11,6 +12,7 @@ function TermsAndConditions() {
       <Header />
       <div className={style.Container}>
         {/* <TermAndConditionSectionFirst /> */}
+        <BreadCrumsHeader urlname={"Term And Condition"} />
         <TermAndConditionSectionSecond />
         <Footer />
       </div>

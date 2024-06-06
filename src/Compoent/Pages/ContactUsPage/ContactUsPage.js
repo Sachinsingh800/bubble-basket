@@ -4,6 +4,7 @@ import ContactUsPageSectionFirst from "../../ContactUsPageSection/ContactUsPageS
 import ContactUsPageSectionSecond from "../../ContactUsPageSection/ContactUsPageSectionSecond/ContactUsPageSectionSecond";
 import style from "./ContactUsPage.module.css";
 import Header from "../../Header/Header";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 
 function ContactUsPage() {
@@ -11,7 +12,7 @@ function ContactUsPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        {/* <ContactUsPageSectionFirst /> */}
+      <BreadCrumsHeader urlname={"Contact"} />
         <ContactUsPageSectionSecond />
         <Footer />
       </div>

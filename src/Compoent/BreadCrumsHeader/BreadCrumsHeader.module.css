@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'BrittanySignature';
+    src: url('../Fonts/BrittanySignature.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'FELIXTI';
+    src: url('../Fonts/FELIXTI.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Metropolis-Bold';
+    src: url('../Fonts/Metropolis-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .main {
+    height: 8rem;
+    background-color: #7b0128;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .main h2{
+    text-align: center;
+  }
+  .breadcrumbs{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+    font-family: 'FELIXTI';
+  }
+  .url{
+    color: white!important;
+  }
+  .breadcrumbItem{
+    font-family: 'Metropolis-Bold';
+  }
+  

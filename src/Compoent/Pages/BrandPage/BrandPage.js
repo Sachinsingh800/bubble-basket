@@ -11,7 +11,7 @@ function BrandPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        {/* <BrandSectionFirst /> */}
+        <BrandSectionFirst />
         <BrandSectionSecond />
         <Footer />
       </div>

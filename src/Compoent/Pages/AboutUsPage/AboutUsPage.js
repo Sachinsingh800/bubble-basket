@@ -5,6 +5,7 @@ import AboutUsSectionSecond from "../../AboutUsSection/AboutUsSectionSecond/Abou
 import AboutUsSectionThird from "../../AboutUsSection/AboutUsSectionThird/AboutUsSectionThird";
 import Footer from "../../Sections/Footer/Footer";
 import style from "./AboutUsPage.module.css";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 
 function AboutUsPage() {
@@ -13,6 +14,7 @@ function AboutUsPage() {
       <Header />
       <div className={style.Container}>
         {/* <AboutUsSectionFirst /> */}
+        <BreadCrumsHeader urlname={"About"} />
         <AboutUsSectionSecond />
         <AboutUsSectionThird />
         <Footer />

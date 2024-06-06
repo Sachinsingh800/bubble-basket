@@ -4,6 +4,7 @@ import OderDetailSectionFirst from "../../OderDetailSection/OderDetailSectionFir
 import OderDetailSectionSecond from "../../OderDetailSection/OderDetailSectionSecond/OderDetailSectionSecond";
 import Footer from "../../Sections/Footer/Footer";
 import Header from "../../Header/Header";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 
 
 function OrderDetailPage() {
@@ -11,6 +12,7 @@ function OrderDetailPage() {
     <div>
       <Header/>
       <div className={style.Container}>
+      <BreadCrumsHeader urlname={"Orders"} />
         <OderDetailSectionSecond />
         <Footer />
       </div>
