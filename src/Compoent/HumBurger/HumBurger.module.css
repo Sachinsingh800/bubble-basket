@@ -44,3 +44,9 @@
   height: 100%;
   width: 100%;
 }
+.Option_lists{
+  padding: 1.6rem;
+}
+.Option_lists a{
+   color: black!important;
+}

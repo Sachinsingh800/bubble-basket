@@ -67,7 +67,20 @@ export default function HumBurger() {
      
         </div>
         <br />
-        <NavBarAccordian />
+        <div className={style.Option_lists}>
+          <a href="/">
+            <p>HOME</p>
+          </a>
+          <a>
+            <p onClick={downloadExcel}>BULK ORDER</p>
+          </a>
+          <a href="/OrderHistory">
+            <p>TRACK ORDER</p>
+          </a>
+          <a href="/ContactUs">
+            <p>CONTACT</p>
+          </a>
+        </div>
       </List>
     </Box>
   );
