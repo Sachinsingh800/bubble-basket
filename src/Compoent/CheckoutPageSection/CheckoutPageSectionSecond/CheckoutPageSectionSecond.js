@@ -180,6 +180,7 @@ function CheckoutPageSectionSecond() {
   const handleUpdateAddress = async () => {
     try {
       const response = await getAllAddress();
+      sessionStorage.setItem("address", JSON.stringify(response.data[0]));
     } catch (error) {
       console.log(error);
     } finally {
