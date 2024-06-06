@@ -239,10 +239,15 @@ function RegisterPageSectionSecond() {
             </div>
             {errors.confirmPassword && <p className={style.error}>{errors.confirmPassword}</p>}
           </div>
+          <div>
           <button type="submit">REGISTER →</button>
+          <br/>
+          <br/>
           <p>
             Already have an account? <a href="/Login">Login</a>
           </p>
+          </div>
+   
         </form>
         </>
       )}
