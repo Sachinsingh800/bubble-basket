@@ -44,9 +44,6 @@
   font-family: 'Metropolis-Bold';
 }
 @media (max-width:784px){
-  .main {
-    margin-top: 7rem;
-  }
   .main h2{
     text-align: center;
   }

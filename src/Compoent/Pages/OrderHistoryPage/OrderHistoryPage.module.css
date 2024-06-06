@@ -114,6 +114,7 @@
       width: 100%;
       padding: 3rem;
       gap: 2rem;
+
     }
   
     .icon_box:hover img {
@@ -178,6 +179,7 @@
     }
     .Container{
       padding: 1.5rem;
+      margin-top: 5rem;
     }
   
   }

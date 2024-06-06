@@ -117,6 +117,7 @@
       width: 100%;
       padding: 3rem;
       gap: 2rem;
+      
     }
   
     .icon_box:hover img {
@@ -159,6 +160,41 @@
   .left_section li:hover .bottom_div {
     opacity: 1;
   }
+
+  .error_box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Jost", sans-serif;
+}
+.error_box h1{
+    font-size: 10rem;
+    color: #7B0128;
+}
+.error_box span{
+    font-size: 1.4rem;
+}
+.line{
+    width: 15rem;
+    height: 2px;
+    background-color: #7B0128;
+}
+.error_box button{
+    background-color: none;
+    background: transparent;
+    padding: .5rem 1rem;
+    border: 1px #7B0128 solid;
+}
+.error_box button:hover{
+    background-color: #7B0128 ;
+    color: white;
+}
+.para{
+    width: 20rem;
+    text-align: center;
+}
   
   @media screen and (max-width:1006px) {
     .left_section{
@@ -170,7 +206,8 @@
     }
   
   }
-  @media screen and (max-width:784px) {
+  @media (max-width:784px) {
+
     .dawer{
       display: none;
     }
@@ -181,40 +218,8 @@
     }
     .Container{
       padding: 1.5rem;
+      margin-top: 5rem;
     }
+
   
-  }
-  .error_box{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-family: "Jost", sans-serif;
-  }
-  .error_box h1{
-      font-size: 10rem;
-      color: #7B0128;
-  }
-  .error_box span{
-      font-size: 1.4rem;
-  }
-  .line{
-      width: 15rem;
-      height: 2px;
-      background-color: #7B0128;
-  }
-  .error_box button{
-      background-color: none;
-      background: transparent;
-      padding: .5rem 1rem;
-      border: 1px #7B0128 solid;
-  }
-  .error_box button:hover{
-      background-color: #7B0128 ;
-      color: white;
-  }
-  .para{
-      width: 20rem;
-      text-align: center;
   }
