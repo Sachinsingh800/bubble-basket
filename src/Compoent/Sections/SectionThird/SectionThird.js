@@ -42,7 +42,6 @@ function SectionThird() {
       </div>
       <div
         className={style.content}
-        style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
           <div className={style.heading_box}>

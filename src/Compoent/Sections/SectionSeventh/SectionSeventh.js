@@ -50,7 +50,6 @@ function SectionSeventh() {
       </div>
       <div
         className={style.content}
-        style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
           <h3>CORPORATE</h3>

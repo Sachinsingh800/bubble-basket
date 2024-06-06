@@ -87,8 +87,6 @@
   padding: 0.5rem 2rem;
   font-size: small;
   letter-spacing: 0.5cap;
-  /* color: white; */
-  /* border: 1px white solid; */
   font-size: large;
   background-color: white;
   color: rgb(0, 0, 0);
@@ -109,8 +107,7 @@
   align-items: center;
   gap: 1rem;
   z-index: 999 !important;
-  position: absolute;
-  margin-top: 65rem;
+  margin-top: -17rem;
 }
 .bgImagemob{
   display: none;
