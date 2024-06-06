@@ -30,6 +30,19 @@
   .main h2{
     text-align: center;
   }
+  .main ul{
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+    gap: 2rem;
+    padding-right: 1rem;
+  }
+  .main ul li{
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+    margin-left: -1.5rem;
+  }
   .breadcrumbs{
     display: flex;
     list-style: none;
