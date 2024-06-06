@@ -245,6 +245,7 @@ function CheckoutPageSectionSecond() {
               If you have a coupon code, please apply it below.
             </label>
             <input
+              style={{ fontSize: "16px" }}
               type="text"
               id="coupon"
               name="coupon"
@@ -265,6 +266,7 @@ function CheckoutPageSectionSecond() {
               <div className={style.add_select}>
                 <label>Default Address</label>
                 <input
+                  style={{ fontSize: "16px" }}
                   type="radio"
                   checked={isChecked}
                   onChange={handleSelectAddress}
@@ -275,6 +277,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="firstName">First name *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="firstName"
                 name="firstName"
@@ -286,6 +289,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="lastName">Last name *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="lastName"
                 name="lastName"
@@ -297,6 +301,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="companyName">Company name (optional)</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="companyName"
                 name="companyName"
@@ -312,6 +317,7 @@ function CheckoutPageSectionSecond() {
                 value={formData?.country}
                 onChange={handleChange}
                 required
+                style={{ fontSize: "16px" }}
               >
                 <option value="">Select Country / Region</option>
                 <option value="USA">USA</option>
@@ -325,6 +331,7 @@ function CheckoutPageSectionSecond() {
                 Street address *
               </label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="streetAddress.houseNoAndStreetName"
                 name="streetAddress.houseNoAndStreetName"
@@ -346,6 +353,7 @@ function CheckoutPageSectionSecond() {
                 Apartment, suite, unit, etc. (optional)
               </label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="streetAddress.apartment"
                 name="streetAddress.apartment"
@@ -364,6 +372,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="city">Town / City *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="city"
                 name="townCity"
@@ -375,6 +384,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="stateCounty">County</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="stateCounty"
                 name="stateCounty"
@@ -385,6 +395,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="postcodeZIP">postcodeZIP *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="text"
                 id="postcodeZIP"
                 name="postcodeZIP"
@@ -396,6 +407,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="phone">Phone *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="tel"
                 id="phone"
                 name="phone"
@@ -407,6 +419,7 @@ function CheckoutPageSectionSecond() {
             <div className={style.form_group}>
               <label htmlFor="email">Email address *</label>
               <input
+                style={{ fontSize: "16px" }}
                 type="email"
                 id="email"
                 name="email"
@@ -421,6 +434,7 @@ function CheckoutPageSectionSecond() {
             <div>
               <label htmlFor="orderNotes">Order notes (optional)</label>
               <textarea
+                style={{ fontSize: "16px" }}
                 id="orderNotes"
                 name="orderNotes"
                 value={formData?.orderNotes || orderNotes}
@@ -522,19 +536,9 @@ function CheckoutPageSectionSecond() {
         </div>
         <br />
         <div className={style.payment_box}>
-          {/* Payment method */}
           <label>
             <input
-              type="radio"
-              name="paymentMethod"
-              value="cashOnDelivery"
-              checked={formData.paymentMethod === "cashOnDelivery"}
-              onChange={handleChange}
-            />
-            Cash on Delivery
-          </label>
-          <label>
-            <input
+              style={{ fontSize: "16px" }}
               type="radio"
               name="paymentMethod"
               onChange={handleOnlinePayment}
