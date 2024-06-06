@@ -59,9 +59,12 @@ export default function HumBurger() {
           CLOSE
         </button>
         <div className={style.header_box}>
-          <div className={style.img_box}>
-            <img src={logo} alt="logo" />
+        <a href="/">
+        <div className={style.img_box}>
+        <img src={logo} alt="logo" />
           </div>
+        </a>
+     
         </div>
         <br />
         <NavBarAccordian />
