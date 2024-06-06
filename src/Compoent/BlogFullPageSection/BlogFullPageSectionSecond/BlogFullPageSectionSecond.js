@@ -7,6 +7,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { getAllBlog } from "../../Apis/Apis";
 import dp from "../../Images/Avatar icon profile icon member_5247852.png"
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function BlogFullPageSectionSecond() {
   const { id } = useParams(); // Fetching the blog ID from the URL params
@@ -129,21 +130,6 @@ function BlogFullPageSectionSecond() {
             </div>
             <span>{selectedBlog?.authorDescription}</span>
             <div className={style.bottom_box}>
-              <div></div>
-              <ul>
-                <li>
-                  <FacebookRoundedIcon className={style.icon} />
-                </li>
-                <li>
-                  <InstagramIcon className={style.icon} />
-                </li>
-                <li>
-                  <LinkedInIcon className={style.icon} />
-                </li>
-                <li>
-                  <TwitterIcon className={style.icon} />
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -162,9 +148,7 @@ function BlogFullPageSectionSecond() {
         <br />
         {userComments.map((item, index) => (
           <div className={style.user_review_container} key={index}>
-            <div className={style.user_dp}>
-              <img src={item.userimg} alt="dp" />
-            </div>
+              <AccountCircleOutlinedIcon className={style.user_dp} />
             <div>
               <span>{convertDate(item.date)}</span>
               <p className={style.username}>{item.username}</p>

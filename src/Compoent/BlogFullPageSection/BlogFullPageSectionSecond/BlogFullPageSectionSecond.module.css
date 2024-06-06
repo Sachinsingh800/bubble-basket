@@ -209,7 +209,17 @@
   padding: 1rem 15rem;
   font-style: italic;
 }
+.user_dp{
+  height: 50px!important;
+  width: 50px!important;
+}
 @media screen and (max-width: 500px) {
+  .user_dp{
+    height: 50px!important;
+    width: 50px!important;
+  }
+  .user_review_container{
+  }
   .demotext {
     padding: 1rem 0rem;
   }
@@ -237,5 +247,11 @@
   .des_box {
     width: 100%;
     font-size: 0.8rem;
+  }
+  .author_info_box{
+    height: max-content;
+  }
+  .user_box_img{
+    overflow: hidden;
   }
 }
