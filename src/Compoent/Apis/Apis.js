@@ -675,7 +675,7 @@ export const orderPlace = async (orderData) => {
       alert("Order placed successfully");
       sessionStorage.setItem("orderData", JSON.stringify(data));
       sessionStorage.removeItem("cartData");
-      window.location.href = "/ThankYouPage";
+      window.location.href = "/ThankYou";
     }
     // Handle response data as needed
   } catch (error) {
@@ -939,7 +939,7 @@ export const getCheckout = async (promoCode) => {
       const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
 
       if (checkoutStatus) {
-        window.location.href = "/CheckoutPage";
+        window.location.href = "/Checkout";
       } else {
       }
     }

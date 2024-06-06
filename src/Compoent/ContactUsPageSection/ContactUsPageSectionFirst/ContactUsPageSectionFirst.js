@@ -30,7 +30,7 @@ function ContactUsPageSectionFirst() {
         style={{ transform: `translateY(-${scrollPosition * 0.4}px)` }} // Adjust the speed here
       >
         <div className={style.description_box}>
-          <h2>Contact Us Page</h2>
+          <h2>Contact Us</h2>
         </div>
       </div>
     </div>

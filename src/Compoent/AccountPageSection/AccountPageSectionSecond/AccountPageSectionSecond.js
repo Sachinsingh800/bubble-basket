@@ -31,7 +31,7 @@ function AccountPageSectionSecond() {
     <div className={style.main}>
       <h1>Manage Your Account</h1>
       <div className={style.container}>
-        <a href="/RegisterPage">
+        <a href="/Register">
           <div>
             <HowToRegIcon className={style.icon} />
             <span>Register</span>

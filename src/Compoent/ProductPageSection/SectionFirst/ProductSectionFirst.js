@@ -21,7 +21,6 @@ function ProductSectionFirst() {
     }
   };
   const product = productData.find((item) => item._id.toString() === id);
-  console.log(product, "product brad crumns");
 
   const displayCategory = product?.title || "GIFT BASKETS";
 

@@ -260,12 +260,12 @@ export default function Header(props) {
                   )}
                 </div>
 
-                <a href="/AccountPage">
+                <a href="/Account">
                   <div className={style.icon_box}>
                     <img src={avatarimg} alt="user" />
                   </div>
                 </a>
-                <a href="/CartPage">
+                <a href="/Cart">
                   <div className={style.icon_box2}>
                     <span className={style.cart_count}>{cartItem}</span>
                     <img src={shoppingCart} alt="shopping" />

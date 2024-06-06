@@ -45,20 +45,20 @@ root.render(
         <Route path={'/:category'} element={<ColumnPage />} />
         <Route path={'brand/:category'} element={<BrandPage />} />
         <Route path={'/Product'} element={<ColumnPage />} />
-        <Route path={'/CartPage'} element={<CartPage />} />
+        <Route path={'/Cart'} element={<CartPage />} />
         <Route path={'/Blog'} element={<BlogPage />} />
         <Route path={'/Blog/:id'} element={<BlogFullPage />} />
         <Route path={'/ContactUs'} element={<ContactUsPage />} />
-        <Route path={'/CheckoutPage'} element={<CheckoutPage />} />
+        <Route path={'/Checkout'} element={<CheckoutPage />} />
         <Route path={'/Login'} element={<LoginPage />} />
-        <Route path={'/AboutUsPage'} element={<AboutUsPage />} />
-        <Route path={'/FAQPage'} element={<FAQPage/>} />
+        <Route path={'/AboutUs'} element={<AboutUsPage />} />
+        <Route path={'/FAQ'} element={<FAQPage/>} />
         <Route path={'/RefundandReturnPolicy'} element={<PendingAndRefundPage/>} />
-        <Route path={'/PrivacyAanPolicy'} element={<PrivacyAanPolicy/>} />
+        <Route path={'/PrivacyAndPolicy'} element={<PrivacyAanPolicy/>} />
         <Route path={'/TermsAndConditions'} element={<TermsAndConditions/>} />
-        <Route path={'/ThankYouPage'} element={<ThankYouPage/>} />
-        <Route path={'/RegisterPage'} element={<RegisterPage/>} />
-        <Route path={'/AccountPage'} element={<AccountPage />} />
+        <Route path={'/ThankYou'} element={<ThankYouPage/>} />
+        <Route path={'/Register'} element={<RegisterPage/>} />
+        <Route path={'/Account'} element={<AccountPage />} />
         <Route path={'/OrderHistory'} element={<OrderHistoryPage />} />
         <Route path={'/OrderDetail/:id'} element={<OrderDetailPage />} />
         <Route path={'/UpdateInformation/:category'} element={<UpdateInformation />} />

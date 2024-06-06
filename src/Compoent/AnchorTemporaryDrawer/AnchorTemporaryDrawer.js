@@ -48,7 +48,7 @@ export default function AnchorTemporaryDrawer() {
   };
 
   const handleNavigateCart = () => {
-      window.location.href = "/CartPage";
+      window.location.href = "/Cart";
   };
 
   const handleCheckoutOrder = async () => {

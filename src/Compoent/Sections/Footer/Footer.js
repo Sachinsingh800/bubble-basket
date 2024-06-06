@@ -80,22 +80,19 @@ function Footer() {
         <a href="/">
           <div className={style.opt}>HOME </div>
         </a>
-        <a href="/OrderHistory">
-          <div className={style.opt}>PAGES </div>
-        </a>
-        <a href="/ContactUsPage">
+        <a href="/Product">
           <div className={style.opt}>SHOP </div>
         </a>
-        <a href="/PrivacyAanPolicy">
+        <a href="/OrderHistory">
           <div className={style.opt}>ORDERS </div>
         </a>
         <a href="/ContactUs">
           <div className={style.opt}>CONTACT</div>
         </a>
-        <a href="/AboutUsPage">
+        <a href="/AboutUs">
           <div className={style.opt}>ABOUT</div>
         </a>
-        <a href="/FAQPage">
+        <a href="/FAQ">
           <div className={style.opt} style={{ borderRight: "none" }}>
             FAQ'S{" "}
           </div>

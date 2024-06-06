@@ -124,7 +124,7 @@ function LoginPageSectionSecond() {
         <a href={`/UpdateInformation/password`}>
           <p>Lost your password?</p>
         </a>
-        <a href="/RegisterPage">
+        <a href="/Register">
           <p>Register</p>
         </a>
       </form>
