@@ -47,6 +47,10 @@ export default function AnchorTemporaryDrawer() {
     }
   };
 
+  const handleNavigateCart = () => {
+      window.location.href = "/CartPage";
+  };
+
   const handleCheckoutOrder = async () => {
     try {
       await getCheckout();
@@ -98,12 +102,20 @@ export default function AnchorTemporaryDrawer() {
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
         <Button
-          style={{ backgroundColor: "#7b0128", color: "white" }}
+            style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
           onClick={handleNavigate}
           variant="contained"
           color="primary"
         >
           Checkout
+        </Button>
+        <Button
+    style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
+          onClick={handleNavigateCart}
+          variant="contained"
+          color="primary"
+        >
+          View Cart
         </Button>
       </Box>
     </Box>
@@ -139,12 +151,20 @@ export default function AnchorTemporaryDrawer() {
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
         <Button
-          style={{ backgroundColor: "#7b0128", color: "white" }}
+           style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
           onClick={handleNavigate}
           variant="contained"
           color="primary"
         >
           Checkout
+        </Button>
+        <Button
+            style={{ backgroundColor: "#7b0128", color: "white",fontSize:10 ,margin:"5px" }}
+          onClick={handleNavigateCart}
+          variant="contained"
+          color="primary"
+        >
+          View Cart
         </Button>
       </Box>
     </Box>
