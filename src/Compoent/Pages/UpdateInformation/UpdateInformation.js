@@ -33,15 +33,15 @@ import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
 export default function UpdateInformation() {
   const { category } = useParams();
 
-
   return (
-    <div className={style.Container}>
+    <div>
       <Header />
-      <BreadCrumsHeader urlname={category} />
-      {category == "password" && <UpdatePasswordPageSection />}
-      {category == "address" && <UpdateAddressPageSection />}
-
-      <Footer />
+      <div className={style.Container}>
+        <BreadCrumsHeader urlname={category} />
+        {category == "password" && <UpdatePasswordPageSection />}
+        {category == "address" && <UpdateAddressPageSection />}
+        <Footer />
+      </div>
     </div>
   );
 }
