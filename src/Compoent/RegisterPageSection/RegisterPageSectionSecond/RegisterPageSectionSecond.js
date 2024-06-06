@@ -208,6 +208,7 @@ function RegisterPageSectionSecond() {
                 onClick={() => setShowPassword((prev) => !prev)}
                 edge="end"
                 size="small"
+                className={style.icon}
               >
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
@@ -229,6 +230,7 @@ function RegisterPageSectionSecond() {
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
                 edge="end"
                 size="small"
+                className={style.icon}
               >
                 {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
