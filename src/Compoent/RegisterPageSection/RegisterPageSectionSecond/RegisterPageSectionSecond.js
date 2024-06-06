@@ -140,8 +140,10 @@ function RegisterPageSectionSecond() {
           </div>
         </div>
       ) : (
+        <>
+        <h4>REGISTER</h4>
         <form onSubmit={handleSubmit} className={style.form}>
-          <h4>REGISTER</h4>
+ 
           <div className={style.input_box}>
             <label htmlFor="firstName">First Name *</label>
             <input
@@ -242,6 +244,7 @@ function RegisterPageSectionSecond() {
             Already have an account? <a href="/Login">Login</a>
           </p>
         </form>
+        </>
       )}
     </div>
   );

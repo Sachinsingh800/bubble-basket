@@ -9,7 +9,7 @@
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr ;
-  width: 100%;
+  width: 70%;
   gap: 1rem;
 }
 .form h4 {

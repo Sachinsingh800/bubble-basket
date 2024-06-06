@@ -10,8 +10,8 @@
   color: #7b0128;
 }
 .form {
-  display: flex;
-  flex-direction: column;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
   width: 70%;
   gap: 1rem;
 }
@@ -110,6 +110,12 @@
 }
 
 @media (max-width: 500px) {
+  .form {
+    display: grid;
+    grid-template-columns: 1fr;
+   width: 100%;
+   gap: 1rem;
+ }
   .icon {
     font-size: 40px !important;
     height: 3rem !important;
