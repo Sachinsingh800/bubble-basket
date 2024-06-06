@@ -7,10 +7,12 @@ import style from "./HumBurger.module.css";
 import menuicon from "../Images/menu.png";
 import CloseIcon from "@mui/icons-material/Close";
 import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
+import NavBarAccordian from "../NavBarAccordian/NavBarAccordian";
+import logo from "../Images/logo.jpg";
 
 export default function HumBurger() {
   const [state, setState] = React.useState({
-    right: false,
+    top: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -47,26 +49,22 @@ export default function HumBurger() {
   const list = (
     <Box
       sx={{
-        width: 300,
+        width: "auto",
+        height: "100%",
       }}
       role="presentation"
     >
       <List>
-        <button
-          className={style.closebtn}
-          onClick={toggleDrawer("right", false)}
-        >
-          <CloseIcon />
+        <button className={style.closebtn} onClick={toggleDrawer("top", false)}>
+          CLOSE
         </button>
-        <div className={style.list}>
-          <a href="/">
-            <p>Home</p>
-          </a>
-          <p onClick={downloadExcel}>Bulk Order</p>
-          <a href="/OrderHistory">
-            <p>Track Order</p>
-          </a>
+        <div className={style.header_box}>
+          <div className={style.img_box}>
+            <img src={logo} alt="logo" />
+          </div>
         </div>
+        <br />
+        <NavBarAccordian />
       </List>
     </Box>
   );
@@ -75,10 +73,8 @@ export default function HumBurger() {
     <div className={style.main}>
       <Box
         className={style.btn}
-        onClick={toggleDrawer("right", true)}
+        onClick={toggleDrawer("top", true)}
         sx={{
-          top: 200,
-          right: state.right ? 260 : 0,
           zIndex: 999,
           backgroundColor: "white",
           color: "black",
@@ -89,9 +85,9 @@ export default function HumBurger() {
         </div>
       </Box>
       <Drawer
-        anchor="right"
-        open={state.right}
-        onClose={toggleDrawer("right", false)}
+        anchor="top"
+        open={state.top}
+        onClose={toggleDrawer("top", false)}
       >
         {list}
       </Drawer>
