@@ -101,7 +101,7 @@ function SectionFifth() {
                     onClick={() => handleNavigate(item?.categoryName)}
                     style={{ minHeight: 40 }}
                   >
-                    {item?.categoryName}
+                    {item?.categoryName} GIFTS
                   </MenuItem>
                 ))}
               </Select>
