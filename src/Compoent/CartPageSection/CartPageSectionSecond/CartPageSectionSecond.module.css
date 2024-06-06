@@ -143,6 +143,9 @@
   font-family: "Jost", sans-serif;
   letter-spacing: .1cap;
 }
+.cartTable table thead  tr th{
+  color: #7b0128;
+}
 @media screen and (max-width:500px) {
   .cartTable{
     overflow-y: scroll;
