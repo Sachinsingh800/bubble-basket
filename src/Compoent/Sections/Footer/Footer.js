@@ -83,13 +83,13 @@ function Footer() {
         <a href="/Product">
           <div className={style.opt}>SHOP </div>
         </a>
-        <a href="/OrderHistory">
+        <a href="/Order-History">
           <div className={style.opt}>ORDERS </div>
         </a>
-        <a href="/ContactUs">
+        <a href="/Contact-Us">
           <div className={style.opt}>CONTACT</div>
         </a>
-        <a href="/AboutUs">
+        <a href="/About-Us">
           <div className={style.opt}>ABOUT</div>
         </a>
         <a href="/FAQ">

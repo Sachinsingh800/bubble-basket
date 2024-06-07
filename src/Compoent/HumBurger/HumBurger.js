@@ -74,10 +74,10 @@ export default function HumBurger() {
           <a>
             <p onClick={downloadExcel}>BULK ORDER</p>
           </a>
-          <a href="/OrderHistory">
+          <a href="/Order-History">
             <p>TRACK ORDER</p>
           </a>
-          <a href="/ContactUs">
+          <a href="/Contact-Us">
             <p>CONTACT</p>
           </a>
         </div>

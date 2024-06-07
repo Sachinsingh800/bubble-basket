@@ -48,7 +48,7 @@ function OrderHistoryPageSectionSecond() {
               <td>{order?.totalItems}</td>
               <td>${order?.totalPrice.toFixed(2)}</td>
               <td>
-                <a href={`/OrderDetail/${order?._id}`}>view</a>
+                <a href={`/Order-Detail/${order?._id}`}>view</a>
               </td>
             </tr>
           ))}

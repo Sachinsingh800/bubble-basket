@@ -47,20 +47,20 @@ const appContent = (
           <Route path="Cart" element={<CartPage />} />
           <Route path="Blog" element={<BlogPage />} />
           <Route path="Blog/:blogTitle" element={<BlogFullPage />} />
-          <Route path="ContactUs" element={<ContactUsPage />} />
+          <Route path="Contact-Us" element={<ContactUsPage />} />
           <Route path="Checkout" element={<CheckoutPage />} />
           <Route path="Login" element={<LoginPage />} />
-          <Route path="AboutUs" element={<AboutUsPage />} />
+          <Route path="About-Us" element={<AboutUsPage />} />
           <Route path="FAQ" element={<FAQPage />} />
-          <Route path="RefundandReturnPolicy" element={<PendingAndRefundPage />} />
-          <Route path="PrivacyAndPolicy" element={<PrivacyAanPolicy />} />
-          <Route path="TermsAndConditions" element={<TermsAndConditions />} />
+          <Route path="Refund-and-Return-Policy" element={<PendingAndRefundPage />} />
+          <Route path="Privacy-And-Policy" element={<PrivacyAanPolicy />} />
+          <Route path="Terms-And-Conditions" element={<TermsAndConditions />} />
           <Route path="ThankYou" element={<ThankYouPage />} />
           <Route path="Register" element={<RegisterPage />} />
           <Route path="Account" element={<AccountPage />} />
-          <Route path="OrderHistory" element={<OrderHistoryPage />} />
-          <Route path="OrderDetail/:id" element={<OrderDetailPage />} />
-          <Route path="UpdateInformation/:category" element={<UpdateInformation />} />
+          <Route path="Order-History" element={<OrderHistoryPage />} />
+          <Route path="Order-Detail/:id" element={<OrderDetailPage />} />
+          <Route path="Update-Information/:category" element={<UpdateInformation />} />
           <Route path="Payment" element={<Payment />} />
           <Route path="*" element={<ErrorPage />} /> {/* Catch-all route for unknown paths */}
         </Routes>

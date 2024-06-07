@@ -9,7 +9,7 @@ import { AddtoCart } from "../../Apis/Apis";
 
 function AccountPageSectionSecond() {
   const handleLinkClick = (category) => {
-    window.location.href = `/UpdateInformation/${category}`;
+    window.location.href = `/Update-Information/${category}`;
 
   };
 
