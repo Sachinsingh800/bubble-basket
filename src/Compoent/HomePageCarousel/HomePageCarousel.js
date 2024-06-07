@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import style from "./HomePageCarousel.module.css";
-import product1 from "../Images/dom perignon lady gaga rose.png";
+import product1 from "../Images/dom perignon lady gaga rose.webp";
 
 function HomePageCarousel() {
   const [index, setIndex] = useState(0);
