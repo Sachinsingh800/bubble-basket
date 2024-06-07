@@ -10,11 +10,13 @@ function BrandSectionSecond() {
   const [error, setError] = useState(null);
   const { category } = useParams();
 
-
+  function replaceHyphensWithSpaces(str) {
+    return str.replace(/-/g, " ");
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllBrandProduct(category);
+        const response = await getAllBrandProduct(replaceHyphensWithSpaces(category));
 
         setProductData(response.data);
       } catch (error) {
@@ -27,8 +29,12 @@ function BrandSectionSecond() {
     fetchData();
   }, [category]);
 
-  const handleNavigate = (id) => {
-    window.location.href = `/Product/${id}`;
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
+
+  const handleNavigate = (title) => {
+    window.location.href = `/Product/${formatTitleForUrl(title)}`;
   };
 
   return (
@@ -45,7 +51,7 @@ function BrandSectionSecond() {
               className={
                 index % 4 === 3 ? style.inner_container1 : style.inner_container
               }
-              onClick={() => handleNavigate(product._id)}
+              onClick={() => handleNavigate(product?.title)}
             >
               {product?.offer && <span className={style.offer_box}>new</span>}
               <div className={style.add_box_img}>

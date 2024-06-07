@@ -44,7 +44,9 @@ function ImageSlider() {
       </div>
     );
   };
-
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
   return (
     <div className={style.mainContainer}>
       <div className={style.headingBox}>
@@ -57,22 +59,22 @@ function ImageSlider() {
           customButtonGroup={<ButtonGroup />}
           responsive={responsive}
         >
-          <a href={`brand/${"Dom Perignon"}`}>
+          <a href={`brand/${formatTitleForUrl("Dom Perignon")}`}>
             <div className={style.img_box}>
               <img src={image1} alt="Dom Perignon" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto"  />
             </div>
           </a>
-          <a href={`brand/${"Caymus"}`}>
+          <a href={`brand/${formatTitleForUrl("Caymus")}`}>
             <div className={style.img_box}>
               <img src={image2} alt="Caymus" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
           </a>
-          <a href={`brand/${"Moet &amp; Chandon"}`}>
+          <a href={`brand/${formatTitleForUrl("Moet &amp; Chandon")}`}>
             <div className={style.img_box}>
               <img src={image3} alt="Moet &amp Chandon" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
           </a>
-          <a href={`brand/${"Veuve Clicquot"}`}>
+          <a href={`brand/${formatTitleForUrl("Veuve Clicquot")}`}>
             <div className={style.img_box}>
               <img src={image4} alt="Veuve Clicquot" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
