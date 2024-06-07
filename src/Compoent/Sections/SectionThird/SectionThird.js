@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
 import backgroundImage from "../../Images/Background - 1600X897.webp";
 import backgroundImageMob from "../../Images/mobile banner.webp";
-import leaf1 from "../../Images/third banner leaf-1.png"
-import leaf2 from "../../Images/third banner leaf-2.png"
-import leaf1mob from "../../Images/third banner mob Leaf - 1.png"
+import leaf1 from "../../Images/third banner leaf-1.webp"
+import leaf2 from "../../Images/third banner leaf-2.webp"
+import leaf1mob from "../../Images/third banner mob Leaf - 1.webp"
 
 function SectionThird() {
   const [scrollPosition, setScrollPosition] = useState(0);
