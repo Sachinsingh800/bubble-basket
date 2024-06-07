@@ -11,8 +11,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 
 function BlogFullPageSectionSecond() {
   const { blogTitle } = useParams(); // Fetching the blog title from the URL params
-  console.log(blogTitle,"blog title");
-
   const [allBlog, setAllBlog] = useState([]);
   const [loading, SetIsloading] = useState(false);
   const [usename, setUserName] = useState("");

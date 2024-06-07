@@ -35,6 +35,9 @@ const [loading,SetIsloading] = useState(false)
     return date.toLocaleDateString('en-US', options);
 }
   
+const formatTitleForUrl = (title) => {
+  return title.replace(/\s+/g, '-').replace(/:/g, '');
+};
   return (
     <div className={style.main}>
       {loading && <p>Loading...</p>}
@@ -53,7 +56,7 @@ const [loading,SetIsloading] = useState(false)
             <p>{item?.shortDescription}</p>
           </div>
           <div className={style.bottom_box}>
-            <a href={`/Blog/${item._id}`} className={style.read_more_link}>
+            <a href={`/Blog/${formatTitleForUrl(item?.blogTitle)}`} className={style.read_more_link}>
               READ MORE →
             </a>
             <ul>
