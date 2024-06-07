@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionSeventh.module.css";
-import backgroundImage from "../../Images/desktop 2.jpg";
-import backgroundImageMob from "../../Images/2.jpg";
+import backgroundImage from "../../Images/desktop 2.webp";
+import backgroundImageMob from "../../Images/2.webp";
 import bulkOrderForm from "../../BulkOrderForm/bulkOrderForm.xlsx";
 
 function SectionSeventh() {
