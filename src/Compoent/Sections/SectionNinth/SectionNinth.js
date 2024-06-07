@@ -6,8 +6,8 @@ import CakeIcon from '@mui/icons-material/Cake';
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import design1 from "../../Images/Leaf 1.png";
-import design2 from "../../Images/Leaf 2.png";
+import design1 from "../../Images/Leaf 1.webp";
+import design2 from "../../Images/Leaf 2.webp";
 import { sendSubscribtion } from "../../Apis/Apis";
 
 function SectionNinth() {

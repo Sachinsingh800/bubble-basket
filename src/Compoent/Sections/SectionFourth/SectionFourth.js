@@ -11,8 +11,8 @@ import {
   getAllProduct,
   getTop1Category,
 } from "../../Apis/Apis";
-import leftbottomimage from "../../Images/Grape.png";
-import righttopimage from "../../Images/Leaf 1.png";
+import leftbottomimage from "../../Images/Grape.webp";
+import righttopimage from "../../Images/Leaf 1.webp";
 import axios from "axios";
 
 function SectionFourth() {
