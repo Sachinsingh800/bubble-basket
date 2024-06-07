@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -29,9 +29,10 @@ import UpdateInformation from './Compoent/Pages/UpdateInformation/UpdateInformat
 import BrandPage from './Compoent/Pages/BrandPage/BrandPage';
 import Payment from './Compoent/Pages/Payment/Payment';
 
-// Retrieve the root element from the DOM
+// Get the root element from the DOM
 const rootElement = document.getElementById('root');
 
+// Define the React application structure
 const appContent = (
   <React.StrictMode>
     <RecoilRoot>
@@ -67,11 +68,11 @@ const appContent = (
   </React.StrictMode>
 );
 
-// Hydrate if the root element has child nodes (useful for SSR)
+// Use hydrate if the root element has pre-rendered content, otherwise render
 if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrate(appContent, rootElement);
+  hydrate(appContent, rootElement);
 } else {
-  ReactDOM.render(appContent, rootElement);
+  render(appContent, rootElement);
 }
 
 // Performance measuring (optional)

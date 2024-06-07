@@ -53,6 +53,10 @@ function SectionFourth() {
     setData(cartdata || []); // Initialize data with an empty array if cartdata is null or undefined
   }, [update]);
 
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
+
   return (
     <div className={style.main}>
       <div className={style.left_bottom_design}>
@@ -77,7 +81,7 @@ function SectionFourth() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/${top4Category?.categoryName}`)
+            (window.location.href = `/${formatTitleForUrl(top4Category?.categoryName)}`)
           }
         >
           <div className={style.img_box}>
@@ -99,7 +103,7 @@ function SectionFourth() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/${top5Category?.categoryName}`)
+            (window.location.href = `/${formatTitleForUrl(top5Category?.categoryName)}`)
           }
         >
           <div className={style.img_box}>

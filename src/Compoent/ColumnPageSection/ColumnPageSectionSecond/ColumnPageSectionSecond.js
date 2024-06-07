@@ -9,14 +9,21 @@ function ColumnPageSectionSecond({ singleProductData }) {
   const [error, setError] = useState(null);
   const { category } = useParams();
 
+  function replaceHyphensWithSpaces(str) {
+    return str.replace(/-/g, " ");
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-
       try {
-        const response = await getAllProduct(category);
+        let response;
+        if (category) {
+          response = await getAllProduct(replaceHyphensWithSpaces(category));
+        } else {
+          response = await getAllProduct();
+        }
         let data = response?.data;
-
         // Filter data by brand if brand is provided
         if (singleProductData?.brand) {
           const brandFilteredData = data?.filter(
@@ -26,7 +33,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
           // If only one product is found, filter by price from all products
           if (brandFilteredData?.length === 1) {
             data = data?.filter(
-              (product) =>product?.price  === singleProductData?.price
+              (product) => product?.price === singleProductData?.price
             );
           } else {
             data = brandFilteredData;
@@ -43,9 +50,11 @@ function ColumnPageSectionSecond({ singleProductData }) {
 
     fetchData();
   }, [category, singleProductData]);
+
   const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
-  }
+    return title.replace(/\s+/g, "-").replace(/:/g, "");
+  };
+
   const handleNavigate = (title) => {
     window.location.href = `/Product/${formatTitleForUrl(title)}`;
   };
@@ -67,7 +76,14 @@ function ColumnPageSectionSecond({ singleProductData }) {
               onClick={() => handleNavigate(product?.title)}
             >
               <div className={style.add_box_img}>
-                <img src={product?.productImg[0]?.url} alt={product?.title}  title={product?.title} loading="lazy"  width="auto" height="auto"  />
+                <img
+                  src={product?.productImg[0]?.url}
+                  alt={product?.title}
+                  title={product?.title}
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
               </div>
               <span className={style.product_title}>{product?.title}</span>
               <p>★★★★✰</p>
