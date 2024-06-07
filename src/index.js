@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-
 import ProductPage from './Compoent/Pages/ProductPage/ProductPage';
 import ColumnPage from './Compoent/Pages/ColumnPage/ColumnPage';
 import CartPage from './Compoent/Pages/CartPage/CartPage';
