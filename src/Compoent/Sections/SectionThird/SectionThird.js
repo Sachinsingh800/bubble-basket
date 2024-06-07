@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import style from "./SectionThird.module.css";
-import textfile from "../../Images/text.png";
 import backgroundImage from "../../Images/Background - 1600X897.png";
 import backgroundImageMob from "../../Images/mobile banner.png";
 import leaf1 from "../../Images/third banner leaf-1.png"

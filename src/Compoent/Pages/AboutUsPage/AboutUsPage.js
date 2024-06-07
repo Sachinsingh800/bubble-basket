@@ -13,7 +13,6 @@ function AboutUsPage() {
     <div>
       <Header />
       <div className={style.Container}>
-        {/* <AboutUsSectionFirst /> */}
         <BreadCrumsHeader urlname={"About"} />
         <AboutUsSectionSecond />
         <AboutUsSectionThird />

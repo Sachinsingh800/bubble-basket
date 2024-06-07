@@ -12,7 +12,6 @@ function PrivacyAanPolicy() {
     <div>
       <Header />
       <div className={style.Container}>
-        {/* <PrivacyAndPolicySectionFirst /> */}
         <BreadCrumsHeader urlname={"Privacy And Policy"} />
         <PrivacyAndPolicySectionSecond />
         <Footer />

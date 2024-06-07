@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import style from "./SectionEight.module.css"
-import banner1 from "../../Images/portrait-smiling-mature-senior-woman-holding-glass-wine-while-using-laptop-kitchen-table-freelance-working-home-concept.jpg"
-import banner2 from "../../Images/glass-wine-old-table-with-vineyard-background.jpg"
-import blog1 from "../../Images/image-007.png";
-import blog2 from "../../Images/image-009.png";
-import dp from "../../Images/image-010.png";
 import { getAllBlog } from '../../Apis/Apis';
 
 function SectionEight() {

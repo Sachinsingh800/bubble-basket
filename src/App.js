@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.css"; // Import module-level CSS
-import HideAppBar from "./Compoent/Home/Home";
-import productImage from "./Compoent/Images/dom perignon lady gaga rose.png";
-import { nanoid } from "nanoid";
 import AcceptCookies from "./Compoent/AcceptCookies/AcceptCookies";
-import NavBar from "./Compoent/Home/Home";
 import Home from "./Compoent/Home/Home";
 
 function App() {
