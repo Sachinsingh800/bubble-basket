@@ -5,7 +5,7 @@ function ThankYouPageSectionSection() {
   // Get the order data from local storage
   const checkPayment = JSON.parse(sessionStorage.getItem("orderData"));
   // Check if payment method is online or cash on delivery and set order detail accordingly
-  const orderDetail = checkPayment?.status ? checkPayment.data : checkPayment ;
+  const orderDetail = checkPayment?.status ? checkPayment.data : checkPayment;
 
   // Function to handle returning to home and clearing local storage
   const handleReturnHome = () => {
@@ -47,37 +47,35 @@ function ThankYouPageSectionSection() {
             </div>
           </div>
 
-          {orderDetail.items && orderDetail.items.map((item, index) => (
-            <div key={index} className={style.order_item}>
-              <div className={style.product_item}>
-                <span>
-                  {item?.Product_category} x{" "}
-                  <strong>{item?.Product_quantity}</strong>
-                </span>
-                <span className={style.calculate_}>${item?.Product_totalPrice}</span>
+          {orderDetail.items &&
+            orderDetail.items.map((item, index) => (
+              <div key={index} className={style.order_item}>
+                <div className={style.product_item}>
+                  <span>
+                    {item?.Product_title} x{" "}
+                    <strong>{item?.Product_quantity}</strong>
+                  </span>
+                  <span className={style.calculate_}>
+                    ${item?.Product_totalPrice}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-          <div className={style.order_item}>
-            <div className={style.product_item}>
-              <span>SUBTOTAL</span>
-              <span className={style.calculate_}>${orderDetail?.totalPrice}</span>
-            </div>
-          </div>
-          <div className={style.order_item}>
-            <div className={style.product_item}>
-              <span>
-                Delivery Fee Per Item $20(Delivery May take 2 to 4 days):
-              </span>
-              <span className={style.calculate_}>${orderDetail?.totalShipping}</span>
-            </div>
-          </div>
+            ))}
           <div className={style.order_item}>
             <div className={style.product_item}>
               <span>Tax ({orderDetail?.totalTax}%):</span>
               <span className={style.calculate_}>${orderDetail?.totalTax}</span>
             </div>
           </div>
+          <div className={style.order_item}>
+            <div className={style.product_item}>
+              <span>SUBTOTAL</span>
+              <span className={style.calculate_}>
+                ${orderDetail?.totalPrice}
+              </span>
+            </div>
+          </div>
+
           <div className={style.order_item}>
             <div className={style.product_item}>
               <strong>
