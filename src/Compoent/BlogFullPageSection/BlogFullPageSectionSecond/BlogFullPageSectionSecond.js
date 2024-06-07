@@ -118,6 +118,36 @@ function BlogFullPageSectionSecond() {
           rel="canonical"
           href={`https://www.luxurybubblebasket.com/Blog/${blogTitle}`}
         />
+         {/* Schema Markup */}
+         <script type="application/ld+json">
+          {`
+          {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": "${selectedBlog?.blogTitle}",
+            "image": "${selectedBlog?.blogImage?.url}",
+            "author": {
+              "@type": "Person",
+              "name": "${selectedBlog?.authorName}"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Luxury Bubble Basket",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "URL_TO_YOUR_LOGO_IMAGE"
+              }
+            },
+            "datePublished": "${selectedBlog?.createdAt}",
+            "dateModified": "${selectedBlog?.updatedAt}",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://www.luxurybubblebasket.com/Blog/${blogTitle}"
+            }
+          }
+          `}
+        </script>
+        {/* End Schema Markup */}
       </Helmet>
       <div className={style.container}>
         {loading && <p>Loading...</p>}

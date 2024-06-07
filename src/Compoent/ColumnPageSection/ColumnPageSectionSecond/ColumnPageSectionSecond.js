@@ -71,6 +71,23 @@ function ColumnPageSectionSecond({ singleProductData }) {
         rel="canonical"
         href={`https://www.luxurybubblebasket.com/Product/${formatTitleForUrl(product.title)}`}
       />
+       <script type="application/ld+json">
+        {`
+          {
+            "@context": "http://schema.org",
+            "@type": "Product",
+            "name": "${product.title}",
+            "image": "${product.productImg[0]?.url}",
+            "description": "${product.description}",
+            "offers": {
+              "@type": "Offer",
+              "price": "${product.price}",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        `}
+      </script>
     </Helmet>
   );
 

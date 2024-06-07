@@ -34,6 +34,24 @@ function Home() {
           name="keyword"
           content="Luxury Bubble Basket | Buy Gifts For Everyone"
         />
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "Luxury Bubble Basket",
+            "url": "https://www.luxurybubblebasket.com/",
+            "description": "Find the perfect wine and champagne gifts for everyone. Shop online for high-quality gifts that will impress any recipient.",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.luxurybubblebasket.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+          `}
+        </script>
+        {/* End Schema Markup */}
       </Helmet>
       <Header />
       <div className={style.Container}>

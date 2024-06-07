@@ -59,6 +59,33 @@ function AllCategorySectionSecond() {
         rel="canonical"
         href={`https://www.luxurybubblebasket.com/${category}`}
       />
+       <script type="application/ld+json">
+        {`
+        {
+          "@context": "http://schema.org",
+          "@type": "ItemList",
+          "name": "Products in ${category}",
+          "itemListElement": [
+            ${productData.map((product, index) => `
+              {
+                "@type": "Product",
+                "position": ${index + 1},
+                "url": "URL_TO_PRODUCT_PAGE",
+                "name": "${product.title}",
+                "image": "${product.productImg[0]?.url}",
+                "description": "${product.description}",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "${product.price}",
+                  "priceCurrency": "USD",
+                  "availability": "https://schema.org/InStock"
+                }
+              }
+            `).join(',')}
+          ]
+        }
+        `}
+      </script>
     </Helmet>
   );
 

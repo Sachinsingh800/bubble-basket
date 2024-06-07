@@ -252,6 +252,29 @@ function ProductSectionSecond() {
           rel="canonical"
           href={`https://www.luxurybubblebasket.com/Product/${title}`}
         />
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {`
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "${product?.title}",
+        "description": "${product?.productBlog?.intro}",
+        "url": "https://www.luxurybubblebasket.com/Product/${title}",
+        "image": "${product?.productImg[0]?.url}", // Assuming the first image is the main product image
+        "brand": {
+          "@type": "Brand",
+          "name": "${product?.brand}"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "${product?.price}",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    `}
+        </script>
       </Helmet>
       {loading && <p>Loading..</p>}
       <div className={style.product_container}>

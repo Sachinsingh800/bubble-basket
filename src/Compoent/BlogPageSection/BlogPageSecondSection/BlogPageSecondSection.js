@@ -51,6 +51,36 @@ function BlogPageSecondSection() {
           item.blogTitle
         )}`}
       />
+       {/* Schema Markup */}
+       <script type="application/ld+json">
+        {`
+        {
+          "@context": "http://schema.org",
+          "@type": "BlogPosting",
+          "headline": "${item.blogTitle}",
+          "image": "${item.blogImage?.url}",
+          "author": {
+            "@type": "Person",
+            "name": "${item.authorName}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Luxury Bubble Basket",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "URL_TO_YOUR_LOGO_IMAGE"
+            }
+          },
+          "datePublished": "${item.createdAt}",
+          "dateModified": "${item.updatedAt}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.luxurybubblebasket.com/Blog/${formatTitleForUrl(item.blogTitle)}"
+          }
+        }
+        `}
+      </script>
+      {/* End Schema Markup */}
     </Helmet>
   );
 
