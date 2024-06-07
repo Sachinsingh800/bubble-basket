@@ -6,7 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { getAllBlog } from "../../Apis/Apis";
-import dp from "../../Images/Avatar icon profile icon member_5247852.png"
+import dp from "../../Images/user.png"
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function BlogFullPageSectionSecond() {
