@@ -50,7 +50,7 @@ function ProductSectionFirst() {
 
   return (
     <div className={styles.main}>
-      <h2>{product?.title}</h2>
+      <h1>{product?.title}</h1>
       <ul className={styles.breadcrumbs}>{generateBreadcrumbs()}</ul>
     </div>
   );

@@ -56,13 +56,14 @@ function BlogPageSecondSection() {
 
   return (
     <div className={style.main}>
+    
       {loading && <p>Loading...</p>}
       {allBlog.map((item) => (
         <React.Fragment key={item._id}>
           {generateHelmet(item)}
           <div className={style.container}>
             <div className={style.blog_img_box}>
-              <img src={item?.blogImage?.url} alt={item?.blogTitle} />
+              <img src={item?.blogImage?.url} alt={item?.blogTitle} title={item?.blogTitle} loading="lazy"  width="auto" height="auto"  />
             </div>
             <br />
             <div className={style.author_box}>
@@ -70,7 +71,7 @@ function BlogPageSecondSection() {
               <p>-</p> <p>{convertDate(item?.createdAt)}</p>
             </div>
             <div className={style.title_box}>
-              <h1>{item?.blogTitle}</h1>
+              <h2>{item?.blogTitle}</h2>
               <p>{item?.shortDescription}</p>
             </div>
             <div className={style.bottom_box}>

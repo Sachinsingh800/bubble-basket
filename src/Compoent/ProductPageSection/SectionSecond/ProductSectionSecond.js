@@ -24,6 +24,7 @@ import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import RecentlyView from "../../RecentlyView/RecentlyView";
 import ZoomImage from "../../ZoomImage/ZoomImage";
+import { Helmet } from "react-helmet";
 
 function ProductSectionSecond() {
   const storedProducts =
@@ -236,9 +237,34 @@ function ProductSectionSecond() {
     setMessage(event.target.value);
     localStorage.setItem("message", JSON.stringify(event.target.value));
   };
-
   return (
     <div className={style.main}>
+            <Helmet>
+        <html lang="en" />
+        <meta charSet="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>{product?.title}</title>
+        <meta
+          name="description"
+          content={product?.productBlog?.intro}
+        />
+        <meta
+          name="title"
+          content={product?.title}
+        />
+        <meta
+          name="head title"
+          content={product?.title}
+        />
+        <meta
+          name="keyword"
+          content={product?.title}
+        />
+        <link
+          rel="canonical"
+          href={`https://www.luxurybubblebasket.com/Product/${title}`}
+        />
+      </Helmet>
       {loading && <p>Loading..</p>}
       <div className={style.product_container}>
         <div className={style.img_box}>

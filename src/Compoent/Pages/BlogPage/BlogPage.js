@@ -21,7 +21,7 @@ function BlogPage() {
       </Helmet>
       <Header />
       <div className={style.Container}>
-        <BreadCrumsHeader urlname={"Blog"} />
+        <BreadCrumsHeader urlname={"LUXURY BUBBLE BASKET BLOGS"} />
         <BlogPageSecondSection />
         <Footer />
       </div>

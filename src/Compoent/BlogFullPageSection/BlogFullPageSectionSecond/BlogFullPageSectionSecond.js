@@ -107,6 +107,10 @@ function BlogFullPageSectionSecond() {
           content={selectedBlog?.blogTitle}
         />
         <meta
+          name="head title"
+          content={selectedBlog?.blogTitle}
+        />
+        <meta
           name="keyword"
           content={selectedBlog?.blogTitle}
         />
