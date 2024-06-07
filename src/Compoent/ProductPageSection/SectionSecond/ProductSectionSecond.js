@@ -232,7 +232,7 @@ function ProductSectionSecond() {
         {loading && <p>Loading..</p>}
       <div className={style.product_container}>
         <div className={style.img_box}>
-          <ZoomImage productImage={product?.productImg[0]?.url}  producttitle={product?.title} />
+          <ZoomImage productImage={product?.productImg[0]?.url}  producttitle={product?.title} title={product?.title} loading="lazy"  width="auto" height="auto"/>
         </div>
         <div className={style.des_box}>
           <h3>{product?.title}</h3>

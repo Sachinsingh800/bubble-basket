@@ -188,6 +188,7 @@ function CartPageSectionSecond() {
                           alt={
                             item?.Product_title ? item?.Product_title : item?.title
                           }
+                          title={item?.Product_title ? item?.Product_title : item?.title} loading="lazy"  width="auto" height="auto" 
                         />
                       </div>
                     <p className={style.product_title_}>   {item?.Product_title ? item?.Product_title : item?.title}</p> 

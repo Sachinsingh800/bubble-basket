@@ -65,7 +65,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
               onClick={() => handleNavigate(product._id)}
             >
               <div className={style.add_box_img}>
-                <img src={product?.productImg[0]?.url} alt="product" />
+                <img src={product?.productImg[0]?.url} alt={product?.title}  title={product?.title} loading="lazy"  width="auto" height="auto"  />
               </div>
               <span className={style.product_title}>{product?.title}</span>
               <p>★★★★✰</p>

@@ -57,7 +57,7 @@ function OderDetailSectionSecond() {
         <div key={item?._id} className={style.product_info}>
           <div className={style.product_item}>
             <div className={style.img_box}>
-              <img src={item?.ProductImg} alt="Product" />
+              <img src={item?.ProductImg} alt={item?.Product_title} title={item?.Product_title} loading="lazy"  width="auto" height="auto" />
             </div>
             <div className={style.details}>
               <p><strong>Product Title:</strong> {item?.Product_title}</p>
