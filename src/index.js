@@ -28,6 +28,7 @@ import OrderDetailPage from './Compoent/Pages/OrderDetail/OrderDetailPage';
 import UpdateInformation from './Compoent/Pages/UpdateInformation/UpdateInformation';
 import BrandPage from './Compoent/Pages/BrandPage/BrandPage';
 import Payment from './Compoent/Pages/Payment/Payment';
+import AllCategoryPage from './Compoent/Pages/AllCategoryPage/AllCategoryPage';
 
 // Get the root element from the DOM
 const rootElement = document.getElementById('root');
@@ -40,7 +41,7 @@ const appContent = (
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="Product/:title" element={<ProductPage />} />
-          <Route path=":category" element={<ColumnPage />} />
+          <Route path=":category" element={<AllCategoryPage />} />
           <Route path="brand/:category" element={<BrandPage />} />
           <Route path="Product" element={<ColumnPage />} />
           <Route path="Cart" element={<CartPage />} />
