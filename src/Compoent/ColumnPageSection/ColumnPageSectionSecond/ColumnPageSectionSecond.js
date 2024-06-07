@@ -25,7 +25,6 @@ function ColumnPageSectionSecond({ singleProductData }) {
           response = await getAllProduct();
         }
         let data = response?.data;
-
         // Filter data by brand if brand is provided
         if (singleProductData?.brand) {
           const brandFilteredData = data?.filter(
@@ -62,7 +61,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
   };
 
   const generateHelmet = (product) => (
-    <Helmet key={product._id}>
+    <Helmet>
       <html lang="en" />
       <meta charSet="utf-8" />
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -72,20 +71,22 @@ function ColumnPageSectionSecond({ singleProductData }) {
         rel="canonical"
         href={`https://www.luxurybubblebasket.com/Product/${formatTitleForUrl(product.title)}`}
       />
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "http://schema.org",
-          "@type": "Product",
-          "name": product.title,
-          "image": product.productImg[0]?.url,
-          "description": product.description,
-          "offers": {
-            "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock",
-          },
-        })}
+       <script type="application/ld+json">
+        {`
+          {
+            "@context": "http://schema.org",
+            "@type": "Product",
+            "name": "${product.title}",
+            "image": "${product.productImg[0]?.url}",
+            "description": "${product.description}",
+            "offers": {
+              "@type": "Offer",
+              "price": "${product.price}",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        `}
       </script>
     </Helmet>
   );
@@ -99,7 +100,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
       ) : (
         <div className={style.additional_box}>
           {productData?.map((product, index) => (
-            <React.Fragment key={product._id}>
+            <React.Fragment key={index}>
               {generateHelmet(product)}
               <div
                 className={
