@@ -20,8 +20,12 @@ function RecentlyView() {
     setLoading(false);
   }, []);
 
-  const handleNavigate = (id) => {
-    window.location.href = `/Product/${id}`;
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  }
+
+  const handleNavigate = (title) => {
+    window.location.href = `/Product/${formatTitleForUrl(title)}`;
   };
 
   const handleViewAll = () => {
@@ -47,7 +51,7 @@ function RecentlyView() {
                 className={
                   index % 4 === 3 ? style.inner_container1 : style.inner_container
                 }
-                onClick={() => handleNavigate(product._id)}
+                onClick={() => handleNavigate(product?.title)}
               >
                 {product?.offer && <span className={style.offer_box}>new</span>}
                 <div className={style.add_box_img}>

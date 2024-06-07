@@ -43,9 +43,11 @@ function ColumnPageSectionSecond({ singleProductData }) {
 
     fetchData();
   }, [category, singleProductData]);
-
-  const handleNavigate = (id) => {
-    window.location.href = `/Product/${id}`;
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  }
+  const handleNavigate = (title) => {
+    window.location.href = `/Product/${formatTitleForUrl(title)}`;
   };
 
   return (
@@ -62,7 +64,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
               className={
                 index % 4 === 3 ? style.inner_container1 : style.inner_container
               }
-              onClick={() => handleNavigate(product._id)}
+              onClick={() => handleNavigate(product?.title)}
             >
               <div className={style.add_box_img}>
                 <img src={product?.productImg[0]?.url} alt={product?.title}  title={product?.title} loading="lazy"  width="auto" height="auto"  />

@@ -6,10 +6,14 @@ import { getAllProduct } from "../../Apis/Apis";
 
 function ProductSectionFirst() {
   const [productData, setProductData] = useState([]);
-  const { id } = useParams();
+  const { title } = useParams();
   useEffect(() => {
     handleProductData();
   }, []);
+
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
 
   const handleProductData = async () => {
     try {
@@ -20,7 +24,7 @@ function ProductSectionFirst() {
       console.error("Error getting product data:", error);
     }
   };
-  const product = productData.find((item) => item._id.toString() === id);
+  const product = productData.find((item) => formatTitleForUrl(item?.title) === title);
 
   const displayCategory = product?.title || "GIFT BASKETS";
 

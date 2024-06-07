@@ -35,7 +35,7 @@ function ProductSectionSecond() {
   const [showComparison, setShowComparison] = useState(false);
   const [showExprienceofTesting, setShowExprienceofTesting] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const { id } = useParams(); // Change variable name to match the parameter name in the route
+  const { title } = useParams(); // Change variable name to match the parameter name in the route
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
@@ -48,7 +48,6 @@ function ProductSectionSecond() {
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
-  
 
   const handleZoomChange = useCallback((shouldZoom) => {
     setIsZoomed(shouldZoom);
@@ -68,8 +67,12 @@ function ProductSectionSecond() {
 
   const handleGetAllReview = async () => {
     try {
-      const response = await getAllReview(id);
+      // const response = await getAllReview(id);
     } catch (error) {}
+  };
+
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, "-").replace(/:/g, "");
   };
 
   const handleProductData = async () => {
@@ -91,7 +94,9 @@ function ProductSectionSecond() {
   }, [update]);
 
   // Filter the product based on the productId from URL
-  const product = productData.find((item) => item._id.toString() === id);
+  const product = productData.find(
+    (item) => formatTitleForUrl(item?.title) === title
+  );
 
   // Function to store product in session storage
   const storeProductInSession = (product) => {
@@ -115,20 +120,22 @@ function ProductSectionSecond() {
 
   // Call this function when the user opens the page
   useEffect(() => {
-    const product = productData.find((item) => item._id.toString() === id);
+    const product = productData.find(
+      (item) => formatTitleForUrl(item?.title) === title
+    );
     storeProductInSession(product);
-  }, [productData, id]);
+  }, [productData]);
 
   const handleAddToCartInBeckend = async () => {
     try {
-      const response = await AddtoCart(id, quantity);
+      const response = await AddtoCart(product._id, quantity);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleAddToCart = (e) => {
-  e.preventDefault()
+    e.preventDefault();
     setMessage("");
     const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
     if (loginStatus) {
@@ -145,13 +152,16 @@ function ProductSectionSecond() {
       updatedCartData[existingProductIndex].quantity += quantity;
       sessionStorage.setItem("cartData", JSON.stringify(updatedCartData));
       setUpdate(update + 1);
-      setAddToCart(addToCart +1)
+      setAddToCart(addToCart + 1);
     } else {
       // If the product doesn't exist in the cart, add it with the specified quantity
       const newItem = { ...product, quantity };
-      sessionStorage.setItem("cartData", JSON.stringify([...cartData, newItem]));
+      sessionStorage.setItem(
+        "cartData",
+        JSON.stringify([...cartData, newItem])
+      );
       setUpdate(update + 1);
-      setAddToCart(addToCart +1)
+      setAddToCart(addToCart + 1);
     }
   };
 
@@ -200,7 +210,7 @@ function ProductSectionSecond() {
       reviewText: reviewText,
     };
     try {
-      const response = await createReview(id, reviewData);
+      const response = await createReview(product._id, reviewData);
     } catch (error) {
       console.log("error");
     } finally {
@@ -229,10 +239,17 @@ function ProductSectionSecond() {
 
   return (
     <div className={style.main}>
-        {loading && <p>Loading..</p>}
+      {loading && <p>Loading..</p>}
       <div className={style.product_container}>
         <div className={style.img_box}>
-        <ZoomImage productImage={product?.productImg[0]?.url}  producttitle={product?.title} title={product?.title} loading="lazy"  width="auto" height="auto"/>
+          <ZoomImage
+            productImage={product?.productImg[0]?.url}
+            producttitle={product?.title}
+            title={product?.title}
+            loading="lazy"
+            width="auto"
+            height="auto"
+          />
         </div>
         <div className={style.des_box}>
           <h3>{product?.title}</h3>
@@ -253,7 +270,9 @@ function ProductSectionSecond() {
                   value={quantity}
                   onChange={handleQuantityChange}
                 />
-                <button onClick={(e)=>handleAddToCart(e)}>ADD TO CART →</button>
+                <button onClick={(e) => handleAddToCart(e)}>
+                  ADD TO CART →
+                </button>
               </div>
               <br />
               <p>
@@ -469,7 +488,7 @@ function ProductSectionSecond() {
       </div>
       {storedProducts.length > 0 && (
         <div className={style.additional_box}>
-        <h4> Recently View</h4> 
+          <h4> Recently View</h4>
           <RecentlyView />
         </div>
       )}
