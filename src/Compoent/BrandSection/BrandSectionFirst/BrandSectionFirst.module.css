@@ -27,6 +27,11 @@
   flex-direction: column;
   overflow: hidden;
 }
+.main h1{
+  text-align: center;
+  font-size: 1.5rem;
+
+}
 .breadcrumbs{
   display: flex;
   list-style: none;

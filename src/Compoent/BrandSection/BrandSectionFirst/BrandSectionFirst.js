@@ -32,7 +32,7 @@ function BrandSectionFirst() {
 
   return (
     <div className={styles.main}>
-      <h2>{displayCategory}</h2>
+      <h1>{displayCategory}</h1>
       <ul className={styles.breadcrumbs}>{generateBreadcrumbs()}</ul>
     </div>
   );
