@@ -21,6 +21,7 @@ function HomePageCarousel() {
 
   return (
     <>
+    <h1 hidden>Luxury Bubble Basket | Buy Gifts For Everyone</h1>
       <div className={style.button_container}>
         <button onClick={onPrevClick}>
           <GoArrowLeft className={style.icon} />
@@ -39,7 +40,7 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
              <div className={style.inner_container_}>
-                <h1>MADE WITH PASSION</h1>
+                <h2>MADE WITH PASSION</h2>
                 <div className={style.img_box}>
                   <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
                 </div>
@@ -49,7 +50,7 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <h1>MADE WITH PASSION</h1>
+              <h2>MADE WITH PASSION</h2>
               <div className={style.img_box}>
                 <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
@@ -59,7 +60,7 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <h1>MADE WITH PASSION</h1>
+              <h2>MADE WITH PASSION</h2>
               <div className={style.img_box}>
                 <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>

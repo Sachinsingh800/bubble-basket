@@ -10,6 +10,9 @@
   height: 33rem;
   padding-top: 2.5rem;
 }
+.inner_container_ h2{
+  font-size: 2.5rem;
+}
 .img_box {
   height: 29rem;
   width: 23rem;
@@ -47,6 +50,9 @@
   .carousel_box {
     height: 42rem;
     width: 100%;
+  }
+  .inner_container_ h2{
+    font-size: 2rem;
   }
   .button_container {
     height: 42rem;
@@ -108,7 +114,7 @@
   }
 }
 
-.inner_container_ h1 {
+.inner_container_ h2 {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
   -webkit-animation-duration: 6s;

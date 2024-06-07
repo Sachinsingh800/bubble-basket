@@ -26,6 +26,14 @@ function Home() {
         <title>Luxury Bubble Basket | Buy Gifts For Everyone</title>
         <meta name="description" content="Find the perfect wine and champagne gifts for everyone. Shop online for high-quality gifts that will impress any recipient." />
         <link rel="canonical" href="https://www.luxurybubblebasket.com/" />
+        <meta
+          name="title"
+          content="Luxury Bubble Basket"
+        />
+        <meta
+          name="keyword"
+          content="Luxury Bubble Basket | Buy Gifts For Everyone"
+        />
       </Helmet>
       <Header />
       <div className={style.Container}>
