@@ -8,6 +8,7 @@ import { getAllBlog } from "../Apis/Apis";
 function BlogSlider() {
   const [allBlog, setAllBlog] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     handleAllBlog();
   }, []);
@@ -27,6 +28,10 @@ function BlogSlider() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
   };
 
   const responsive = {
@@ -78,9 +83,16 @@ function BlogSlider() {
             responsive={responsive}
           >
             {allBlog.map((item) => (
-              <a key={item?._id} href={`/Blog/${item?._id}`}>
+              <a key={item?._id} href={`/Blog/${formatTitleForUrl(item?.blogTitle)}`}>
                 <div className={style.imgBox}>
-                  <img src={item?.blogImage?.url || ""} alt={item?.blogTitle}  title={item?.blogTitle}  loading="lazy"  width="auto" height="auto"  />
+                  <img 
+                    src={item?.blogImage?.url || ""} 
+                    alt={item?.blogTitle}  
+                    title={item?.blogTitle}  
+                    loading="lazy"  
+                    width="auto" 
+                    height="auto"  
+                  />
                 </div>
               </a>
             ))}
