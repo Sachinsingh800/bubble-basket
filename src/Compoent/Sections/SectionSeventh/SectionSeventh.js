@@ -45,8 +45,8 @@ function SectionSeventh() {
         className={style.background}
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
-        <img src={backgroundImage} alt="bg" className={style.bgImage} />
-        <img src={backgroundImageMob} alt="bg" className={style.bgImagemob} />
+        <img src={backgroundImage} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  className={style.bgImage} />
+        <img src={backgroundImageMob} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  className={style.bgImagemob} />
       </div>
       <div
         className={style.content}

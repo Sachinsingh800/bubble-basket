@@ -41,7 +41,7 @@ function HomePageCarousel() {
              <div className={style.inner_container_}>
                 <h1>MADE WITH PASSION</h1>
                 <div className={style.img_box}>
-                  <img className="img" src={product1} alt="beer" />
+                  <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
                 </div>
               </div>
           </div>
@@ -51,7 +51,7 @@ function HomePageCarousel() {
             <div className={style.inner_container_}>
               <h1>MADE WITH PASSION</h1>
               <div className={style.img_box}>
-                <img className="img" src={product1} alt="beer" />
+                <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@ function HomePageCarousel() {
             <div className={style.inner_container_}>
               <h1>MADE WITH PASSION</h1>
               <div className={style.img_box}>
-                <img className="img" src={product1} alt="beer" />
+                <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>

@@ -56,10 +56,18 @@ function SectionFourth() {
   return (
     <div className={style.main}>
       <div className={style.left_bottom_design}>
-        <img src={leftbottomimage} />
+        <img src={leftbottomimage}           alt="Luxury Bubble Basket"
+          title="Luxury Bubble Basket"
+          loading="lazy"
+          width="auto"
+          height="auto"/>
       </div>
       <div className={style.right_top_design}>
-        <img src={righttopimage} />
+        <img src={righttopimage}          alt="Luxury Bubble Basket"
+          title="Luxury Bubble Basket"
+          loading="lazy"
+          width="auto"
+          height="auto" />
       </div>
       {loading && <p>Loading..</p>}
       <div className={style.heading_box}>
@@ -75,7 +83,11 @@ function SectionFourth() {
           <div className={style.img_box}>
             <img
               src={top4Category?.categoryImg?.url}
-              alt={top4Category?.title}
+              alt={top4Category?.categoryName}
+              title={top4Category?.content}
+              loading="lazy"
+              width="auto"
+              height="auto"
             />
           </div>
           <div className={style.text_box}>
@@ -93,7 +105,11 @@ function SectionFourth() {
           <div className={style.img_box}>
             <img
               src={top5Category?.categoryImg?.url}
-              alt={top5Category?.title}
+              alt={top5Category?.categoryName}
+              title={top5Category?.content}
+              loading="lazy"
+              width="auto"
+              height="auto"
             />
           </div>
           <div className={style.text_box}>

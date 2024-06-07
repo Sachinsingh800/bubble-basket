@@ -209,7 +209,14 @@ export default function Header(props) {
               <div className={style.middle_section}>
                 <a href="/">
                   <div className={style.img_box}>
-                    <img src={logo} alt="logo" />
+                    <img
+                      src={logo}
+                      alt="Luxury Bubble Basket logo"
+                      title="Luxury Bubble Basket logo"
+                      loading="lazy"
+                      width="auto"
+                      height="auto"
+                    />
                   </div>
                 </a>
               </div>
@@ -220,7 +227,14 @@ export default function Header(props) {
                     onClick={handleToggleSearch}
                   >
                     <div className={style.icon_box}>
-                      <img src={searchicon} alt="search" />
+                      <img
+                        src={searchicon}
+                        alt="Search"
+                        title="Search"
+                        loading="lazy"
+                        width="auto"
+                        height="auto"
+                      />
                     </div>
                   </button>
                   <input
@@ -248,6 +262,10 @@ export default function Header(props) {
                               <img
                                 src={item?.productImg[0]?.url}
                                 alt={item?.title}
+                                title="Our Company Logo"
+                                loading="lazy"
+                                width="auto"
+                                height="auto"
                               />
                             </div>
                             <div className={style.price_box}>
@@ -262,18 +280,32 @@ export default function Header(props) {
 
                 <a href="/Account">
                   <div className={style.icon_box}>
-                    <img src={avatarimg} alt="user" />
+                    <img
+                      src={avatarimg}
+                      alt="User"
+                      title="User"
+                      loading="lazy"
+                      width="auto"
+                      height="auto"
+                    />
                   </div>
                 </a>
                 <a href="/Cart">
                   <div className={style.icon_box2}>
                     <span className={style.cart_count}>{cartItem}</span>
-                    <img src={shoppingCart} alt="shopping" />
+                    <img
+                      src={shoppingCart}
+                      alt="shopping"
+                      title="Shopping"
+                      loading="lazy"
+                      width="auto"
+                      height="auto"
+                    />
                   </div>
                 </a>
 
                 <div className={style.humburger}>
-                <HumBurger />
+                  <HumBurger />
                 </div>
               </div>
             </div>
@@ -303,6 +335,10 @@ export default function Header(props) {
                           <img
                             src={item?.productImg[0]?.url}
                             alt={item?.title}
+                            title={item?.title}
+                            loading="lazy"
+                            width="auto"
+                            height="auto"
                           />
                         </div>
                         <div className={style.price_box_mob}>

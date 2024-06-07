@@ -8,7 +8,6 @@ import { getAllBlog } from "../Apis/Apis";
 function BlogSlider() {
   const [allBlog, setAllBlog] = useState([]);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     handleAllBlog();
   }, []);
@@ -81,7 +80,7 @@ function BlogSlider() {
             {allBlog.map((item) => (
               <a key={item?._id} href={`/Blog/${item?._id}`}>
                 <div className={style.imgBox}>
-                  <img src={item?.blogImage?.url || ""} alt={item?.title} />
+                  <img src={item?.blogImage?.url || ""} alt={item?.blogTitle}  title={item?.blogTitle}  loading="lazy"  width="auto" height="auto"  />
                 </div>
               </a>
             ))}

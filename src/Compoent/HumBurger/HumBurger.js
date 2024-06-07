@@ -61,7 +61,7 @@ export default function HumBurger() {
         <div className={style.header_box}>
         <a href="/">
         <div className={style.img_box}>
-        <img src={logo} alt="logo" />
+        <img src={logo}  alt="Luxury Bubble Basket logo" title="Luxury Bubble Basket logo" loading="lazy"  width="auto" height="auto"  />
           </div>
         </a>
      
@@ -97,7 +97,7 @@ export default function HumBurger() {
         }}
       >
         <div className={style.icon_box4}>
-          <img src={menuicon} alt="menu" />
+          <img src={menuicon}  alt="Luxury Bubble Basket menu" title="Luxury Bubble Basket menu" loading="lazy"  width="auto" height="auto" />
         </div>
       </Box>
       <Drawer

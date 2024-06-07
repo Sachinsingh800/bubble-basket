@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import EmailIcon from '@mui/icons-material/Email';
-import CakeIcon from '@mui/icons-material/Cake';
+import EmailIcon from "@mui/icons-material/Email";
+import CakeIcon from "@mui/icons-material/Cake";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -35,20 +35,20 @@ function SectionNinth() {
     setShowDate(!showDate);
   };
 
-  const handleSubmit=async(e)=>{
-    e.preventDefault()
- try{
-  const data={
-    name:name,
-    email:email,
-    dob:selectedDate
-  }
-const response = await sendSubscribtion(data)
-alert(response.message)
- }catch(error){
-alert("already register")
- }
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        name: name,
+        email: email,
+        dob: selectedDate,
+      };
+      const response = await sendSubscribtion(data);
+      alert(response.message);
+    } catch (error) {
+      alert("already register");
+    }
+  };
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -66,10 +66,24 @@ alert("already register")
   return (
     <div className={style.main}>
       <div className={style.right_top_design}>
-        <img src={design1} alt="Luxury Basket" />
+        <img
+          src={design1}
+          alt="Luxury Bubble Basket"
+          title="Luxury Bubble Basket"
+          loading="lazy"
+          width="auto"
+          height="auto"
+        />
       </div>
       <div className={style.left_top_design}>
-        <img src={design2} alt="Luxury Basket" />
+        <img
+          src={design2}
+          alt="Luxury Bubble Basket"
+          title="Luxury Bubble Basket"
+          loading="lazy"
+          width="auto"
+          height="auto"
+        />
       </div>
       <div className={style.heading_box}>
         <p>
@@ -111,13 +125,15 @@ alert("already register")
         <div className={style.option_container} ref={dateRef}>
           <label onClick={handleToggleDate} className={style.date_label}>
             <CakeIcon />
-            {selectedDate
-              ? selectedDate.toLocaleDateString(undefined, {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })
-              : <span className={style.date_lable}>Date Of Birth</span>}
+            {selectedDate ? (
+              selectedDate.toLocaleDateString(undefined, {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })
+            ) : (
+              <span className={style.date_lable}>Date Of Birth</span>
+            )}
           </label>
           {showDate && (
             <div className={style.date_box}>

@@ -20,8 +20,6 @@ function SecondSection() {
   const [top2Category, setTop2Category] = useState([]);
   const [top3Category, setTop3Category] = useState([]);
 
-
-
   useEffect(() => {
     handleAllCategory();
     handleParticularCategory();
@@ -76,7 +74,11 @@ function SecondSection() {
           <div className={style.img_box}>
             <img
               src={top1Category?.categoryImg?.url}
-              alt={top1Category?.title}
+              alt={top1Category?.categoryName}
+              title={top1Category?.content}
+              loading="lazy"
+              width="auto"
+              height="auto"
             />
           </div>
           <div className={style.text_box}>
@@ -92,9 +94,7 @@ function SecondSection() {
           }
         >
           <div className={style.add_btn_box}>
-            <button
-              className={style.addBtn}
-            >
+            <button className={style.addBtn}>
               {showTick === top2Category?._id ? "✓" : <AddIcon />}
             </button>
           </div>
@@ -102,7 +102,11 @@ function SecondSection() {
           <div className={style.img_box}>
             <img
               src={top2Category?.categoryImg?.url}
-              alt={top2Category?.title}
+              alt={top2Category?.categoryName}
+              title={top2Category?.content}
+              loading="lazy"
+              width="auto"
+              height="auto"
             />
           </div>
           <div className={style.text_box}>
@@ -118,9 +122,7 @@ function SecondSection() {
           }
         >
           <div className={style.add_btn_box}>
-            <button
-              className={style.addBtn}
-            >
+            <button className={style.addBtn}>
               {showTick === top3Category?._id ? "✓" : <AddIcon />}
             </button>
           </div>
@@ -128,7 +130,11 @@ function SecondSection() {
           <div className={style.img_box}>
             <img
               src={top3Category?.categoryImg?.url}
-              alt={top3Category?.title}
+              alt={top3Category?.categoryName}
+              title={top3Category?.content}
+              loading="lazy"
+              width="auto"
+              height="auto"
             />
           </div>
           <div className={style.text_box}>

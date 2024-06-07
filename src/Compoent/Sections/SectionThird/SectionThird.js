@@ -24,20 +24,20 @@ function SectionThird() {
   return (
     <div className={style.main}>
       <div className={style.leaf1mob}>
-        <img src={leaf1mob} alt="leaf1" />
+        <img src={leaf1mob} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
       </div>
       <div className={style.leaf1}>
-        <img src={leaf1} alt="leaf1" />
+        <img src={leaf1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
       </div>
       <div className={style.leaf2}>
-        <img src={leaf2} alt="leaf1" />
+        <img src={leaf2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
       </div>
       <div
         className={style.background}
         style={{ transform: `translateY(${scrollPosition * 0.2}px)` }} // Adjust the speed here
       >
-        <img src={backgroundImage} alt="bg" className={style.bgImage} />
-        <img src={backgroundImageMob} alt="bg" className={style.bgImagemob} />
+        <img src={backgroundImage} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  className={style.bgImage} />
+        <img src={backgroundImageMob} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  className={style.bgImagemob} />
       </div>
       <div
         className={style.content}

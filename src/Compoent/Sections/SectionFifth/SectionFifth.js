@@ -76,7 +76,7 @@ function SectionFifth() {
   return (
     <div className={style.main}>
       <div className={style.img_box}>
-        <img src={drum} alt="Drum" />
+        <img src={drum} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  />
       </div>
       <div className={style.outer_container}>
         <div className={style.container}>
