@@ -213,6 +213,9 @@
   height: 50px!important;
   width: 50px!important;
 }
+.title_box h1{
+  font-size: 2rem;
+}
 @media screen and (max-width: 500px) {
   .user_dp{
     height: 50px!important;

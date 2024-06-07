@@ -7,7 +7,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { getAllBlog } from "../../Apis/Apis";
 import dp from "../../Images/user.png";
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { Helmet } from "react-helmet";
 
 function BlogFullPageSectionSecond() {
   const { blogTitle } = useParams(); // Fetching the blog title from the URL params
@@ -20,20 +21,20 @@ function BlogFullPageSectionSecond() {
       userimg: dp,
       date: "2024-05-11T08:27:20.263Z",
       username: "User1",
-      comment: "This is the first comment."
+      comment: "This is the first comment.",
     },
     {
       userimg: dp,
       date: "2024-05-12T10:15:30.123Z",
       username: "User2",
-      comment: "This is the second comment."
+      comment: "This is the second comment.",
     },
     {
       userimg: dp,
       date: "2024-05-13T12:45:50.456Z",
       username: "User3",
-      comment: "This is the third comment."
-    }
+      comment: "This is the third comment.",
+    },
   ]);
 
   useEffect(() => {
@@ -65,14 +66,18 @@ function BlogFullPageSectionSecond() {
   }
 
   const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
+    return title.replace(/\s+/g, "-").replace(/:/g, "");
   };
 
   // Filter the blog data based on the blog title fetched from the URL
-  const selectedBlog = allBlog.find((blog) => formatTitleForUrl(blog.blogTitle) === blogTitle);
+  const selectedBlog = allBlog.find(
+    (blog) => formatTitleForUrl(blog.blogTitle) === blogTitle
+  );
 
   // Find the index of the current blog post
-  const currentIndex = allBlog.findIndex((blog) => formatTitleForUrl(blog.blogTitle) === blogTitle);
+  const currentIndex = allBlog.findIndex(
+    (blog) => formatTitleForUrl(blog.blogTitle) === blogTitle
+  );
 
   // Determine the index of the previous and next posts
   const prevIndex = (currentIndex - 1 + allBlog.length) % allBlog.length;
@@ -88,12 +93,37 @@ function BlogFullPageSectionSecond() {
 
   return (
     <div className={style.main}>
+      <Helmet>
+        <html lang="en" />
+        <meta charSet="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>{selectedBlog?.blogTitle}</title>
+        <meta
+          name="description"
+          content={selectedBlog?.shortDescription}
+        />
+        <meta
+          name="title"
+          content={selectedBlog?.blogTitle}
+        />
+        <meta
+          name="keyword"
+          content={selectedBlog?.blogTitle}
+        />
+        <link
+          rel="canonical"
+          href={`https://www.luxurybubblebasket.com/Blog/${blogTitle}`}
+        />
+      </Helmet>
       <div className={style.container}>
         {loading && <p>Loading...</p>}
         {selectedBlog ? (
           <>
             <div className={style.blog_box}>
-              <img src={selectedBlog.blogImage?.url} alt={selectedBlog.blogTitle} />
+              <img
+                src={selectedBlog.blogImage?.url}
+                alt={selectedBlog?.blogTitle}   title={selectedBlog?.blogTitle} loading="lazy"  width="auto" height="auto" 
+              />
             </div>
             <br />
             <div className={style.author_box}>
@@ -101,7 +131,7 @@ function BlogFullPageSectionSecond() {
               <p>-</p> <p>{convertDate(selectedBlog.createdAt)}</p>
             </div>
             <div className={style.title_box}>
-              <h6>{selectedBlog.blogTitle}</h6>
+              <h1>{selectedBlog.blogTitle}</h1>
               <p>{convertToJSX(selectedBlog.description)}</p>
             </div>
             <div className={style.bottom_box}>
@@ -131,7 +161,7 @@ function BlogFullPageSectionSecond() {
           <div className={style.author_info_box}>
             <div className={style.inner_container}>
               <div className={style.user_box_img}>
-                <img src={selectedBlog.authorImage?.url} alt="dp" />
+                <img src={selectedBlog.authorImage?.url}       alt={selectedBlog.authorTitle}  title={selectedBlog.authorTitle} loading="lazy"  width="auto" height="auto"  />
               </div>
               <div className={style.des_box}>
                 <div>
@@ -146,10 +176,10 @@ function BlogFullPageSectionSecond() {
             </div>
           </div>
           <div className={style.button_box}>
-            <Link to={`/blog/${formatTitleForUrl(prevPost?.blogTitle)}`}>
+            <Link rel="prev" to={`/blog/${formatTitleForUrl(prevPost?.blogTitle)}`}>
               <button>← Prev post</button>
             </Link>
-            <Link to={`/blog/${formatTitleForUrl(nextPost?.blogTitle)}`}>
+            <Link rel="next" to={`/blog/${formatTitleForUrl(nextPost?.blogTitle)}`}>
               <button>Next post →</button>
             </Link>
           </div>
@@ -181,9 +211,16 @@ function BlogFullPageSectionSecond() {
               marked *
             </p>
           </div>
-          <textarea placeholder="Your Comment*" onChange={(e) => setUserComment(e.target.value)} />
+          <textarea
+            placeholder="Your Comment*"
+            onChange={(e) => setUserComment(e.target.value)}
+          />
           <div className={style.user_input_box}>
-            <input type="text" placeholder="Your Name*" onChange={(e) => setUserName(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Your Name*"
+              onChange={(e) => setUserName(e.target.value)}
+            />
             <input type="email" placeholder="Your Email*" />
           </div>
           <input
@@ -199,14 +236,16 @@ function BlogFullPageSectionSecond() {
               I comment.
             </span>
           </div>
-          <button 
-            type="button" 
-            onClick={() => handleCommentSubmit({
-              userimg: dp,
-              date: new Date().toISOString(),
-              username: usename,
-              comment: userComment
-            })}
+          <button
+            type="button"
+            onClick={() =>
+              handleCommentSubmit({
+                userimg: dp,
+                date: new Date().toISOString(),
+                username: usename,
+                comment: userComment,
+              })
+            }
           >
             POST COMMENT →
           </button>
