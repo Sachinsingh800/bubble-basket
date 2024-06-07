@@ -237,6 +237,115 @@
   <loc>https://www.luxurybubblebasket.com/Product/Personalized-Caymus-Napa-Valley-Cabernet</loc>
   <lastmod>2024-06-08T14:00:00+00:00</lastmod>
 </url>
-
+<url>
+	<loc>https://bubble-basket.vercel.app/</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/OrderHistory</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/ContactUs</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Account</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Cart</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Product</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/AboutUs</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/FAQ</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/brand/</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Blog/</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/UpdateInformation/password</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Register</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/ThankYouPageSectionSection_link__40Bmi</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Login</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/OrderDetail/</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Blog</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Checkout</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/RefundandReturnPolicy</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/PrivacyAndPolicy</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/TermsAndConditions</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/ThankYou</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bubble-basket.vercel.app/Payment</loc>
+	<lastmod>2024-06-07T23:01:30+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
 
 </urlset>
