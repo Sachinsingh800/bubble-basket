@@ -74,7 +74,7 @@ function Footer() {
         </div>
       </div>
       <div className={style.img_box}>
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="Luxury Bubble Basket Logo" title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"   />
       </div>
       <div className={style.nav_bar}>
         <a href="/">
@@ -101,19 +101,19 @@ function Footer() {
       <br />
       <div className={style.paymet_conatainer}>
         <div className={style.payment_img_box}>
-          <img src={logo1} alt="visa" />
+          <img src={logo1}  alt="visa" title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"   />
         </div>
         <div className={style.payment_img_box}>
-          <img src={logo2} alt="paypal" />
+          <img src={logo2} alt="paypal"  title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"   />
         </div>
         <div className={style.payment_img_box}>
-          <img src={logo3} alt="paypal" />
+          <img src={logo3} alt="paypal"  title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  />
         </div>
         <div className={style.payment_img_box}>
-          <img src={logo4} alt="paypal" />
+          <img src={logo4} alt="paypal"  title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"  />
         </div>
         <div className={style.payment_img_box}>
-          <img src={logo5} alt="paypal" />
+          <img src={logo5} alt="paypal"  title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto"   />
         </div>
       </div>
       <div className={style.desc_box}>

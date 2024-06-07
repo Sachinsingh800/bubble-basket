@@ -59,22 +59,22 @@ function ImageSlider() {
         >
           <a href={`brand/${"Dom Perignon"}`}>
             <div className={style.img_box}>
-              <img src={image1} alt="slide 1" />
+              <img src={image1} alt="Dom Perignon" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto"  />
             </div>
           </a>
           <a href={`brand/${"Caymus"}`}>
             <div className={style.img_box}>
-              <img src={image2} alt="slide 2" />
+              <img src={image2} alt="Caymus" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
           </a>
           <a href={`brand/${"Moet &amp; Chandon"}`}>
             <div className={style.img_box}>
-              <img src={image3} alt="slide 3" />
+              <img src={image3} alt="Moet &amp Chandon" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
           </a>
           <a href={`brand/${"Veuve Clicquot"}`}>
             <div className={style.img_box}>
-              <img src={image4} alt="slide 4" />
+              <img src={image4} alt="Veuve Clicquot" title="Luxury Bubble Basket" loading="lazy"  width="auto" height="auto" />
             </div>
           </a>
         </Carousel>
