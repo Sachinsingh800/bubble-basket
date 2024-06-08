@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import style from "./HomePageCarousel.module.css";
-import product1 from "../Images/dom perignon lady gaga rose.webp";
+import product1 from "../Images/Desktop - Champagne (1600X897).webp";
+import product2 from "../Images/Desktop - Chocolate (1600X897).webp";
+import product3 from "../Images/Desktop - Spa (1600X897).webp";
+import product4 from "../Images/Desktop - Wine (1600X897).webp";
 
 function HomePageCarousel() {
   const [index, setIndex] = useState(0);
@@ -40,7 +43,6 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
              <div className={style.inner_container_}>
-                <h2>MADE WITH PASSION</h2>
                 <div className={style.img_box}>
                   <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
                 </div>
@@ -50,9 +52,8 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <h2>MADE WITH PASSION</h2>
               <div className={style.img_box}>
-                <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className="img" src={product2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
@@ -60,9 +61,17 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <h2>MADE WITH PASSION</h2>
               <div className={style.img_box}>
-                <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className="img" src={product3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+              </div>
+            </div>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className={style.carousel_box}>
+            <div className={style.inner_container_}>
+              <div className={style.img_box}>
+                <img className="img" src={product4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
