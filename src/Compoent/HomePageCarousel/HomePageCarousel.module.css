@@ -9,19 +9,18 @@
   justify-content: center;
   height: 35rem;
 }
-.inner_container_ h2{
+.inner_container_ h2 {
   font-size: 2.5rem;
 }
 .img_box {
   height: 100%;
   width: 100%;
-
 }
 .img_box img {
   height: 35rem;
 }
 .button_container {
-  height: 35rem;
+  margin-top: 17.5rem;
   width: 93%;
   position: absolute;
   display: flex;
@@ -29,10 +28,12 @@
   align-items: center;
   padding: 0rem 3rem;
   z-index: 9 !important;
+  height: 1px;
 }
 .carousel_box img {
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 .button_container button {
   background-color: none;
@@ -44,16 +45,16 @@
 .icon {
   font-size: 50px;
 }
-.imgMob{
-  display: none!important;
+.imgMob {
+  display: none !important;
 }
 
 @media (max-width: 784px) {
-  .img{
-  display: none!important;
+  .img {
+    display: none !important;
   }
-  .imgMob{
-    display: unset!important;
+  .imgMob {
+    display: unset !important;
   }
   .carousel_box {
     height: 50rem;
@@ -63,19 +64,17 @@
     height: 50rem;
   }
   .button_container {
-    height: 50rem;
+
     width: 92%;
     position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0rem 3rem;
-    margin: 0!important;
+    margin-top: 25rem;
     z-index: 9 !important;
   }
- 
 }
-
 
 .inner_container_ h2 {
   -webkit-animation-name: zoomIn;

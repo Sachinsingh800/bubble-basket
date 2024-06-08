@@ -19,16 +19,20 @@ function HomePageCarousel() {
   };
 
   const onPrevClick = () => {
-    setIndex((index - 1 + 3) % 3);
+    setIndex((index - 1 + 4) % 4);
   };
 
   const onNextClick = () => {
-    setIndex((index + 1) % 3);
+    setIndex((index + 1) % 4);
+  };
+
+  const handleNavigate = (type) => {
+    window.location.href = `/${type}`;
   };
 
   return (
     <>
-    <h1 hidden>Luxury Bubble Basket | Buy Gifts For Everyone</h1>
+      <h1 hidden>Luxury Bubble Basket | Buy Gifts For Everyone</h1>
       <div className={style.button_container}>
         <button onClick={onPrevClick}>
           <GoArrowLeft className={style.icon} />
@@ -46,30 +50,26 @@ function HomePageCarousel() {
       >
         <Carousel.Item>
           <div className={style.carousel_box}>
-             <div className={style.inner_container_}>
-                <div className={style.img_box}>
-                  <img className={style.img} src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-                  <img className="imgMob" src={Mobproduct1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-                </div>
-              </div>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <div className={style.img_box}>
-                <img className={style.img} src={product2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-                <img className={style.imgMob} src={Mobproduct2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-              </div>
-            </div>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className={style.carousel_box}>
-            <div className={style.inner_container_}>
-              <div className={style.img_box}>
-                <img className={style.img} src={product3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-                <img className={style.imgMob} src={Mobproduct3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+              <div className={style.img_box} onClick={() => handleNavigate("WINE")}>
+                <img
+                  className={style.img}
+                  src={product4}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+                <img
+                  className={style.imgMob}
+                  src={Mobproduct4}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
               </div>
             </div>
           </div>
@@ -77,9 +77,77 @@ function HomePageCarousel() {
         <Carousel.Item>
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
-              <div className={style.img_box}>
-                <img className={style.img} src={product4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
-                <img className={style.imgMob} src={Mobproduct4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+              <div className={style.img_box} onClick={() => handleNavigate("CHAMPAGNE")}>
+                <img
+                  className={style.img}
+                  src={product1}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+                <img
+                  className={style.imgMob}
+                  src={Mobproduct1}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+              </div>
+            </div>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className={style.carousel_box}>
+            <div className={style.inner_container_}>
+              <div className={style.img_box} onClick={() => handleNavigate("CHOCOLATE")}>
+                <img
+                  className={style.img}
+                  src={product2}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+                <img
+                  className={style.imgMob}
+                  src={Mobproduct2}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+              </div>
+            </div>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className={style.carousel_box}>
+            <div className={style.inner_container_}>
+              <div className={style.img_box} onClick={() => handleNavigate("SPA-BASKET")}>
+                <img
+                  className={style.img}
+                  src={product3}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
+                <img
+                  className={style.imgMob}
+                  src={Mobproduct3}
+                  alt="Luxury Bubble Basket"
+                  title="Luxury Bubble Basket"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
               </div>
             </div>
           </div>
