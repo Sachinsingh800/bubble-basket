@@ -1,5 +1,5 @@
 .main {
-  height: 39rem;
+  height: 35rem;
   width: 100%;
   background-image: url(../../Images/Pattern.webp);
   background-size: cover;
@@ -9,10 +9,13 @@
 @media screen and (max-width: 1089px) {
   html {
     font-size: 12px;
+    margin-top: 5rem;
+    width: 100%;
   }
 }
 @media screen and (max-width: 500px) {
   .main {
     height: 50rem;
+    width: 100%;
   }
 }

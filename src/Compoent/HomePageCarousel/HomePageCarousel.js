@@ -6,6 +6,10 @@ import product1 from "../Images/Desktop - Champagne (1600X897).webp";
 import product2 from "../Images/Desktop - Chocolate (1600X897).webp";
 import product3 from "../Images/Desktop - Spa (1600X897).webp";
 import product4 from "../Images/Desktop - Wine (1600X897).webp";
+import Mobproduct1 from "../Images/Mobile - Champagne (500X700).webp";
+import Mobproduct2 from "../Images/Mobile - Chocolate (500X700).webp";
+import Mobproduct3 from "../Images/Mobile - Spa (500X700).webp";
+import Mobproduct4 from "../Images/Mobile - Wine (500X700).webp";
 
 function HomePageCarousel() {
   const [index, setIndex] = useState(0);
@@ -44,7 +48,8 @@ function HomePageCarousel() {
           <div className={style.carousel_box}>
              <div className={style.inner_container_}>
                 <div className={style.img_box}>
-                  <img className="img" src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                  <img className={style.img} src={product1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                  <img className="imgMob" src={Mobproduct1} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
                 </div>
               </div>
           </div>
@@ -53,7 +58,8 @@ function HomePageCarousel() {
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
               <div className={style.img_box}>
-                <img className="img" src={product2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.img} src={product2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.imgMob} src={Mobproduct2} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
@@ -62,7 +68,8 @@ function HomePageCarousel() {
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
               <div className={style.img_box}>
-                <img className="img" src={product3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.img} src={product3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.imgMob} src={Mobproduct3} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
@@ -71,7 +78,8 @@ function HomePageCarousel() {
           <div className={style.carousel_box}>
             <div className={style.inner_container_}>
               <div className={style.img_box}>
-                <img className="img" src={product4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.img} src={product4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
+                <img className={style.imgMob} src={Mobproduct4} alt="Luxury Bubble Basket " title="Luxury Bubble Basket " loading="lazy"  width="auto" height="auto" />
               </div>
             </div>
           </div>
