@@ -211,7 +211,7 @@ export default function Header(props) {
                   <div className={style.img_box}>
                     <img
                       src={logo}
-                      alt= "Luxury Bubble Basket logo"
+                      alt="Luxury Bubble Basket logo"
                       title="Luxury Bubble Basket logo"
                       loading="lazy"
                       width="auto"
