@@ -258,8 +258,8 @@ margin-left: -1rem!important;
   height: 20rem;
   width: 20rem;
   position: absolute;
-  margin-top: 25rem;
-  margin-left: -5rem!important;
+  margin-top: 24rem;
+  margin-left: 0rem!important;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -317,6 +317,42 @@ margin-left: -1rem!important;
 .humburger{
   display: none!important;
 }
+.search_container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon_box {
+  cursor: pointer;
+}
+
+.popover {
+  position: absolute;
+  top: 100%; /* Adjust according to your needs */
+  right: 10%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  padding: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popover_input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 250px; /* Adjust width as needed */
+}
+
+.search_button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
 @media screen and (max-width:1130px) {
 
   .tool_bar_main{
@@ -332,11 +368,28 @@ margin-left: -1rem!important;
   }
 }
 @media screen and (max-width:784px) {
+  .input_container{
+    display: flex;
+   justify-content: space-between;
+  }
+  .search_img_box_mob{
+    height: 6rem!important;
+  }
+  .search_img_box_mob img{
+    height: 100%;
+  }
+  .search_container{
+    display: none!important;
+  }
+  .search_box_mob{
+    border: 2px #7B0128 solid;
+  }
   .humburger{
     display: unset!important;
   }
   .search_box_mob{
     display: unset!important;
+
   }
   .dawer{
     display: none;
@@ -363,6 +416,7 @@ margin-left: -1rem!important;
     border: none;
     outline: none;
     font-size: 16px!important;
+
   }
   .option_box_mob{
     height: 20rem;
@@ -373,6 +427,8 @@ margin-left: -1rem!important;
     flex-direction: column;
     overflow-y: scroll;
     padding: .5rem;
+    margin-top: .5rem;
+    margin-left: -.2rem;
 
   }
   .option_box_mob::-webkit-scrollbar-track
@@ -500,7 +556,7 @@ margin-left: -1rem!important;
     color: black;
   }
   .search_img_box_mob{
-    height: 6rem;
+    height: 6rem!important;
   }
   .search_img_box_mob img{
     height: 100%;

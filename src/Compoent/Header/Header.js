@@ -18,6 +18,7 @@ import axios from "axios";
 import bulkOrderForm from "../BulkOrderForm/bulkOrderForm.xlsx";
 import { getAllCategory, getAllProduct } from "../Apis/Apis";
 import HumBurger from "../HumBurger/HumBurger";
+import { useState } from "react";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -42,10 +43,17 @@ export default function Header(props) {
   const [cartItem, setCartItem] = React.useState();
   const [category, setCategory] = React.useState([]);
   const [product, setProduct] = React.useState([]);
-  const [search, setSearch] = React.useState("");
-  const [showSearch, setShowSearch] = React.useState(false);
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
-  console.log(category, "category");
+  const handleMouseEnter = () => {
+    setPopoverOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setPopoverOpen(false);
+  };
 
   React.useEffect(() => {
     const cartDatafromlocal = JSON.parse(sessionStorage.getItem("cartData"));
@@ -62,7 +70,6 @@ export default function Header(props) {
   });
 
   const downloadExcel = () => {
-    // Path to the Excel file in your project folder
     const excelFilePath = bulkOrderForm;
 
     fetch(excelFilePath)
@@ -90,10 +97,6 @@ export default function Header(props) {
     setShowOptions({ ...showOptions, [index]: false });
   };
 
-  const handleToggleSearch = () => {
-    setShowSearch(true);
-  };
-
   const handleAllCategory = async () => {
     try {
       const response = await getAllCategory();
@@ -108,24 +111,10 @@ export default function Header(props) {
       const response = await getAllProduct();
       setProduct(response.data);
     } catch (error) {
-      console.error("Error in handleAllCategory function:", error);
+      console.error("Error in handleAllProduct function:", error);
     }
   };
 
-  const handleClickOutsideSearch = (event) => {
-    if (event.target.closest(`.${style.search_box}`) === null) {
-      setShowSearch(false);
-    }
-  };
-
-  React.useEffect(() => {
-    document.addEventListener("click", handleClickOutsideSearch);
-    return () => {
-      document.removeEventListener("click", handleClickOutsideSearch);
-    };
-  }, []);
-
-  // Handle scroll to set showSearch to false
   React.useEffect(() => {
     const handleScroll = () => {
       setShowSearch(false);
@@ -136,6 +125,17 @@ export default function Header(props) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, "-").replace(/:/g, "");
+  };
+
+  const handleSearchClick = () => {
+    if (search.trim()) {
+      window.location.href = `/search/${search.trim()}`;
+      setSearch(""); // Reset search input after navigation
+    }
+  };
 
   return (
     <React.Fragment>
@@ -169,21 +169,21 @@ export default function Header(props) {
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[0]?.categoryName}`)
+                          (window.location.href = `/${category[1]?.categoryName}`)
                         }
                       >
                         {category[1]?.categoryName}
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[0]?.categoryName}`)
+                          (window.location.href = `/${category[10]?.categoryName}`)
                         }
                       >
                         {category[10]?.categoryName}
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[0]?.categoryName}`)
+                          (window.location.href = `/${category[2]?.categoryName}`)
                         }
                       >
                         {category[2]?.categoryName}
@@ -221,63 +221,88 @@ export default function Header(props) {
                 </a>
               </div>
               <div className={style.right_section}>
-                <div className={style.search_box}>
-                  <button
-                    className={style.btn_search}
-                    onClick={handleToggleSearch}
+                <div
+                  className={style.search_container}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div
+                    className={style.icon_box}
+                    onMouseEnter={handleMouseEnter}
                   >
-                    <div className={style.icon_box}>
-                      <img
-                        src={searchicon}
-                        alt="Search"
-                        title="Search"
-                        loading="lazy"
-                        width="auto"
-                        height="auto"
+                    <img
+                      src={searchicon}
+                      alt="Search"
+                      title="Search"
+                      loading="lazy"
+                      width="auto"
+                      height="auto"
+                    />
+                  </div>
+                  {isPopoverOpen && (
+                    <div className={style.popover}>
+                      <input
+                        type="text"
+                        placeholder="Type to Search..."
+                        value={search}
+                        onChange={(e) => {
+                          setSearch(e.target.value);
+                          setShowSearch(e.target.value.length > 0);
+                        }}
+                        className={style.popover_input}
                       />
+
+                      <button
+                        className={style.search_button}
+                        onClick={handleSearchClick}
+                      >
+                        <div className={style.icon_box}>
+                          <img
+                            src={searchicon}
+                            alt="Search"
+                            title="Search"
+                            width="auto"
+                            height="auto"
+                          />
+                        </div>
+                      </button>
+                      {showSearch && (
+                        <ul className={style.option_box}>
+                          {product
+                            ?.filter((elem) => {
+                              return elem?.title
+                                ?.toLowerCase()
+                                .includes(search?.toLowerCase());
+                            })
+                            ?.map((item) => (
+                              <li
+                                key={item?._id}
+                                onClick={() =>
+                                  (window.location.href = `/Product/${formatTitleForUrl(
+                                    item?.title
+                                  )}`)
+                                }
+                              >
+                                <div className={style.search_img_box}>
+                                  <img
+                                    src={item?.productImg[0]?.url}
+                                    alt={item?.title}
+                                    title="Our Company Logo"
+                                    loading="lazy"
+                                    width="auto"
+                                    height="auto"
+                                  />
+                                </div>
+                                <div className={style.price_box}>
+                                  <h6>{item?.title}</h6>
+                                  <span>${item?.price}</span>
+                                </div>
+                              </li>
+                            ))}
+                        </ul>
+                      )}
                     </div>
-                  </button>
-                  <input
-                    type="text"
-                    className={style.input_search}
-                    placeholder="Type to Search..."
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                  {showSearch && (
-                    <ul className={style.option_box}>
-                      {product
-                        ?.filter((elem) => {
-                          return elem?.title
-                            ?.toLowerCase()
-                            .includes(search?.toLowerCase());
-                        })
-                        ?.map((item) => (
-                          <li
-                            key={item?._id}
-                            onClick={() =>
-                              (window.location.href = `/Product/${item?._id}`)
-                            }
-                          >
-                            <div className={style.search_img_box}>
-                              <img
-                                src={item?.productImg[0]?.url}
-                                alt={item?.title}
-                                title="Our Company Logo"
-                                loading="lazy"
-                                width="auto"
-                                height="auto"
-                              />
-                            </div>
-                            <div className={style.price_box}>
-                              <h6>{item?.title}</h6>
-                              <span>${item?.price}</span>
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
                   )}
                 </div>
-
                 <a href="/Account">
                   <div className={style.icon_box}>
                     <img
@@ -310,12 +335,27 @@ export default function Header(props) {
               </div>
             </div>
             <div className={style.search_box_mob}>
-              <input
-                type="text"
-                className={style.input_search_mob}
-                placeholder="Type to Search..."
-                onChange={(e) => setSearch(e.target.value)}
-              />
+              <div className={style.input_container}>
+                <input
+                  type="text"
+                  className={style.input_search_mob}
+                  placeholder="Type to Search..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <div className={style.icon_box}>
+                  <img
+                    onClick={handleSearchClick}
+                    src={searchicon}
+                    alt="Search"
+                    title="Search"
+                    loading="lazy"
+                    width="auto"
+                    height="auto"
+                  />
+                </div>
+              </div>
+
               {search.length > 0 && (
                 <ul className={style.option_box_mob}>
                   {product
@@ -328,7 +368,9 @@ export default function Header(props) {
                       <li
                         key={item?._id}
                         onClick={() =>
-                          (window.location.href = `/Product/${item?._id}`)
+                          (window.location.href = `/Product/${formatTitleForUrl(
+                            item?.title
+                          )}`)
                         }
                       >
                         <div className={style.search_img_box_mob}>

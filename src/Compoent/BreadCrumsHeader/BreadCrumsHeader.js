@@ -27,7 +27,7 @@ function BreadCrumsHeader({urlname}) {
   return (
     <div className={styles.main}>
       <h1>{urlname}</h1>
-      <ul className={styles.breadcrumbs}>{generateBreadcrumbs()}</ul>
+      {/* <ul className={styles.breadcrumbs}>{generateBreadcrumbs()}</ul> */}
     </div>
   );
 }

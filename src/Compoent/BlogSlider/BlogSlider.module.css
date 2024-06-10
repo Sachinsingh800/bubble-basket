@@ -19,7 +19,7 @@
   .customButton {
     position: absolute;
     width: 90%;
-    margin-top: -13rem;
+    margin-top: -12rem;
     margin-left: -4.5rem;
     display: flex;
     justify-content: space-between;
@@ -41,8 +41,8 @@
   }
   
   .imgBox img {
-    width: 32rem;
-    height: 24rem;
+    width: 30rem;
+    height: 20rem;
     cursor: pointer;
     margin:1rem;
   }

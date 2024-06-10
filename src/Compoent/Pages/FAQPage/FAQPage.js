@@ -18,7 +18,7 @@ function FAQPage() {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Luxury Bubble Basket | Buy Gifts For Everyone</title>
         <meta name="description" content="Find the perfect wine and champagne gifts for everyone. Shop online for high-quality gifts that will impress any recipient." />
-        <link rel="canonical" href="https://www.luxurybubblebasket.com/" />
+        <link rel="canonical" href="https://www.luxurybubblebasket.com/FAQs" />
       </Helmet>
       <Header />
       <div className={style.Container}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import style from "./BlogFullPageSectionSecond.module.css";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -16,6 +16,8 @@ function BlogFullPageSectionSecond() {
   const [loading, SetIsloading] = useState(false);
   const [usename, setUserName] = useState("");
   const [userComment, setUserComment] = useState("");
+  const [userWebsite, setUserWebsite] = useState("");
+  const [userEmail, setUserEmail] = useState(""); // Added state for email
   const [userComments, setUserComments] = useState([
     {
       userimg: dp,
@@ -37,9 +39,15 @@ function BlogFullPageSectionSecond() {
     },
   ]);
 
+  const history = useNavigate(); // Use history for navigation
+
   useEffect(() => {
     handleAllBlog();
   }, []);
+
+  useEffect(() => {
+    scrollToTop(); // Scroll to top when component mounts or updates
+  }, [blogTitle]); // Trigger when the blog title changes
 
   const handleAllBlog = async () => {
     SetIsloading(true);
@@ -51,6 +59,10 @@ function BlogFullPageSectionSecond() {
     } finally {
       SetIsloading(false);
     }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const convertDate = (dateString) => {
@@ -89,6 +101,11 @@ function BlogFullPageSectionSecond() {
 
   const handleCommentSubmit = (newComment) => {
     setUserComments([...userComments, newComment]);
+    setUserName("");
+    setUserComment("");
+    setUserWebsite(""); // Clear the website field
+    setUserEmail(""); // Clear the email field
+    alert("Your comment has been posted successfully!");
   };
 
   return (
@@ -96,30 +113,18 @@ function BlogFullPageSectionSecond() {
       <Helmet>
         <html lang="en" />
         <meta charSet="utf-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>{selectedBlog?.blogTitle}</title>
-        <meta
-          name="description"
-          content={selectedBlog?.shortDescription}
-        />
-        <meta
-          name="title"
-          content={selectedBlog?.blogTitle}
-        />
-        <meta
-          name="head title"
-          content={selectedBlog?.blogTitle}
-        />
-        <meta
-          name="keyword"
-          content={selectedBlog?.blogTitle}
-        />
+        <meta name="description" content={selectedBlog?.shortDescription} />
+        <meta name="title" content={selectedBlog?.blogTitle} />
+        <meta name="head title" content={selectedBlog?.blogTitle} />
+        <meta name="keyword" content={selectedBlog?.blogTitle} />
         <link
           rel="canonical"
           href={`https://www.luxurybubblebasket.com/Blog/${blogTitle}`}
         />
-         {/* Schema Markup */}
-         <script type="application/ld+json">
+        {/* Schema Markup */}
+        <script type="application/ld+json">
           {`
           {
             "@context": "http://schema.org",
@@ -156,7 +161,11 @@ function BlogFullPageSectionSecond() {
             <div className={style.blog_box}>
               <img
                 src={selectedBlog.blogImage?.url}
-                alt={selectedBlog?.blogTitle}   title={selectedBlog?.blogTitle} loading="lazy"  width="auto" height="auto" 
+                alt={selectedBlog?.blogTitle}
+                title={selectedBlog?.blogTitle}
+                loading="lazy"
+                width="auto"
+                height="auto"
               />
             </div>
             <br />
@@ -195,7 +204,14 @@ function BlogFullPageSectionSecond() {
           <div className={style.author_info_box}>
             <div className={style.inner_container}>
               <div className={style.user_box_img}>
-                <img src={selectedBlog.authorImage?.url}       alt={selectedBlog.authorTitle}  title={selectedBlog.authorTitle} loading="lazy"  width="auto" height="auto"  />
+                <img
+                  src={selectedBlog.authorImage?.url}
+                  alt={selectedBlog.authorTitle}
+                  title={selectedBlog.authorTitle}
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                />
               </div>
               <div className={style.des_box}>
                 <div>
@@ -210,10 +226,18 @@ function BlogFullPageSectionSecond() {
             </div>
           </div>
           <div className={style.button_box}>
-            <Link rel="prev" to={`/blog/${formatTitleForUrl(prevPost?.blogTitle)}`}>
+            <Link
+              rel="prev"
+              to={`/blog/${formatTitleForUrl(prevPost?.blogTitle)}`}
+              onClick={scrollToTop}
+            >
               <button>← Prev post</button>
             </Link>
-            <Link rel="next" to={`/blog/${formatTitleForUrl(nextPost?.blogTitle)}`}>
+            <Link
+              rel="next"
+              to={`/blog/${formatTitleForUrl(nextPost?.blogTitle)}`}
+              onClick={scrollToTop}
+            >
               <button>Next post →</button>
             </Link>
           </div>
@@ -247,20 +271,29 @@ function BlogFullPageSectionSecond() {
           </div>
           <textarea
             placeholder="Your Comment*"
+            value={userComment} // Controlled component
             onChange={(e) => setUserComment(e.target.value)}
           />
           <div className={style.user_input_box}>
             <input
               type="text"
               placeholder="Your Name*"
+              value={usename} // Controlled component
               onChange={(e) => setUserName(e.target.value)}
             />
-            <input type="email" placeholder="Your Email*" />
+            <input
+              type="email"
+              placeholder="Your Email*" // Added email field
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
           </div>
           <input
             className={style.input_website}
             type="text"
             placeholder="Website"
+            value={userWebsite} // Controlled component
+            onChange={(e) => setUserWebsite(e.target.value)}
           />
           <div>
             <input type="checkbox" />

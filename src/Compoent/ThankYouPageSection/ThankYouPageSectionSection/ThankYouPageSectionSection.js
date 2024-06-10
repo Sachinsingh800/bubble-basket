@@ -33,7 +33,6 @@ function ThankYouPageSectionSection() {
           <strong>PAYMENT METHOD:</strong>{" "}
           {orderDetail.paymentMethod ? "Online Payment" : "Cash on Delivery"}
         </div>
-        {orderDetail.paymentMethod && <p>Pay with cash upon delivery.</p>}
       </div>
       <br />
       <br />

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import style from "./HomePageCarousel.module.css";
-import product1 from "../Images/Desktop - Champagne (1600X897).webp";
-import product2 from "../Images/Desktop - Chocolate (1600X897).webp";
-import product3 from "../Images/Desktop - Spa (1600X897).webp";
-import product4 from "../Images/Desktop - Wine (1600X897).webp";
+import product1 from "../Images/Desktop - 1600X600 - Champagne.webp";
+import product2 from "../Images/Desktop - 1600X600 - Chocolate.webp";
+import product3 from "../Images/Desktop - 1600X600 - Spa.webp";
+import product4 from "../Images/Desktop - 1600X600 - Wine.webp";
 import Mobproduct1 from "../Images/Mobile - Champagne (500X700).webp";
 import Mobproduct2 from "../Images/Mobile - Chocolate (500X700).webp";
 import Mobproduct3 from "../Images/Mobile - Spa (500X700).webp";
@@ -33,14 +33,14 @@ function HomePageCarousel() {
   return (
     <>
       <h1 hidden>Luxury Bubble Basket | Buy Gifts For Everyone</h1>
-      <div className={style.button_container}>
+      {/* <div className={style.button_container}>
         <button onClick={onPrevClick}>
           <GoArrowLeft className={style.icon} />
         </button>
         <button onClick={onNextClick}>
           <GoArrowRight className={style.icon} />
         </button>
-      </div>
+      </div> */}
       <Carousel
         slide={true}
         onSelect={handleSelect}

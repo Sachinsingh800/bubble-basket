@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./SectionTenth.module.css";
 
 function SectionTenth() {
+  const [showMore, setShowMore] = useState(false);
+
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -17,39 +23,47 @@ function SectionTenth() {
       <h3>Discover Excellence</h3>
       <p>
         Indulge in our handpicked selection of wines and champagnes, each bottle
-        chosen for its superior quality and unique character.Our offerings
+        chosen for its superior quality and unique character. Our offerings
         promise an unparalleled experience.
       </p>
       <h3>Explore Our Collections</h3>
       <p>
-        Fine Wines:Experience the richness of aged reds, the elegance of crisp
+        Fine Wines: Experience the richness of aged reds, the elegance of crisp
         whites, and the vibrant flavors of rosés from prestigious wineries
-        around the globe. Exclusive Champagnes:Elevate your celebrations with
+        around the globe. Exclusive Champagnes: Elevate your celebrations with
         our range of exquisite champagnes, from iconic maisons to boutique
         producers. Curated Gift Sets: Perfect for any connoisseur, our luxurious
         gift sets make an impressive statement for any occasion.
       </p>
-      <h3>Unmatched Quality</h3>
-      <p>
-        At Luxury bubble basket, we are committed to offering only the finest
-        products. Each selection is meticulously vetted to ensure it meets our
-        high standards of excellence. Our dedication to quality means you can
-        trust every bottle you purchase from us.
-      </p>
-      <h3>Join Our Community</h3>
-      <p>
-        Sign up for our newsletter to stay informed about the latest additions
-        to our collection, exclusive offers, and expert tips on wine and
-        champagne. Become a part of our community of enthusiasts who share a
-        passion for the art of fine drinking.
-      </p>
-      <h3>Experience Luxury</h3>
-      <p>
-        Step into a world of elegance and sophistication with Luxury bubble
-        basket. Browse our collection today and discover the ultimate in luxury
-        wines and champagne. Cheers to unforgettable moments and
-        exceptional taste!
-      </p>
+      {showMore && (
+        <>
+          <h3>Unmatched Quality</h3>
+          <p>
+            At Luxury bubble basket, we are committed to offering only the finest
+            products. Each selection is meticulously vetted to ensure it meets our
+            high standards of excellence. Our dedication to quality means you can
+            trust every bottle you purchase from us.
+          </p>
+          <h3>Join Our Community</h3>
+          <p>
+            Sign up for our newsletter to stay informed about the latest additions
+            to our collection, exclusive offers, and expert tips on wine and
+            champagne. Become a part of our community of enthusiasts who share a
+            passion for the art of fine drinking.
+          </p>
+          <h3>Experience Luxury</h3>
+          <p>
+            Step into a world of elegance and sophistication with Luxury bubble
+            basket. Browse our collection today and discover the ultimate in luxury
+            wines and champagne. Cheers to unforgettable moments and
+            exceptional taste!
+          </p>
+        </>
+      )}
+      <button className={style.showMoreButton} onClick={handleShowMore}>
+        {showMore ? "Read Less →" : "Read More →"}
+
+      </button>
     </div>
   );
 }

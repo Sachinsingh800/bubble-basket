@@ -1,5 +1,5 @@
 .carousel_box {
-  height: 35rem;
+  height: 30rem;
   width: 100%;
 }
 .inner_container_ {
@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 35rem;
+  height: 30rem;
 }
 .inner_container_ h2 {
   font-size: 2.5rem;
@@ -17,10 +17,11 @@
   width: 100%;
 }
 .img_box img {
-  height: 35rem;
+  height: 100%;
+  width: 100%;
 }
 .button_container {
-  margin-top: 17.5rem;
+  margin-top: 15rem;
   width: 93%;
   position: absolute;
   display: flex;

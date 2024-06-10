@@ -1,0 +1,124 @@
+.main {
+    height: max-content;
+    width: 100%;
+    border: 1px #7b0128 solid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 3rem 2rem;
+  
+  }
+  .product_title{
+    height: 4.8rem!important;
+    text-align: center;
+    overflow: hidden;
+  }
+  .add_box_img {
+    height: 12rem;
+  
+  }
+  .add_box_img img {
+    height: 100%;
+    width: 100%;
+  
+  }
+  .additional_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+  
+  }
+  .inner_container {
+    width: 13rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem 3rem 2rem 0rem;
+    border-right: 1px #7b0128 solid;
+    cursor: pointer;
+  
+  }
+  .inner_container1 {
+    width: 13rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 3rem 2rem 0rem;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  .inner_container span{
+    text-align: center;
+  }
+  .inner_container p {
+    color: #7b0128;
+  }
+  .inner_container1 p {
+    color: #7b0128;
+  }
+  
+  .offer_box {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #7b0128;
+    color: white;
+    margin-top: -2rem;
+    margin-right: -10rem;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Allura", cursive;
+  }
+  
+  @media (max-width: 500px) {
+    .additional_box {
+      display: grid;
+      grid-template-columns: 1fr ;
+      gap: 1rem;
+    }
+    .inner_container,  .inner_container1 {
+      height: 47rem!important;
+      width: 28rem;
+      display: flex;
+      align-items: center!important;
+      justify-content: center;
+      flex-direction: column;
+      border: 1px #7b0128 solid;
+      overflow:hidden ;
+      padding: 0rem!important;
+    }
+  
+    .offer_box {
+      position: absolute;
+      border-radius: 50%;
+      background-color: #7b0128;
+      color: white;
+      margin-top: -1.5rem;
+      margin-right: -24rem;
+      height: 2rem;
+      width: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Allura", cursive;
+    }
+    .add_box_img {
+    }
+    .add_box_img {
+      height: 320px!important;
+      width: 230px;
+    }
+    .add_box_img img {
+      height: 320px!important;
+      width: 230px;
+    }
+    .product_title {
+      font-size: 1.4rem;
+      width: 90%;
+    }
+  }

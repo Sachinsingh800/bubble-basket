@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://bubblebasketbackendapp.onrender.com";
+// const BASE_URL = "https://www.backend.luxurybubblebasket.com";
+const BASE_URL = "https://www.backend.luxurybubblebasket.com";
 
 // Register
 
@@ -32,7 +33,12 @@ export const verifyEmail = async (userData) => {
       alert("register successfully")
       document.cookie = `token=${response.data.token}; path=/`;
       localStorage.setItem("isLoggedIn", "true");
-      getCheckout();
+      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
+      if(checkoutStatus){
+        getCheckout();
+      }else{
+        window.location.href="/"
+      }
     }
 
   } catch (error) {
@@ -142,6 +148,53 @@ export const resetPassword = async (passwordData) => {
     }
   }
 };
+//updatePassword
+
+export const updatePassword = async (passwordData) => {
+  // Function to retrieve token from cookies
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.post(
+      `${BASE_URL}/user/auth/changePassword`,
+      passwordData,
+      { headers }
+    );
+
+    const { status, message, data } = response.data;
+    alert(message);
+    // Handle response data as needed
+    if(status){
+      window.location.href="/Login"
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      alert(errorMessage);
+      // Log the error message as a string
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
+  }
+};
 
 //Add to Cart
 
@@ -217,7 +270,6 @@ export const removeFromCart = async (id) => {
     };
     const response = await axios.put(
       `${BASE_URL}/user/cart/removeProduct`,
-
       {
         productId: id,
         removeProduct: "0",
@@ -342,7 +394,7 @@ export const updateFromCart = async (id, quantity) => {
 
 //createReview
 
-export const createReview = async (id, reviewData) => {
+export const createReview = async (id, name,email,rating,reviewText) => {
   // Function to retrieve token from cookies
   // Function to retrieve token from cookies
   function getToken() {
@@ -362,12 +414,18 @@ export const createReview = async (id, reviewData) => {
     };
     const response = await axios.put(
       `${BASE_URL}/user/reviews/create/${id}`,
-      reviewData,
+     {name,email,rating,reviewText},
       { headers }
     );
 
     const { status, message, data } = response.data;
     // Handle response data as needed
+    if(status){
+      alert(message)
+      sessionStorage.setItem("Product_review",JSON.stringify(data))
+      window.location.reload()
+    }
+
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -377,6 +435,7 @@ export const createReview = async (id, reviewData) => {
       // alert(errorMessage);
       // Log the error message as a string
       console.error("Axios Error:", errorMessage);
+      alert(errorMessage )
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -752,8 +811,13 @@ export const loginUser = async (userData, rememberMe) => {
       alert(message);
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
-      getCheckout();
-
+      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
+      if(checkoutStatus){
+        getCheckout();
+      }else{
+        window.location.href="/"
+      }
+     
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(token));
       }
@@ -936,7 +1000,7 @@ export const getCheckout = async (promoCode) => {
         "checkout",
         JSON.stringify(response?.data?.data) || []
       );
-      const checkoutStatus = JSON.parse(localStorage.getItem("checkoutStatus"));
+      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
 
       if (checkoutStatus) {
         window.location.href = "/Checkout";
@@ -947,6 +1011,59 @@ export const getCheckout = async (promoCode) => {
     return response.data;
   } catch (error) {
     console.error("Error in getAllCategory function:", error);
+  }
+};
+
+
+//getCheckoutCoupon 
+
+export const getCheckoutCoupon = async (promoCode) => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+
+    // Append promo code to the endpoint if provided
+    const url =`${BASE_URL}/user/cart/checkout?promoCode=${promoCode}`
+    const response = await axios.get(url, { headers });
+    const { status, message, data } = response.data;
+    if (status) {
+      sessionStorage.setItem(
+        "cartData",
+        JSON.stringify(response?.data?.data?.productsData) || []
+      );
+      sessionStorage.setItem(
+        "checkout",
+        JSON.stringify(response?.data?.data) || []
+      );
+    }
+    // Directly return the data from axios response
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Axios error (HTTP error)
+      const { response } = error;
+      // Set the error message
+      const errorMessage = response.data.message;
+      // alert(errorMessage);
+      // Log the error message as a string
+      alert(errorMessage);
+      console.error("Axios Error:", errorMessage);
+    } else {
+      // Network error (e.g., no internet connection)
+      // alert("Something went wrong");
+      console.error("Network Error:", error.message);
+    }
   }
 };
 

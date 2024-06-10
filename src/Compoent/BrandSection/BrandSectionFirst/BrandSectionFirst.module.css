@@ -1,24 +1,25 @@
 @font-face {
-  font-family: 'BrittanySignature';
-  src: url('../../Fonts/BrittanySignature.ttf') format('truetype');
+  font-family: "BrittanySignature";
+  src: url("../../Fonts/BrittanySignature.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'FELIXTI';
-  src: url('../../Fonts/FELIXTI.TTF') format('truetype');
+  font-family: "FELIXTI";
+  src: url("../../Fonts/FELIXTI.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Metropolis-Bold';
-  src: url('../../Fonts/Metropolis-Bold.otf') format('truetype');
+  font-family: "Metropolis-Bold";
+  src: url("../../Fonts/Metropolis-Bold.otf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 .main {
-  height: 8rem;
-  background-color: #7b0128;
+  height: 6.8rem;
+  background-image: url(../../Images/Header\ -\ Desktop\ -\ 1600X128.webp);
+  background-size: contain;
   width: 100%;
   color: white;
   display: flex;
@@ -27,26 +28,64 @@
   flex-direction: column;
   overflow: hidden;
 }
-.main h1{
+.main h1 {
   text-align: center;
   font-size: 1.5rem;
-
+  text-transform: uppercase;
 }
-.breadcrumbs{
+.main ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-right: 1rem;
+}
+.main ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -1.5rem;
+}
+.breadcrumbs {
   display: flex;
   list-style: none;
   gap: 1rem;
   align-items: center;
-  font-family: 'FELIXTI';
+  font-family: "FELIXTI";
 }
-.url{
-  color: white!important;
+.url {
+  color: white !important;
 }
-.breadcrumbItem{
-  font-family: 'Metropolis-Bold';
+.breadcrumbItem {
+  font-family: "Metropolis-Bold";
 }
-@media (max-width:784px){
+
+@media (max-width:1032px){
   .main {
-    margin-top: 7rem;
+    height: 5.8rem;
+  }
+}
+@media (max-width:872px){
+  .main {
+    height: 5rem;
+  }
+}
+@media (max-width:730px){
+  .main {
+    height: 4.5rem;
+  }
+}
+@media (max-width:500px){
+  .main {
+    background-image: url(../../Images/Header\ -\ Mobile\ -\ 500X80.webp);
+    background-size: contain;
+    height: 6rem;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
   }
 }

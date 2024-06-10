@@ -42,8 +42,12 @@ function SectionFifth() {
     { categoryName: "NAPA VALLEY GIFTS" },
   ]);
 
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
+
   const handleNavigate = (categoryName) => {
-    window.location.href = `/${categoryName}`;
+    window.location.href = `/${formatTitleForUrl(categoryName)}`;
   };
 
   const menuProps2 = {

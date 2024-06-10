@@ -117,7 +117,7 @@ function Footer() {
         </div>
       </div>
       <div className={style.desc_box}>
-        <h6>Copyright@2014 , dc wine and spirits , All Rights Reserved .</h6>
+        <h6>Copyright@2024 , Luxury Bubble Basket , All Rights Reserved .</h6>
         <p>
           You must be at least 21 years of age to purchase wine or spirits. By
           placing an order through our website, you are representing yourself to

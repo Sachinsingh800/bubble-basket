@@ -130,7 +130,7 @@ function Payment() {
       try {
         const token = await tokenizePaymentMethod(paymentMethod);
       const response=  await axios.post(
-          `https://bubblebasketbackendapp.onrender.com/user/order/create/${id}`,
+          `https://www.backend.luxurybubblebasket.com/user/order/create/${id}`,
           {
             nonce: token,
             paymentMethod: {

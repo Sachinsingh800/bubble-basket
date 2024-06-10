@@ -3,10 +3,12 @@ import style from "./CartPageSectionSecond.module.css";
 import { useRecoilState } from "recoil";
 import {
   getCheckout,
+  getCheckoutCoupon,
   removeFromCart,
   updateItemQuantity,
 } from "../../Apis/Apis";
 import { addItemCart, updateCart } from "../../Recoil/Recoil";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 function CartPageSectionSecond() {
   const [data, setData] = useState([]);
@@ -28,19 +30,27 @@ function CartPageSectionSecond() {
     }
   }, [update]);
 
-  const handleQuantityChange = (index, quantity) => {
-    setProductQuantity(quantity);
-    if (quantity < 1) return;
-
+  const handleQuantityChange = (index, inputQuantity) => {
+    const quantity = parseInt(inputQuantity, 10);
     const updatedData = [...data];
-    updatedData[index] = { ...updatedData[index], quantity: quantity };
+    updatedData[index] = {
+      ...updatedData[index],
+      quantity: quantity,
+      Product_quantity: quantity,
+    };
     setData(updatedData);
+    if (loginStatus) {
+      setProductQuantity(quantity);
+    }
     sessionStorage.setItem("cartData", JSON.stringify(updatedData));
     setUpdate(update + 1);
     calculateTotalPrice(updatedData);
   };
 
   const handleRemoveProduct = (index) => {
+    if (loginStatus) {
+      removeItemFromtheCart(index);
+    }
     const updatedData = [...data];
     updatedData.splice(index, 1);
     setData(updatedData);
@@ -89,7 +99,7 @@ function CartPageSectionSecond() {
   const handleCouponCheck = async () => {
     setLoading(true);
     try {
-      await getCheckout(coupon);
+      await getCheckoutCoupon(coupon);
     } catch (error) {
       console.log(error);
     } finally {
@@ -130,7 +140,7 @@ function CartPageSectionSecond() {
   const handleFilterCheckoutData = (e) => {
     e.preventDefault();
     sessionStorage.setItem("cartData", JSON.stringify(data));
-    localStorage.setItem("checkoutStatus", JSON.stringify(true));
+    sessionStorage.setItem("checkoutStatus", JSON.stringify(true));
     setUpdate(update + 1);
     if (loginStatus) {
       handleCheckoutOrder();
@@ -144,8 +154,6 @@ function CartPageSectionSecond() {
       {loading && <p key="">Loading...</p>}
       {!loading && (
         <>
-     
-
           {data?.length === 0 ? (
             <div className={style.empty_cart}>
               <p>YOUR CART IS CURRENTLY EMPTY.</p>
@@ -155,72 +163,114 @@ function CartPageSectionSecond() {
             </div>
           ) : (
             <div className={style.cartTable}>
-                    <table >
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.map((item, index) => (
-                  <tr key={item?.Product_id || index} className={style.container}>
-                    <td className={style.first_box}>
-                      <span
-                        className={style.del_button}
-                        onClick={() =>
-                          removeItemFromtheCart(
-                            item?.Product_id ? item?.Product_id : index
-                          )
-                        }
-                      >
-                        x
-                      </span>
-                      <div className={style.img_box}>
-                        <img
-                          src={
-                            item?.Product_image
-                              ? item?.Product_image
-                              : item?.productImg[0]?.url
-                          }
-                          alt={
-                            item?.Product_title ? item?.Product_title : item?.title
-                          }
-                          title={item?.Product_title ? item?.Product_title : item?.title} loading="lazy"  width="auto" height="auto" 
-                        />
-                      </div>
-                    <p className={style.product_title_}>   {item?.Product_title ? item?.Product_title : item?.title}</p> 
-                    </td>
-                    <td className={style.para}>
-                      $ {item?.Product_price ? item?.Product_price : item?.price}
-                    </td>
-                    <td onMouseEnter={() => setProductId(item?.Product_id)}>
-                      <input
-                        className={style.quantity_box}
-                        value={
-                          item?.quantity ? item?.quantity : item?.Product_quantity
-                        }
-                        type="number"
-                        min="1"
-                        onChange={(e) =>
-                          handleQuantityChange(index, parseInt(e.target.value))
-                        }
-                      />
-                    </td>
-                    <td className={style.para}>
-                      ${" "}
-                      {item?.productTotal
-                        ? item?.productTotal
-                        : (item?.price * item?.quantity).toFixed(2)}
-                    </td>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data?.map((item, index) => (
+                    <tr
+                      key={item?.Product_id || index}
+                      className={style.container}
+                    >
+                      <td className={style.first_box}>
+                        <span
+                          className={style.del_button}
+                          onClick={() =>
+                            handleRemoveProduct(
+                              item?.Product_id ? item?.Product_id : index
+                            )
+                          }
+                        >
+                          x
+                        </span>
+                        <div className={style.img_box}>
+                          <img
+                            src={
+                              item?.Product_image
+                                ? item?.Product_image
+                                : item?.productImg[0]?.url
+                            }
+                            alt={
+                              item?.Product_title
+                                ? item?.Product_title
+                                : item?.title
+                            }
+                            title={
+                              item?.Product_title
+                                ? item?.Product_title
+                                : item?.title
+                            }
+                            loading="lazy"
+                            width="auto"
+                            height="auto "
+                          />
+                        </div>
+                        <p className={style.product_title_}>
+                          {item?.Product_title
+                            ? item?.Product_title
+                            : item?.title}
+                        </p>
+                      </td>
+                      <td className={style.para}>
+                        ${" "}
+                        {item?.Product_price
+                          ? item?.Product_price
+                          : item?.price}
+                      </td>
+                      <td onClick={() => setProductId(item?.Product_id)}>
+                        <input
+                          className={style.quantity_box}
+                          value={
+                            item?.Product_quantity
+                              ? item?.Product_quantity
+                              : item?.quantity
+                          }
+                          type="number"
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === "" || value > 0) {
+                              handleQuantityChange(index, value);
+                            }
+                          }}
+                          onBlur={(e) => {
+                            if (
+                              e.target.value === "" ||
+                              parseInt(e.target.value, 10) <= 0
+                            ) {
+                              handleQuantityChange(index, 1);
+                            }
+                          }}
+                          onKeyDown={(e) => {
+                            if (
+                              e.key === "-" ||
+                              (e.key === "0" && e.target.value === "")
+                            ) {
+                              e.preventDefault();
+                            }
+                          }}
+                        />
+                        &nbsp;
+                        {loginStatus && productId === item?.Product_id && (
+                          <CheckCircleOutlineIcon color="#7b0128" />
+                        )}
+                      </td>
+                      <td className={style.para}>
+                        ${" "}
+                        {item?.productTotal
+                          ? item?.productTotal
+                          : (item?.price * item?.quantity).toFixed(2)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-      
           )}
 
           {data?.length > 0 && (
@@ -288,7 +338,8 @@ function CartPageSectionSecond() {
                       <div className={style.order_item}>
                         <div className={style.product_item}>
                           <span>
-                            Coupon Discount({cartData?.couponDiscountPercent}%):
+                            Coupon Discount({cartData?.couponDiscountPercent}
+                            %):
                           </span>
                           <span className={style.calculate_}>
                             ${cartData?.promoDiscount}

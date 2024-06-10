@@ -45,6 +45,10 @@ function SectionNinth() {
       };
       const response = await sendSubscribtion(data);
       alert(response.message);
+      // Reset all fields after successful submission
+      setName("");
+      setEmail("");
+      setSelectedDate(null);
     } catch (error) {
       alert("already register");
     }
@@ -59,7 +63,14 @@ function SectionNinth() {
   };
 
   const handleSelect = (date) => {
-    setSelectedDate(date);
+    // Check if user is 18 or older
+    const today = new Date();
+    const age = today.getFullYear() - date.getFullYear();
+    if (age >= 18) {
+      setSelectedDate(date);
+    } else {
+      alert("You must be at least 18 years old to subscribe.");
+    }
     setShowDate(false);
   };
 
@@ -140,6 +151,7 @@ function SectionNinth() {
               <Calendar
                 date={selectedDate || new Date()}
                 onChange={handleSelect}
+                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() - 18))} // Set max date to 18 years ago
               />
             </div>
           )}

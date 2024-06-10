@@ -29,14 +29,14 @@ function CheckoutPageSectionSecond() {
     },
     townCity: "", // Updated field
     stateCounty: "", // Updated field
-    postcodeZIP: "", // Updated field
+    PostcodeZIP: "", // Updated field
     phone: "",
     email: "",
     orderNotes: "",
     setAsDefault: false,
   });
   const [isLoading, setIsLoading] = useState(false);
-  localStorage.setItem("checkoutStatus", JSON.stringify(false));
+  sessionStorage.setItem("checkoutStatus", JSON.stringify(false));
   const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
   const selectedDataAddress = JSON.parse(
     sessionStorage.getItem("address") || false
@@ -45,7 +45,7 @@ function CheckoutPageSectionSecond() {
     if(cartData.productsData.length === 0){
           window.location.href = "/cart";
     }
-    localStorage.setItem("checkoutStatus", JSON.stringify(false));
+    sessionStorage.setItem("checkoutStatus", JSON.stringify(false));
   }, []);
 
   const handleChange = (e) => {
@@ -69,7 +69,7 @@ function CheckoutPageSectionSecond() {
       "country",
       "streetAddress.houseNoAndStreetName",
       "townCity",
-      "postcodeZIP",
+      "PostcodeZIP",
       "phone",
       "email",
     ];
@@ -91,7 +91,7 @@ function CheckoutPageSectionSecond() {
     }
 
     // Validate ZIP code
-    if (!zipRegex.test(formData.postcodeZIP)) {
+    if (!zipRegex.test(formData.PostcodeZIP)) {
       alert("Please enter a valid ZIP code");
       return false;
     }
@@ -210,7 +210,7 @@ function CheckoutPageSectionSecond() {
         },
         townCity: "",
         stateCounty: "",
-        postcodeZIP: "",
+        PostcodeZIP: "",
         phone: "",
         email: "",
         orderNotes: "",
@@ -397,13 +397,13 @@ function CheckoutPageSectionSecond() {
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="postcodeZIP">postcodeZIP *</label>
+              <label htmlFor="PostcodeZIP">PostcodeZIP *</label>
               <input
                 style={{ fontSize: "16px" }}
                 type="text"
-                id="postcodeZIP"
-                name="postcodeZIP"
-                value={formData?.postcodeZIP}
+                id="PostcodeZIP"
+                name="PostcodeZIP"
+                value={formData?.PostcodeZIP}
                 onChange={handleChange}
                 required
               />

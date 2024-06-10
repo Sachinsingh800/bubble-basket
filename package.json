@@ -34,6 +34,7 @@
     "react-scripts": "5.0.1",
     "react-snap": "^1.23.0",
     "recoil": "^0.7.7",
+    "sitemap": "^8.0.0",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
@@ -43,11 +44,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-     "postbuild": "react-snap"
+    "postbuild": "react-snap"
   },
   "reactSnap": {
-  "inlineCss": true
-},
+    "inlineCss": true
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

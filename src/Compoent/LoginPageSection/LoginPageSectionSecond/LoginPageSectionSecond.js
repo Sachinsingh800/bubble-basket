@@ -121,7 +121,7 @@ function LoginPageSectionSecond() {
           <label htmlFor="rememberMe">Remember me</label>
         </div>
         <button type="submit">LOGIN →</button>
-        <a href={`/UpdateInformation/password`}>
+        <a href={`/Forgot-Password`}>
           <p>Lost your password?</p>
         </a>
         <a href="/Register">

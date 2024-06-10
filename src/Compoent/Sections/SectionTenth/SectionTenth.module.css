@@ -5,6 +5,7 @@
     gap: .6rem;
     padding: 1rem;
     flex-direction: column;
+    color: rgb(80, 80, 80);
 }
 .main p{
   font-weight: 700;
@@ -31,6 +32,14 @@
     letter-spacing: 0.2cap;
     width: 100%;
   }
+  .showMoreButton{
+    width: max-content;
+    border:none;
+    background-color: #7b0128;
+    color: white!important;
+    padding: 0rem .5rem;
+    font-size: small;
+  }
   @media screen and (max-width:784px) {
     .main{
       height: max-content;
@@ -39,5 +48,8 @@
       gap: .5rem;
       padding: 1rem;
       flex-direction: column;
+  }
+  .main  h3{
+    font-size: 2rem;
   }
   }

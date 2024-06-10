@@ -7,10 +7,13 @@ function SectionSixth() {
 
 
 
+  const formatTitleForUrl = (title) => {
+    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  };
 
 const getAllCategory = async (e,title) => {
   e.preventDefault()
-  window.location.href=`/${title}`
+  window.location.href=`/${formatTitleForUrl(title)}`
 };
   const collectionData = [
     {

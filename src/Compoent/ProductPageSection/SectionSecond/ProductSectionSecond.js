@@ -59,18 +59,9 @@ function ProductSectionSecond() {
     handleGetAllReview();
   }, []);
 
-  useEffect(() => {
-    const userreview = JSON.parse(localStorage.getItem("user_review"));
-    setUserReview(userreview);
-  }, [updateReview]);
 
-  const reviews = JSON.parse(localStorage.getItem("review"));
 
-  const handleGetAllReview = async () => {
-    try {
-      // const response = await getAllReview(id);
-    } catch (error) {}
-  };
+  const reviews = JSON.parse(sessionStorage.getItem("Product_review"));
 
   const formatTitleForUrl = (title) => {
     return title.replace(/\s+/g, "-").replace(/:/g, "");
@@ -167,7 +158,7 @@ function ProductSectionSecond() {
   };
 
   const handleQuantityChange = (e) => {
-    const value = Math.max(1, parseInt(e.target.value));
+    const value = Math.max(1, parseInt(e.target.value, 10));
     setQuantity(value);
   };
 
@@ -204,24 +195,25 @@ function ProductSectionSecond() {
 
   const handleCreateReview = async (e) => {
     e.preventDefault();
-    const reviewData = {
-      name: name,
-      email: email,
-      rating: rating,
-      reviewText: reviewText,
-    };
     try {
-      const response = await createReview(product._id, reviewData);
+      const response = await createReview(
+        product._id,
+        name,
+        email,
+        rating,
+        reviewText
+      );
     } catch (error) {
       console.log("error");
     } finally {
       setUpdateReview(updateReview + 1);
-      setUserCreateReview(reviewData);
-      setName("");
-      setEmail("");
-      setRating(0);
-      setReviewText("");
     }
+  };
+
+  const handleGetAllReview = async () => {
+    try {
+      const response = await getAllReview(product?._id);
+    } catch (error) {}
   };
 
   const ratingChanged = (newRating) => {
@@ -237,6 +229,8 @@ function ProductSectionSecond() {
     setMessage(event.target.value);
     localStorage.setItem("message", JSON.stringify(event.target.value));
   };
+
+  console.log(product?._id,"sdadad")
   return (
     <div className={style.main}>
       <Helmet>
@@ -303,10 +297,33 @@ function ProductSectionSecond() {
             <div>
               <div className={style.input_box}>
                 <input
+                  className={style.quantity_box}
                   type="number"
                   value={quantity}
-                  onChange={handleQuantityChange}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === "" || value > 0) {
+                      handleQuantityChange(e);
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (
+                      e.target.value === "" ||
+                      parseInt(e.target.value, 10) <= 0
+                    ) {
+                      handleQuantityChange({ target: { value: 1 } });
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "-" ||
+                      (e.key === "0" && e.target.value === "")
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                 />
+
                 <button onClick={(e) => handleAddToCart(e)}>
                   ADD TO CART →
                 </button>
@@ -405,13 +422,13 @@ function ProductSectionSecond() {
           <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
           <h5 onClick={handleToggleOverview}>ADDITIONAL INFORMATION</h5>
           <h5 onClick={handleToggleReview}>
-            REVIEWS ({reviews?.reviews?.length})
+            REVIEWS
           </h5>
         </div>
         <div className={style.des_container}>
           {showOverview && (
             <div className={style.description_box}>
-              <p>{product?.productBlog?.detailedOverview}</p>
+              {/* <p>{product?.productBlog?.detailedOverview}</p> */}
             </div>
           )}
           {showDescription && (
@@ -421,17 +438,17 @@ function ProductSectionSecond() {
           )}
           {showExprienceofTesting && (
             <div className={style.description_box}>
-              <p>{product?.productBlog?.experienceOfTesting}</p>
+              {/* <p>{product?.productBlog?.experienceOfTesting}</p> */}
             </div>
           )}
           {showComparison && (
             <div className={style.description_box}>
-              <p>{product?.productBlog?.comparison}</p>
+              {/* <p>{product?.productBlog?.comparison}</p> */}
             </div>
           )}
           {showReview && (
             <div>
-              <h6>3 REVIEW FOR BUBBLE BASKET</h6>
+              <h6> REVIEW FOR BUBBLE BASKET</h6>
               <br />
               {userCreateReview && (
                 <div className={style.user_review_container}>
@@ -453,26 +470,29 @@ function ProductSectionSecond() {
                   </div>
                 </div>
               )}
-
-              {reviews?.reviews?.map((item) => (
-                <div className={style.user_review_container}>
-                  <div className={style.user_dp}>
-                    <AccountCircleOutlinedIcon className={style.dp_icon} />
+              {product?._id === reviews?.productId   && (
+                 reviews?.reviews?.map((item) => (
+                  <div className={style.user_review_container}>
+                    <div className={style.user_dp}>
+                      <AccountCircleOutlinedIcon className={style.dp_icon} />
+                    </div>
+                    <div>
+                      <ReactStars
+                        count={5}
+                        onChange={null}
+                        filledIcon={null}
+                        value={item.rating}
+                        size={20}
+                        activeColor="#ffd700"
+                      />
+                      <span>{item?.name}</span> - <span>{item?.email}</span>
+                      <p>{item?.reviewText}</p>
+                    </div>
                   </div>
-                  <div>
-                    <ReactStars
-                      count={5}
-                      onChange={null}
-                      filledIcon={null}
-                      value={item.rating}
-                      size={20}
-                      activeColor="#ffd700"
-                    />
-                    <span>{item.name}</span> - <span>{item.email}</span>
-                    <p>{item.reviewText}</p>
-                  </div>
-                </div>
-              ))}
+                ))
+              )
+              }
+             
 
               <br />
               <br />

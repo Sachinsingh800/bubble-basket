@@ -28,7 +28,10 @@ import UpdateInformation from "./Compoent/Pages/UpdateInformation/UpdateInformat
 import BrandPage from "./Compoent/Pages/BrandPage/BrandPage";
 import Payment from "./Compoent/Pages/Payment/Payment";
 import AllCategoryPage from "./Compoent/Pages/AllCategoryPage/AllCategoryPage";
-import SiteMap from "./Compoent/SiteMap";
+import ForgotPassword from "./Compoent/Pages/ForgotPassword/ForgotPassword";
+import FilterAccordingToDes from "./Compoent/Pages/FilterAccordingToDes/FilterAccordingToDes";
+
+
 
 // Get the root element from the DOM
 const rootElement = document.getElementById("root");
@@ -42,6 +45,7 @@ const appContent = (
           <Route path="/" element={<App />} />
           <Route path="Product/:title" element={<ProductPage />} />
           <Route path=":category" element={<AllCategoryPage />} />
+          <Route path="search/:search" element={<FilterAccordingToDes />} />
           <Route path="brand/:category" element={<BrandPage />} />
           <Route path="Product" element={<ColumnPage />} />
           <Route path="Cart" element={<CartPage />} />
@@ -62,13 +66,13 @@ const appContent = (
           <Route path="Register" element={<RegisterPage />} />
           <Route path="Account" element={<AccountPage />} />
           <Route path="Order-History" element={<OrderHistoryPage />} />
+          <Route path="Forgot-Password" element={<ForgotPassword />} />
           <Route path="Order-Detail/:id" element={<OrderDetailPage />} />
           <Route
             path="Update-Information/:category"
             element={<UpdateInformation />}
           />
           <Route path="Payment" element={<Payment />} />
-          <Route path="sitemap" element={<SiteMap />} />
           <Route path="*" element={<ErrorPage />} />{" "}
           {/* Catch-all route for unknown paths */}
         </Routes>
