@@ -129,7 +129,7 @@ function ProductSectionSecond() {
   const handleAddToCart = (e) => {
     e.preventDefault();
     setMessage("");
-    const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn"));
+    const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn"));
     if (loginStatus) {
       handleAddToCartInBeckend();
     }

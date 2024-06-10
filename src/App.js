@@ -18,7 +18,7 @@ function App() {
     // Retrieve token
     const token = getToken();
     if (!token) {
-      localStorage.setItem("isLoggedIn", false);
+      sessionStorage.setItem("isLoggedIn", false);
     }
   }, []);
 

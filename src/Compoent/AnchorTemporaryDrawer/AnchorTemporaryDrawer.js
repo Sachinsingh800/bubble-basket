@@ -28,7 +28,7 @@ export default function AnchorTemporaryDrawer() {
   });
   const [cartItems, setCartItems] = React.useState([]);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || "false");
+  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || "false");
   const isMobile = useMediaQuery("(max-width:600px)");
 
   React.useEffect(() => {

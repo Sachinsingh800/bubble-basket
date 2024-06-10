@@ -30,7 +30,7 @@ export default function AlertDialogSlide({ cartdata }) {
   };
 
   const handleAddToCart = () => {
-    const loginStatus=JSON.parse(localStorage.getItem("isLoggedIn"))
+    const loginStatus=JSON.parse(sessionStorage.getItem("isLoggedIn"))
     if(loginStatus){
       handleAddToCartInBeckend(cartdata._id)
     }
