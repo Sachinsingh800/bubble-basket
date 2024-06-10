@@ -6,7 +6,6 @@ const BASE_URL = "https://www.backend.luxurybubblebasket.com";
 // Register
 
 export const RegisterUser = async (userData) => {
-
   try {
     const response = await axios.post(
       `${BASE_URL}/user/auth/register`,
@@ -16,7 +15,7 @@ export const RegisterUser = async (userData) => {
     return response.data;
   } catch (error) {
     console.error("Error in getAllCategory function:", error);
-    alert("user already register")
+    alert("user already register");
   }
 };
 
@@ -29,18 +28,19 @@ export const verifyEmail = async (userData) => {
       userData
     );
     const { status, message, data, token } = response.data;
-    if(status){
-      alert("register successfully")
+    if (status) {
+      alert("register successfully");
       document.cookie = `token=${response.data.token}; path=/`;
       localStorage.setItem("isLoggedIn", "true");
-      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
-      if(checkoutStatus){
+      const checkoutStatus = JSON.parse(
+        sessionStorage.getItem("checkoutStatus")
+      );
+      if (checkoutStatus) {
         getCheckout();
-      }else{
-        window.location.href="/"
+      } else {
+        window.location.href = "/";
       }
     }
-
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -129,8 +129,8 @@ export const resetPassword = async (passwordData) => {
     const { status, message, data } = response.data;
     alert(message);
     // Handle response data as needed
-    if(status){
-      window.location.href="/Login"
+    if (status) {
+      window.location.href = "/Login";
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -176,8 +176,8 @@ export const updatePassword = async (passwordData) => {
     const { status, message, data } = response.data;
     alert(message);
     // Handle response data as needed
-    if(status){
-      window.location.href="/Login"
+    if (status) {
+      window.location.href = "/Login";
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -198,7 +198,7 @@ export const updatePassword = async (passwordData) => {
 
 //Add to Cart
 
-export const AddtoCart = async (productId,quantity) => {
+export const AddtoCart = async (productId, quantity) => {
   // Function to retrieve token from cookies
   function getToken() {
     return document.cookie.replace(
@@ -221,9 +221,9 @@ export const AddtoCart = async (productId,quantity) => {
         items: [
           {
             productId: productId,
-            quantity:quantity
+            quantity: quantity,
           },
-      ]
+        ],
       },
       { headers }
     );
@@ -394,7 +394,7 @@ export const updateFromCart = async (id, quantity) => {
 
 //createReview
 
-export const createReview = async (id, name,email,rating,reviewText) => {
+export const createReview = async (id, name, email, rating, reviewText) => {
   // Function to retrieve token from cookies
   // Function to retrieve token from cookies
   function getToken() {
@@ -414,18 +414,17 @@ export const createReview = async (id, name,email,rating,reviewText) => {
     };
     const response = await axios.put(
       `${BASE_URL}/user/reviews/create/${id}`,
-     {name,email,rating,reviewText},
+      { name, email, rating, reviewText },
       { headers }
     );
 
     const { status, message, data } = response.data;
     // Handle response data as needed
-    if(status){
-      alert(message)
-      sessionStorage.setItem("Product_review",JSON.stringify(data))
-      window.location.reload()
+    if (status) {
+      alert(message);
+      sessionStorage.setItem("Product_review", JSON.stringify(data));
+      window.location.reload();
     }
-
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Axios error (HTTP error)
@@ -435,7 +434,7 @@ export const createReview = async (id, name,email,rating,reviewText) => {
       // alert(errorMessage);
       // Log the error message as a string
       console.error("Axios Error:", errorMessage);
-      alert(errorMessage )
+      alert(errorMessage);
     } else {
       // Network error (e.g., no internet connection)
       // alert("Something went wrong");
@@ -491,7 +490,6 @@ export const getAllReview = async (id) => {
 
 // addAddress
 
-
 export const addAddress = async (formData) => {
   function getToken() {
     return document.cookie.replace(
@@ -520,7 +518,6 @@ export const addAddress = async (formData) => {
     console.error("Error in getAllCategory function:", error);
   }
 };
-
 
 // getAllAddress
 
@@ -716,7 +713,7 @@ export const orderPlace = async (orderData) => {
   // Retrieve token
   const token = getToken();
   const address = JSON.parse(sessionStorage.getItem("address")) || {};
-  const id =address?._id;
+  const id = address?._id;
 
   try {
     const headers = {
@@ -811,13 +808,15 @@ export const loginUser = async (userData, rememberMe) => {
       alert(message);
       // Save login status to local storage
       localStorage.setItem("isLoggedIn", "true");
-      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
-      if(checkoutStatus){
+      const checkoutStatus = JSON.parse(
+        sessionStorage.getItem("checkoutStatus")
+      );
+      if (checkoutStatus) {
         getCheckout();
-      }else{
-        window.location.href="/"
+      } else {
+        window.location.href = "/";
       }
-     
+
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(token));
       }
@@ -962,13 +961,10 @@ export const getAllBrandProduct = async (category) => {
   }
 };
 
+//getCheckout
 
-
-
-
-//getCheckout 
-
-export const getCheckout = async (promoCode) => {
+export const getCheckout = async () => {
+const promoCode =JSON.parse(sessionStorage.getItem("promocode"))
   function getToken() {
     return document.cookie.replace(
       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -1000,7 +996,9 @@ export const getCheckout = async (promoCode) => {
         "checkout",
         JSON.stringify(response?.data?.data) || []
       );
-      const checkoutStatus = JSON.parse(sessionStorage.getItem("checkoutStatus"));
+      const checkoutStatus = JSON.parse(
+        sessionStorage.getItem("checkoutStatus")
+      );
 
       if (checkoutStatus) {
         window.location.href = "/Checkout";
@@ -1014,8 +1012,7 @@ export const getCheckout = async (promoCode) => {
   }
 };
 
-
-//getCheckoutCoupon 
+//getCheckoutCoupon
 
 export const getCheckoutCoupon = async (promoCode) => {
   function getToken() {
@@ -1034,10 +1031,12 @@ export const getCheckoutCoupon = async (promoCode) => {
     };
 
     // Append promo code to the endpoint if provided
-    const url =`${BASE_URL}/user/cart/checkout?promoCode=${promoCode}`
+    const url = `${BASE_URL}/user/cart/checkout?promoCode=${promoCode}`;
     const response = await axios.get(url, { headers });
     const { status, message, data } = response.data;
     if (status) {
+      alert(message)
+      sessionStorage.setItem("promocode", JSON.stringify(promoCode));
       sessionStorage.setItem(
         "cartData",
         JSON.stringify(response?.data?.data?.productsData) || []
@@ -1066,8 +1065,6 @@ export const getCheckoutCoupon = async (promoCode) => {
     }
   }
 };
-
-
 
 // getAllBlog
 

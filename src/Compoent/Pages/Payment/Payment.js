@@ -108,6 +108,7 @@ function Payment() {
   }, [loaded, squarePayments]);
 
   const handlePaymentMethodSubmission = async (paymentMethod) => {
+    const promoCode =JSON.parse(sessionStorage.getItem("promocode"))
     function getToken() {
       return document.cookie.replace(
         /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
@@ -132,6 +133,7 @@ function Payment() {
       const response=  await axios.post(
           `https://www.backend.luxurybubblebasket.com/user/order/create/${id}`,
           {
+            promoCode: promoCode ? promoCode : "",
             nonce: token,
             paymentMethod: {
               online: true,
@@ -143,6 +145,7 @@ function Payment() {
           alert("Payment successful!");
           sessionStorage.setItem("orderData", JSON.stringify(response.data));
           sessionStorage.removeItem("cartData");
+          sessionStorage.removeItem("promocode");
           window.location.href = "/ThankYou";
         }
       } catch (error) {

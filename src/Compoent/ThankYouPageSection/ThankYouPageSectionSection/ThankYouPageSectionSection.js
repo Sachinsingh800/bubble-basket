@@ -31,7 +31,7 @@ function ThankYouPageSectionSection() {
         </div>
         <div>
           <strong>PAYMENT METHOD:</strong>{" "}
-          {orderDetail.paymentMethod ? "Online Payment" : "Cash on Delivery"}
+          {orderDetail.paymentMethod && "Online Payment" }
         </div>
       </div>
       <br />
@@ -74,6 +74,21 @@ function ThankYouPageSectionSection() {
               </span>
             </div>
           </div>
+
+          {orderDetail?.promoDiscount && (
+              <div className={style.order_item}>
+                <div className={style.product_item}>
+                  <span>
+                    Coupon Discount
+                  </span>
+                  <span className={style.calculate_}>
+                    ${orderDetail?.promoDiscount}
+                  </span>
+                </div>
+              </div>
+            )}
+
+
 
           <div className={style.order_item}>
             <div className={style.product_item}>

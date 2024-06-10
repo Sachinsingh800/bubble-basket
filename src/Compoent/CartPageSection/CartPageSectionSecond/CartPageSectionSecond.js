@@ -278,6 +278,7 @@ function CartPageSectionSecond() {
               <div className={style.buttons_box}>
                 <div>
                   <input
+                    style={{ fontSize: "16px" }}
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value)}
                     placeholder="Coupon Code"

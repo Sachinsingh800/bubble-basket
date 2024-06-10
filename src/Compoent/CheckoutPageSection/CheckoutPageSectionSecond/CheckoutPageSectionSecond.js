@@ -111,9 +111,8 @@ function CheckoutPageSectionSecond() {
     try {
       const orderData = {
         promoCode: "",
-        paymentMethod: {
-          cod: formData?.paymentMethod === "cashOnDelivery", // Set payment method based on selection
-          online: false, // Set payment method based on selection
+        paymentMethod: {// Set payment method based on selection
+          online: true, // Set payment method based on selection
         },
       };
       // Send order data to server
@@ -139,7 +138,6 @@ function CheckoutPageSectionSecond() {
         if (onlinepayment) {
           window.location.href = "/Payment";
         } else {
-          handleOrder();
         }
       } else {
         const response = await addAddress(formData);
@@ -149,7 +147,6 @@ function CheckoutPageSectionSecond() {
           if (onlinepayment) {
             window.location.href = "/Payment";
           } else {
-            handleOrder();
           }
         }
       }
