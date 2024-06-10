@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import FirstSection from "../Sections/FirstSection/FirstSection";
 import SecondSection from "../Sections/SecondSection/SecondSection";
@@ -15,8 +15,25 @@ import style from "./Home.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import BlogSlider from "../BlogSlider/BlogSlider";
 import { Helmet } from 'react-helmet';
+import { getCheckout } from "../Apis/Apis";
+import { useRecoilState } from "recoil";
+import { updateCart } from "../Recoil/Recoil";
 
 function Home() {
+  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
+  const [update, setUpdate] = useRecoilState(updateCart);
+  useEffect(() => {
+    handleCheckoutOrder();
+  }, [loginStatus]);
+  const handleCheckoutOrder = async () => {
+    try {
+      await getCheckout();
+    } catch (error) {
+      console.log(error);
+    } finally{
+      setUpdate(update + 8)
+    }
+  };
   return (
     <div>
       <Helmet>

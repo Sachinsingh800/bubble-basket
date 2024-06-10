@@ -31,7 +31,7 @@ export const verifyEmail = async (userData) => {
     if (status) {
       alert("register successfully");
       document.cookie = `token=${response.data.token}; path=/`;
-      localStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("isLoggedIn", "true");
       const checkoutStatus = JSON.parse(
         sessionStorage.getItem("checkoutStatus")
       );
@@ -807,7 +807,7 @@ export const loginUser = async (userData, rememberMe) => {
       document.cookie = `token=${response.data.token}; path=/`;
       alert(message);
       // Save login status to local storage
-      localStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("isLoggedIn", "true");
       const checkoutStatus = JSON.parse(
         sessionStorage.getItem("checkoutStatus")
       );

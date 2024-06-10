@@ -25,7 +25,7 @@ function AccountPageSectionSecond() {
     window.location.href = "/";
   };
 
-  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
+  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
 
   return (
     <div className={style.main}>

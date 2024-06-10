@@ -14,7 +14,7 @@ function CartPageSectionSecond() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
-  const loginStatus = JSON.parse(localStorage.getItem("isLoggedIn") || false);
+  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [coupon, setCoupon] = useState("");
   const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
