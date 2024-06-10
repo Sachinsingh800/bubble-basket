@@ -7,6 +7,7 @@ import {
   addAddress,
   getAllAddress,
   getCheckout,
+  getCheckoutCoupon,
   orderPlace,
 } from "../../Apis/Apis";
 
@@ -162,15 +163,6 @@ function CheckoutPageSectionSecond() {
     setShowCouponField(!showCouponField);
   };
 
-  const handleCouponCheck = async () => {
-    try {
-      const response = await getCheckout(formData?.coupon);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      window.location.reload();
-    }
-  };
 
   const handleSelectAddress = (e) => {
     const { checked } = e.target;
@@ -219,6 +211,16 @@ function CheckoutPageSectionSecond() {
 
   const handleOnlinePayment = () => {
     setOnlinePayment(true);
+  };
+
+  const handleCouponCheck = async () => {
+    try {
+      await getCheckoutCoupon(formData?.coupon);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setUpdate(update + 1);
+    }
   };
 
   return (

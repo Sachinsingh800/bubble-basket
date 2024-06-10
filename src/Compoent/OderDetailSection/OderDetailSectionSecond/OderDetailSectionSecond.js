@@ -28,6 +28,7 @@ function OderDetailSectionSecond() {
   function renderHTML(htmlString) {
     return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
   }
+
   return (
     <div className={style.main}>
       <h2>Order Detail</h2>
@@ -51,17 +52,18 @@ function OderDetailSectionSecond() {
           <p><strong>Country:</strong> {orderData?.shippingInfo?.country}</p>
         </div>
       </div>
-
+       
       <h3>Product Information</h3>
+      <div className={style.product_container}>
       {orderData.items.map((item) => (
-        <div key={item?._id} className={style.product_info}>
+        <div key={item?.Product_id} className={style.product_info}>
           <div className={style.product_item}>
             <div className={style.img_box}>
-              <img src={item?.ProductImg} alt={item?.Product_title} title={item?.Product_title} loading="lazy"  width="auto" height="auto" />
+              <img src={item?.ProductImg} alt={item?.Product_title} title={item?.Product_title} loading="lazy" width="auto" height="auto" />
             </div>
             <div className={style.details}>
               <p><strong>Product Title:</strong> {item?.Product_title}</p>
-              <p><strong>Description:</strong> {renderHTML(item?.Product_description)}</p>
+              {/* <p><strong>Description:</strong> {renderHTML(item?.Product_description)}</p> */}
               <p><strong>Category:</strong> {item?.Product_category}</p>
               <p><strong>Price:</strong> ${item?.Product_price}</p>
               <p><strong>Quantity:</strong> {item?.Product_quantity}</p>
@@ -70,6 +72,9 @@ function OderDetailSectionSecond() {
           </div>
         </div>
       ))}
+      </div>
+
+
       <h3>Additional Notes</h3>
       <div className={style.additional_notes}>
         <p>{orderData?.shippingInfo?.orderNotes || 'No additional notes provided.'}</p>
