@@ -220,6 +220,9 @@
     height: 50px!important;
     width: 50px!important;
   }
+  .blog_des img{
+  width: 250px!important;
+  }
   .user_review_container{
   }
   .demotext {

@@ -30,7 +30,7 @@ function CheckoutPageSectionSecond() {
     },
     townCity: "", // Updated field
     stateCounty: "", // Updated field
-    PostcodeZIP: "", // Updated field
+    postcodeZIP: "", // Updated field
     phone: "",
     email: "",
     orderNotes: "",
@@ -70,7 +70,7 @@ function CheckoutPageSectionSecond() {
       "country",
       "streetAddress.houseNoAndStreetName",
       "townCity",
-      "PostcodeZIP",
+      "postcodeZIP",
       "phone",
       "email",
     ];
@@ -92,7 +92,7 @@ function CheckoutPageSectionSecond() {
     }
 
     // Validate ZIP code
-    if (!zipRegex.test(formData.PostcodeZIP)) {
+    if (!zipRegex.test(formData.postcodeZIP)) {
       alert("Please enter a valid ZIP code");
       return false;
     }
@@ -106,29 +106,6 @@ function CheckoutPageSectionSecond() {
     return true;
   };
 
-  const handleOrder = async () => {
-    if (!validateForm()) return;
-
-    try {
-      const orderData = {
-        promoCode: "",
-        paymentMethod: {// Set payment method based on selection
-          online: true, // Set payment method based on selection
-        },
-      };
-      // Send order data to server
-      setIsLoading(true);
-      const response = await orderPlace(orderData);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      // Handle unexpected errors
-      console.error("An error occurred during form submission:", error);
-      // Display an error message to the user
-      // alert("An unexpected error occurred. Please try again later.");
-    }
-  };
-
   const handleSubmitAddress = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -136,19 +113,12 @@ function CheckoutPageSectionSecond() {
     try {
       setIsLoading(true);
       if (isChecked) {
-        if (onlinepayment) {
           window.location.href = "/Payment";
-        } else {
-        }
       } else {
         const response = await addAddress(formData);
         setIsLoading(false);
-        console.log("Response from addAddress:", response);
         if (response.status) {
-          if (onlinepayment) {
             window.location.href = "/Payment";
-          } else {
-          }
         }
       }
     } catch (error) {
@@ -199,7 +169,7 @@ function CheckoutPageSectionSecond() {
         },
         townCity: "",
         stateCounty: "",
-        PostcodeZIP: "",
+        postcodeZIP: "",
         phone: "",
         email: "",
         orderNotes: "",
@@ -396,13 +366,13 @@ function CheckoutPageSectionSecond() {
               />
             </div>
             <div className={style.form_group}>
-              <label htmlFor="PostcodeZIP">PostcodeZIP *</label>
+              <label htmlFor="postcodeZIP">PostcodeZIP *</label>
               <input
                 style={{ fontSize: "16px" }}
                 type="text"
-                id="PostcodeZIP"
-                name="PostcodeZIP"
-                value={formData?.PostcodeZIP}
+                id="postcodeZIP"
+                name="postcodeZIP"
+                value={formData?.postcodeZIP}
                 onChange={handleChange}
                 required
               />
@@ -530,12 +500,6 @@ function CheckoutPageSectionSecond() {
         <br />
         <div className={style.payment_box}>
           <label>
-            <input
-              style={{ fontSize: "16px" }}
-              type="radio"
-              name="paymentMethod"
-              onChange={handleOnlinePayment}
-            />
             Online Payment
           </label>
         </div>

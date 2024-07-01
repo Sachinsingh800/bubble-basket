@@ -41,7 +41,7 @@ function ContactUsPageSectionSecond() {
         </div>
         <div>
           <p>CONTACT</p>
-          <span>+1 202-459-8489 contact@wineandchampagnegifts.com</span>
+          <span>+1 202-459-8489 order@luxurybubblebasket.com</span>
         </div>
         <div>
           <p>FOLLOW US ON</p>

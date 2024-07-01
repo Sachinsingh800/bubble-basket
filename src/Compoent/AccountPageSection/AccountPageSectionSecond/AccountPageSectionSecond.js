@@ -6,6 +6,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import PasswordIcon from "@mui/icons-material/Password";
 import AddHomeIcon from "@mui/icons-material/AddHome";
 import { AddtoCart } from "../../Apis/Apis";
+import Cookies from "js-cookie";
 
 function AccountPageSectionSecond() {
   const handleLinkClick = (category) => {
@@ -25,7 +26,7 @@ function AccountPageSectionSecond() {
     window.location.href = "/";
   };
 
-  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
+  const token = Cookies.get("token");
 
   return (
     <div className={style.main}>
@@ -38,7 +39,7 @@ function AccountPageSectionSecond() {
           </div>
         </a>
 
-        {loginStatus ? (
+        {token ? (
           <div onClick={handleLogout}>
             <LoginIcon className={style.icon} />
             <span>Logout</span>

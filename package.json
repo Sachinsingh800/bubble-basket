@@ -16,7 +16,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
-    "dotenv": "^16.4.5",
     "google-map-react": "^2.2.1",
     "js-cookie": "^3.0.5",
     "nanoid": "^5.0.7",
@@ -34,7 +33,6 @@
     "react-scripts": "5.0.1",
     "react-snap": "^1.23.0",
     "recoil": "^0.7.7",
-    "sitemap": "^8.0.0",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
@@ -43,11 +41,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "inlineCss": true
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

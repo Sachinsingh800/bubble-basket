@@ -19,24 +19,6 @@ function BlogFullPageSectionSecond() {
   const [userWebsite, setUserWebsite] = useState("");
   const [userEmail, setUserEmail] = useState(""); // Added state for email
   const [userComments, setUserComments] = useState([
-    {
-      userimg: dp,
-      date: "2024-05-11T08:27:20.263Z",
-      username: "User1",
-      comment: "This is the first comment.",
-    },
-    {
-      userimg: dp,
-      date: "2024-05-12T10:15:30.123Z",
-      username: "User2",
-      comment: "This is the second comment.",
-    },
-    {
-      userimg: dp,
-      date: "2024-05-13T12:45:50.456Z",
-      username: "User3",
-      comment: "This is the third comment.",
-    },
   ]);
 
   const history = useNavigate(); // Use history for navigation
@@ -107,7 +89,6 @@ function BlogFullPageSectionSecond() {
     setUserEmail(""); // Clear the email field
     alert("Your comment has been posted successfully!");
   };
-
   return (
     <div className={style.main}>
       <Helmet>
@@ -175,7 +156,7 @@ function BlogFullPageSectionSecond() {
             </div>
             <div className={style.title_box}>
               <h1>{selectedBlog.blogTitle}</h1>
-              <p>{convertToJSX(selectedBlog.description)}</p>
+              <p className={style.blog_des}>{convertToJSX(selectedBlog.description)}</p>
             </div>
             <div className={style.bottom_box}>
               <div></div>

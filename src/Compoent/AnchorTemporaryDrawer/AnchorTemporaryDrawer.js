@@ -20,6 +20,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
+import Cookies from "js-cookie";
 
 export default function AnchorTemporaryDrawer() {
   const [update, setUpdate] = useRecoilState(addItemCart);
@@ -28,8 +29,8 @@ export default function AnchorTemporaryDrawer() {
   });
   const [cartItems, setCartItems] = React.useState([]);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || "false");
   const isMobile = useMediaQuery("(max-width:600px)");
+  const token = Cookies.get("token");
 
   React.useEffect(() => {
     const storedCartItems =
@@ -46,7 +47,7 @@ export default function AnchorTemporaryDrawer() {
 
   const handleNavigate = () => {
     localStorage.setItem("checkoutStatus", JSON.stringify(true));
-    if (loginStatus) {
+    if (token) {
       handleCheckoutOrder();
     } else {
       window.location.href = "/Login";

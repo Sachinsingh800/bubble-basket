@@ -23,7 +23,7 @@ const getAllCategory = async (e,title) => {
     },
     {
       id: 2,
-      title: "FATHER’S DAY",
+      title: "PARENT’S DAY",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
     },
     {

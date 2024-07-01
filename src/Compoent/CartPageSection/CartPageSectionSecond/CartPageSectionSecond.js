@@ -9,18 +9,19 @@ import {
 } from "../../Apis/Apis";
 import { addItemCart, updateCart } from "../../Recoil/Recoil";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Cookies from "js-cookie";
 
 function CartPageSectionSecond() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useRecoilState(updateCart);
-  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [coupon, setCoupon] = useState("");
   const cartData = JSON.parse(sessionStorage.getItem("checkout")) || [];
   const [productId, setProductId] = useState(null);
   const [productQuantity, setProductQuantity] = useState(0);
   const [updatesideCart, setupdatesideCart] = useRecoilState(addItemCart);
+  const token = Cookies.get("token");
 
   useEffect(() => {
     const cartData = JSON.parse(sessionStorage.getItem("cartData"));
@@ -39,7 +40,7 @@ function CartPageSectionSecond() {
       Product_quantity: quantity,
     };
     setData(updatedData);
-    if (loginStatus) {
+    if (token) {
       setProductQuantity(quantity);
     }
     sessionStorage.setItem("cartData", JSON.stringify(updatedData));
@@ -48,7 +49,7 @@ function CartPageSectionSecond() {
   };
 
   const handleRemoveProduct = (index) => {
-    if (loginStatus) {
+    if (token) {
       removeItemFromtheCart(index);
     }
     const updatedData = [...data];
@@ -74,7 +75,7 @@ function CartPageSectionSecond() {
 
   useEffect(() => {
     handleCheckoutOrder();
-  }, [loginStatus]);
+  }, [token]);
 
   const calculateTotalPrice = (cartData) => {
     const total = cartData.reduce((total, item) => {
@@ -97,9 +98,16 @@ function CartPageSectionSecond() {
   };
 
   const handleCouponCheck = async () => {
+    if (!token) {
+      window.location.href = "/Login";
+    }
     setLoading(true);
     try {
-      await getCheckoutCoupon(coupon);
+      if (coupon === "") {
+        alert("Please enter a coupon code");
+      } else {
+        await getCheckoutCoupon(coupon);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -142,7 +150,7 @@ function CartPageSectionSecond() {
     sessionStorage.setItem("cartData", JSON.stringify(data));
     sessionStorage.setItem("checkoutStatus", JSON.stringify(true));
     setUpdate(update + 1);
-    if (loginStatus) {
+    if (token) {
       handleCheckoutOrder();
     } else {
       window.location.href = "/Login";
@@ -256,7 +264,7 @@ function CartPageSectionSecond() {
                           }}
                         />
                         &nbsp;
-                        {loginStatus && productId === item?.Product_id && (
+                        {token && productId === item?.Product_id && (
                           <CheckCircleOutlineIcon color="#7b0128" />
                         )}
                       </td>
@@ -292,7 +300,7 @@ function CartPageSectionSecond() {
                   UPDATE CART →
                 </button>
               </div>
-              {loginStatus ? (
+              {token ? (
                 <div className={style.order_summary}>
                   <h4>YOUR ORDER</h4>
                   <div>

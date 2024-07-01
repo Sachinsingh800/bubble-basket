@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../Recoil/Recoil";
 import { AddtoCart } from "../Apis/Apis";
+import Cookies from "js-cookie";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -16,6 +17,7 @@ export default function AlertDialogSlide({ cartdata }) {
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = React.useState(1);
   const [update, setUpdate] = useRecoilState(updateCart);
+  const token = Cookies.get("token");
 
   const handleQuantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
@@ -30,8 +32,8 @@ export default function AlertDialogSlide({ cartdata }) {
   };
 
   const handleAddToCart = () => {
-    const loginStatus=JSON.parse(sessionStorage.getItem("isLoggedIn"))
-    if(loginStatus){
+
+    if(token){
       handleAddToCartInBeckend(cartdata._id)
     }
     const itemToAdd = { ...cartdata, quantity: quantity };

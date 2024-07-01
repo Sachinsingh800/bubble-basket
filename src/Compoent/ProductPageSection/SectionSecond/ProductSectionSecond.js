@@ -25,6 +25,7 @@ import "react-medium-image-zoom/dist/styles.css";
 import RecentlyView from "../../RecentlyView/RecentlyView";
 import ZoomImage from "../../ZoomImage/ZoomImage";
 import { Helmet } from "react-helmet";
+import Cookies from "js-cookie";
 
 function ProductSectionSecond() {
   const storedProducts =
@@ -49,6 +50,7 @@ function ProductSectionSecond() {
   const [userReview, setUserReview] = useState([]);
   const [userCreateReview, setUserCreateReview] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const token = Cookies.get("token");
 
   const handleZoomChange = useCallback((shouldZoom) => {
     setIsZoomed(shouldZoom);
@@ -129,8 +131,8 @@ function ProductSectionSecond() {
   const handleAddToCart = (e) => {
     e.preventDefault();
     setMessage("");
-    const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn"));
-    if (loginStatus) {
+  
+    if (token) {
       handleAddToCartInBeckend();
     }
     const cartData = JSON.parse(sessionStorage.getItem("cartData")) || [];

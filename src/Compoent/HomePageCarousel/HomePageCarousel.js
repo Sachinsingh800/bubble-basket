@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import style from "./HomePageCarousel.module.css";
 import product1 from "../Images/Desktop - 1600X600 - Champagne.webp";
 import product2 from "../Images/Desktop - 1600X600 - Chocolate.webp";
@@ -18,13 +17,7 @@ function HomePageCarousel() {
     setIndex(selectedIndex);
   };
 
-  const onPrevClick = () => {
-    setIndex((index - 1 + 4) % 4);
-  };
 
-  const onNextClick = () => {
-    setIndex((index + 1) % 4);
-  };
 
   const handleNavigate = (type) => {
     window.location.href = `/${type}`;
@@ -32,15 +25,6 @@ function HomePageCarousel() {
 
   return (
     <>
-      <h1 hidden>Luxury Bubble Basket | Buy Gifts For Everyone</h1>
-      {/* <div className={style.button_container}>
-        <button onClick={onPrevClick}>
-          <GoArrowLeft className={style.icon} />
-        </button>
-        <button onClick={onNextClick}>
-          <GoArrowRight className={style.icon} />
-        </button>
-      </div> */}
       <Carousel
         slide={true}
         onSelect={handleSelect}

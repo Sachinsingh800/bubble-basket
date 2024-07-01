@@ -18,13 +18,15 @@ import { Helmet } from 'react-helmet';
 import { getCheckout } from "../Apis/Apis";
 import { useRecoilState } from "recoil";
 import { updateCart } from "../Recoil/Recoil";
+import Cookies from "js-cookie";
 
 function Home() {
-  const loginStatus = JSON.parse(sessionStorage.getItem("isLoggedIn") || false);
+
+  const token = Cookies.get("token");
   const [update, setUpdate] = useRecoilState(updateCart);
   useEffect(() => {
     handleCheckoutOrder();
-  }, [loginStatus]);
+  }, [token]);
   const handleCheckoutOrder = async () => {
     try {
       await getCheckout();
