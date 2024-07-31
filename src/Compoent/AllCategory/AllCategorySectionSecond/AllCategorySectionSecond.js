@@ -41,20 +41,20 @@ function AllCategorySectionSecond() {
 
   const generateHelmet = (product) => (
     <Helmet>
-      <html lang="en" />
-      <meta charSet="utf-8" />
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>
-        Wine Gift Baskets And Gift Sets with Rapid Delivery - Buy Online
-      </title>
-      <meta
-        name="description"
-        content="Our Wine Gift Baskets And Gift Sets, fit for all budgets & preferences of wine lovers. Order online & deliver wine baskets to your loved ones' doors today!"
-      />
-      <meta
-        name="head title"
-        content="Wine Gift Baskets And Gift Sets with Rapid Delivery - Buy Online"
-      />
+    <html lang="en" />
+    <meta charSet="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Premium Wine & Champagne Gift Baskets - Perfect for Any Occasion</title>
+    <meta name="description" content="Discover our exquisite selection of red and white wine gift baskets, sparkling champagne gift sets, and luxury gift boxes. Ideal for corporate gifts, birthdays, weddings, and personalized occasions. Shop now for the perfect gift!" />
+    <link rel="canonical" href="https://www.luxurybubblebasket.com/" />
+    <meta
+      name="title"
+      content="Luxury Bubble Basket"
+    />
+    <meta
+      name="keyword"
+      content="Premium Wine & Champagne Gift Baskets - Perfect for Any Occasion"
+    />
       <link
         rel="canonical"
         href={`https://www.luxurybubblebasket.com/${category}`}
