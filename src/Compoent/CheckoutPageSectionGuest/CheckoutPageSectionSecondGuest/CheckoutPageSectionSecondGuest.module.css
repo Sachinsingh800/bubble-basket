@@ -163,6 +163,11 @@ input[type="email"] {
   color: lightgray;
   cursor: not-allowed;
 }
+.order_notes{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
 
 @media screen and (max-width:784px) {
   .grid_container{

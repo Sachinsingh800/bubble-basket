@@ -22,7 +22,7 @@ function CheckoutPageGuest() {
       </Helmet>
       <Header />
       <div className={style.Container}>
-        <BreadCrumsHeader urlname={"Checkout"} />
+        <BreadCrumsHeader urlname={"Checkout Guest"} />
         <CheckoutPageSectionSecondGuest />
         <Footer />
       </div>

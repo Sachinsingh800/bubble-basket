@@ -144,7 +144,17 @@ function CheckoutPageSectionSecondGuest() {
           <BillingAddressFormGuest  />
           <ShippingAddressFormGuest />
         </div>
-
+        <br/>
+        <div className={style.order_notes}>
+          <label htmlFor="orderNotes">Order Notes (optional)</label>
+          <textarea
+            id="orderNotes"
+            name="orderNotes"
+            rows="4"
+            placeholder="Any special requests or notes for your order."
+            style={{padding:"10px"}}
+          />
+        </div>
         <br />
         <div className={style.order_summary}>
           <h4>YOUR ORDER</h4>

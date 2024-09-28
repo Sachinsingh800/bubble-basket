@@ -26,16 +26,18 @@ const ShippingAddressFormGuest = () => {
     address2: "",
     city: "",
     postCode: "",
-    country: "",
+    country: "US", // Set default country to US
     state: "",
     mobile: "",
-    phoneCode: "",
+    phoneCode: "1", // US phone code
   });
 
   const [shippingDetails, setshippingDetails] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([
+    { name: "United States", isoCode: "US", phonecode: "1" },
+  ]); // Only US
   const [states, setStates] = useState([]);
   const [errors, setErrors] = useState({});
   const [showForm, setShowForm] = useState(false); // State to manage form visibility
@@ -63,34 +65,27 @@ const ShippingAddressFormGuest = () => {
 
   useEffect(() => {
     fetchshippingDetails();
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get(
-          "https://modifiedllb.onrender.com/countries"
-        );
-        setCountries(response.data.data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-    fetchCountries();
+    // Since country is fixed to US, no need to fetch countries
+    // fetchCountries is no longer needed
+    fetchStates(); // Fetch states for default country
   }, []);
 
   useEffect(() => {
-    const fetchStates = async () => {
-      if (formData.country) {
-        try {
-          const response = await axios.get(
-            `https://modifiedllb.onrender.com/statesByCountryCode?countryCode=${formData.country}`
-          );
-          setStates(response.data.data);
-        } catch (error) {
-          console.error("Error fetching states:", error);
-        }
-      }
-    };
     fetchStates();
   }, [formData.country]);
+
+  const fetchStates = async () => {
+    if (formData.country) {
+      try {
+        const response = await axios.get(
+          `https://modifiedllb.onrender.com/statesByCountryCode?countryCode=${formData.country}`
+        );
+        setStates(response.data.data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      }
+    }
+  };
 
   const fetchshippingDetails = () => {
     const storedDetails = sessionStorage.getItem("shippingDetails");
@@ -114,18 +109,9 @@ const ShippingAddressFormGuest = () => {
     });
   };
 
-  const handleCountryChange = (e) => {
-    const selectedCountry = countries.find(
-      (country) => country.isoCode === e.target.value
-    );
-    setFormData({
-      ...formData,
-      country: selectedCountry.isoCode,
-      phoneCode: selectedCountry.phonecode,
-      state: "",
-    });
-    setStates([]);
-  };
+  // Since country is fixed to US, no handleCountryChange needed
+  // If you still have it, keep it but ensure it doesn't change
+  // Alternatively, remove it
 
   const validateForm = () => {
     const newErrors = {};
@@ -134,7 +120,7 @@ const ShippingAddressFormGuest = () => {
     if (!formData.address1) newErrors.address1 = "Address 1 is required";
     if (!formData.city) newErrors.city = "City is required";
     if (!formData.postCode) newErrors.postCode = "Post code is required";
-    if (!formData.country) newErrors.country = "Country is required";
+    // Country is fixed, no need to validate
     if (!formData.state) newErrors.state = "State is required";
     if (!formData.mobile) newErrors.mobile = "Mobile number is required";
     setErrors(newErrors);
@@ -208,10 +194,10 @@ const ShippingAddressFormGuest = () => {
       address2: "",
       city: "",
       postCode: "",
-      country: "",
+      country: "US",
       state: "",
       mobile: "",
-      phoneCode: "",
+      phoneCode: "1",
     });
     setIsEditing(false);
     setEditId(null);
@@ -274,7 +260,9 @@ const ShippingAddressFormGuest = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.formTitle}>
-        {isEditing ? "Edit Address" : "Where Would You Like to Send This Gift ?"}
+        {isEditing
+          ? "Edit Address"
+          : "Where Would You Like to Send This Gift ?"}
       </h2>
 
       {!showForm && (
@@ -282,7 +270,7 @@ const ShippingAddressFormGuest = () => {
           {/* Display saved addresses */}
           <div className={styles.addressList}>
             <div className={styles.card_heading}>
-              <h3>Select shipping Address</h3>
+              <h3>Select Shipping Address</h3>
               <Button
                 variant="contained"
                 color="primary"
@@ -357,7 +345,7 @@ const ShippingAddressFormGuest = () => {
       )}
 
       {showForm && (
-        <form className={styles.form} >
+        <form className={styles.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -455,16 +443,17 @@ const ShippingAddressFormGuest = () => {
               <FormControl
                 fullWidth
                 variant="outlined"
-                error={!!errors.country}
+                // No need to validate country since it's fixed
                 className={styles.formField}
               >
                 <InputLabel>Country *</InputLabel>
                 <Select
                   name="country"
                   value={formData.country}
-                  onChange={handleCountryChange}
+                  // onChange={handleCountryChange} // No need to handle change
                   label="Country *"
                   required
+                  disabled // Disable the country select field
                 >
                   {countries.map((country) => (
                     <MenuItem key={country.isoCode} value={country.isoCode}>
@@ -472,7 +461,7 @@ const ShippingAddressFormGuest = () => {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>{errors.country}</FormHelperText>
+                {/* No error message needed since it's fixed */}
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -503,8 +492,15 @@ const ShippingAddressFormGuest = () => {
               <TextField
                 label="Mobile *"
                 name="mobile"
+                type="text" // Change type to 'text' to handle the maxLength properly
                 value={formData.mobile}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Check if the value is a number and has 10 digits or less
+                  if (/^\d*$/.test(value) && value.length <= 10) {
+                    handleChange(e); // Call the change handler only if the input is valid
+                  }
+                }}
                 variant="outlined"
                 fullWidth
                 error={!!errors.mobile}

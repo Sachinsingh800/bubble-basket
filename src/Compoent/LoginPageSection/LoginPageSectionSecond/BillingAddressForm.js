@@ -174,7 +174,7 @@ const BillingAddressForm = () => {
     e.stopPropagation();
 
     if (validateForm()) {
-    const  fullphone=`${formData.phoneCode}-${formData?.mobile}`
+      const fullphone = `${formData.phoneCode}-${formData?.mobile}`;
       try {
         const dataToSubmit = {
           firstName: formData?.firstName,
@@ -515,8 +515,15 @@ const BillingAddressForm = () => {
               <TextField
                 label="Mobile *"
                 name="mobile"
+                type="text" // Change type to 'text' to handle the maxLength properly
                 value={formData.mobile}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Check if the value is a number and has 10 digits or less
+                  if (/^\d*$/.test(value) && value.length <= 10) {
+                    handleChange(e); // Call the change handler only if the input is valid
+                  }
+                }}
                 variant="outlined"
                 fullWidth
                 error={!!errors.mobile}

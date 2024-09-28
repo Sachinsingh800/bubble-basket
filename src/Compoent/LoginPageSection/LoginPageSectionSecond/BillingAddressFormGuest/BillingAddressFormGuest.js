@@ -357,7 +357,7 @@ const BillingAddressFormGuest = () => {
       )}
 
       {showForm && (
-        <form className={styles.form} >
+        <form className={styles.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -503,8 +503,15 @@ const BillingAddressFormGuest = () => {
               <TextField
                 label="Mobile *"
                 name="mobile"
+                type="text" // Change type to 'text' to handle the maxLength properly
                 value={formData.mobile}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Check if the value is a number and has 10 digits or less
+                  if (/^\d*$/.test(value) && value.length <= 10) {
+                    handleChange(e); // Call the change handler only if the input is valid
+                  }
+                }}
                 variant="outlined"
                 fullWidth
                 error={!!errors.mobile}

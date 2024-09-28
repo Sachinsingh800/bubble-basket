@@ -11,15 +11,15 @@ import {
   FormControl,
   FormHelperText,
   InputAdornment,
-  Radio,
   RadioGroup,
   FormControlLabel,
-  Checkbox,
+  Radio,
 } from "@mui/material";
 import styles from "./ShippingAddressForm.module.css"; // Import CSS module
 import { useNavigate } from "react-router-dom";
 
 const ShippingAddressForm = () => {
+  // Initialize formData with country set to US and phoneCode to 1
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,22 +28,26 @@ const ShippingAddressForm = () => {
     address2: "",
     city: "",
     postCode: "",
-    country: "",
+    country: "US", // Default country to US
     state: "",
     mobile: "",
-    phoneCode: "",
+    phoneCode: "1", // US phone code
   });
 
   const [shippingDetails, setshippingDetails] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [countries, setCountries] = useState([]);
+  // Set countries to only include United States
+  const [countries, setCountries] = useState([
+    { name: "United States", isoCode: "US", phonecode: "1" },
+  ]);
   const [states, setStates] = useState([]);
   const [errors, setErrors] = useState({});
   const [showForm, setShowForm] = useState(false); // State to manage form visibility
   const navigate = useNavigate();
 
   const [selectedAddressId, setSelectedAddressId] = useState("");
+
   // Function to handle selecting an address
   const handleSelectAddress = (event) => {
     setSelectedAddressId(event.target.value);
@@ -54,6 +58,7 @@ const ShippingAddressForm = () => {
     if (selectedAddressId) {
       handleSubmitDefaultAddress();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAddressId]);
 
   // Function to submit the selected address as the default
@@ -80,35 +85,32 @@ const ShippingAddressForm = () => {
 
   useEffect(() => {
     fetchshippingDetails();
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get(
-          "https://modifiedllb.onrender.com/countries"
-        );
-        setCountries(response.data.data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-    fetchCountries();
+    // Since country is fixed to US, no need to fetch countries from API
+    // fetchCountries is no longer needed
+    fetchStates(); // Fetch states for default country
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const fetchStates = async () => {
-      if (formData.country) {
-        try {
-          const response = await axios.get(
-            `https://modifiedllb.onrender.com/statesByCountryCode?countryCode=${formData.country}`
-          );
-          setStates(response.data.data);
-        } catch (error) {
-          console.error("Error fetching states:", error);
-        }
-      }
-    };
     fetchStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.country]);
 
+  // Function to fetch states based on country code (fixed to US)
+  const fetchStates = async () => {
+    if (formData.country) {
+      try {
+        const response = await axios.get(
+          `https://modifiedllb.onrender.com/statesByCountryCode?countryCode=${formData.country}`
+        );
+        setStates(response.data.data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      }
+    }
+  };
+
+  // Function to fetch shipping details from API
   const fetchshippingDetails = async () => {
     try {
       const token = Cookies.get("token");
@@ -134,6 +136,7 @@ const ShippingAddressForm = () => {
     }
   };
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -142,19 +145,9 @@ const ShippingAddressForm = () => {
     });
   };
 
-  const handleCountryChange = (e) => {
-    const selectedCountry = countries.find(
-      (country) => country.isoCode === e.target.value
-    );
-    setFormData({
-      ...formData,
-      country: selectedCountry.isoCode,
-      phoneCode: selectedCountry.phonecode,
-      state: "",
-    });
-    setStates([]);
-  };
+  // Removed handleCountryChange since country is fixed to US
 
+  // Validate form fields
   const validateForm = () => {
     const newErrors = {};
     if (!formData.firstName) newErrors.firstName = "First name is required";
@@ -162,17 +155,18 @@ const ShippingAddressForm = () => {
     if (!formData.address1) newErrors.address1 = "Address 1 is required";
     if (!formData.city) newErrors.city = "City is required";
     if (!formData.postCode) newErrors.postCode = "Post code is required";
-    if (!formData.country) newErrors.country = "Country is required";
+    // Country is fixed, no need to validate
     if (!formData.state) newErrors.state = "State is required";
     if (!formData.mobile) newErrors.mobile = "Mobile number is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handle form submission for adding or editing address
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const  fullphone=`${formData.phoneCode}-${formData?.mobile}`
+    const fullphone = `${formData.phoneCode}-${formData.mobile}`;
     if (validateForm()) {
       try {
         const dataToSubmit = {
@@ -183,7 +177,7 @@ const ShippingAddressForm = () => {
           address2: formData.address2,
           townCity: formData.city,
           postcodeZIP: formData.postCode,
-          country: formData.country,
+          country: formData.country, // Always US
           stateCounty: formData.state,
           phone: fullphone,
         };
@@ -220,6 +214,7 @@ const ShippingAddressForm = () => {
     }
   };
 
+  // Reset form to initial state
   const resetForm = () => {
     setFormData({
       firstName: "",
@@ -229,36 +224,40 @@ const ShippingAddressForm = () => {
       address2: "",
       city: "",
       postCode: "",
-      country: "",
+      country: "US", // Reset to US
       state: "",
       mobile: "",
-      phoneCode: "",
+      phoneCode: "1", // Reset to US phone code
     });
     setIsEditing(false);
     setEditId(null);
+    setErrors({});
   };
 
+  // Handle editing an existing address
   const handleEdit = (id) => {
     const address = shippingDetails.find((detail) => detail._id === id);
-    setFormData({
-      firstName: address.firstName,
-      lastName: address.lastName,
-      company: address.companyName,
-      address1: address.address1,
-      address2: address.address2,
-      city: address.townCity,
-      postCode: address.postcodeZIP,
-      country: address.country,
-      state: address.stateCounty,
-      mobile: address.phone,
-      phoneCode:
-        countries.find((c) => c.isoCode === address.country)?.phonecode || "",
-    });
-    setIsEditing(true);
-    setEditId(id);
-    setShowForm(true); // Show the form for editing
+    if (address) {
+      setFormData({
+        firstName: address.firstName,
+        lastName: address.lastName,
+        company: address.companyName,
+        address1: address.address1,
+        address2: address.address2,
+        city: address.townCity,
+        postCode: address.postcodeZIP,
+        country: "US", // Ensure country is always US
+        state: address.stateCounty,
+        mobile: address.phone.replace(`${address.phoneCode}-`, ""),
+        phoneCode: countries.find((c) => c.isoCode === "US")?.phonecode || "1",
+      });
+      setIsEditing(true);
+      setEditId(id);
+      setShowForm(true); // Show the form for editing
+    }
   };
 
+  // Handle deleting an address
   const handleDelete = async (id) => {
     try {
       const token = Cookies.get("token");
@@ -273,27 +272,28 @@ const ShippingAddressForm = () => {
       fetchshippingDetails();
     } catch (error) {
       console.error("Error deleting address:", error);
+      alert("Error deleting address. Please try again.");
     }
   };
 
+  // Handle adding a new address
   const handleAddNewAddress = () => {
     resetForm(); // Reset form for new address
     setIsEditing(false); // Set editing to false for adding a new address
     setShowForm(true); // Show the form for adding a new address
   };
 
+  // Handle cancelling the form
   const handleCancel = () => {
     resetForm(); // Reset form
     setShowForm(false); // Hide the form
-    setSelectedAddressId(null); // Clear selected address
+    setSelectedAddressId(""); // Clear selected address
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.formTitle}>
-        {isEditing
-          ? "Edit Address"
-          : " Where Would You Like to Send This Gift ?"}
+        {isEditing ? "Edit Address" : "Where Would You Like to Send This Gift?"}
       </h2>
 
       {!showForm && ( // Hide address list when form is visible
@@ -301,7 +301,7 @@ const ShippingAddressForm = () => {
           {/* Display saved addresses */}
           <div className={styles.addressList}>
             <div className={styles.card_heading}>
-              <h3>Select shipping Address</h3>
+              <h3>Select Shipping Address</h3>
               <Button
                 variant="contained"
                 color="primary"
@@ -312,35 +312,38 @@ const ShippingAddressForm = () => {
               </Button>
             </div>
 
-            <RadioGroup
+            {shippingDetails.length === 0 ? (
+              <p>No shipping addresses found. Please add one.</p>
+            ) : (
+              <RadioGroup
               value={selectedAddressId}
               onChange={handleSelectAddress}
               className={styles.radioGroup}
             >
-              {shippingDetails.map((address) => (
-                <div key={address._id} className={styles.addressItem}>
+              {shippingDetails?.map((address) => (
+                <div key={address?._id} className={styles.addressItem}>
                   <FormControlLabel
                     className={styles.address}
-                    value={address._id}
+                    value={address?._id}
                     control={<Radio />}
                     label={
                       <>
                         <strong>
-                          {address.firstName} {address.lastName}
+                          {address?.firstName} {address?.lastName}
                         </strong>
                         <div>
-                          {address.companyName}, {address.address1},{" "}
-                          {address.address2}, {address.townCity},{" "}
-                          {address.stateCounty}, {address.country}
+                          {address?.companyName}, {address?.address1},{" "}
+                          {address?.address2}, {address?.townCity},{" "}
+                          {address?.stateCounty}, {address?.country}
                         </div>
                         <div>
-                          {address.postcodeZIP}, {address.phone}
+                          {address?.postcodeZIP}, {address?.phone}
                         </div>
                       </>
                     }
                   />
                   <div className={styles.button_box}>
-                    {address.setAsDefault ? (
+                    {address?.setAsDefault ? (
                       <h6>Default Address</h6>
                     ) : (
                       <Button
@@ -356,7 +359,7 @@ const ShippingAddressForm = () => {
                     <Button
                       variant="outlined"
                       color="primary"
-                      onClick={() => handleEdit(address._id)}
+                      onClick={() => handleEdit(address?._id)}
                       className={styles.editButton}
                     >
                       Edit
@@ -365,6 +368,7 @@ const ShippingAddressForm = () => {
                 </div>
               ))}
             </RadioGroup>
+            )}
           </div>
         </>
       )}
@@ -372,6 +376,7 @@ const ShippingAddressForm = () => {
       {showForm && (
         <div className={styles.form}>
           <Grid container spacing={2}>
+            {/* First Name */}
             <Grid item xs={12} sm={6}>
               <TextField
                 label="First Name *"
@@ -386,6 +391,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Last Name */}
             <Grid item xs={12} sm={6}>
               <TextField
                 label="Last Name *"
@@ -400,6 +407,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Company */}
             <Grid item xs={12}>
               <TextField
                 label="Company"
@@ -411,6 +420,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Address Line 1 */}
             <Grid item xs={12}>
               <TextField
                 label="Address Line 1 *"
@@ -425,6 +436,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Address Line 2 */}
             <Grid item xs={12}>
               <TextField
                 label="Address Line 2"
@@ -436,6 +449,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* City */}
             <Grid item xs={12} sm={6}>
               <TextField
                 label="City *"
@@ -450,6 +465,8 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Post Code */}
             <Grid item xs={12} sm={6}>
               <TextField
                 label="Post Code *"
@@ -464,20 +481,23 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Country - Fixed to US and Disabled */}
             <Grid item xs={12} sm={6}>
               <FormControl
                 fullWidth
                 variant="outlined"
-                error={!!errors.country}
+                // No need to validate country since it's fixed
                 className={styles.formField}
               >
                 <InputLabel>Country *</InputLabel>
                 <Select
                   name="country"
                   value={formData.country}
-                  onChange={handleCountryChange}
+                  // onChange={handleCountryChange} // Removed since country is fixed
                   label="Country *"
                   required
+                  disabled // Disable the country select field
                 >
                   {countries.map((country) => (
                     <MenuItem key={country.isoCode} value={country.isoCode}>
@@ -485,9 +505,11 @@ const ShippingAddressForm = () => {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>{errors.country}</FormHelperText>
+                {/* No error message needed since it's fixed */}
               </FormControl>
             </Grid>
+
+            {/* State */}
             <Grid item xs={12} sm={6}>
               <FormControl
                 fullWidth
@@ -512,12 +534,21 @@ const ShippingAddressForm = () => {
                 <FormHelperText>{errors.state}</FormHelperText>
               </FormControl>
             </Grid>
+
+            {/* Mobile */}
             <Grid item xs={12} sm={6}>
               <TextField
                 label="Mobile *"
                 name="mobile"
+                type="text" // Change type to 'text' to handle the maxLength properly
                 value={formData.mobile}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Check if the value is a number and has 10 digits or less
+                  if (/^\d*$/.test(value) && value.length <= 10) {
+                    handleChange(e); // Call the change handler only if the input is valid
+                  }
+                }}
                 variant="outlined"
                 fullWidth
                 error={!!errors.mobile}
@@ -533,12 +564,13 @@ const ShippingAddressForm = () => {
                 className={styles.formField}
               />
             </Grid>
+
+            {/* Form Buttons */}
             <Grid item xs={12} className={styles.buttonContainer}>
               <Button
-                type="submit"
+                onClick={(e) => handleSubmit(e)}
                 variant="contained"
                 color="primary"
-                onClick={handleSubmit}
                 className={styles.submitButton}
               >
                 {isEditing ? "Update Address" : "Save Address"}
