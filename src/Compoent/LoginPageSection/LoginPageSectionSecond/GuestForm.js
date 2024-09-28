@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
-import styles from './AuthForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { activeTabState } from '../../Recoil/Recoil';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import styles from './AuthForm.module.css';
 
 const GuestForm = () => {
   const [formData, setFormData] = useState({
@@ -17,23 +19,17 @@ const GuestForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
-    // Restrict the telephone input to 10 digits only
-    if (name === "telephone") {
-      // Allow only digits and limit to 10 characters
-      const regex = /^[0-9]{0,10}$/;
-      if (regex.test(value)) {
-        setFormData({
-          ...formData,
-          [name]: value
-        });
-      }
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-    }
+  const handlePhoneChange = (phone) => {
+    setFormData({
+      ...formData,
+      telephone: phone
+    });
   };
 
   const handleSubmit = (e) => {
@@ -56,7 +52,7 @@ const GuestForm = () => {
           variant="outlined"
           fullWidth
           className={styles.formField}
-          required // Optional: Add required attribute
+          required
         />
         <TextField
           label="Last Name"
@@ -66,7 +62,7 @@ const GuestForm = () => {
           variant="outlined"
           fullWidth
           className={styles.formField}
-          required // Optional: Add required attribute
+          required
         />
         <TextField
           label="E-Mail"
@@ -76,19 +72,18 @@ const GuestForm = () => {
           variant="outlined"
           fullWidth
           className={styles.formField}
-          required // Optional: Add required attribute
-          type="email" // Ensures the correct input type
+          required
+          type="email"
         />
-        <TextField
-          label="Telephone"
-          name="telephone"
+        {/* Phone Input with phone code */}
+        <label>Telephone</label>
+        <PhoneInput
+          country={'us'}
           value={formData.telephone}
-          onChange={handleChange}
-          variant="outlined"
-          fullWidth
-          className={styles.formField}
-          required // Optional: Add required attribute
+          onChange={handlePhoneChange}
+          inputStyle={{ width: '100%' }}  // Make sure it spans full width
         />
+        <br/>
         <Button
           type="submit"
           className={styles.formButton}

@@ -47,6 +47,7 @@ export default function Header(props) {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const guest = JSON.parse(sessionStorage.getItem("guest"))
 
   const handleMouseEnter = () => {
     setPopoverOpen(true);
@@ -351,6 +352,7 @@ export default function Header(props) {
                 <div className={style.humburger}>
                   <HumBurger />
                 </div>
+                {guest  && <p>Guest</p>}
               </div>
             </div>
             <div className={style.search_box_mob}>
@@ -415,6 +417,7 @@ export default function Header(props) {
                 </ul>
               )}
             </div>
+           
           </Toolbar>
         </AppBar>
       </HideOnScroll>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import styles from './AuthForm.module.css';
 import { RegisterUser } from '../../Apis/Apis';
 import { useNavigate } from 'react-router-dom';
@@ -55,7 +57,9 @@ const RegisterForm = () => {
     }
 
     // Telephone validation
-    if (!formData.telephone || !phoneRegex.test(formData.telephone)) {
+    // Extract digits only for validation
+    const digitsOnlyPhone = formData.telephone.replace(/\D/g, '');
+    if (!digitsOnlyPhone || !phoneRegex.test(digitsOnlyPhone)) {
       errors.telephone = 'Please enter a valid 10-digit phone number';
     }
 
@@ -75,6 +79,14 @@ const RegisterForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle changes specifically for the PhoneInput component
+  const handlePhoneChange = (phone) => {
+    setFormData({
+      ...formData,
+      telephone: phone
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -157,18 +169,22 @@ const RegisterForm = () => {
           helperText={errors.email}
           required
         />
-        <TextField
-          label="Telephone"
-          name="telephone"
+        <label className={styles.phoneLabel}>Telephone</label>
+        <PhoneInput
+          country={'us'}
           value={formData.telephone}
-          onChange={handleChange}
-          variant="outlined"
-          fullWidth
-          className={styles.formField}
-          error={!!errors.telephone}
-          helperText={errors.telephone}
-          required
+          onChange={handlePhoneChange}
+          inputStyle={{ width: '100%' }} // Ensure it spans full width
+          containerStyle={{ marginTop: '16px', marginBottom: '8px' }}
+          inputProps={{
+            name: 'telephone',
+            required: true,
+            autoFocus: false
+          }}
         />
+        {errors.telephone && (
+          <p className={styles.errorText}>{errors.telephone}</p>
+        )}
         <TextField
           label="Password"
           name="password"
