@@ -58,10 +58,6 @@ const RegisterForm = () => {
 
     // Telephone validation
     // Extract digits only for validation
-    const digitsOnlyPhone = formData.telephone.replace(/\D/g, '');
-    if (!digitsOnlyPhone || !phoneRegex.test(digitsOnlyPhone)) {
-      errors.telephone = 'Please enter a valid 10-digit phone number';
-    }
 
     // Password validation
     if (!formData.password || !passwordRegex.test(formData.password)) {
