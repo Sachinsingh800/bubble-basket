@@ -23,6 +23,7 @@ import {
 import Cookies from "js-cookie";
 
 export default function AnchorTemporaryDrawer() {
+  const guest = sessionStorage.getItem("guest");
   const [update, setUpdate] = useRecoilState(addItemCart);
   const [state, setState] = React.useState({
     right: false,
@@ -46,7 +47,7 @@ export default function AnchorTemporaryDrawer() {
   }, [update, isMobile]);
 
   const handleNavigate = () => {
-    localStorage.setItem("checkoutStatus", JSON.stringify(true));
+    sessionStorage.setItem("checkoutStatus", JSON.stringify(true));
     if (token) {
       handleCheckoutOrder();
     } else {
@@ -88,7 +89,6 @@ export default function AnchorTemporaryDrawer() {
       onKeyDown={toggleDrawer("right", false)}
     >
       <List>
-
         {cartItems.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
@@ -112,21 +112,39 @@ export default function AnchorTemporaryDrawer() {
         ))}
       </List>
       <Divider />
-      {cartItems.length === 0 ? <p className={style.cartinfo}>Cart is Empty</p> : 
-          <Box sx={{ textAlign: "center", padding: "10px" }}>
-          <Button
-            style={{
-              backgroundColor: "#7b0128",
-              color: "white",
-              fontSize: 10,
-              margin: "5px",
-            }}
-            onClick={handleNavigate}
-            variant="contained"
-            color="primary"
-          >
-            Checkout
-          </Button>
+      {cartItems.length === 0 ? (
+        <p className={style.cartinfo}>Cart is Empty</p>
+      ) : (
+        <Box sx={{ textAlign: "center", padding: "10px" }}>
+          {guest ? (
+            <Button
+              style={{
+                backgroundColor: "#7b0128",
+                color: "white",
+                fontSize: 10,
+                margin: "5px",
+              }}
+              onClick={() => (window.location.href = "/Checkout-guest")}
+              variant="contained"
+              color="primary"
+            >
+              Checkout
+            </Button>
+          ) : (
+            <Button
+              style={{
+                backgroundColor: "#7b0128",
+                color: "white",
+                fontSize: 10,
+                margin: "5px",
+              }}
+              onClick={handleNavigate}
+              variant="contained"
+              color="primary"
+            >
+              Checkout
+            </Button>
+          )}
           <Button
             style={{
               backgroundColor: "#7b0128",
@@ -141,8 +159,7 @@ export default function AnchorTemporaryDrawer() {
             View Cart
           </Button>
         </Box>
-      }
-  
+      )}
     </Box>
   );
 
@@ -179,19 +196,36 @@ export default function AnchorTemporaryDrawer() {
       </List>
       <Divider />
       <Box sx={{ textAlign: "center", padding: "10px" }}>
-        <Button
-          style={{
-            backgroundColor: "#7b0128",
-            color: "white",
-            fontSize: 10,
-            margin: "5px",
-          }}
-          onClick={handleNavigate}
-          variant="contained"
-          color="primary"
-        >
-          Checkout
-        </Button>
+        {guest ? (
+          <Button
+            style={{
+              backgroundColor: "#7b0128",
+              color: "white",
+              fontSize: 10,
+              margin: "5px",
+            }}
+            onClick={() => (window.location.href = "/Checkout-guest")}
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+        ) : (
+          <Button
+            style={{
+              backgroundColor: "#7b0128",
+              color: "white",
+              fontSize: 10,
+              margin: "5px",
+            }}
+            onClick={handleNavigate}
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+        )}
+
         <Button
           style={{
             backgroundColor: "#7b0128",

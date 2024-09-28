@@ -10,24 +10,23 @@ function SectionFifth() {
   const [categoryData, setCategoryData] = useState([
     { categoryName: "WINE" },
     { categoryName: "CHAMPAGNE" },
-    { categoryName: "CHOCOLATE" },
+    { categoryName: "GIFT BASKETS" },
     { categoryName: "SPA" },
     { categoryName: "HAND PAINTED" },
     { categoryName: "PERSONALISED" },
   ]);
   const [occasion, setOccasion] = useState("");
   const [occasionData, setOccasionData] = useState([
-    { categoryName: "FATHER'S DAY GIFTS" },
+    { categoryName: "THANK YOU GIFTS" },
+    { categoryName: "HOLIDAYS GFTS" },
+    { categoryName: "GET WELL SOON GIFTS" },
+    { categoryName: "CHRISTMAS  GIFTS" },
+    { categoryName: "NEW YEAR GIFTS" },
     { categoryName: "ANNIVERSARY GIFTS" },
     { categoryName: "BIRTHDAY GIFTS" },
     { categoryName: "HOUSE WARMING GIFTS" },
     { categoryName: "WEDDING GIFTS" },
     { categoryName: "CONGRATULATIONS GIFTS" },
-    { categoryName: "GET WELL SOON GIFTS" },
-    { categoryName: "THANK YOU GIFTS" },
-    { categoryName: "HOLIDAYS GFTS" },
-    { categoryName: "CHRISTMAS  GIFTS" },
-    { categoryName: "NEW YEAR GIFTS" },
   ]);
   const [luxury, setLuxury] = useState("");
   const [luxuryData, setLuxuryData] = useState([
@@ -42,8 +41,13 @@ function SectionFifth() {
     { categoryName: "NAPA VALLEY GIFTS" },
   ]);
 
-  const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  const  formatTitleForUrl = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();  
   };
 
   const handleNavigate = (categoryName) => {

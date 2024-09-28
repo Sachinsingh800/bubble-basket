@@ -47,3 +47,8 @@
 .button_container button:hover {
   background-color: #0056b3;
 }
+@media (max-width:500px){
+  .cookie_box{
+    display: none;
+  }
+}

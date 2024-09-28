@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   margin: 0 auto;
-  padding: 4rem;
+  padding: 4rem 1rem;
 }
 
 .form_group {
@@ -9,6 +9,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.grid_container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 .main form input[type="text"],
 input[type="tel"],
@@ -148,7 +153,28 @@ input[type="email"] {
   align-items: center;
   gap: .5rem;
 }
+.enabledButton {
+  background-color: green; /* Change to your desired enabled color */
+  color: white;
+}
+
+.disabledButton {
+  background-color: gray; /* Change to your desired disabled color */
+  color: lightgray;
+  cursor: not-allowed;
+}
+.order_notes{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
 @media screen and (max-width:784px) {
+  .grid_container{
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 1rem;
+  }
   .user_detail_container{
     display: grid;
     grid-template-columns: 1fr ;

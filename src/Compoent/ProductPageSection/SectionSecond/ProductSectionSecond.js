@@ -24,7 +24,7 @@ import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import RecentlyView from "../../RecentlyView/RecentlyView";
 import ZoomImage from "../../ZoomImage/ZoomImage";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Cookies from "js-cookie";
 
 function ProductSectionSecond() {
@@ -60,8 +60,6 @@ function ProductSectionSecond() {
     handleProductData();
     handleGetAllReview();
   }, []);
-
-
 
   const reviews = JSON.parse(sessionStorage.getItem("Product_review"));
 
@@ -131,7 +129,7 @@ function ProductSectionSecond() {
   const handleAddToCart = (e) => {
     e.preventDefault();
     setMessage("");
-  
+
     if (token) {
       handleAddToCartInBeckend();
     }
@@ -231,330 +229,333 @@ function ProductSectionSecond() {
     setMessage(event.target.value);
     localStorage.setItem("message", JSON.stringify(event.target.value));
   };
-
-  console.log(product?._id,"sdadad")
   return (
-    <div className={style.main}>
+    <HelmetProvider>
       <Helmet>
         <html lang="en" />
         <meta charSet="utf-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>{product?.title}</title>
-        <meta name="description" content={product?.productBlog?.intro} />
-        <meta name="title" content={product?.title} />
-        <meta name="head title" content={product?.title} />
-        <meta name="keyword" content={product?.title} />
+        <title>{product?.Meta_Title}</title>
+        <meta name="description" content={product?.Meta_Description} />
+        <meta name="title" content={product?.Meta_Title} />
+        <meta name="head title" content={product?.Meta_Title} />
+        <meta name="keyword" content={product?.Meta_Title} />
         <link
           rel="canonical"
           href={`https://www.luxurybubblebasket.com/Product/${title}`}
         />
         {/* Schema Markup */}
         <script type="application/ld+json">
-          {`
-      {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "${product?.title}",
-        "description": "${product?.productBlog?.intro}",
-        "url": "https://www.luxurybubblebasket.com/Product/${title}",
-        "image": "${product?.productImg[0]?.url}", // Assuming the first image is the main product image
-        "brand": {
-          "@type": "Brand",
-          "name": "${product?.brand}"
-        },
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "${product?.price}",
-          "availability": "https://schema.org/InStock"
-        }
-      }
-    `}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": product?.category,
+            name: product?.Meta_Title,
+            description: product?.Meta_Description,
+            url: `https://www.luxurybubblebasket.com/Product/${title}`,
+            image: product?.productImg[0]?.url,
+            brand: {
+              "@type": product?.category,
+              name: product?.brand,
+            },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: product?.price,
+              availability: "https://schema.org/InStock",
+            },
+          })}
         </script>
       </Helmet>
-      {loading && <p>Loading..</p>}
-      <div className={style.product_container}>
-        <div className={style.img_box}>
-          <ZoomImage
-            productImage={product?.productImg[0]?.url}
-            producttitle={product?.title}
-            title={product?.title}
-            loading="lazy"
-            width="auto"
-            height="auto"
-          />
-        </div>
-        <div className={style.des_box}>
-          <h3>{product?.title}</h3>
-          <h4>${product?.price}</h4>
-          <ReactStars
-            count={5}
-            value={Math.ceil(reviews?.reviews?.averageRating)}
-            size={20}
-            activeColor="#ffd700"
-          />
-          <br />
-
-          <div className={style.extra_div_container}>
-            <div>
-              <div className={style.input_box}>
-                <input
-                  className={style.quantity_box}
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    if (value === "" || value > 0) {
-                      handleQuantityChange(e);
-                    }
-                  }}
-                  onBlur={(e) => {
-                    if (
-                      e.target.value === "" ||
-                      parseInt(e.target.value, 10) <= 0
-                    ) {
-                      handleQuantityChange({ target: { value: 1 } });
-                    }
-                  }}
-                  onKeyDown={(e) => {
-                    if (
-                      e.key === "-" ||
-                      (e.key === "0" && e.target.value === "")
-                    ) {
-                      e.preventDefault();
-                    }
-                  }}
-                />
-
-                <button onClick={(e) => handleAddToCart(e)}>
-                  ADD TO CART →
-                </button>
-              </div>
-              <br />
-              <p>
-                <strong>SKU:</strong>
-                {product?.sku}
-              </p>
-              <p>
-                <strong>CATEGORY : </strong> {product?.category}
-              </p>
-              <p>
-                <strong>TAGS : </strong>
-                {product?.tag}
-              </p>
-              <p className={style.icon_box}>
-                <strong>SHARE :</strong>
-                <a
-                  target="_blank"
-                  href="https://www.facebook.com/LuxuryBubbleBasket"
-                >
-                  <span className={style.icon}>
-                    <div>
-                      <FacebookRoundedIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg"
-                >
-                  <span className={style.icon}>
-                    <div>
-                      <YouTubeIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.instagram.com/luxurybubblebasket/"
-                >
-                  <span className={style.icon}>
-                    <div>
-                      <InstagramIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.linkedin.com/company/luxurybubblebasket/"
-                >
-                  <span className={style.icon}>
-                    <div>
-                      <LinkedInIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-                <a target="_blank" href="https://x.com/LuxuryBubbleBsk">
-                  <span className={style.icon}>
-                    <div>
-                      <TwitterIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://in.pinterest.com/luxurybubblebasket/"
-                >
-                  <span className={style.icon}>
-                    <div>
-                      <PinterestIcon className={style.instagramIcon} />
-                    </div>
-                  </span>
-                </a>
-              </p>
-            </div>
-
-            <div className={style.giftCardMessage}>
-              <label htmlFor="message" className={style.giftCardLabel}>
-                Message On Gift Card
-              </label>
-              <textarea
-                id="message"
-                className={style.giftCardTextarea}
-                placeholder="Message on Gift Card"
-                value={message}
-                onChange={handleChange}
+      <div>
+        <div className={style.main}>
+          {loading && <p>Loading..</p>}
+          <div className={style.product_container}>
+            <div className={style.img_box}>
+              <ZoomImage
+                productImage={product}
+                producttitle={product?.title}
+                title={product?.title}
+                loading="lazy"
+                width="auto"
+                height="auto"
               />
             </div>
+            <div className={style.des_box}>
+              <h3>{product?.title}</h3>
+              <h4>${product?.price}</h4>
+              <ReactStars
+                count={5}
+                value={Math.ceil(reviews?.reviews?.averageRating)}
+                size={20}
+                activeColor="#ffd700"
+              />
+              <br />
+
+              <div className={style.extra_div_container}>
+                <div>
+                  <div className={style.input_box}>
+                    <input
+                      className={style.quantity_box}
+                      type="number"
+                      value={quantity}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (value === "" || value > 0) {
+                          handleQuantityChange(e);
+                        }
+                      }}
+                      onBlur={(e) => {
+                        if (
+                          e.target.value === "" ||
+                          parseInt(e.target.value, 10) <= 0
+                        ) {
+                          handleQuantityChange({ target: { value: 1 } });
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (
+                          e.key === "-" ||
+                          (e.key === "0" && e.target.value === "")
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
+                    />
+
+                    {product?.productStatus !== "Available" ? (
+                      <span className={style.out_of_stock}>Out of Stock</span>
+                    ) : (
+                      <button onClick={(e) => handleAddToCart(e)}>
+                        ADD TO CART →
+                      </button>
+                    )}
+                  </div>
+                  <br />
+                  <p>
+                    <strong>SKU:</strong>
+                    {product?.sku}
+                  </p>
+                  <p>
+                    <strong>CATEGORY : </strong> {product?.category}
+                  </p>
+                  <p>
+                    <strong>TAGS : </strong>
+                    {product?.tag}
+                  </p>
+                  <p className={style.icon_box}>
+                    <strong>SHARE :</strong>
+                    <a
+                      target="_blank"
+                      href="https://www.facebook.com/LuxuryBubbleBasket"
+                    >
+                      <span className={style.icon}>
+                        <div>
+                          <FacebookRoundedIcon
+                            className={style.instagramIcon}
+                          />
+                        </div>
+                      </span>
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.youtube.com/channel/UCOX_uZXsTjPdOSBV1ATdiFg"
+                    >
+                      <span className={style.icon}>
+                        <div>
+                          <YouTubeIcon className={style.instagramIcon} />
+                        </div>
+                      </span>
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/luxurybubblebasket/"
+                    >
+                      <span className={style.icon}>
+                        <div>
+                          <InstagramIcon className={style.instagramIcon} />
+                        </div>
+                      </span>
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/company/luxurybubblebasket/"
+                    >
+                      <span className={style.icon}>
+                        <div>
+                          <LinkedInIcon className={style.instagramIcon} />
+                        </div>
+                      </span>
+                    </a>
+                    <a target="_blank" href="https://x.com/LuxuryBubbleBsk">
+                      <span className={style.icon}>
+                        <div>
+                          <TwitterIcon className={style.instagramIcon} />
+                        </div>
+                      </span>
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://in.pinterest.com/luxurybubblebasket/"
+                    >
+                      <span className={style.icon}>
+                        <div>
+                          <PinterestIcon className={style.instagramIcon} />
+                        </div>
+                      </span>
+                    </a>
+                  </p>
+                </div>
+
+                <div className={style.giftCardMessage}>
+                  <label htmlFor="message" className={style.giftCardLabel}>
+                    Message On Gift Card
+                  </label>
+                  <textarea
+                    id="message"
+                    className={style.giftCardTextarea}
+                    placeholder="Message on Gift Card"
+                    value={message}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={style.product_des_box}>
+            <div className={style.extraInfo_btn}>
+              <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
+              <h5 onClick={handleToggleOverview}>ADDITIONAL INFORMATION</h5>
+              <h5 onClick={handleToggleReview}>REVIEWS</h5>
+            </div>
+            <div className={style.des_container}>
+              {showOverview && (
+                <div className={style.description_box}>
+                  {/* <p>{product?.productBlog?.detailedOverview}</p> */}
+                </div>
+              )}
+              {showDescription && (
+                <div className={style.description_box}>
+                  <p>{product?.productBlog?.intro}</p>
+                </div>
+              )}
+              {showExprienceofTesting && (
+                <div className={style.description_box}>
+                  {/* <p>{product?.productBlog?.experienceOfTesting}</p> */}
+                </div>
+              )}
+              {showComparison && (
+                <div className={style.description_box}>
+                  {/* <p>{product?.productBlog?.comparison}</p> */}
+                </div>
+              )}
+              {showReview && (
+                <div>
+                  <h6> REVIEW FOR BUBBLE BASKET</h6>
+                  <br />
+                  {userCreateReview && (
+                    <div className={style.user_review_container}>
+                      <div className={style.user_dp}>
+                        <AccountCircleOutlinedIcon className={style.dp_icon} />
+                      </div>
+                      <div>
+                        <ReactStars
+                          count={5}
+                          value={rating}
+                          onChange={handleRatingChange}
+                          size={20}
+                          activeColor="#ffd700"
+                        />
+                        <span>Your review is awaiting approval</span>
+                        <span>{userCreateReview.name}</span> -{" "}
+                        <span>{userCreateReview.email}</span>
+                        <p>{userCreateReview.reviewText}</p>
+                      </div>
+                    </div>
+                  )}
+                  {product?._id === reviews?.productId &&
+                    reviews?.reviews?.map((item) => (
+                      <div className={style.user_review_container}>
+                        <div className={style.user_dp}>
+                          <AccountCircleOutlinedIcon
+                            className={style.dp_icon}
+                          />
+                        </div>
+                        <div>
+                          <ReactStars
+                            count={5}
+                            onChange={null}
+                            filledIcon={null}
+                            value={item.rating}
+                            size={20}
+                            activeColor="#ffd700"
+                          />
+                          <span>{item?.name}</span> - <span>{item?.email}</span>
+                          <p>{item?.reviewText}</p>
+                        </div>
+                      </div>
+                    ))}
+
+                  <br />
+                  <br />
+                  <br />
+                  <form className={style.form} onSubmit={handleCreateReview}>
+                    <p>
+                      <strong>ADD A REVIEW</strong>
+                    </p>
+                    <div>
+                      <p>
+                        Your email address will not be published. Required
+                        fields are marked * Your Rating
+                      </p>
+                      <ReactStars
+                        count={5}
+                        onChange={ratingChanged}
+                        size={24}
+                        activeColor="#ffd700"
+                      />
+                    </div>
+                    <textarea
+                      onChange={(e) => setReviewText(e.target.value)}
+                      placeholder="Your Review*"
+                    />
+                    <div className={style.user_input_box}>
+                      <input
+                        onChange={(e) => setName(e.target.value)}
+                        type="text"
+                        placeholder="Name*"
+                      />
+                      <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Email*"
+                      />
+                    </div>
+                    <div>
+                      <input type="checkbox" />
+                      &nbsp;
+                      <span>
+                        Save my name, email, and website in this browser for the
+                        next time I comment.
+                      </span>
+                    </div>
+                    <button type="submit">Submit →</button>
+                  </form>
+                </div>
+              )}
+            </div>
+          </div>
+          {storedProducts.length > 0 && (
+            <div className={style.additional_box}>
+              <h4> Recently View</h4>
+              <RecentlyView />
+            </div>
+          )}
+          <div className={style.additional_box}>
+            <ColumnPageSectionSecond singleProductData={product} />
           </div>
         </div>
       </div>
-      <div className={style.product_des_box}>
-        <div className={style.extraInfo_btn}>
-          <h5 onClick={handleToggleDescription}>DESCRIPTION</h5>
-          <h5 onClick={handleToggleOverview}>ADDITIONAL INFORMATION</h5>
-          <h5 onClick={handleToggleReview}>
-            REVIEWS
-          </h5>
-        </div>
-        <div className={style.des_container}>
-          {showOverview && (
-            <div className={style.description_box}>
-              {/* <p>{product?.productBlog?.detailedOverview}</p> */}
-            </div>
-          )}
-          {showDescription && (
-            <div className={style.description_box}>
-              <p>{product?.productBlog?.intro}</p>
-            </div>
-          )}
-          {showExprienceofTesting && (
-            <div className={style.description_box}>
-              {/* <p>{product?.productBlog?.experienceOfTesting}</p> */}
-            </div>
-          )}
-          {showComparison && (
-            <div className={style.description_box}>
-              {/* <p>{product?.productBlog?.comparison}</p> */}
-            </div>
-          )}
-          {showReview && (
-            <div>
-              <h6> REVIEW FOR BUBBLE BASKET</h6>
-              <br />
-              {userCreateReview && (
-                <div className={style.user_review_container}>
-                  <div className={style.user_dp}>
-                    <AccountCircleOutlinedIcon className={style.dp_icon} />
-                  </div>
-                  <div>
-                    <ReactStars
-                      count={5}
-                      value={rating}
-                      onChange={handleRatingChange}
-                      size={20}
-                      activeColor="#ffd700"
-                    />
-                    <span>Your review is awaiting approval</span>
-                    <span>{userCreateReview.name}</span> -{" "}
-                    <span>{userCreateReview.email}</span>
-                    <p>{userCreateReview.reviewText}</p>
-                  </div>
-                </div>
-              )}
-              {product?._id === reviews?.productId   && (
-                 reviews?.reviews?.map((item) => (
-                  <div className={style.user_review_container}>
-                    <div className={style.user_dp}>
-                      <AccountCircleOutlinedIcon className={style.dp_icon} />
-                    </div>
-                    <div>
-                      <ReactStars
-                        count={5}
-                        onChange={null}
-                        filledIcon={null}
-                        value={item.rating}
-                        size={20}
-                        activeColor="#ffd700"
-                      />
-                      <span>{item?.name}</span> - <span>{item?.email}</span>
-                      <p>{item?.reviewText}</p>
-                    </div>
-                  </div>
-                ))
-              )
-              }
-             
-
-              <br />
-              <br />
-              <br />
-              <form className={style.form} onSubmit={handleCreateReview}>
-                <p>
-                  <strong>ADD A REVIEW</strong>
-                </p>
-                <div>
-                  <p>
-                    Your email address will not be published. Required fields
-                    are marked * Your Rating
-                  </p>
-                  <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    activeColor="#ffd700"
-                  />
-                </div>
-                <textarea
-                  onChange={(e) => setReviewText(e.target.value)}
-                  placeholder="Your Review*"
-                />
-                <div className={style.user_input_box}>
-                  <input
-                    onChange={(e) => setName(e.target.value)}
-                    type="text"
-                    placeholder="Name*"
-                  />
-                  <input
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    placeholder="Email*"
-                  />
-                </div>
-                <div>
-                  <input type="checkbox" />
-                  &nbsp;
-                  <span>
-                    Save my name, email, and website in this browser for the
-                    next time I comment.
-                  </span>
-                </div>
-                <button type="submit">Submit →</button>
-              </form>
-            </div>
-          )}
-        </div>
-      </div>
-      {storedProducts.length > 0 && (
-        <div className={style.additional_box}>
-          <h4> Recently View</h4>
-          <RecentlyView />
-        </div>
-      )}
-      <div className={style.additional_box}>
-        <ColumnPageSectionSecond singleProductData={product} />
-      </div>
-    </div>
+    </HelmetProvider>
   );
 }
 

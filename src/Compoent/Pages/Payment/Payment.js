@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie"; // Ensure to import js-cookie for cookie handling
 import browserInfo from "@smartbear/browser-info";
 import { getCheckout } from "../../Apis/Apis";
 
+// Detect browser info
 browserInfo.detect();
 
+// Square ID and Location ID
 const APPLICATION_ID = "sandbox-sq0idb-lhuzqiKR6VIBNoMFKNfjMw";
 const LOCATION_ID = "L40SZMBGKK61T";
+
 const isSafari = browserInfo.name === "Safari";
 
+// Function to tokenize payment method
 async function tokenizePaymentMethod(paymentMethod) {
   const tokenResult = await paymentMethod.tokenize();
   if (tokenResult.status === "OK") {
@@ -21,6 +26,7 @@ async function tokenizePaymentMethod(paymentMethod) {
   throw new Error(errorMessage);
 }
 
+// Payment component
 function Payment() {
   const [loaded, setLoaded] = useState(false);
   const [squarePayments, setSquarePayments] = useState(undefined);
@@ -40,18 +46,50 @@ function Payment() {
   const isCardFieldsValid = Object.values(validFields).every((v) => v);
 
   useEffect(() => {
-    const handlegetCheckoutData = async () => {
+    const handleGetCheckoutData = async () => {
       try {
-        const response = await getCheckout();
-        setCheckoutData(response?.data || {});
+        const token = Cookies.get("token");
+        const headers = {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        };
+        const response = await axios.get(
+          "https://modifiedllb.onrender.com/user/cart/checkout",
+          { headers }
+        )
+        setCheckoutData(response?.data?.data || {});
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching checkout data:", error);
       }
     };
 
-    handlegetCheckoutData();
-    setAddress(JSON.parse(sessionStorage.getItem("address")) || {});
+    // Fetch shipping details from the API
+    const fetchShippingDetails = async () => {
+      try {
+        const token = Cookies.get("token");
+        const headers = {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        };
+        const response = await axios.get(
+          "https://modifiedllb.onrender.com/user/address/getAll",
+          { headers }
+        );
+        const defaultAddress = response.data.data.find(
+          (address) => address.setAsDefault
+        );
+        if (defaultAddress) {
+          setAddress(defaultAddress); // Update the state with the default address
+        }
+      } catch (error) {
+        console.error("Error fetching shipping details:", error);
+      }
+    };
 
+    handleGetCheckoutData();
+    fetchShippingDetails();
+
+    // Load Square.js script
     const existingScript = document.getElementById("webPayment");
     if (existingScript) {
       setLoaded(true);
@@ -67,8 +105,8 @@ function Payment() {
   }, []);
 
   const paymentRequestMock = {
-    countryCode: "US",
-    currencyCode: "USD",
+    countryCode: "US", // Adjust based on the user's country
+    currencyCode: "USD", // Adjust based on your currency
     lineItems: checkoutData?.productsData?.map((product) => ({
       amount: product.Product_price.toFixed(2),
       label: product.Product_title,
@@ -78,17 +116,17 @@ function Payment() {
     requestShippingContact: true,
     shippingContact: {
       addressLines: [
-        address?.streetAddress?.houseNoAndStreetName || "",
-        address?.streetAddress?.apartment || "",
+        address.address1 || "", // Assuming address1 contains the street address
+        address.address2 || "",
       ],
-      city: address?.townCity || "",
-      countryCode: "US",
-      email: address?.email || "",
-      familyName: address?.lastName || "",
-      givenName: address?.firstName || "",
-      phone: address?.phone || "",
-      postalCode: address?.postcodeZIP || "",
-      state: address?.stateCounty || "",
+      city: address.townCity || "",
+      countryCode: address.country || "US", // Defaulting to 'US'
+      email: "", // Email should be added if available
+      familyName: address.lastName || "",
+      givenName: address.firstName || "",
+      phone: address.phone || "",
+      postalCode: address.postcodeZIP || "",
+      state: address.stateCounty || "",
     },
     shippingOptions: [
       { amount: "0.00", id: "FREE", label: "Free" },
@@ -108,16 +146,10 @@ function Payment() {
   }, [loaded, squarePayments]);
 
   const handlePaymentMethodSubmission = async (paymentMethod) => {
-    const promoCode =JSON.parse(sessionStorage.getItem("promocode"))
-    function getToken() {
-      return document.cookie.replace(
-        /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-        "$1"
-      );
-    }
-
-    const token = getToken();
-    const id =  address?._id;
+    const promoCode = JSON.parse(sessionStorage.getItem("promocode"));
+    const orderNotes = JSON.parse(sessionStorage.getItem("orderNotes")) || "";
+    const token = Cookies.get("token"); // Retrieve token from cookies
+    const id = address?._id; // Use address ID for order creation
     const headers = {
       "x-auth-token": token,
       "Content-Type": "application/json",
@@ -130,29 +162,29 @@ function Payment() {
       if (isCard) setSubmitting(true);
       try {
         const token = await tokenizePaymentMethod(paymentMethod);
-      const response=  await axios.post(
-          `https://www.backend.luxurybubblebasket.com/user/order/create/${id}`,
+        const response = await axios.post(
+          `https://modifiedllb.onrender.com/user/order/create/${id}`, // Use address ID
           {
-            promoCode: promoCode ? promoCode : "",
+            orderNotes:orderNotes || "",
+            promoCode: promoCode || "",
             nonce: token,
-            paymentMethod: {
-              online: true,
-            },
+            paymentMethod: { online: true },
           },
           { headers }
         );
-        if(response.status){
+        if (response.status) {
           alert("Payment successful!");
           sessionStorage.setItem("orderData", JSON.stringify(response.data));
           sessionStorage.removeItem("cartData");
           sessionStorage.removeItem("promocode");
+          sessionStorage.removeItem("orderNotes");
           window.location.href = "/ThankYou";
         }
       } catch (error) {
-        console.error("FAILURE", error);
+        console.error("Payment submission failed:", error);
         alert("Payment failed!");
       } finally {
-        isCard && setSubmitting(false);
+        if (isCard) setSubmitting(false);
       }
     }
   };
@@ -186,21 +218,14 @@ function Payment() {
 
   const initializeGooglePay = async () => {
     const paymentRequest = squarePayments.paymentRequest(paymentRequestMock);
-
-    const paymentRequestUpdate = {
-      lineItems: paymentRequestMock.lineItems,
-      shippingOptions: paymentRequestMock.shippingOptions,
-      total: paymentRequestMock.total,
-    };
-
     paymentRequest.addEventListener("shippingcontactchanged", (contact) => {
-      console.log({ contact });
-      return paymentRequestUpdate;
+      // Handle shipping contact changes if needed
+      return paymentRequest;
     });
 
     paymentRequest.addEventListener("shippingoptionchanged", (option) => {
-      console.log({ option });
-      return paymentRequestUpdate;
+      // Handle shipping option changes if needed
+      return paymentRequest;
     });
 
     const gPay = await squarePayments.googlePay(paymentRequest);
@@ -211,9 +236,7 @@ function Payment() {
   const attachCard = (card) => {
     const cardObject = card || squareCard;
     cardObject.attach("#card-container");
-    cardObject.addEventListener("submit", () =>
-      handlePaymentMethodSubmission(cardObject)
-    );
+    cardObject.addEventListener("submit", () => handlePaymentMethodSubmission(cardObject));
     cardObject.addEventListener("focusClassAdded", handleCardEvents);
     cardObject.addEventListener("focusClassRemoved", handleCardEvents);
     cardObject.addEventListener("errorClassAdded", handleCardEvents);
@@ -260,6 +283,7 @@ function Payment() {
     borderRadius: 8,
     borderWidth: 0,
   };
+
   if (isCardFieldsValid) {
     cardButtonStyles = {
       ...cardButtonStyles,
@@ -292,19 +316,10 @@ function Payment() {
         </div>
       )}
       <div style={{ marginBottom: 24 }}>
-        <div
-          id="google-pay"
-          onClick={() => handlePaymentMethodSubmission(googlePay)}
-        />
+        <div id="google-pay" onClick={() => handlePaymentMethodSubmission(googlePay)} />
       </div>
       <form id="payment-form">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div id="card-container"></div>
           <button
             id="card-button"
@@ -313,9 +328,7 @@ function Payment() {
             disabled={!isCardFieldsValid || isSubmitting}
             onClick={() => handlePaymentMethodSubmission(squareCard)}
           >
-            {isSubmitting
-              ? "Processing..."
-              : `Pay ${paymentRequestMock.total.amount}`}
+            {isSubmitting ? "Processing..." : `Pay ${paymentRequestMock.total.amount}`}
           </button>
         </div>
       </form>

@@ -15,7 +15,6 @@ import style from "./NavBar.module.css";
 import ImageSlider from "../ImageSlider/ImageSlider";
 
 function NavBar() {
-
   return (
     <div>
       <Header />

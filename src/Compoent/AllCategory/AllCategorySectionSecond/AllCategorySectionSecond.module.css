@@ -7,27 +7,19 @@
   flex-direction: column;
   gap: 4rem;
   padding: 3rem 2rem;
-
 }
-.product_title{
-  height: 4.8rem!important;
+.product_title {
+  height: 4.8rem !important;
   text-align: center;
   overflow: hidden;
 }
-.add_box_img {
-  height: 12rem;
-
-}
 .add_box_img img {
-  height: 100%;
-  width: 100%;
-
+  height: 180px;
 }
 .additional_box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3rem;
-
 }
 .inner_container {
   width: 13rem;
@@ -38,7 +30,8 @@
   padding: 2rem 3rem 2rem 0rem;
   border-right: 1px #7b0128 solid;
   cursor: pointer;
-
+  position: relative;
+  overflow: hidden;
 }
 .inner_container1 {
   width: 13rem;
@@ -48,9 +41,11 @@
   padding: 2rem 3rem 2rem 0rem;
   border-left: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.inner_container span{
+.inner_container span {
   text-align: center;
 }
 .inner_container p {
@@ -74,23 +69,35 @@
   justify-content: center;
   font-family: "Allura", cursive;
 }
+.out_of_stock {
+  position: absolute;
+  top: 14px; /* Adjust as needed */
+  left: -24px; /* Adjust as needed */
+  background-color: black;
+  color: white;
+  padding: 5px 20px;
+  transform: rotate(-45deg); /* Tilts the element slightly */
+  font-size: 12px; /* Adjust font size as needed */
+  z-index: 1; /* Ensure it appears above other content */
+}
 
 @media (max-width: 500px) {
   .additional_box {
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
-  .inner_container,  .inner_container1 {
-    height: 47rem!important;
+  .inner_container,
+  .inner_container1 {
+    height: 47rem !important;
     width: 28rem;
     display: flex;
-    align-items: center!important;
+    align-items: center !important;
     justify-content: center;
     flex-direction: column;
     border: 1px #7b0128 solid;
-    overflow:hidden ;
-    padding: 0rem!important;
+    overflow: hidden;
+    padding: 0rem !important;
   }
 
   .offer_box {
@@ -110,11 +117,11 @@
   .add_box_img {
   }
   .add_box_img {
-    height: 320px!important;
+    height: 320px !important;
     width: 230px;
   }
   .add_box_img img {
-    height: 320px!important;
+    height: 320px !important;
     width: 230px;
   }
   .product_title {

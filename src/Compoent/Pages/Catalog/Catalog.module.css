@@ -1,0 +1,61 @@
+.catalogContainer {
+    padding: 20px!important;
+    margin-top: 20px!important;
+    border-radius: 8px!important;/* Rounded corners for a softer appearance */
+  }
+  
+  .catalogHeader {
+    text-align: center!important;
+    margin-bottom: 20px!important;
+    position: relative!important;
+  }
+  
+  .catalogTitle {
+    font-size: 2.5rem!important;
+    color: #7B0128!important;/* Color for the download icon */
+    font-weight: bold!important;
+    margin: 0!important;
+  }
+  
+  .downloadButton {
+    position: absolute!important;
+    right: 0!important;
+    top: 0!important;
+    margin: 16px!important;
+    color: #7B0128!important;/* Color for the download icon */
+  }
+  
+  .catalogViewer {
+    display: flex!important;
+    justify-content: center!important;
+    margin-bottom: 40px!important;
+  }
+  
+  .catalogIframe {
+    width: 100%!important;
+    height: 3240vh; /* Adjust height to fit most of the viewport height */
+    border: none!important;
+    border-radius: 8px!important; /* Rounded corners for the iframe */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)!important; /* Subtle shadow for depth */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .catalogContainer {
+      margin-top: 1rem!important;
+    }
+    .catalogTitle {
+      font-size: 1.8rem!important;
+    }
+    .catalogContainer {
+      padding: 10px!important;
+    }
+    .catalogIframe {
+      width: 100%!important;
+      height: 100vh!important; /* Adjust height to fit most of the viewport height */
+      border: none!important;
+      border-radius: 8px!important; /* Rounded corners for the iframe */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)!important; /* Subtle shadow for depth */
+    }
+  }
+  

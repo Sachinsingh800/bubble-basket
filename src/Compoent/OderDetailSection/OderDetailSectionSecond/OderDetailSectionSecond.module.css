@@ -1,40 +1,84 @@
-.main{
-    width: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.img_box{
-    height: 4rem;
-    width: 4rem;
-}
-.img_box img{
-    height: 100%;
-    width: 100%;
-}
-.product_container{
-  display: grid;
-  grid-template-columns: 1fr 1fr  ;
+
+.main {
   width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
+  color: var(--font-color);
 }
-.product_info{
-  width: 100%;
-  gap: 2rem;
+
+h2, h3 {
+  color: var(--primary-color);
 }
-.product_item{
-  border: 1px #7b0128 solid;
-  padding: 2rem;
+
+.order_info, .billing_info {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.additional_notes{
-  border: 1px #7b0128 solid;
-  padding: 2rem;
-}
-.billing_info_box{
+
+.billing_info_box {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   width: 100%;
-  border: 1px #7b0128 solid;
-  padding: 2rem;
+}
+
+.product_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.product_item {
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product_item:hover {
+  transform: scale(1.05);
+}
+
+.img_box {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.img_box img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.details {
+  color: var(--font-color);
+}
+
+.details p {
+  margin: 0.5rem 0;
+}
+
+.additional_notes {
+  background-color: #fff;
+  padding: 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .billing_info_box {
+    grid-template-columns: 1fr;
+  }
 }

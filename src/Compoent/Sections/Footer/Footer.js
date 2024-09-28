@@ -92,6 +92,9 @@ function Footer() {
         <a href="/About-Us">
           <div className={style.opt}>ABOUT</div>
         </a>
+        <a href="/catalog">
+          <div className={style.opt}>CATALOG</div>
+        </a>
         <a href="/FAQ">
           <div className={style.opt} style={{ borderRight: "none" }}>
             FAQ'S{" "}

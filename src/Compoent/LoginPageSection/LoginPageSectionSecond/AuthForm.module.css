@@ -1,0 +1,60 @@
+.formContainer {
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    flex-direction: column!important;
+    padding: 20px!important;
+  }
+  .main{
+    width: 60%;
+  }
+  .formTitle {
+    text-align: center!important;
+    margin-bottom: 20px!important;
+    font-size: 24px!important;
+    font-weight: bold!important;
+  }
+  
+  .formField {
+    margin-bottom: 15px!important;
+    width: 100%!important;
+  }
+  
+  .formButton {
+    background-color: black!important;
+    color: white!important;
+    width: 100%!important;
+    padding: 12px 0!important;
+  }
+  
+  .linkContainer {
+    display: flex!important;
+    justify-content: space-between!important;
+    margin-top: 15px!important;
+  }
+  
+  .tabContainer {
+    display: flex!important;
+    justify-content: center!important;
+    margin-bottom: 20px!important;
+  }
+  
+  .tab {
+    padding: 10px!important;
+    cursor: pointer!important;
+    font-size: 18px!important;
+  }
+  
+  .activeTab {
+    border-bottom: 2px solid black!important;
+  }
+  .login_text{
+    text-align: center;
+    padding: 1rem 0rem;
+  }
+  @media (max-width:700px) {
+    .main{
+      width: 90%;
+    }
+  }
+  

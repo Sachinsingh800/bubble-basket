@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.css"; // Import module-level CSS
-import AcceptCookies from "./Compoent/AcceptCookies/AcceptCookies";
+import AcceptCookies from "./Compoent/AcceptCookies/CookiesBanner";
 import Home from "./Compoent/Home/Home";
+import CookiesBanner from "./Compoent/AcceptCookies/CookiesBanner";
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
+  const [AcceptCookies,SetAcceptCookie] = useState(false)
 
   useEffect(() => {
+    const AcceptCookie = localStorage.getItem("cookiesAccepted") 
+    SetAcceptCookie(AcceptCookie)
     // Function to retrieve token from cookies
     function getToken() {
       return document.cookie.replace(
@@ -32,16 +36,13 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {" "}
       {/* Use module-level CSS class */}
       <Home />
-      <AcceptCookies />
+      {!AcceptCookies  && <div className={styles.cookie_box}><CookiesBanner  /></div>   }
       {showPopup && (
         <div className={styles.popup}>
-          {" "}
           {/* Use module-level CSS class */}
           <div className={styles.popup_content}>
-            {" "}
             {/* Use module-level CSS class */}
             <h2>Age Verification</h2>
             <p>ARE YOU OVER 18?</p>

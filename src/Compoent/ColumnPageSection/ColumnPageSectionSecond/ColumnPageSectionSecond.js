@@ -25,6 +25,7 @@ function ColumnPageSectionSecond({ singleProductData }) {
           response = await getAllProduct();
         }
         let data = response?.data;
+
         // Filter data by brand if brand is provided
         if (singleProductData?.brand) {
           const brandFilteredData = data?.filter(
@@ -60,37 +61,6 @@ function ColumnPageSectionSecond({ singleProductData }) {
     window.location.href = `/Product/${formatTitleForUrl(title)}`;
   };
 
-  const generateHelmet = (product) => (
-    <Helmet>
-      <html lang="en" />
-      <meta charSet="utf-8" />
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>{product.title}</title>
-      <meta name="description" content={`Buy ${product.title} for only $${product.price}`} />
-      <link
-        rel="canonical"
-        href={`https://www.luxurybubblebasket.com/Product/${formatTitleForUrl(product.title)}`}
-      />
-       <script type="application/ld+json">
-        {`
-          {
-            "@context": "http://schema.org",
-            "@type": "Product",
-            "name": "${product.title}",
-            "image": "${product.productImg[0]?.url}",
-            "description": "${product.description}",
-            "offers": {
-              "@type": "Offer",
-              "price": "${product.price}",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock"
-            }
-          }
-        `}
-      </script>
-    </Helmet>
-  );
-
   return (
     <div className={style.main}>
       {loading ? (
@@ -101,13 +71,17 @@ function ColumnPageSectionSecond({ singleProductData }) {
         <div className={style.additional_box}>
           {productData?.map((product, index) => (
             <React.Fragment key={index}>
-              {generateHelmet(product)}
               <div
                 className={
-                  index % 4 === 3 ? style.inner_container1 : style.inner_container
+                  index % 4 === 3
+                    ? style.inner_container1
+                    : style.inner_container
                 }
                 onClick={() => handleNavigate(product?.title)}
               >
+                {product?.productStatus !== "Available" && (
+                  <span className={style.out_of_stock}>Out of Stock</span>
+                )}
                 <div className={style.add_box_img}>
                   <img
                     src={product?.productImg[0]?.url}

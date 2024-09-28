@@ -22,7 +22,7 @@ function CartPageSectionSecond() {
   const [productQuantity, setProductQuantity] = useState(0);
   const [updatesideCart, setupdatesideCart] = useRecoilState(addItemCart);
   const token = Cookies.get("token");
-
+  const guest = sessionStorage.getItem("guest");
   useEffect(() => {
     const cartData = JSON.parse(sessionStorage.getItem("cartData"));
     if (cartData) {
@@ -385,9 +385,17 @@ function CartPageSectionSecond() {
               )}
               <br />
               <div className={style.buttons_box2}>
-                <button onClick={(e) => handleFilterCheckoutData(e)}>
-                  PROCEED TO CHECKOUT →
-                </button>
+                {guest ? (
+                  <button
+                    onClick={() => (window.location.href = "/Checkout-guest")}
+                  >
+                    PROCEED TO CHECKOUT →
+                  </button>
+                ) : (
+                  <button onClick={(e) => handleFilterCheckoutData(e)}>
+                    PROCEED TO CHECKOUT →
+                  </button>
+                )}
               </div>
             </>
           )}

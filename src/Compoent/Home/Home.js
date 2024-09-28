@@ -74,6 +74,9 @@ function Home() {
       </Helmet>
       <Header />
       <div className={style.Container}>
+        {/* <div className={style.offer}>
+        GET FREE SHIPPING & COMPLIMENTARY GIFT BOX WITH EVERY ORDER.
+        </div> */}
         <FirstSection />
         <SecondSection />
         <SectionThird />

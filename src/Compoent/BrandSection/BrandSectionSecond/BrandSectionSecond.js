@@ -17,7 +17,9 @@ function BrandSectionSecond() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllBrandProduct(replaceHyphensWithSpaces(category));
+        const response = await getAllBrandProduct(
+          replaceHyphensWithSpaces(category)
+        );
         setProductData(response.data);
       } catch (error) {
         setError("An error occurred while fetching data.");
@@ -30,7 +32,7 @@ function BrandSectionSecond() {
   }, [category]);
 
   const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
+    return title.replace(/\s+/g, "-").replace(/:/g, "");
   };
 
   const handleNavigate = (title) => {
@@ -43,10 +45,15 @@ function BrandSectionSecond() {
       <meta charSet="utf-8" />
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <title>{product.title}</title>
-      <meta name="description" content={`Buy ${product.title} for only $${product.price}`} />
+      <meta
+        name="description"
+        content={`Buy ${product.title} for only $${product.price}`}
+      />
       <link
         rel="canonical"
-        href={`https://www.luxurybubblebasket.com/brand/${formatTitleForUrl(product.title)}`}
+        href={`https://www.luxurybubblebasket.com/brand/${formatTitleForUrl(
+          product.title
+        )}`}
       />
     </Helmet>
   );
@@ -64,11 +71,15 @@ function BrandSectionSecond() {
               {generateHelmet(product)}
               <div
                 className={
-                  index % 4 === 3 ? style.inner_container1 : style.inner_container
+                  index % 4 === 3
+                    ? style.inner_container1
+                    : style.inner_container
                 }
                 onClick={() => handleNavigate(product?.title)}
               >
-                {product?.offer && <span className={style.offer_box}>new</span>}
+                {product?.productStatus !== "Available" && (
+                  <span className={style.out_of_stock}>Out of Stock</span>
+                )}
                 <div className={style.add_box_img}>
                   <img
                     src={product?.productImg[0]?.url}

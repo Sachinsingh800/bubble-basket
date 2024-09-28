@@ -94,7 +94,7 @@ export default function FAQSectionSecond() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Yes, we offer international shipping to many countries around the world. You can check if we deliver to your location during the checkout process.
+            No, we don't offer international shipping to many countries around the world. You can check if we deliver to your location during the checkout process.
           </Typography>
         </AccordionDetails>
       </Accordion>

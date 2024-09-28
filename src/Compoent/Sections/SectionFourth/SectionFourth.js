@@ -53,8 +53,14 @@ function SectionFourth() {
     setData(cartdata || []); // Initialize data with an empty array if cartdata is null or undefined
   }, [update]);
 
-  const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
+
+  const  formatTitleForUrl = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();  
   };
 
   return (

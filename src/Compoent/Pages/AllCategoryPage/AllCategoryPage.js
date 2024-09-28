@@ -7,14 +7,17 @@ import Footer from "../../Sections/Footer/Footer";
 import { Helmet } from "react-helmet";
 import AllCategorySectionFirst from "../../AllCategory/AllCategorySectionFirst/AllCategorySectionFirst";
 import AllCategorySectionSecond from "../../AllCategory/AllCategorySectionSecond/AllCategorySectionSecond";
+import BreadCrumsHeader from "../../BreadCrumsHeader/BreadCrumsHeader";
+import { useParams } from "react-router-dom";
 
 
 function AllCategoryPage() {
+  const { category } = useParams();
   return (
     <div>
       <Header />
       <div className={style.Container}>
-        <AllCategorySectionFirst />
+        <BreadCrumsHeader  urlname={category} />
         <AllCategorySectionSecond />
         <Footer />
       </div>

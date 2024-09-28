@@ -30,6 +30,11 @@ import Payment from "./Compoent/Pages/Payment/Payment";
 import AllCategoryPage from "./Compoent/Pages/AllCategoryPage/AllCategoryPage";
 import ForgotPassword from "./Compoent/Pages/ForgotPassword/ForgotPassword";
 import FilterAccordingToDes from "./Compoent/Pages/FilterAccordingToDes/FilterAccordingToDes";
+import Catalog  from "./Compoent/Pages/Catalog/Catalog"
+import AddressForm from "./Compoent/LoginPageSection/LoginPageSectionSecond/BillingAddressForm";
+import Address from "./Compoent/Pages/Address/Address";
+import CheckoutPageGuest from "./Compoent/Pages/CheckoutPageGuest/CheckoutPageGuest";
+import PaymentGuest from "./Compoent/Pages/Payment/PaymentGuest";
 
 
 
@@ -53,6 +58,7 @@ const appContent = (
           <Route path="Blog/:blogTitle" element={<BlogFullPage />} />
           <Route path="Contact-Us" element={<ContactUsPage />} />
           <Route path="Checkout" element={<CheckoutPage />} />
+          <Route path="Checkout-guest" element={<CheckoutPageGuest />} />
           <Route path="Login" element={<LoginPage />} />
           <Route path="About-Us" element={<AboutUsPage />} />
           <Route path="FAQ" element={<FAQPage />} />
@@ -60,8 +66,8 @@ const appContent = (
             path="Refund-and-Return-Policy"
             element={<PendingAndRefundPage />}
           />
-          <Route path="Privacy-And-Policy" element={<PrivacyAanPolicy />} />
-          <Route path="Terms-And-Conditions" element={<TermsAndConditions />} />
+          <Route path="privacy-and-policy" element={<PrivacyAanPolicy />} />
+          <Route path="terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="ThankYou" element={<ThankYouPage />} />
           <Route path="Register" element={<RegisterPage />} />
           <Route path="Account" element={<AccountPage />} />
@@ -73,8 +79,10 @@ const appContent = (
             element={<UpdateInformation />}
           />
           <Route path="Payment" element={<Payment />} />
+          <Route path="payment-guest" element={<PaymentGuest/>} />
           <Route path="*" element={<ErrorPage />} />{" "}
-          {/* Catch-all route for unknown paths */}
+          <Route path="/catalog" element={<Catalog />} />{" "}
+          <Route path="/address" element={<Address/>} />{" "}
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

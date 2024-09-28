@@ -46,6 +46,16 @@ function SecondSection() {
     }
   };
 
+
+  const convertString = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();  
+  };
+
   return (
     <div className={style.main}>
       <div className={style.heading_box}>
@@ -62,7 +72,7 @@ function SecondSection() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/${top1Category?.categoryName}`)
+            (window.location.href = `/${convertString(top1Category?.categoryName)}`)
           }
         >
           <div className={style.add_btn_box}>
@@ -90,7 +100,7 @@ function SecondSection() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/${top2Category?.categoryName}`)
+            (window.location.href = `/${convertString(top2Category?.categoryName)}`)
           }
         >
           <div className={style.add_btn_box}>
@@ -118,7 +128,7 @@ function SecondSection() {
         <div
           className={style.inner_container}
           onClick={() =>
-            (window.location.href = `/${top3Category?.categoryName}`)
+            (window.location.href = `/${convertString(top3Category?.categoryName)}`)
           }
         >
           <div className={style.add_btn_box}>

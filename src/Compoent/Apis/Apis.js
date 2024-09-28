@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const BASE_URL = "https://www.backend.luxurybubblebasket.com";
-const BASE_URL = "https://www.backend.luxurybubblebasket.com";
+const BASE_URL = "https://modifiedllb.onrender.com";
 
 // Register
 
@@ -546,6 +546,35 @@ export const getAllAddress = async () => {
   }
 };
 
+
+// getAllBanner
+
+export const getAllBanner= async () => {
+  function getToken() {
+    return document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+  }
+
+  // Retrieve token
+  const token = getToken();
+  try {
+    const headers = {
+      "x-auth-token": token, // Pass the token in the header
+      "Content-Type": "application/json", // Set content type to JSON
+    };
+    const response = await axios.get(`${BASE_URL}/admin/banner/getAll`, {
+      headers,
+    });
+
+    // Directly return the data from axios response
+    return response.data;
+  } catch (error) {
+    console.error("Error in getAllCategory function:", error);
+  }
+};
+
 // getAllCategory
 
 export const getAllCategory = async () => {
@@ -955,7 +984,7 @@ export const getAllBrandProduct = async (category) => {
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
-    console.error("Error in getAllCategory function:", error);
+    // console.error("Error in getAllCategory function:", error);
   }
 };
 
@@ -1006,7 +1035,7 @@ const promoCode =JSON.parse(sessionStorage.getItem("promocode"))
     // Directly return the data from axios response
     return response.data;
   } catch (error) {
-    console.error("Error in getAllCategory function:", error);
+    // console.error("Error in getAllCategory function:", error);
   }
 };
 

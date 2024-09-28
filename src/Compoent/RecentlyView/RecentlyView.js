@@ -17,7 +17,7 @@ function RecentlyView() {
     // Update state with retrieved products
     setProductData(storedProducts);
 
-    // Set loading to false
+    // Set loading to falsess
     setLoading(false);
   }, []);
 
@@ -57,9 +57,9 @@ function RecentlyView() {
                   }
                   onClick={() => handleNavigate(product?.title)}
                 >
-                  {product?.offer && (
-                    <span className={style.offer_box}>new</span>
-                  )}
+               {product?.productStatus !== "Available" && (
+                  <span className={style.out_of_stock}>Out of Stock</span>
+                )}
                   <div className={style.add_box_img}>
                     <img
                       src={product?.productImg[0]?.url}

@@ -13,15 +13,14 @@ import { Helmet } from "react-helmet";
 function BlogFullPageSectionSecond() {
   const { blogTitle } = useParams(); // Fetching the blog title from the URL params
   const [allBlog, setAllBlog] = useState([]);
-  const [loading, SetIsloading] = useState(false);
-  const [usename, setUserName] = useState("");
+  const [loading, setIsLoading] = useState(false);
+  const [username, setUserName] = useState("");
   const [userComment, setUserComment] = useState("");
   const [userWebsite, setUserWebsite] = useState("");
   const [userEmail, setUserEmail] = useState(""); // Added state for email
-  const [userComments, setUserComments] = useState([
-  ]);
+  const [userComments, setUserComments] = useState([]);
 
-  const history = useNavigate(); // Use history for navigation
+  const navigate = useNavigate(); // Use navigate for navigation
 
   useEffect(() => {
     handleAllBlog();
@@ -32,14 +31,14 @@ function BlogFullPageSectionSecond() {
   }, [blogTitle]); // Trigger when the blog title changes
 
   const handleAllBlog = async () => {
-    SetIsloading(true);
+    setIsLoading(true);
     try {
       const response = await getAllBlog();
       setAllBlog(response.data);
     } catch (error) {
       console.error("Error getting products:", error.message);
     } finally {
-      SetIsloading(false);
+      setIsLoading(false);
     }
   };
 
@@ -60,7 +59,7 @@ function BlogFullPageSectionSecond() {
   }
 
   const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, "-").replace(/:/g, "");
+    return title.replace(/\s+/g, "-").replace(/[:?]/g, "");
   };
 
   // Filter the blog data based on the blog title fetched from the URL
@@ -89,6 +88,11 @@ function BlogFullPageSectionSecond() {
     setUserEmail(""); // Clear the email field
     alert("Your comment has been posted successfully!");
   };
+
+  const currentUrl = window.location.href;
+  const shareUrl = encodeURIComponent(currentUrl);
+  const shareTitle = encodeURIComponent(selectedBlog?.blogTitle);
+
   return (
     <div className={style.main}>
       <Helmet>
@@ -96,8 +100,8 @@ function BlogFullPageSectionSecond() {
         <meta charSet="utf-8" />
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>{selectedBlog?.blogTitle}</title>
-        <meta name="description" content={selectedBlog?.shortDescription} />
-        <meta name="title" content={selectedBlog?.blogTitle} />
+        <meta name="description" content={selectedBlog?.Meta_Description} />
+        <meta name="title" content={selectedBlog?.Meta_Title} />
         <meta name="head title" content={selectedBlog?.blogTitle} />
         <meta name="keyword" content={selectedBlog?.blogTitle} />
         <link
@@ -162,16 +166,40 @@ function BlogFullPageSectionSecond() {
               <div></div>
               <ul>
                 <li>
-                  <FacebookRoundedIcon className={style.icon} />
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&t=${shareTitle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FacebookRoundedIcon className={style.icon} />
+                  </a>
                 </li>
                 <li>
-                  <InstagramIcon className={style.icon} />
+                  <a
+                    href={`https://www.instagram.com/?url=${shareUrl}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon className={style.icon} />
+                  </a>
                 </li>
                 <li>
-                  <LinkedInIcon className={style.icon} />
+                  <a
+                    href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <LinkedInIcon className={style.icon} />
+                  </a>
                 </li>
                 <li>
-                  <TwitterIcon className={style.icon} />
+                  <a
+                    href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TwitterIcon className={style.icon} />
+                  </a>
                 </li>
               </ul>
             </div>
@@ -259,7 +287,7 @@ function BlogFullPageSectionSecond() {
             <input
               type="text"
               placeholder="Your Name*"
-              value={usename} // Controlled component
+              value={username} // Controlled component
               onChange={(e) => setUserName(e.target.value)}
             />
             <input
@@ -290,7 +318,7 @@ function BlogFullPageSectionSecond() {
               handleCommentSubmit({
                 userimg: dp,
                 date: new Date().toISOString(),
-                username: usename,
+                username: username,
                 comment: userComment,
               })
             }

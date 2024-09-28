@@ -1,0 +1,83 @@
+.container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    background-color: #f8f8f8 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 10px !important;
+  
+  }
+  .card_heading{
+    display: flex!important;
+    justify-content: space-between!important;
+    align-items: center;
+    min-width: 500px !important;
+  }
+  .button_box{
+    display: flex!important;
+    justify-content: space-between!important;
+    align-items: center;
+  }
+  
+  .addressItem{
+    display: flex!important;
+    margin: 5px!important;
+    flex-direction: column!important;
+    padding: 10px!important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px!important;
+  }
+  .formTitle {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+  
+  }
+  
+  .form {
+    width: 100% !important;
+  }
+  
+  .formField {
+    margin-bottom: 16px !important;
+  }
+  
+  .submitButton,.cancelButton {
+    background-color: black !important;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    padding: 10px 0 !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+  
+  .buttonContainer {
+    display: grid!important;
+    grid-template-columns: 1fr 1fr!important;
+    gap: 16px!important;/* Optional: Adds space between buttons */
+  }
+  
+  
+  
+  
+  @media (max-width: 600px) {
+    .card_heading{
+      display: flex!important;
+      justify-content: space-between!important;
+      align-items: center;
+      min-width: 100% !important;
+    }
+    .container {
+        padding: 10px !important;
+    }
+  
+    .formTitle {
+        font-size: 20px !important;
+    }
+  
+    .continueButton {
+        font-size: 14px !important;
+    }
+  }
+  

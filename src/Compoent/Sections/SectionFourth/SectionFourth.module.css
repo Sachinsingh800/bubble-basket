@@ -79,16 +79,8 @@
 .inner_container div{
     text-align: center;
 }
-.img_box{
-    height: 15rem!important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
 .img_box img{
-    height: 100%;
-    width: 100%;
+    height: 180px;
 }
 .text_box{
     overflow: hidden;

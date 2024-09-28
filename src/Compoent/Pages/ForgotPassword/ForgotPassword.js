@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Cookies from "js-cookie";
 import style from "./ForgotPassword.module.css";
 import { forgetPassword, resendOtp, resetPassword } from "../../Apis/Apis";
@@ -12,10 +12,9 @@ function ForgotPassword() {
   const [passwordData, setPasswordData] = useState({
     newPassword: "",
     otp: "",
-    email: "",
   });
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); // Email entered only once
   const [showPasswordContainer, setPasswordContainer] = useState(true);
   const [errors, setErrors] = useState({});
   const [otpSent, setOtpSent] = useState(false);
@@ -44,9 +43,6 @@ function ForgotPassword() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!validateEmail(passwordData.email)) {
-      newErrors.email = "Invalid email format";
-    }
     if (!validatePassword(passwordData.newPassword)) {
       newErrors.newPassword =
         "Password must be at least 6 characters long and contain at least one letter and one number";
@@ -64,7 +60,15 @@ function ForgotPassword() {
       return;
     }
     try {
-      const response = await resetPassword(passwordData);
+      const response = await resetPassword({
+        ...passwordData,
+        email, // Use the email entered initially
+      });
+      if (response.status) {
+        alert("Password reset successfully");
+      } else {
+        alert(response.message);
+      }
     } catch (error) {
       console.log("error", error);
     }
@@ -77,7 +81,6 @@ function ForgotPassword() {
     }
     try {
       const response = await forgetPassword(email);
-      console.log(response.message, "response");
       if (response.status) {
         alert(response.message);
         setPasswordContainer(false);
@@ -87,16 +90,16 @@ function ForgotPassword() {
       }
     } catch (error) {
       console.log("error", error);
+      alert("Please enter a valid email address.");
     }
   };
 
   const handleResendOtp = async () => {
     try {
       const response = await resendOtp({ email });
-      // Handle response as needed
       alert(response.message);
     } catch (error) {
-      console.error("Error verifying user:", error);
+      alert("Error verifying user:", error);
     }
   };
 
@@ -105,7 +108,7 @@ function ForgotPassword() {
       <Header />
       <BreadCrumsHeader urlname={"Forget Your Password"} />
       <br />
-      <h2>Forget Your Password ?</h2>
+      <h2>Forget Your Password?</h2>
 
       {showPasswordContainer ? (
         <div className={style.form}>
@@ -161,18 +164,6 @@ function ForgotPassword() {
                 Resend OTP
               </p>
             )}
-          </div>
-          <div className={style.input_box}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={passwordData.email}
-              onChange={handleChange}
-              required
-            />
-            {errors.email && <p className={style.error}>{errors.email}</p>}
           </div>
           <button type="submit">Update Password →</button>
         </form>

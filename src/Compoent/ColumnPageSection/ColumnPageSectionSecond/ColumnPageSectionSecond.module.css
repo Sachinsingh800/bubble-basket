@@ -14,14 +14,8 @@
   text-align: center;
   overflow: hidden;
 }
-.add_box_img {
-  height: 12rem;
-
-}
 .add_box_img img {
-  height: 100%;
-  width: 100%;
-
+  height: 180px;
 }
 .additional_box {
   display: grid;
@@ -38,6 +32,8 @@
   padding: 2rem 3rem 2rem 0rem;
   border-right: 1px #7b0128 solid;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 
 }
 .inner_container1 {
@@ -48,6 +44,8 @@
   padding: 2rem 3rem 2rem 0rem;
   border-left: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .inner_container span{
@@ -73,6 +71,17 @@
   align-items: center;
   justify-content: center;
   font-family: "Allura", cursive;
+}
+.out_of_stock {
+  position: absolute;
+  top: 14px; /* Adjust as needed */
+  left: -24px; /* Adjust as needed */
+  background-color: black;
+  color: white;
+  padding: 5px 20px;
+  transform: rotate(-45deg); /* Tilts the element slightly */
+  font-size: 12px; /* Adjust font size as needed */
+  z-index: 1; /* Ensure it appears above other content */
 }
 
 @media (max-width: 500px) {

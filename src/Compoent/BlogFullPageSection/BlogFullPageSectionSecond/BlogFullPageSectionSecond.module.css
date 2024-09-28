@@ -221,7 +221,8 @@
     width: 50px!important;
   }
   .blog_des img{
-  width: 250px!important;
+  width: 100%!important;
+  height: auto!important;
   }
   .user_review_container{
   }

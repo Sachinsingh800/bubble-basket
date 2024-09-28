@@ -3,9 +3,6 @@ import style from "./SectionNinth.module.css";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import CakeIcon from "@mui/icons-material/Cake";
-import { Calendar } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 import design1 from "../../Images/Leaf 1.webp";
 import design2 from "../../Images/Leaf 2.webp";
 import { sendSubscribtion } from "../../Apis/Apis";
@@ -13,9 +10,8 @@ import { sendSubscribtion } from "../../Apis/Apis";
 function SectionNinth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
   const [showDate, setShowDate] = useState(false);
-  // name,email,dateOfBirth
   const dateRef = useRef(null);
 
   useEffect(() => {
@@ -39,18 +35,17 @@ function SectionNinth() {
     e.preventDefault();
     try {
       const data = {
-        name: name,
-        email: email,
+        name,
+        email,
         dob: selectedDate,
       };
       const response = await sendSubscribtion(data);
       alert(response.message);
-      // Reset all fields after successful submission
       setName("");
       setEmail("");
-      setSelectedDate(null);
+      setSelectedDate("");
     } catch (error) {
-      alert("already register");
+      alert("Already registered.");
     }
   };
 
@@ -62,16 +57,16 @@ function SectionNinth() {
     setEmail(e.target.value);
   };
 
-  const handleSelect = (date) => {
-    // Check if user is 18 or older
+  const handleDateChange = (e) => {
+    const date = new Date(e.target.value);
     const today = new Date();
     const age = today.getFullYear() - date.getFullYear();
     if (age >= 18) {
-      setSelectedDate(date);
+      setSelectedDate(e.target.value);
     } else {
       alert("You must be at least 18 years old to subscribe.");
+      setSelectedDate("");
     }
-    setShowDate(false);
   };
 
   return (
@@ -137,21 +132,22 @@ function SectionNinth() {
           <label onClick={handleToggleDate} className={style.date_label}>
             <CakeIcon />
             {selectedDate ? (
-              selectedDate.toLocaleDateString(undefined, {
+              new Date(selectedDate).toLocaleDateString(undefined, {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
               })
             ) : (
-              <span className={style.date_lable}>Date Of Birth</span>
+              <span className={style.date_label}>Date Of Birth</span>
             )}
           </label>
           {showDate && (
             <div className={style.date_box}>
-              <Calendar
-                date={selectedDate || new Date()}
-                onChange={handleSelect}
-                maxDate={new Date(new Date().setFullYear(new Date().getFullYear() - 18))} // Set max date to 18 years ago
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={handleDateChange}
+                max={new Date().toISOString().split("T")[0]} // Sets the max date to today
               />
             </div>
           )}

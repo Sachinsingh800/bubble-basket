@@ -12,21 +12,33 @@ import HandPaintedContent from "../../Content/handPaintedContent";
 
 function AllCategorySectionSecond() {
   const [productData, setProductData] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { category } = useParams();
 
-  function replaceHyphensWithSpaces(str) {
-    return str.replace(/-/g, " ");
-  }
+  // Replace hyphens in the category string with spaces
+  const convertString = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        let response = await getAllProduct(replaceHyphensWithSpaces(category));
+        let response = await getAllProduct(); // Fetch all products
         let data = response?.data;
         setProductData(data);
+        // Filter products based on the category from URL params
+        let filtered = data.filter(
+          (product) => convertString(product.category) === category
+        );
+        setFilteredProducts(filtered);
       } catch (error) {
         setError("An error occurred while fetching data.");
       } finally {
@@ -46,33 +58,45 @@ function AllCategorySectionSecond() {
   };
 
   const generateHelmet = () => {
-    let title = "Premium Wine & Champagne Gift Baskets - Perfect for Any Occasion";
-    let description = "Discover our exquisite selection of red and white wine gift baskets, sparkling champagne gift sets, and luxury gift boxes. Ideal for corporate gifts, birthdays, weddings, and personalized occasions. Shop now for the perfect gift!";
-    
-    switch (category) {
-      case "CHAMPAGNE":
-        title = "Luxury Champagne Gift Basket Delivery - Best Champagne for Valentine's Day";
-        description = "Discover the perfect luxury champagne gift basket, featuring exquisite champagne and chocolate. Ideal for any occasion, our champagne gift boxes ensure a memorable celebration. Experience seamless champagne gift basket delivery and surprise your loved ones with the best champagne delivered as a gift. Perfect for Valentine's Day and more!";
+    let title =
+      "Premium Wine & Champagne Gift Baskets - Perfect for Any Occasion";
+    let description =
+      "Discover our exquisite selection of red and white wine gift baskets, sparkling champagne gift sets, and luxury gift boxes. Ideal for corporate gifts, birthdays, weddings, and personalized occasions. Shop now for the perfect gift!";
+
+    switch (category.toLowerCase()) {
+      case "champagne":
+        title =
+          "Luxury Champagne Gift Basket Delivery - Best Champagne for Valentine's Day";
+        description =
+          "Discover the perfect luxury champagne gift basket, featuring exquisite champagne and chocolate. Ideal for any occasion, our champagne gift boxes ensure a memorable celebration.";
         break;
-      case "TIFFANY-CHAMPAGNE":
-        title = "Elegant Tiffany Champagne Flutes | Luxury Champagne Flute Sets";
-        description = "Discover our exquisite collection of Tiffany Champagne Flutes, perfect for weddings and special occasions. Shop luxury champagne flutes and Tiffany Champagne Sets, including engraved options, to elevate your celebrations.";
+      case "tiffany-champagne":
+        title =
+          "Elegant Tiffany Champagne Flutes | Luxury Champagne Flute Sets";
+        description =
+          "Discover our exquisite collection of Tiffany Champagne Flutes, perfect for weddings and special occasions. Shop luxury champagne flutes and Tiffany Champagne Sets.";
         break;
-      case "TIFFANY-WINE":
+      case "tiffany-wine":
         title = "Tiffany Wine Collections - Elegant and Timeless Gifts";
-        description = "Explore our Tiffany wine collections, offering elegant and timeless gifts. Perfect for weddings, anniversaries, and corporate events.";
+        description =
+          "Explore our Tiffany wine collections, offering elegant and timeless gifts. Perfect for weddings, anniversaries, and corporate events.";
         break;
-      case "WINE":
-        title = "Premium Wine Gifts: Perfect Wine Christmas Gifts & Wine Bottle Gift Boxes";
-        description = "Discover the best wine gifts for any occasion, including wine Christmas gifts, wine bottle gift boxes, and wine set gifts. Ideal for wine lovers, our selection features wine gifts for Christmas and elegant wine glass gift sets. Shop now for the perfect present!";
+      case "wine":
+        title =
+          "Premium Wine Gifts: Perfect Wine Christmas Gifts & Wine Bottle Gift Boxes";
+        description =
+          "Discover the best wine gifts for any occasion, including wine Christmas gifts, wine bottle gift boxes, and wine set gifts. Ideal for wine lovers.";
         break;
-      case "PERSONALISED":
+      case "personalised":
         title = "Personalized Champagne Bottle | Custom Wine Bottles & Gifts";
-        description = "Discover our range of personalized champagne and wine bottles, perfect for weddings, birthdays, and special occasions. Shop custom champagne bottles and personalized wine gifts to add a unique touch to your celebrations. Ideal for making memorable moments even more special.";
+        description =
+          "Discover our range of personalized champagne and wine bottles, perfect for weddings, birthdays, and special occasions.";
         break;
-      case "HAND-PAINTED":
-        title = "Custom Hand Painted Champagne Bottles | Unique Painted Wine Bottles for Weddings & Holidays";
-        description = "Discover beautiful hand painted champagne bottles and custom painted wine bottles for weddings, holidays, and special occasions. Shop our unique selection of painted champagne bottles and learn how to paint a champagne bottle yourself. Perfect for Christmas gifts and celebrations.";
+      case "hand-painted":
+        title =
+          "Custom Hand Painted Champagne Bottles | Unique Painted Wine Bottles for Weddings & Holidays";
+        description =
+          "Discover beautiful hand painted champagne bottles and custom painted wine bottles for weddings, holidays, and special occasions.";
         break;
       default:
         break;
@@ -82,56 +106,31 @@ function AllCategorySectionSecond() {
       <Helmet>
         <html lang="en" />
         <meta charSet="utf-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://www.luxurybubblebasket.com/${category}`} />
+        <link
+          rel="canonical"
+          href={`https://www.luxurybubblebasket.com/${category}`}
+        />
         <meta name="title" content={title} />
         <meta name="keyword" content={description} />
-        <script type="application/ld+json">
-          {`
-          {
-            "@context": "http://schema.org",
-            "@type": "ItemList",
-            "name": "Products in ${category}",
-            "itemListElement": [
-              ${productData.map((product, index) => `
-                {
-                  "@type": "Product",
-                  "position": ${index + 1},
-                  "url": "https://www.luxurybubblebasket.com/Product/${formatTitleForUrl(product.title)}",
-                  "name": "${product.title}",
-                  "image": "${product.productImg[0]?.url}",
-                  "description": "${product.description}",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "${product.price}",
-                    "priceCurrency": "USD",
-                    "availability": "https://schema.org/InStock"
-                  }
-                }
-              `).join(',')}
-            ]
-          }
-          `}
-        </script>
       </Helmet>
     );
   };
 
   const renderContentByCategory = () => {
-    switch (category) {
-      case "CHAMPAGNE":
+    switch (category.toLowerCase()) {
+      case "champagne":
         return <ChampagneContent />;
-      case "TIFFANY-CHAMPAGNE":
+      case "tiffany-champagne":
         return <TiffanyChampagneContent />;
-      case "TIFFANY-WINE":
+      case "tiffany-wine":
         return <TiffanyWineContent />;
-      case "WINE":
+      case "wine":
         return <WineContent />;
-      case "PERSONALISED":
+      case "personalised":
         return <PersonalizedContent />;
-      case "HAND-PAINTED":
+      case "hand-painted":
         return <HandPaintedContent />;
       default:
         return null;
@@ -147,7 +146,7 @@ function AllCategorySectionSecond() {
         <div>{error}</div>
       ) : (
         <div className={style.additional_box}>
-          {productData?.map((product, index) => (
+          {filteredProducts?.map((product, index) => (
             <React.Fragment key={index}>
               <div
                 className={
@@ -157,6 +156,9 @@ function AllCategorySectionSecond() {
                 }
                 onClick={() => handleNavigate(product?.title)}
               >
+                {product?.productStatus !== "Available" && (
+                  <span className={style.out_of_stock}>Out of Stock</span>
+                )}
                 <div className={style.add_box_img}>
                   <img
                     src={product?.productImg[0]?.url}

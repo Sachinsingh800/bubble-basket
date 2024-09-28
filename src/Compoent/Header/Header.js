@@ -1,3 +1,4 @@
+// src/components/Header/Header.js
 import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
@@ -137,6 +138,15 @@ export default function Header(props) {
     }
   };
 
+  const convertString = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();  
+  };
+
   return (
     <React.Fragment>
       <span className={style.dawer}>
@@ -162,31 +172,38 @@ export default function Header(props) {
                     <ul className={style.list_option}>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[0]?.categoryName}`)
+                          (window.location.href = `/${convertString(category[0]?.categoryName)}`)
                         }
                       >
                         {category[0]?.categoryName}
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[1]?.categoryName}`)
+                          (window.location.href = `/${convertString(category[1]?.categoryName)}`)
                         }
                       >
                         {category[1]?.categoryName}
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[10]?.categoryName}`)
+                          (window.location.href = `/${convertString(category[10]?.categoryName)}`)
                         }
                       >
                         {category[10]?.categoryName}
                       </li>
                       <li
                         onClick={() =>
-                          (window.location.href = `/${category[2]?.categoryName}`)
+                          (window.location.href = `/${convertString(category[2]?.categoryName)}`)
                         }
                       >
                         {category[2]?.categoryName}
+                      </li>
+                      <li
+                        onClick={() =>
+                          (window.location.href = `/${convertString(category[11]?.categoryName)}`)
+                        }
+                      >
+                        {category[11]?.categoryName}
                       </li>
                     </ul>
                   </div>
@@ -269,9 +286,11 @@ export default function Header(props) {
                         <ul className={style.option_box}>
                           {product
                             ?.filter((elem) => {
-                              return elem?.title
-                                ?.toLowerCase()
-                                .includes(search?.toLowerCase());
+                              const lowerCaseSearch = search?.toLowerCase();
+                              return (
+                                elem?.title?.toLowerCase().includes(lowerCaseSearch) ||
+                                elem?.sku?.toLowerCase().includes(lowerCaseSearch)
+                              );
                             })
                             ?.map((item) => (
                               <li
@@ -286,7 +305,7 @@ export default function Header(props) {
                                   <img
                                     src={item?.productImg[0]?.url}
                                     alt={item?.title}
-                                    title="Our Company Logo"
+                                    title={item?.title}
                                     loading="lazy"
                                     width="auto"
                                     height="auto"
@@ -360,9 +379,11 @@ export default function Header(props) {
                 <ul className={style.option_box_mob}>
                   {product
                     ?.filter((elem) => {
-                      return elem?.title
-                        ?.toLowerCase()
-                        .includes(search?.toLowerCase());
+                      const lowerCaseSearch = search?.toLowerCase();
+                      return (
+                        elem?.title?.toLowerCase().includes(lowerCaseSearch) ||
+                        elem?.sku?.toLowerCase().includes(lowerCaseSearch)
+                      );
                     })
                     ?.map((item) => (
                       <li

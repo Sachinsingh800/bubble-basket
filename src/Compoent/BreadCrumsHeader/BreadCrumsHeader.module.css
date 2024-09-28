@@ -33,32 +33,7 @@
   font-size: 1.5rem;
   text-transform: uppercase;
 }
-.main ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding-right: 1rem;
-}
-.main ul li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -1.5rem;
-}
-.breadcrumbs {
-  display: flex;
-  list-style: none;
-  gap: 1rem;
-  align-items: center;
-  font-family: "FELIXTI";
-}
-.url {
-  color: white !important;
-}
-.breadcrumbItem {
-  font-family: "Metropolis-Bold";
-}
+
 
 @media (max-width:1032px){
   .main {

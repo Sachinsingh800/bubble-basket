@@ -13,7 +13,7 @@ function AccountPageSectionSecond() {
     window.location.href = `/Update-Information/${category}`;
 
   };
-
+const guest = sessionStorage.getItem("guest")
 
   const handleLogout = () => {
     // Remove data from local storage
@@ -32,14 +32,14 @@ function AccountPageSectionSecond() {
     <div className={style.main}>
       <h1>Manage Your Account</h1>
       <div className={style.container}>
-        <a href="/Register">
+        <a href="/Login">
           <div>
             <HowToRegIcon className={style.icon} />
             <span>Register</span>
           </div>
         </a>
 
-        {token ? (
+        {token || guest  ? (
           <div onClick={handleLogout}>
             <LoginIcon className={style.icon} />
             <span>Logout</span>

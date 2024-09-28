@@ -7,10 +7,15 @@ function SectionSixth() {
 
 
 
-  const formatTitleForUrl = (title) => {
-    return title.replace(/\s+/g, '-').replace(/:/g, '');
+  const  formatTitleForUrl = (input) => {
+    // Replace spaces and %20 with -
+    return input
+      .replace(/%20/g, "-") // Convert encoded spaces
+      .replace(/\s+/g, "-") // Convert regular spaces
+      .replace(/:/g, "") // Remove colons
+      .toLowerCase();  
   };
-
+  
 const getAllCategory = async (e,title) => {
   e.preventDefault()
   window.location.href=`/${formatTitleForUrl(title)}`
@@ -18,20 +23,25 @@ const getAllCategory = async (e,title) => {
   const collectionData = [
     {
       id: 1,
-      title: "PRIDE MONTH",
+      title: "TIFFANY GIFT BOX",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
+      link:"TIFFANY WINE"
     },
     {
       id: 2,
-      title: "PARENT’S DAY",
+      title: "HOLIDAY GIFT BOX",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
+      link:"WINE"
     },
     {
       id: 3,
-      title: "INDEPENDENCE DAY",
+      title:"NEW YEAR GIFT BOX",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quo voluptates iure eaque dolorum repudiand",
+       link:"CHAMPAGNE"
     },
   ];
+
+  
 
   const handleNavigate = () => {
     // window.location.href = "/ColumnPage";
@@ -49,7 +59,7 @@ const getAllCategory = async (e,title) => {
       </div>
       <div className={style.card_box}>
         {collectionData?.map((item, index) => (
-          <div key={item.id} className={style.inner_container} onClick={(e)=>getAllCategory(e,item?.title)}>
+          <div key={item.id} className={style.inner_container} onClick={(e)=>getAllCategory(e,item?.link)}>
             <div className={style.text_box} onClick={handleNavigate}>
               <h5>{item?.title}</h5>
             </div>
