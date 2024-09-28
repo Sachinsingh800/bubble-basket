@@ -15,16 +15,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
-.main form input[type="text"],
-input[type="tel"],
-input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px #7b0128 solid;
-  border-radius: 4px;
-  outline: none;
-  color: rgb(98, 98, 98);
-}
+
 .main form select {
   width: 100%;
   padding: 10px;
